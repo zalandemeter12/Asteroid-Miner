@@ -1,0 +1,2 @@
+# Asteroid-Miner
+Szoftverprojekt Laboratórium

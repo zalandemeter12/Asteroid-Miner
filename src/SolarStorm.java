@@ -1,7 +1,7 @@
 public class SolarStorm implements ISteppable{
 
-    private Sun sun;
-    private double angle;
+    private final Sun sun;
+    private final double angle;
     private int warnTime;
 
     public SolarStorm(Sun sun, double angle, int warnTime) {

@@ -28,8 +28,9 @@ public abstract class OrbitingObject {
         System.out.println("OrbitingObject.DrilledOn()");
     }
 
-    public void AddMaterial(Material m) {
+    public boolean AddMaterial(Material m) {
         System.out.println("OrbitingObject.AddMaterial()");
+        return false;
     }
 
     public void RemoveMaterial() {

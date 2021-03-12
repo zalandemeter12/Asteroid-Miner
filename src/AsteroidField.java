@@ -3,12 +3,17 @@ import java.util.ArrayList;
 public class AsteroidField implements ISteppable {
     private Sun sun;
     private Game game;
-    private Ellipse2D[] ellipse= new Ellipse2D[3];
-    private ArrayList<Robot> robots= new ArrayList<>();
-    private ArrayList<Settler> settlers= new ArrayList<>();
+    private ArrayList<Ellipse2D> ellipses;
+    private ArrayList<Robot> robots;
+    private ArrayList<Settler> settlers;
 
 
-    public AsteroidField(){
+    public AsteroidField(Sun sun, Game game, ArrayList<Ellipse2D> ellipses, ArrayList<Settler> settlers){
+        this.sun = sun;
+        this.game = game;
+        this.ellipses = ellipses;
+        this.robots = new ArrayList<>();
+        this.settlers = settlers;
         System.out.println("AsteroidField.Ctor()");
     }
 

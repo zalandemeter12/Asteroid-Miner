@@ -1,16 +1,16 @@
 public class Point2D {
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
-    public Point2D(int x, int y){
+    public Point2D(double x, double y){
         this.x = x;
         this. y = y;
         System.out.println("Point2D.Constructor()");
     }
 
-    public int GetX(){ return x;}
+    public double GetX(){ return x;}
 
-    public int GetY(){ return y;}
+    public double GetY(){ return y;}
 
     public void SetX(int x){ this.x = x;}
 

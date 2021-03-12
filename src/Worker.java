@@ -1,9 +1,14 @@
 public abstract class Worker {
-
     protected OrbitingObject location;
 
-    public void MoveTo(OrbitingObject o){
+    public Worker(OrbitingObject location) {
+        this.location = location;
+        System.out.println("Worker.Ctor()");
 
+    }
+
+    public void MoveTo(OrbitingObject o){
+        System.out.println("Worker.MoveTo()");
     }
     public void Die(){
         System.out.println("Worker.Die()");

@@ -1,9 +1,10 @@
 public class Robot extends Worker implements ISteppable{
-
     private final AsteroidField field;
 
-    public Robot(AsteroidField field){
+    public Robot(OrbitingObject location, AsteroidField field){
+        super(location);
         this.field = field;
+        System.out.println("Robot.Ctor()");
     }
 
     @Override
@@ -15,10 +16,8 @@ public class Robot extends Worker implements ISteppable{
         System.out.println("Robot.Explode()");
     }
 
-    //@Override
+    @Override
     public void Step(){
         System.out.println("Robot.Explode()");
     }
-
-
 }

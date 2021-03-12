@@ -23,9 +23,14 @@ public class Asteroid extends OrbitingObject {
     }
 
     @Override
-    public void AddMaterial(Material m){
-        this.material = m;
+    public boolean AddMaterial(Material m){
         System.out.println("Asteroid.AddMaterial()");
+        if (material == null) {
+            this.material = m;
+            return true;
+        }
+        else return false;
+
     }
 
     @Override

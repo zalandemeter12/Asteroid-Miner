@@ -1,20 +1,18 @@
 import java.util.ArrayList;
 
-public class Settler extends Worker implements ISteppable{
-
+public class Settler extends Worker {
     private final AsteroidField field;
-
     private boolean canStep;
-
     private ArrayList<Material> backpack;
-
     private ArrayList<TeleportGate> gateInventory;
 
-    public Settler(AsteroidField field){
+    public Settler(OrbitingObject location, AsteroidField field){
+        super(location);
         this.field = field;
-        canStep = false;
-        backpack = new ArrayList<>();
-        gateInventory = new ArrayList<>();
+        this.canStep = false;
+        this.backpack = new ArrayList<>();
+        this.gateInventory = new ArrayList<>();
+        System.out.println("Settler.Ctor()");
     }
 
     public void  PlaceMaterial(Material m){
@@ -46,6 +44,4 @@ public class Settler extends Worker implements ISteppable{
     public void Die(){
         System.out.println("Settler.Die()");
     }
-
-
 }

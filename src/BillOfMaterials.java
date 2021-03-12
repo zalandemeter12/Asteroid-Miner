@@ -5,6 +5,7 @@ public class BillOfMaterials {
 
     public BillOfMaterials(ArrayList<Material> bill){
         this.bill = bill;
+        System.out.println("BillOfMaterials.Ctor()");
     }
 
     public boolean IsNeeded(Material m){

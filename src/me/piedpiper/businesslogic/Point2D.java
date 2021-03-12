@@ -1,3 +1,5 @@
+package me.piedpiper.businesslogic;
+
 public class Point2D {
     private double x;
     private double y;
@@ -5,7 +7,7 @@ public class Point2D {
     public Point2D(double x, double y){
         this.x = x;
         this. y = y;
-        System.out.println("Point2D.Constructor()");
+        System.out.println("Point2D.Ctor()");
     }
 
     public double GetX(){ return x;}

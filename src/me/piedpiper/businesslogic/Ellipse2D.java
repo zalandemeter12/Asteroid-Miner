@@ -1,18 +1,21 @@
+package me.piedpiper.businesslogic;
+
 import java.util.ArrayList;
 
 public class Ellipse2D {
-    private final Point2D[] focalpoints;
+    private final Point2D focalpoint0;
+    private final Point2D focalpoint1;
     private double velocity;
     private ArrayList<OrbitingObject> objects;
     private final double distance;
 
-    public Ellipse2D(Point2D focalpoint0, Point2D focalpoint1, double distance, double velocity) {
+    public Ellipse2D(Point2D focalpoint0, Point2D focalpoint1, double distance, double velocity, ArrayList<OrbitingObject> objects) {
         this.objects = new ArrayList<>();
-        this.focalpoints = new Point2D[2];
-        this.focalpoints[0] = focalpoint0;
-        this.focalpoints[1] = focalpoint1;
+        this.focalpoint0 = focalpoint0;
+        this.focalpoint1 = focalpoint1;
         this.distance = distance;
         this.velocity = velocity;
+        this.objects = objects;
         System.out.println("Ellipse2D.Ctor()");
     }
 
@@ -29,4 +32,7 @@ public class Ellipse2D {
         return null;
     }
 
+    public ArrayList<OrbitingObject> GetObjects() {
+        return objects;
+    }
 }

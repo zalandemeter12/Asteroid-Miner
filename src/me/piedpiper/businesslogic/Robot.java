@@ -1,3 +1,5 @@
+package me.piedpiper.businesslogic;
+
 public class Robot extends Worker implements ISteppable{
     private final AsteroidField field;
 

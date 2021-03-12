@@ -1,3 +1,5 @@
+package me.piedpiper.businesslogic;
+
 public abstract class Worker {
     protected OrbitingObject location;
 

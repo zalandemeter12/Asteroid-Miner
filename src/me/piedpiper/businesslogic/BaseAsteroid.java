@@ -1,3 +1,5 @@
+package me.piedpiper.businesslogic;
+
 import java.util.ArrayList;
 
 public class BaseAsteroid extends Asteroid {
@@ -13,7 +15,7 @@ public class BaseAsteroid extends Asteroid {
         System.out.println("BaseAsteroid.AddMaterial()");
         ArrayList<Material> materials = new ArrayList<>();
         for (int i = 0; i < 3; ++i) {
-            materials.add(new Uranium());
+            materials.add(new Uran());
             materials.add(new Coal());
             materials.add(new Ice());
             materials.add(new Iron());

@@ -1,3 +1,5 @@
+package me.piedpiper.businesslogic;
+
 public class TeleportGate extends OrbitingObject {
     private final TeleportGate gatePair;
 

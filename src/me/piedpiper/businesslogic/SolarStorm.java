@@ -1,3 +1,5 @@
+package me.piedpiper.businesslogic;
+
 public class SolarStorm implements ISteppable{
 
     private final Sun sun;

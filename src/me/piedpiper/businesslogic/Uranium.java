@@ -1,4 +1,6 @@
-public class Uranium extends Material {
+package me.piedpiper.businesslogic;
+
+public class Uran extends Material {
     @Override
     public void BlowUp(Asteroid a) {
         System.out.println("Uranium.BlowUp()");
@@ -9,3 +11,4 @@ public class Uranium extends Material {
         return false;
     }
 }
+a

@@ -1,3 +1,5 @@
+package me.piedpiper.businesslogic;
+
 public class Asteroid extends OrbitingObject {
     private int thickness;
     private boolean closeToSun;

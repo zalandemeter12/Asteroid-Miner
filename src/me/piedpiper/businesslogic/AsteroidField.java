@@ -1,3 +1,5 @@
+package me.piedpiper.businesslogic;
+
 import java.util.ArrayList;
 
 public class AsteroidField implements ISteppable {
@@ -35,5 +37,21 @@ public class AsteroidField implements ISteppable {
 
     public void RemoveSettler(Settler s) {
         System.out.println("AsteroidField.RemoveSettler");
+    }
+
+    public ArrayList<Ellipse2D> GetEllipses(){
+        return ellipses;
+    }
+
+    public Sun GetSun(){
+        return sun;
+    }
+
+    public ArrayList<Robot> GetRobots(){
+        return robots;
+    }
+
+    public ArrayList<Settler> GetSettlers(){
+        return settlers;
     }
 }

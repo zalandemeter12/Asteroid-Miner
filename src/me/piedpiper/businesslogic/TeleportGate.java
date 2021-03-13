@@ -13,13 +13,17 @@ public class TeleportGate extends OrbitingObject {
     public void AddWorker(Worker w) {
         System.out.println("TeleportGate.AddWorker()");
         if(gatePair.GetLocation() != null) {
-            w.MoveTo(gatePair);
+            w.SetLocation(gatePair);
+            gatePair.GetWorkers().add(w);
         }
     }
 
     public void SetGatePair(TeleportGate tg){
         gatePair = tg;
     }
+
+
+
 
 
 }

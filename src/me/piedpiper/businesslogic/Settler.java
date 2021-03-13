@@ -25,8 +25,8 @@ public class Settler extends Worker {
     }
 
     public void  PlaceMaterial(Material m){
-        location.AddMaterial(m);
         System.out.println("Settler.PlaceMaterial()");
+        location.AddMaterial(m);
     }
 
     public void  PlaceGate(TeleportGate t){
@@ -58,9 +58,8 @@ public class Settler extends Worker {
         System.out.println("Settler.Die()");
     }
 
-    //test fgv
-    public void AddMaterialToBackpack(Material m){
-        backpack.add(m);
+    public ArrayList<Material> GetBackpack(){
+        return backpack;
     }
 
     public ArrayList<Material> GetBackpack(){

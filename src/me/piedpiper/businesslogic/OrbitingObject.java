@@ -35,13 +35,14 @@ public abstract class OrbitingObject {
         return false;
     }
 
-    public void RemoveMaterial() {
+    public Material RemoveMaterial() {
         System.out.println("OrbitingObject.RemoveMaterial()");
+        return null;
     }
 
     public ArrayList<Worker> GetExposedWorkers() {
         System.out.println("OrbitingObject.GetExposedWorkers()");
-        return null;
+        return new ArrayList<Worker>();
     }
 
     public void Explode() {

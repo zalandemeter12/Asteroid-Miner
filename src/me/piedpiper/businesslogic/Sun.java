@@ -13,6 +13,7 @@ public class Sun implements ISteppable {
         this.roundsWithoutSS = 0;
         this.position = position;
         this.field = field;
+        this.solarStorms = new ArrayList<SolarStorm>();
         System.out.println("Sun.Constructor()");
     }
 

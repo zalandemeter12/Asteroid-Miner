@@ -191,7 +191,6 @@ public class Sequences {
         new MoveAction() { public void move() { SettlerDies(); } },
         new MoveAction() { public void move() { SolarStormSteps(); } },
         new MoveAction() { public void move() { SunSteps(); } },
-        new MoveAction() { public void move() { UranBlowUp(); } },
         new MoveAction() { public void move() { WorkerMoves(); } },
     };
 

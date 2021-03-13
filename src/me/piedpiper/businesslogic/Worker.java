@@ -36,4 +36,7 @@ public abstract class Worker {
         location=l;
     }
 
+    public OrbitingObject GetLocation(){
+        return location;
+    }
 }

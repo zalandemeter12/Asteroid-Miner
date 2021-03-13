@@ -32,7 +32,6 @@ public class Asteroid extends OrbitingObject {
             return true;
         }
         else return false;
-
     }
 
     @Override

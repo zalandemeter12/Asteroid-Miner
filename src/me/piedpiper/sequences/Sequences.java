@@ -75,11 +75,13 @@ public class Sequences {
     }
     
     public void IceBlowUp(){
-        
+        /// ez az aszteroida tartalmaz jeget
+        orbitingObjects1.get(2).GetMaterial().BlowUp((Asteroid) orbitingObjects1.get(2));
     }
 
     public void MineAsteroid(){
-        
+        Settler s = game.GetField().GetSettlers().get(0);
+        s.Mine();
     }
 
     public void RadioactiveMaterialExplodes(){

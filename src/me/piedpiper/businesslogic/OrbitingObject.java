@@ -35,8 +35,9 @@ public abstract class OrbitingObject {
         return false;
     }
 
-    public void RemoveMaterial() {
+    public Material RemoveMaterial() {
         System.out.println("OrbitingObject.RemoveMaterial()");
+        return null;
     }
 
     public ArrayList<Worker> GetExposedWorkers() {

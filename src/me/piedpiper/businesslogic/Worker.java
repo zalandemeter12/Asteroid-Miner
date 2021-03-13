@@ -28,7 +28,7 @@ public abstract class Worker {
     public void DrillHole(){
         System.out.println("Worker.DrillHole()");
     }
-    
+
     public void Explode(){
         System.out.println("Worker.Explode()");
     }

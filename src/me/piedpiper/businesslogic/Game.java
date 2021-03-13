@@ -7,7 +7,7 @@ public class Game {
     private BaseAsteroid base;
 
     public Game(int settlerCount) {
-        Sun sun = new Sun(new Point2D(0.0,0.0));
+        Sun sun = new Sun(new Point2D(0.0,0.0),null);
         
         ArrayList<OrbitingObject> objects1 = new ArrayList<>();
         
@@ -41,6 +41,7 @@ public class Game {
         for (int i = 0; i < settlerCount; ++i) {
             settlers.add(new Settler(base,field));
         }
+        sun.SetField(this.field);
         System.out.println("Game.Ctor()");
     }
 

@@ -7,10 +7,12 @@ public class Sun implements ISteppable {
     private final Point2D position;
     private ArrayList<SolarStorm> solarStorms;
     private int roundsWithoutSS;
+    private AsteroidField field;
 
-    public Sun(Point2D position) {
+    public Sun(Point2D position, AsteroidField field) {
         this.roundsWithoutSS = 0;
         this.position = position;
+        this.field = field;
         System.out.println("Sun.Constructor()");
     }
 
@@ -27,5 +29,13 @@ public class Sun implements ISteppable {
 
     public ArrayList<SolarStorm> GetSolarStorms() {
         return solarStorms;
+    }
+
+    public AsteroidField GetField() {
+        return field;
+    }
+
+    public void SetField(AsteroidField field) {
+        this.field = field;
     }
 }

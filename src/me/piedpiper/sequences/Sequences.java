@@ -126,6 +126,7 @@ public class Sequences {
         SolarStorm ss = new SolarStorm(sun, 35, 2);
         ss.Step();
         ss.Step();
+        ss.Step();
     }
 
     public void SunSteps(){

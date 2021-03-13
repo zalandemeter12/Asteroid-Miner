@@ -14,18 +14,18 @@ public class Asteroid extends OrbitingObject {
     }
 
     @Override
-    public void DrilledOn(){
+    public void DrilledOn() {
         System.out.println("Asteroid.DrilledOn()");
     }
 
     @Override
-    public void RemoveMaterial(){
+    public void RemoveMaterial() {
         this.material = null;
         System.out.println("Asteroid.RemoveMaterial()");
     }
 
     @Override
-    public boolean AddMaterial(Material m){
+    public boolean AddMaterial(Material m) {
         System.out.println("Asteroid.AddMaterial()");
         if (material == null) {
             this.material = m;
@@ -43,5 +43,15 @@ public class Asteroid extends OrbitingObject {
     public int GetThickness() {
         System.out.println("Asteroid.GetThickness()");
         return this.thickness;
+    }
+    
+    @Override
+    public void SetMaterial(Material m) {
+        material = m;
+    }
+
+    @Override
+    public Material GetMaterial() {
+        return material;
     }
 }

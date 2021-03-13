@@ -35,7 +35,8 @@ public class Sequences {
     
 
     public void AddMaterial(){
-
+        OrbitingObject asteroid = orbitingObjects1.get(0);
+        asteroid.AddMaterial(new Uran());
     }
 
     public void AddNeighbours(){
@@ -47,7 +48,7 @@ public class Sequences {
         
     }
 
-    public void AsteroidRecievesMaterial(){
+    public void AsteroidReceivesMaterial(){
         
     }
 
@@ -90,29 +91,40 @@ public class Sequences {
     public void SettlerCraftsGate(){
         
     }
+
     public void SettlerExplodes(){
         
     }
+
     public void SettlerMines(){
         
     }
+
     public void SettlerPlacesGate(){
         
     }
+
     public void SettlerDies(){
         
     }
+
     public void SolarStormSteps(){
         
     }
+
     public void SunSteps(){
         
     }
+
     public void UranBlowUp(){
-        
+        orbitingObjects1.get(0).SetMaterial(new Uran());
+        orbitingObjects1.get(0).GetMaterial().BlowUp((Asteroid)orbitingObjects1.get(0));
     }
+
     public void WorkerMoves(){
-        
+        orbitingObjects1.get(0).AddNeighbor(orbitingObjects1.get(1));
+        Settler settler = new Settler(orbitingObjects1.get(0),asteroidField);
+        settler.MoveTo(orbitingObjects1.get(1));
     }
 
     interface MoveAction {
@@ -123,7 +135,7 @@ public class Sequences {
         new MoveAction() { public void move() { AddMaterial();; } },
         new MoveAction() { public void move() { AddNeighbours(); } },
         new MoveAction() { public void move() { AddWorkerToTeleportGate(); } },
-        new MoveAction() { public void move() { AsteroidRecievesMaterial(); } },
+        new MoveAction() { public void move() { AsteroidReceivesMaterial(); } },
         new MoveAction() { public void move() { AsteroidFieldSteps(); } },
         new MoveAction() { public void move() { BaseAsteroidRecievesMaterial(); } },
         new MoveAction() { public void move() { DrillHole(); } },
@@ -176,11 +188,17 @@ public class Sequences {
         Scanner input = new Scanner(System.in);
         int index = 0;
         
-        while(input.nextInt() != 0){
+        while(true){
             printMenuItems();
-            sequences.moveActions[index].move();
+            System.out.println("\n\nSelect sequence: ");
+            index = input.nextInt();
+            if(index == 0 || index > 22)
+                break;
+
+
+            sequences.moveActions[index-1].move();
         }
-        
+
         input.close();
     }
 }

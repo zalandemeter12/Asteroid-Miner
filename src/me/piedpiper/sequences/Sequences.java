@@ -71,7 +71,12 @@ public class Sequences {
     }
 
     public void DrillHole(){
-        
+        Worker w = settlers.get(0);
+        OrbitingObject o = w.GetLocation();
+        w.DrillHole();
+        o.DrilledOn();
+        if(o.GetThickness() == 0 && o.IsCloseToSun())
+            o.GetMaterial().BlowUp(o);
     }
     
     public void IceBlowUp(){

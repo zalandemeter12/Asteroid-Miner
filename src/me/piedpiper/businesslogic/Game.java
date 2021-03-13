@@ -7,7 +7,7 @@ public class Game {
     private BaseAsteroid base;
 
     public Game(int settlerCount) {
-        Sun sun = new Sun(new Point2D(0.0,0.0));
+        Sun sun = new Sun(new Point2D(0.0,0.0),null);
         
         ArrayList<OrbitingObject> objects1 = new ArrayList<>();
         
@@ -23,15 +23,15 @@ public class Game {
             objects1.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Ice()));
             objects1.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Uran()));
 
-            objects2.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Iron()));
-            objects2.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Coal()));
-            objects2.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Ice()));
-            objects2.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Uran()));
+            objects2.add(new Asteroid(new Point2D(1,1),ellipses.get(1),5, new Iron()));
+            objects2.add(new Asteroid(new Point2D(1,1),ellipses.get(1),5, new Coal()));
+            objects2.add(new Asteroid(new Point2D(1,1),ellipses.get(1),5, new Ice()));
+            objects2.add(new Asteroid(new Point2D(1,1),ellipses.get(1),5, new Uran()));
             
-            objects3.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Iron()));
-            objects3.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Coal()));
-            objects3.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Ice()));
-            objects3.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Uran()));
+            objects3.add(new Asteroid(new Point2D(1,1),ellipses.get(2),5, new Iron()));
+            objects3.add(new Asteroid(new Point2D(1,1),ellipses.get(2),5, new Coal()));
+            objects3.add(new Asteroid(new Point2D(1,1),ellipses.get(2),5, new Ice()));
+            objects3.add(new Asteroid(new Point2D(1,1),ellipses.get(2),5, new Uran()));
         }
 
         this.base = new BaseAsteroid(new Point2D(5,5), ellipses.get(1), 3, null);
@@ -41,6 +41,7 @@ public class Game {
         for (int i = 0; i < settlerCount; ++i) {
             settlers.add(new Settler(base,field));
         }
+        sun.SetField(this.field);
         System.out.println("Game.Ctor()");
     }
 

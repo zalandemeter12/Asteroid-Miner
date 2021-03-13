@@ -74,6 +74,8 @@ public abstract class OrbitingObject {
         return position;
     }
 
+    public boolean IsCloseToSun(){return false;}
+
     public  ArrayList<Worker> GetWorkers(){
         return workers;
     }

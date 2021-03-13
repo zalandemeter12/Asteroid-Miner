@@ -2,8 +2,9 @@ package me.piedpiper.businesslogic;
 
 public class Ice extends Material {
     @Override
-    public void BlowUp(Asteroid a) {
+    public void BlowUp(OrbitingObject o) {
         System.out.println("Ice.BlowUp()");
+        o.RemoveMaterial();
     }
 
     @Override

@@ -20,7 +20,25 @@ public class AsteroidField implements ISteppable {
     }
 
     public void Step() {
+
         System.out.println("AsteroidField.Step()");
+        ArrayList<OrbitingObject> orbitingObjects = new ArrayList<OrbitingObject>();
+        for(int i = 0; i < ellipses.size(); i++) {
+            orbitingObjects.addAll(ellipses.get(i).GetObjects());
+        }
+
+        for(int i = 0; i < orbitingObjects.size(); i++){
+            for(int j = 0; j < orbitingObjects.size(); j++){
+                if(i != j){
+                    OrbitingObject o1 = orbitingObjects.get(i);
+                    OrbitingObject o2 = orbitingObjects.get(j);
+                    if(o1.GetLocation().DistanceFrom(o2.GetLocation()) < 10){
+                        o1.AddNeighbor(o2);
+                    }
+                }
+            }
+        }
+
     }
 
     public void AddRobot(Robot r) {
@@ -36,7 +54,8 @@ public class AsteroidField implements ISteppable {
     }
 
     public void RemoveSettler(Settler s) {
-        System.out.println("AsteroidField.RemoveSettler");
+        if(settlers.isEmpty()) game.EndGame();
+        System.out.println("AsteroidField.RemoveSettler()");
     }
 
     public ArrayList<Ellipse2D> GetEllipses(){

@@ -40,7 +40,7 @@ public class Sequences {
     }
 
     public void AddNeighbours(){
-
+        asteroidField.Step();
 
     }
 
@@ -79,15 +79,22 @@ public class Sequences {
     }
 
     public void DrillHole(){
-        
+        Worker w = settlers.get(0);
+        OrbitingObject o = w.GetLocation();
+        w.DrillHole();
+        o.DrilledOn();
+        if(o.GetThickness() == 0 && o.IsCloseToSun())
+            o.GetMaterial().BlowUp(o);
     }
     
     public void IceBlowUp(){
-        
+        /// ez az aszteroida tartalmaz jeget
+        orbitingObjects1.get(2).GetMaterial().BlowUp((Asteroid) orbitingObjects1.get(2));
     }
 
     public void MineAsteroid(){
-        
+        Settler s = game.GetField().GetSettlers().get(0);
+        s.Mine();
     }
 
     public void RadioactiveMaterialExplodes(){
@@ -95,11 +102,16 @@ public class Sequences {
     }
     
     public void RobotDies(){
-        
+        Robot r = game.GetField().GetRobots().get(0);
+        r.Die();
     }
 
     public void RobotExplodes(){
-        
+        Robot r = game.GetField().GetRobots().get(0);
+        r.Explode();
+        OrbitingObject location = r.GetLocation();
+        ArrayList<OrbitingObject> neighbours = location.GetNeighbors();
+        r.MoveTo(neighbours.get(0));
     }
 
     public void SettlerBuildsRobot(){
@@ -111,11 +123,21 @@ public class Sequences {
     }
 
     public void SettlerExplodes(){
-        
+        Settler s = game.GetField().GetSettlers().get(0);
+        s.Explode();
     }
 
     public void SettlerMines(){
-        
+        Settler s = game.GetField().GetSettlers().get(0);
+        OrbitingObject location = s.GetLocation();
+        s.Mine();
+        int thickness = location.GetThickness();
+        if(thickness == 0 && s.GetBackpack().size()<10){
+            Material material = location.GetMaterial();
+            location.RemoveMaterial();
+            s.AddMaterialToBackpack(material);
+        }
+
     }
 
     public void SettlerPlacesGate(){
@@ -123,15 +145,19 @@ public class Sequences {
     }
 
     public void SettlerDies(){
-        
+        Settler s = game.GetField().GetSettlers().get(0);
+        s.Die();
     }
 
     public void SolarStormSteps(){
-        
+        SolarStorm ss = new SolarStorm(sun, 35, 2);
+        ss.Step();
+        ss.Step();
+        ss.Step();
     }
 
     public void SunSteps(){
-        
+        sun.Step();
     }
 
     public void UranBlowUp(){

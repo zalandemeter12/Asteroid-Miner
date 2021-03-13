@@ -19,9 +19,12 @@ public class Asteroid extends OrbitingObject {
     }
 
     @Override
-    public void RemoveMaterial() {
-        this.material = null;
+    public Material RemoveMaterial() {
         System.out.println("Asteroid.RemoveMaterial()");
+        Material tmp = this.material;
+        this.material = null;
+        return tmp;
+
     }
 
     @Override
@@ -55,5 +58,7 @@ public class Asteroid extends OrbitingObject {
         return material;
     }
 
-
+    public boolean IsCloseToSun(){
+        return closeToSun;
+    }
 }

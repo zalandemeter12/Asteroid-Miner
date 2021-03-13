@@ -40,7 +40,7 @@ public class Sequences {
     }
 
     public void AddNeighbours(){
-
+        asteroidField.Step();
 
     }
 

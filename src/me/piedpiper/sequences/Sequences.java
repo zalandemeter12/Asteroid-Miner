@@ -99,7 +99,11 @@ public class Sequences {
     }
 
     public void RobotExplodes(){
-
+        Robot r = game.GetField().GetRobots().get(0);
+        r.Explode();
+        OrbitingObject location = r.GetLocation();
+        ArrayList<OrbitingObject> neighbours = location.GetNeighbors();
+        r.MoveTo(neighbours.get(0));
     }
 
     public void SettlerBuildsRobot(){

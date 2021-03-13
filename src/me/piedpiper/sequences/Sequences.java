@@ -89,11 +89,12 @@ public class Sequences {
     }
     
     public void RobotDies(){
-        
+        Robot r = game.GetField().GetRobots().get(0);
+        r.Die();
     }
 
     public void RobotExplodes(){
-        
+
     }
 
     public void SettlerBuildsRobot(){
@@ -105,7 +106,8 @@ public class Sequences {
     }
 
     public void SettlerExplodes(){
-        
+        Settler s = game.GetField().GetSettlers().get(0);
+        s.Explode();
     }
 
     public void SettlerMines(){

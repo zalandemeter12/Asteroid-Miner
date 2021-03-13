@@ -12,6 +12,7 @@ public class Robot extends Worker implements ISteppable{
     @Override
     public void Die(){
         System.out.println("Robot.Die()");
+        field.RemoveRobot(this);
     }
     @Override
     public void Explode(){

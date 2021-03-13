@@ -40,6 +40,7 @@ public class Settler extends Worker {
 
     @Override
     public void Explode(){
+        Die();
         System.out.println("Settler.Explode()");
     }
 

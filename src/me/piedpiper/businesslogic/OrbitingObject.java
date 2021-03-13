@@ -58,4 +58,6 @@ public abstract class OrbitingObject {
         System.out.println("OrbitingObject.AddNeighbor()");
 
     }
+
+    public Point2D GetLocation() { return position; }
 }

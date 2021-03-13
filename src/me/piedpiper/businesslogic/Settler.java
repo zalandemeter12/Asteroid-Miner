@@ -17,7 +17,10 @@ public class Settler extends Worker {
         System.out.println("Settler.Ctor()");
     }
 
+    public void Mine() { System.out.println("Settler.Mine()"); }
+
     public void  PlaceMaterial(Material m){
+        location.AddMaterial(m);
         System.out.println("Settler.PlaceMaterial()");
     }
 
@@ -45,5 +48,10 @@ public class Settler extends Worker {
     @Override
     public void Die(){
         System.out.println("Settler.Die()");
+    }
+
+    //test fgv
+    public void AddMaterialToBackpack(Material m){
+        backpack.add(m);
     }
 }

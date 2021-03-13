@@ -11,6 +11,8 @@ public abstract class Worker {
 
     public void MoveTo(OrbitingObject o){
         System.out.println("Worker.MoveTo()");
+        o.AddWorker(this);
+        location=o;
     }
     public void Die(){
         System.out.println("Worker.Die()");

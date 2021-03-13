@@ -8,6 +8,7 @@ public class BaseAsteroid extends Asteroid {
     public BaseAsteroid(Point2D position, Ellipse2D ellipse, int thickness, Material material) {
         super(position, ellipse, thickness, material);
         System.out.println("BaseAsteroid.Ctor()");
+        chest=new ArrayList<>();
     }
 
     @Override

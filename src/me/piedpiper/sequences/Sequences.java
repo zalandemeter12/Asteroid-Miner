@@ -56,7 +56,9 @@ public class Sequences {
     public void AsteroidReceivesMaterial(){
         Settler s=settlers.get(0);
         Ice m=new Ice();
-        s.AddMaterialToBackpack(m);
+        s.GetBackpack().add(m);
+        Asteroid a= new Asteroid(new Point2D(1,1), ellipses.get(0), 0, null);
+        s.SetLocation(a);
 
         //sequence start
         s.PlaceMaterial(m);
@@ -67,7 +69,13 @@ public class Sequences {
     }
     
     public void BaseAsteroidRecievesMaterial(){
-        
+        Settler s=settlers.get(0);
+        Ice m=new Ice();
+        s.GetBackpack().add(m);
+        s.SetLocation(base);
+
+        //sequence start
+        s.PlaceMaterial(m);
     }
 
     public void DrillHole(){

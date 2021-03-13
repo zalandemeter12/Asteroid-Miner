@@ -73,4 +73,8 @@ public abstract class OrbitingObject {
     public Point2D GetLocation(){
         return position;
     }
+
+    public  ArrayList<Worker> GetWorkers(){
+        return workers;
+    }
 }

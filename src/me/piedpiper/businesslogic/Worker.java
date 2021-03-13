@@ -15,10 +15,9 @@ public abstract class Worker {
         if (neighbors.contains(o)) {
             location.RemoveWorker(this);
             o.AddWorker(this);
+            location=o;
         }
         System.out.println("Worker.MoveTo()");
-        o.AddWorker(this);
-        location=o;
     }
 
     public void Die(){
@@ -31,6 +30,10 @@ public abstract class Worker {
     
     public void Explode(){
         System.out.println("Worker.Explode()");
+    }
+
+    public void SetLocation(OrbitingObject l){
+        location=l;
     }
 
 }

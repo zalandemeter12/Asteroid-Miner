@@ -51,6 +51,9 @@ public class Settler extends Worker {
     @Override
     public void Die(){
         System.out.println("Settler.Die()");
+        location.RemoveWorker(this);
+        field.RemoveSettler(this);
+
     }
 
     //test fgv

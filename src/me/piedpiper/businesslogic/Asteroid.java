@@ -58,5 +58,7 @@ public class Asteroid extends OrbitingObject {
         return material;
     }
 
-
+    public boolean IsCloseToSun(){
+        return closeToSun;
+    }
 }

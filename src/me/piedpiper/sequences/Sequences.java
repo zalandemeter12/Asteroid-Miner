@@ -47,7 +47,6 @@ public class Sequences {
         TeleportGate teleportGate1=new TeleportGate(new Point2D(1,1), ellipses.get(0));
         TeleportGate teleportGate2=new TeleportGate(new Point2D(2,1), ellipses.get(1));
         teleportGate1.SetGatePair(teleportGate2);
-        teleportGate2.SetGatePair(teleportGate1);
 
         //sequence start
         teleportGate1.AddWorker(settlers.get(0));
@@ -82,6 +81,9 @@ public class Sequences {
         Worker w = settlers.get(0);
         OrbitingObject o = w.GetLocation();
         w.DrillHole();
+        o.DrilledOn();
+        if(o.GetThickness() == 0 && o.IsCloseToSun())
+            o.GetMaterial().BlowUp(o);
     }
     
     public void IceBlowUp() {
@@ -148,8 +150,14 @@ public class Sequences {
 
     }
 
-    public void SettlerPlacesGate() {
-        
+    public void SettlerPlacesGate(){
+        Settler s = game.GetField().GetSettlers().get(0);
+        OrbitingObject location = s.GetLocation();
+        Point2D positionA = location.GetPosition();
+        Ellipse2D e = location.GetEllipse();
+        Point2D positionGate = e.GateLocation(positionA);
+        TeleportGate t = new TeleportGate(null,e,null);
+        t.SetPoint2D(positionGate);
     }
 
     public void SettlerDies() {

@@ -5,6 +5,7 @@ public class TeleportGate extends OrbitingObject {
 
     public TeleportGate(Point2D position, Ellipse2D ellipse) {
         super(position, ellipse);
+        this.gatePair = gatePair;
         System.out.println("TeleportGate.Ctor()");
     }
 
@@ -20,4 +21,13 @@ public class TeleportGate extends OrbitingObject {
     public void SetGatePair(TeleportGate tg){
         gatePair = tg;
     }
+
+    public void SetPoint2D(Point2D p){
+        position = p;
+    }
+
+
+
+
+
 }

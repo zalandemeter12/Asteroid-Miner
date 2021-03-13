@@ -60,4 +60,8 @@ public class Settler extends Worker {
     public void AddMaterialToBackpack(Material m){
         backpack.add(m);
     }
+
+    public ArrayList<Material> GetBackpack(){
+        return backpack;
+    }
 }

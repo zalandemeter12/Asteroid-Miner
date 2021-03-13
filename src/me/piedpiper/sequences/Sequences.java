@@ -120,7 +120,16 @@ public class Sequences {
     }
 
     public void SettlerMines(){
-        
+        Settler s = game.GetField().GetSettlers().get(0);
+        OrbitingObject location = s.GetLocation();
+        s.Mine();
+        int thickness = location.GetThickness();
+        if(thickness == 0 && s.GetBackpack().size()<10){
+            Material material = location.GetMaterial();
+            location.RemoveMaterial();
+            s.AddMaterialToBackpack(material);
+        }
+
     }
 
     public void SettlerPlacesGate(){

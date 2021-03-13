@@ -99,7 +99,11 @@ public class Sequences {
     }
 
     public void RobotExplodes(){
-
+        Robot r = game.GetField().GetRobots().get(0);
+        r.Explode();
+        OrbitingObject location = r.GetLocation();
+        ArrayList<OrbitingObject> neighbours = location.GetNeighbors();
+        r.MoveTo(neighbours.get(0));
     }
 
     public void SettlerBuildsRobot(){
@@ -116,7 +120,16 @@ public class Sequences {
     }
 
     public void SettlerMines(){
-        settlers.get(0).Mine();
+        Settler s = game.GetField().GetSettlers().get(0);
+        OrbitingObject location = s.GetLocation();
+        s.Mine();
+        int thickness = location.GetThickness();
+        if(thickness == 0 && s.GetBackpack().size()<10){
+            Material material = location.GetMaterial();
+            location.RemoveMaterial();
+            s.AddMaterialToBackpack(material);
+        }
+
     }
 
     public void SettlerPlacesGate(){
@@ -170,6 +183,7 @@ public class Sequences {
         new MoveAction() { public void move() { SettlerDies(); } },
         new MoveAction() { public void move() { SolarStormSteps(); } },
         new MoveAction() { public void move() { SunSteps(); } },
+        new MoveAction() { public void move() { UranBlowUp(); } },
         new MoveAction() { public void move() { WorkerMoves(); } },
     };
 

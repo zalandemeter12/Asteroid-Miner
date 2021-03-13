@@ -40,24 +40,15 @@ public class Sequences {
 
     public void AddNeighbours(){
 
+
     }
 
     public void AddWorkerToTeleportGate(){
-        TeleportGate teleportGate1=new TeleportGate(new Point2D(1,1), ellipses.get(0), null);
-        TeleportGate teleportGate2=new TeleportGate(new Point2D(2,1), ellipses.get(1), teleportGate1);
-        teleportGate1.SetGatePair(teleportGate2);
-
-        //sequence start
-        teleportGate1.AddWorker(settlers.get(0));
+        
     }
 
-    public void AsteroidReceivesMaterial(){
-        Settler s=settlers.get(0);
-        Ice m=new Ice();
-        s.AddMaterialToBackpack(m);
-
-        //sequence start
-        s.PlaceMaterial(m);
+    public void AsteroidRecievesMaterial(){
+        
     }
 
     public void AsteroidFieldSteps(){
@@ -65,8 +56,7 @@ public class Sequences {
     }
     
     public void BaseAsteroidRecievesMaterial(){
-
-
+        
     }
 
     public void DrillHole(){
@@ -130,10 +120,10 @@ public class Sequences {
     }
 
     private MoveAction[] moveActions = new MoveAction[] {
-        new MoveAction() { public void move() { AddMaterial(); } },
+        new MoveAction() { public void move() { AddMaterial();; } },
         new MoveAction() { public void move() { AddNeighbours(); } },
         new MoveAction() { public void move() { AddWorkerToTeleportGate(); } },
-        new MoveAction() { public void move() { AsteroidReceivesMaterial(); } },
+        new MoveAction() { public void move() { AsteroidRecievesMaterial(); } },
         new MoveAction() { public void move() { AsteroidFieldSteps(); } },
         new MoveAction() { public void move() { BaseAsteroidRecievesMaterial(); } },
         new MoveAction() { public void move() { DrillHole(); } },

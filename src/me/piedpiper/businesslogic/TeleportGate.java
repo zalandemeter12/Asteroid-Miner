@@ -22,6 +22,10 @@ public class TeleportGate extends OrbitingObject {
         gatePair = tg;
     }
 
+    public void SetPoint2D(Point2D p){
+        position = p;
+    }
+
 
 
 

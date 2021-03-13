@@ -116,7 +116,7 @@ public class Sequences {
     }
 
     public void SettlerBuildsRobot(){
-        
+
     }
     
     public void SettlerCraftsGate(){
@@ -142,7 +142,13 @@ public class Sequences {
     }
 
     public void SettlerPlacesGate(){
-        
+        Settler s = game.GetField().GetSettlers().get(0);
+        OrbitingObject location = s.GetLocation();
+        Point2D positionA = location.GetPosition();
+        Ellipse2D e = location.GetEllipse();
+        Point2D positionGate = e.GateLocation(positionA);
+        TeleportGate t = new TeleportGate(null,e,null);
+        t.SetPoint2D(positionGate);
     }
 
     public void SettlerDies(){

@@ -86,4 +86,8 @@ public abstract class OrbitingObject {
     public Ellipse2D GetEllipse() {
         return ellipse;
     }
+
+    public Point2D GetPosition(){
+        return position;
+    }
 }

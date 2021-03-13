@@ -20,18 +20,14 @@ public abstract class Worker {
         System.out.println("Worker.MoveTo()");
     }
 
-    public void Die(){
-        System.out.println("Worker.Die()");
-    }
+    public abstract void Die();
 
     public void DrillHole(){
         location.DrilledOn();
         System.out.println("Worker.DrillHole()");
     }
     
-    public void Explode(){
-        System.out.println("Worker.Explode()");
-    }
+    public abstract void Explode();
 
     public void SetLocation(OrbitingObject l){
         location=l;

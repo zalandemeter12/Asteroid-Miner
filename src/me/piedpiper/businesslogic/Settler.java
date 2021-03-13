@@ -19,7 +19,7 @@ public class Settler extends Worker {
 
     public void Mine() { 
         if (location.GetThickness() == 0 && backpack.size() < 10) {
-            location.RemoveMaterial();
+            backpack.add(location.RemoveMaterial());
         }
         System.out.println("Settler.Mine()");
     }
@@ -29,7 +29,11 @@ public class Settler extends Worker {
         location.AddMaterial(m);
     }
 
-    public void  PlaceGate(TeleportGate t){
+    public void  PlaceGate(){
+        if (gateInventory.size() > 0) {
+            gateInventory.get(0).SetPosition(location.GetPosition());
+            gateInventory.get(0).SetEllipse(location.GetEllipse());
+        }
         System.out.println("Settler.PlaceGate()");
     }
 
@@ -51,15 +55,8 @@ public class Settler extends Worker {
                         backpack.remove(m);
                 }
                 
-                Ellipse2D currentEllipse = field.GetEllipses().get(0);
-                for (Ellipse2D e : field.GetEllipses())
-                    for (OrbitingObject o : e.GetObjects()) 
-                        for (Worker w : o.GetWorkers()) 
-                            if (w == this)
-                                currentEllipse = e;
-                
-                TeleportGate t1 = new TeleportGate(new Point2D(10,10), currentEllipse);
-                TeleportGate t2 = new TeleportGate(new Point2D(10,10), currentEllipse);
+                TeleportGate t1 = new TeleportGate(null, null);
+                TeleportGate t2 = new TeleportGate(null, null);
                 t1.SetGatePair(t2);
                 t2.SetGatePair(t1);
                 gateInventory.add(t1);
@@ -115,5 +112,9 @@ public class Settler extends Worker {
         if (backpack.size() < 10) {
             backpack.add(m);
         }
+    }
+
+    public ArrayList<TeleportGate> GetGateInventory() {
+        return gateInventory;
     }
 }

@@ -79,11 +79,7 @@ public class Sequences {
 
     public void DrillHole() {
         Worker w = settlers.get(0);
-        OrbitingObject o = w.GetLocation();
         w.DrillHole();
-        o.DrilledOn();
-        if(o.GetThickness() == 0 && o.IsCloseToSun())
-            o.GetMaterial().BlowUp(o);
     }
     
     public void IceBlowUp() {
@@ -109,10 +105,6 @@ public class Sequences {
     public void RobotExplodes() {
         Robot r = game.GetField().GetRobots().get(0);
         r.Explode();
-        OrbitingObject location = r.GetLocation();
-        ArrayList<OrbitingObject> neighbours = location.GetNeighbors();
-        neighbours.add(new Asteroid(new Point2D(1,1), ellipses.get(0), 0, null));
-        r.MoveTo(neighbours.get(0));
     }
 
     public void SettlerBuildsRobot() {
@@ -139,25 +131,18 @@ public class Sequences {
 
     public void SettlerMines() {
         Settler s = game.GetField().GetSettlers().get(0);
-        OrbitingObject location = s.GetLocation();
         s.Mine();
-        int thickness = location.GetThickness();
-        if(thickness == 0 && s.GetBackpack().size()<10){
-            Material material = location.GetMaterial();
-            location.RemoveMaterial();
-            s.AddMaterialToBackpack(material);
-        }
-
     }
 
     public void SettlerPlacesGate(){
-        Settler s = game.GetField().GetSettlers().get(0);
-        OrbitingObject location = s.GetLocation();
-        Point2D positionA = location.GetPosition();
-        Ellipse2D e = location.GetEllipse();
-        Point2D positionGate = e.GateLocation(positionA);
-        TeleportGate t = new TeleportGate(null,e,null);
-        t.SetPoint2D(positionGate);
+        Settler s = settlers.get(0);
+        TeleportGate t1 = new TeleportGate(null, null);
+        TeleportGate t2 = new TeleportGate(null, null);
+        t1.SetGatePair(t2);
+        t2.SetGatePair(t1);
+        s.GetGateInventory().add(t1);
+        s.GetGateInventory().add(t2);
+        s.PlaceGate();
     }
 
     public void SettlerDies() {

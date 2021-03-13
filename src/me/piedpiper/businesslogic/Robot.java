@@ -1,5 +1,6 @@
 package me.piedpiper.businesslogic;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Robot extends Worker implements ISteppable{
@@ -18,6 +19,12 @@ public class Robot extends Worker implements ISteppable{
     }
     @Override
     public void Explode(){
+        ArrayList<OrbitingObject> neighbours = location.GetNeighbors();
+        if (neighbours.size() > 0) {
+            Random rand = new Random();
+            int idx = rand.nextInt(neighbours.size()-1);
+            MoveTo(neighbours.get(idx));
+        }
         System.out.println("Robot.Explode()");
     }
 

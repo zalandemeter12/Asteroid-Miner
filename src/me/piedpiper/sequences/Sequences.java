@@ -119,7 +119,8 @@ public class Sequences {
     }
 
     public void SettlerDies(){
-        
+        Settler s = game.GetField().GetSettlers().get(0);
+        s.Die();
     }
 
     public void SolarStormSteps(){

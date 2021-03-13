@@ -54,7 +54,8 @@ public class AsteroidField implements ISteppable {
     }
 
     public void RemoveSettler(Settler s) {
-        System.out.println("AsteroidField.RemoveSettler");
+        if(settlers.isEmpty()) game.EndGame();
+        System.out.println("AsteroidField.RemoveSettler()");
     }
 
     public ArrayList<Ellipse2D> GetEllipses(){

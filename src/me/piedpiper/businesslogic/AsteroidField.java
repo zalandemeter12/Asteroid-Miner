@@ -22,9 +22,14 @@ public class AsteroidField implements ISteppable {
     public void Step() {
 
         System.out.println("AsteroidField.Step()");
+        sun.Step();
         ArrayList<OrbitingObject> orbitingObjects = new ArrayList<OrbitingObject>();
-        for(int i = 0; i < ellipses.size(); i++) {
-            orbitingObjects.addAll(ellipses.get(i).GetObjects());
+        
+        
+
+        for(Ellipse2D e: ellipses) {
+            e.MoveOrbits();
+            orbitingObjects.addAll(e.GetObjects());
         }
 
         for(int i = 0; i < orbitingObjects.size(); i++){
@@ -32,28 +37,36 @@ public class AsteroidField implements ISteppable {
                 if(i != j){
                     OrbitingObject o1 = orbitingObjects.get(i);
                     OrbitingObject o2 = orbitingObjects.get(j);
-                    if(o1.GetLocation().DistanceFrom(o2.GetLocation()) < 10){
+                    if(o1.GetPosition().DistanceFrom(o2.GetPosition()) < 10){
                         o1.AddNeighbor(o2);
                     }
                 }
             }
         }
 
+        for (Robot r : robots) {
+            r.Step();
+        }
+
     }
 
     public void AddRobot(Robot r) {
+        robots.add(r);
         System.out.println("AsteroidField.AddRobot()");
     }
 
     public void RemoveRobot(Robot r) {
+        robots.remove(r);
         System.out.println("AsteroidField.RemoveRobot()");
     }
 
     public void AddSettler(Settler s) {
+        settlers.add(s);
         System.out.println("AsteroidField.AddSettler()");
     }
 
     public void RemoveSettler(Settler s) {
+        settlers.remove(s);
         if(settlers.isEmpty()) game.EndGame();
         System.out.println("AsteroidField.RemoveSettler()");
     }

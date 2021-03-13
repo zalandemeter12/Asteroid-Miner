@@ -1,5 +1,7 @@
 package me.piedpiper.businesslogic;
 
+import java.util.Random;
+
 public class Robot extends Worker implements ISteppable{
     private final AsteroidField field;
 
@@ -21,6 +23,14 @@ public class Robot extends Worker implements ISteppable{
 
     @Override
     public void Step(){
+        if (location.GetThickness() > 0) {
+            location.DrilledOn();
+        } else if (location.GetNeighbors().size() > 0) {
+            Random rand = new Random();
+            int idx = rand.nextInt(location.GetNeighbors().size()-1);
+            MoveTo(location.GetNeighbors().get(idx));
+            location.GetWorkers().remove(this);
+        }
         System.out.println("Robot.Explode()");
     }
 }

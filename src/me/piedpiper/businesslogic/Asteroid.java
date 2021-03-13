@@ -15,6 +15,11 @@ public class Asteroid extends OrbitingObject {
 
     @Override
     public void DrilledOn() {
+        if (thickness == 0 && closeToSun) {
+            material.BlowUp(this);
+        } else {
+            thickness--;
+        }
         System.out.println("Asteroid.DrilledOn()");
     }
 

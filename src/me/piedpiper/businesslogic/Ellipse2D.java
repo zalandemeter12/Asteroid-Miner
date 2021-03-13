@@ -24,6 +24,9 @@ public class Ellipse2D {
     }
 
     public void MoveOrbits() {
+        for (OrbitingObject o : objects) {
+            o.SetPosition(new Point2D(12,21));
+        }
         System.out.println("Ellipse2D.MoveOrbits()");
     }
 

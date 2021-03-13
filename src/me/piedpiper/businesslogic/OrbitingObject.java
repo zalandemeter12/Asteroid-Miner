@@ -71,8 +71,12 @@ public abstract class OrbitingObject {
         return null;
     }
 
-    public Point2D GetLocation() {
+    public Point2D GetPosition() {
         return position;
+    }
+
+    public void SetPosition(Point2D p) {
+        position = p;
     }
 
     public boolean IsCloseToSun() {

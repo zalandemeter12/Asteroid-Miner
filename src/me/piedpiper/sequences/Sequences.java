@@ -34,25 +34,26 @@ public class Sequences {
     }
     
 
-    public void AddMaterial(){
+    public void AddMaterial() {
         OrbitingObject asteroid = orbitingObjects1.get(0);
         asteroid.AddMaterial(new Uran());
     }
 
-    public void AddNeighbours(){
+    public void AddNeighbours() {
         asteroidField.Step();
     }
 
-    public void AddWorkerToTeleportGate(){
-        TeleportGate teleportGate1=new TeleportGate(new Point2D(1,1), ellipses.get(0), null);
-        TeleportGate teleportGate2=new TeleportGate(new Point2D(2,1), ellipses.get(1), teleportGate1);
+    public void AddWorkerToTeleportGate() {
+        TeleportGate teleportGate1=new TeleportGate(new Point2D(1,1), ellipses.get(0));
+        TeleportGate teleportGate2=new TeleportGate(new Point2D(2,1), ellipses.get(1));
         teleportGate1.SetGatePair(teleportGate2);
+        teleportGate2.SetGatePair(teleportGate1);
 
         //sequence start
         teleportGate1.AddWorker(settlers.get(0));
     }
 
-    public void AsteroidReceivesMaterial(){
+    public void AsteroidReceivesMaterial() {
         Settler s=settlers.get(0);
         Ice m=new Ice();
         s.GetBackpack().add(m);
@@ -63,11 +64,11 @@ public class Sequences {
         s.PlaceMaterial(m);
     }
 
-    public void AsteroidFieldSteps(){
-        
+    public void AsteroidFieldSteps() {
+        asteroidField.Step();
     }
     
-    public void BaseAsteroidRecievesMaterial(){
+    public void BaseAsteroidRecievesMaterial() {
         Settler s=settlers.get(0);
         Ice m=new Ice();
         s.GetBackpack().add(m);
@@ -77,36 +78,33 @@ public class Sequences {
         s.PlaceMaterial(m);
     }
 
-    public void DrillHole(){
+    public void DrillHole() {
         Worker w = settlers.get(0);
         OrbitingObject o = w.GetLocation();
         w.DrillHole();
-        o.DrilledOn();
-        if(o.GetThickness() == 0 && o.IsCloseToSun())
-            o.GetMaterial().BlowUp(o);
     }
     
-    public void IceBlowUp(){
+    public void IceBlowUp() {
         /// ez az aszteroida tartalmaz jeget
         orbitingObjects1.get(2).GetMaterial().BlowUp((Asteroid) orbitingObjects1.get(2));
     }
 
-    public void MineAsteroid(){
+    public void MineAsteroid() {
         Settler s = game.GetField().GetSettlers().get(0);
         s.Mine();
     }
 
-    public void RadioactiveMaterialExplodes(){
+    public void RadioactiveMaterialExplodes() {
         orbitingObjects1.get(0).SetMaterial(new Uran());
         orbitingObjects1.get(0).GetMaterial().BlowUp((Asteroid)orbitingObjects1.get(0));
     }
     
-    public void RobotDies(){
+    public void RobotDies() {
         Robot r = game.GetField().GetRobots().get(0);
         r.Die();
     }
 
-    public void RobotExplodes(){
+    public void RobotExplodes() {
         Robot r = game.GetField().GetRobots().get(0);
         r.Explode();
         OrbitingObject location = r.GetLocation();
@@ -115,20 +113,29 @@ public class Sequences {
         r.MoveTo(neighbours.get(0));
     }
 
-    public void SettlerBuildsRobot(){
-        
+    public void SettlerBuildsRobot() {
+        settlers.get(0).GetBackpack().clear();
+        settlers.get(0).GetBackpack().add(new Coal());
+        settlers.get(0).GetBackpack().add(new Iron());
+        settlers.get(0).GetBackpack().add(new Uran());
+        settlers.get(0).BuildRobot();
     }
     
-    public void SettlerCraftsGate(){
-        
+    public void SettlerCraftsGate() {
+        settlers.get(0).GetBackpack().clear();
+        settlers.get(0).GetBackpack().add(new Iron());
+        settlers.get(0).GetBackpack().add(new Iron());
+        settlers.get(0).GetBackpack().add(new Ice());
+        settlers.get(0).GetBackpack().add(new Uran());
+        settlers.get(0).CraftGate();
     }
 
-    public void SettlerExplodes(){
+    public void SettlerExplodes() {
         Settler s = game.GetField().GetSettlers().get(0);
         s.Explode();
     }
 
-    public void SettlerMines(){
+    public void SettlerMines() {
         Settler s = game.GetField().GetSettlers().get(0);
         OrbitingObject location = s.GetLocation();
         s.Mine();
@@ -141,27 +148,27 @@ public class Sequences {
 
     }
 
-    public void SettlerPlacesGate(){
+    public void SettlerPlacesGate() {
         
     }
 
-    public void SettlerDies(){
+    public void SettlerDies() {
         Settler s = game.GetField().GetSettlers().get(0);
         s.Die();
     }
 
-    public void SolarStormSteps(){
+    public void SolarStormSteps() {
         SolarStorm ss = new SolarStorm(sun, 35, 2);
         ss.Step();
         ss.Step();
         ss.Step();
     }
 
-    public void SunSteps(){
+    public void SunSteps() {
         sun.Step();
     }
 
-    public void WorkerMoves(){
+    public void WorkerMoves() {
         orbitingObjects1.get(0).AddNeighbor(orbitingObjects1.get(1));
         Settler settler = new Settler(orbitingObjects1.get(0),asteroidField);
         settler.MoveTo(orbitingObjects1.get(1));

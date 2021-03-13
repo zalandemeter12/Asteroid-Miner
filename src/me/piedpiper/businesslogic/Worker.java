@@ -25,6 +25,7 @@ public abstract class Worker {
     }
 
     public void DrillHole(){
+        location.DrilledOn();
         System.out.println("Worker.DrillHole()");
     }
     

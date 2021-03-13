@@ -34,10 +34,59 @@ public class Settler extends Worker {
     }
 
     public void  CraftGate(){
+        if (gateInventory.size() == 0) {
+            ArrayList<Material> materials = new ArrayList<>();
+            materials.add(new Iron());
+            materials.add(new Iron());
+            materials.add(new Ice());
+            materials.add(new Uran());
+            BillOfMaterials bill = new BillOfMaterials(materials);
+            for (Material m: backpack) {
+                bill.IsNeeded(m);
+            }
+            if (bill.GetBill().size() == 0) {
+                bill = new BillOfMaterials(materials);
+                for (Material m: backpack) {
+                    if (bill.IsNeeded(m))
+                        backpack.remove(m);
+                }
+                
+                Ellipse2D currentEllipse = field.GetEllipses().get(0);
+                for (Ellipse2D e : field.GetEllipses())
+                    for (OrbitingObject o : e.GetObjects()) 
+                        for (Worker w : o.GetWorkers()) 
+                            if (w == this)
+                                currentEllipse = e;
+                
+                TeleportGate t1 = new TeleportGate(new Point2D(10,10), currentEllipse);
+                TeleportGate t2 = new TeleportGate(new Point2D(10,10), currentEllipse);
+                t1.SetGatePair(t2);
+                t2.SetGatePair(t1);
+                gateInventory.add(t1);
+                gateInventory.add(t2);
+            }
+        }
         System.out.println("Settler.CraftGate()");
     }
 
     public void  BuildRobot(){
+        ArrayList<Material> materials = new ArrayList<>();
+        materials.add(new Coal());
+        materials.add(new Iron());
+        materials.add(new Uran());
+        BillOfMaterials bill = new BillOfMaterials(materials);
+        for (Material m: backpack) {
+            bill.IsNeeded(m);
+        }
+        if (bill.GetBill().size() == 0) {
+            bill = new BillOfMaterials(materials);
+            for (Material m: backpack) {
+                if (bill.IsNeeded(m))
+                    backpack.remove(m);
+            }
+            Robot r = new Robot(location, field);
+            field.AddRobot(r);
+        }
         System.out.println("Settler.BuildRobot()");
     }
 

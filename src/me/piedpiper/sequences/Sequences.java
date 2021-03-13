@@ -111,6 +111,7 @@ public class Sequences {
         r.Explode();
         OrbitingObject location = r.GetLocation();
         ArrayList<OrbitingObject> neighbours = location.GetNeighbors();
+        neighbours.add(new Asteroid(new Point2D(1,1), ellipses.get(0), 0, null));
         r.MoveTo(neighbours.get(0));
     }
 

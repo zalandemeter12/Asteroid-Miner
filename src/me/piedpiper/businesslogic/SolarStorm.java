@@ -8,10 +8,10 @@ public class SolarStorm implements ISteppable{
     private final double angle;
     private int warnTimer;
 
-    public SolarStorm(Sun sun, double angle, int warnTime) {
+    public SolarStorm(Sun sun, double angle, int warnTimer) {
         this.sun = sun;
         this.angle = angle;
-        this.warnTime = warnTime;
+        this.warnTimer = warnTimer;
         System.out.println("SolarStorm.Constructor()");
     }
 
@@ -20,12 +20,9 @@ public class SolarStorm implements ISteppable{
         if (warnTimer>0) {
             warnTimer--;
         } else {
-            ArrayList<Ellipse2D> ellipses = sun.GetField().GetEllipses();
-            for (Ellipse2D e : ellipses) {
-                ArrayList<OrbitingObject> objects = e.GetObjects();
-                for (OrbitingObject o : objects) {
-                    ArrayList<Worker> workers = o.GetExposedWorkers();
-                    for (Worker w : workers) {
+            for (Ellipse2D e : sun.GetField().GetEllipses()) {
+                for (OrbitingObject o : e.GetObjects()) {
+                    for (Worker w : o.GetExposedWorkers()) {
                         w.Die();
                     }
                 }

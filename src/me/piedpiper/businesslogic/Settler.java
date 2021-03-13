@@ -17,8 +17,11 @@ public class Settler extends Worker {
         System.out.println("Settler.Ctor()");
     }
 
-    public void Mine() { System.out.println("Settler.Mine()");
-    location.RemoveMaterial();
+    public void Mine() { 
+        if (location.GetThickness() == 0 && backpack.size() < 10) {
+            location.RemoveMaterial();
+        }
+        System.out.println("Settler.Mine()");
     }
 
     public void  PlaceMaterial(Material m){
@@ -50,10 +53,9 @@ public class Settler extends Worker {
 
     @Override
     public void Die(){
-        System.out.println("Settler.Die()");
         location.RemoveWorker(this);
         field.RemoveSettler(this);
-
+        System.out.println("Settler.Die()");
     }
 
     //test fgv

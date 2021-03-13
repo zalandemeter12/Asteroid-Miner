@@ -70,9 +70,19 @@ public abstract class OrbitingObject {
         return null;
     }
 
-    public Point2D GetLocation(){
+    public Point2D GetLocation() {
         return position;
     }
 
-    public boolean IsCloseToSun(){return false;}
+    public boolean IsCloseToSun() {
+        return false;
+    }
+
+    public ArrayList<Worker> GetWorkers() {
+        return workers;
+    }
+
+    public Ellipse2D GetEllipse() {
+        return ellipse;
+    }
 }

@@ -41,7 +41,6 @@ public class Sequences {
 
     public void AddNeighbours(){
         asteroidField.Step();
-
     }
 
     public void AddWorkerToTeleportGate(){
@@ -90,7 +89,8 @@ public class Sequences {
     }
 
     public void RadioactiveMaterialExplodes(){
-        
+        orbitingObjects1.get(0).SetMaterial(new Uran());
+        orbitingObjects1.get(0).GetMaterial().BlowUp((Asteroid)orbitingObjects1.get(0));
     }
     
     public void RobotDies(){
@@ -116,7 +116,7 @@ public class Sequences {
     }
 
     public void SettlerMines(){
-        
+        settlers.get(0).Mine();
     }
 
     public void SettlerPlacesGate(){
@@ -137,11 +137,6 @@ public class Sequences {
 
     public void SunSteps(){
         sun.Step();
-    }
-
-    public void UranBlowUp(){
-        orbitingObjects1.get(0).SetMaterial(new Uran());
-        orbitingObjects1.get(0).GetMaterial().BlowUp((Asteroid)orbitingObjects1.get(0));
     }
 
     public void WorkerMoves(){
@@ -175,7 +170,6 @@ public class Sequences {
         new MoveAction() { public void move() { SettlerDies(); } },
         new MoveAction() { public void move() { SolarStormSteps(); } },
         new MoveAction() { public void move() { SunSteps(); } },
-        new MoveAction() { public void move() { UranBlowUp(); } },
         new MoveAction() { public void move() { WorkerMoves(); } },
     };
 
@@ -201,8 +195,7 @@ public class Sequences {
         System.out.println("18: SettlerDies");
         System.out.println("19: SolarStormSteps");
         System.out.println("20: SunSteps");
-        System.out.println("21: UranBlowUp");
-        System.out.println("22: WorkerMoves");
+        System.out.println("21: WorkerMoves");
     }
 
     public static void main(String[] args) {
@@ -215,7 +208,7 @@ public class Sequences {
             printMenuItems();
             System.out.println("\n\nSelect sequence: ");
             index = input.nextInt();
-            if(index == 0 || index > 22)
+            if(index == 0 || index > 21)
                 break;
 
 

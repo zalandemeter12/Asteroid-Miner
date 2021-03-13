@@ -17,7 +17,9 @@ public class Settler extends Worker {
         System.out.println("Settler.Ctor()");
     }
 
-    public void Mine() { System.out.println("Settler.Mine()"); }
+    public void Mine() { System.out.println("Settler.Mine()");
+    location.RemoveMaterial();
+    }
 
     public void  PlaceMaterial(Material m){
         location.AddMaterial(m);
@@ -38,6 +40,7 @@ public class Settler extends Worker {
 
     @Override
     public void Explode(){
+        Die();
         System.out.println("Settler.Explode()");
     }
 

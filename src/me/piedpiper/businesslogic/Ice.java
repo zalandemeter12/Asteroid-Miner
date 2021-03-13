@@ -4,6 +4,7 @@ public class Ice extends Material {
     @Override
     public void BlowUp(OrbitingObject o) {
         System.out.println("Ice.BlowUp()");
+        a.RemoveMaterial();
     }
 
     @Override

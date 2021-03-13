@@ -109,11 +109,12 @@ public class Sequences {
     }
 
     public void SolarStormSteps(){
+        sun.GetSolarStorms().set(0, new SolarStorm(sun, 35, 2));
         
     }
 
     public void SunSteps(){
-        
+        sun.Step();
     }
 
     public void UranBlowUp(){

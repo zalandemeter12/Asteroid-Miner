@@ -9,7 +9,7 @@ public class Sun implements ISteppable {
     private int roundsWithoutSS;
 
     public Sun(Point2D position) {
-        this.roundsWithoutSS 0;
+        this.roundsWithoutSS = 0;
         this.position = position;
         System.out.println("Sun.Constructor()");
     }

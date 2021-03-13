@@ -56,6 +56,17 @@ public abstract class OrbitingObject {
     public void AddNeighbor(OrbitingObject o) {
         neighbors.add(o);
         System.out.println("OrbitingObject.AddNeighbor()");
+    }
 
+    public ArrayList<OrbitingObject> GetNeighbors() {
+        return neighbors;
+    }
+
+    public void SetMaterial(Material m) {
+
+    }
+
+    public Material GetMaterial() {
+        return null;
     }
 }

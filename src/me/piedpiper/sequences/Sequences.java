@@ -36,7 +36,6 @@ public class Sequences {
 
     public void AddMaterial(){
         OrbitingObject asteroid = orbitingObjects1.get(0);
-
         asteroid.AddMaterial(new Uran());
     }
 
@@ -92,29 +91,40 @@ public class Sequences {
     public void SettlerCraftsGate(){
         
     }
+
     public void SettlerExplodes(){
         
     }
+
     public void SettlerMines(){
         
     }
+
     public void SettlerPlacesGate(){
         
     }
+
     public void SettlerDies(){
         
     }
+
     public void SolarStormSteps(){
         
     }
+
     public void SunSteps(){
         
     }
+
     public void UranBlowUp(){
-        
+        orbitingObjects1.get(0).SetMaterial(new Uran());
+        orbitingObjects1.get(0).GetMaterial().BlowUp((Asteroid)orbitingObjects1.get(0));
     }
+
     public void WorkerMoves(){
-        
+        orbitingObjects1.get(0).AddNeighbor(orbitingObjects1.get(1));
+        Settler settler = new Settler(orbitingObjects1.get(0),asteroidField);
+        settler.MoveTo(orbitingObjects1.get(1));
     }
 
     interface MoveAction {

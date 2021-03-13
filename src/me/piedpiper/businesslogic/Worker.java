@@ -17,6 +17,8 @@ public abstract class Worker {
             o.AddWorker(this);
         }
         System.out.println("Worker.MoveTo()");
+        o.AddWorker(this);
+        location=o;
     }
 
     public void Die(){

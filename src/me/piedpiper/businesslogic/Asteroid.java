@@ -54,4 +54,6 @@ public class Asteroid extends OrbitingObject {
     public Material GetMaterial() {
         return material;
     }
+
+
 }

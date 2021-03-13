@@ -69,4 +69,8 @@ public abstract class OrbitingObject {
     public Material GetMaterial() {
         return null;
     }
+
+    public Point2D GetLocation(){
+        return position;
+    }
 }

@@ -33,4 +33,9 @@ public abstract class Worker {
         System.out.println("Worker.Explode()");
     }
 
+    public OrbitingObject GetLocation(){
+        return location;
+    }
+
+
 }

@@ -35,9 +35,8 @@ public abstract class OrbitingObject {
         return false;
     }
 
-    public Material RemoveMaterial() {
+    public void RemoveMaterial() {
         System.out.println("OrbitingObject.RemoveMaterial()");
-        return null;
     }
 
     public ArrayList<Worker> GetExposedWorkers() {
@@ -75,5 +74,5 @@ public abstract class OrbitingObject {
         return position;
     }
 
-
+    public boolean IsCloseToSun(){return false;}
 }

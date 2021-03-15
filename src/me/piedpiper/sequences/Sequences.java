@@ -276,8 +276,11 @@ public class Sequences {
             if(index == 0 || index > 21)
                 break;
 
-
             sequences.moveActions[index-1].move();
+
+            System.out.println("\ndo you want to continue? 1/0");
+            if(input.nextInt() != 1)
+                break;
         }
 
         input.close();

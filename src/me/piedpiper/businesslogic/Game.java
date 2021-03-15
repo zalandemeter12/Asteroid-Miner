@@ -3,8 +3,8 @@ package me.piedpiper.businesslogic;
 import java.util.ArrayList;
 
 public class Game {
-    private AsteroidField field;
-    private BaseAsteroid base;
+    private final AsteroidField field;
+    private final BaseAsteroid base;
 
     public Game(int settlerCount) {
         Sun sun = new Sun(new Point2D(0.0,0.0),null);

@@ -25,8 +25,12 @@ public class Settler extends Worker {
     }
 
     public void  PlaceMaterial(Material m){
-        System.out.println("Settler.PlaceMaterial()");
+        Logger.tabcount++;
+        Logger.logMessage("Settler.PlaceMaterial()");
+        
         location.AddMaterial(m);
+
+        Logger.tabcount--;
     }
 
     public void  PlaceGate(){

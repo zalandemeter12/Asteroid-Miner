@@ -3,7 +3,9 @@ package me.piedpiper.businesslogic;
 public class Coal extends Material {
     @Override
     public boolean IsCompatibleWith(Material m){
-        System.out.println("Coal.IsCompatibleWith()");
+        Logger.tabcount++;
+        Logger.logMessage("Coal.IsCompatibleWith()");
+        Logger.tabcount--;
         return false;
     }
 }

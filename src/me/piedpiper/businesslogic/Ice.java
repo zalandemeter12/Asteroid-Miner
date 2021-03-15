@@ -9,7 +9,9 @@ public class Ice extends Material {
 
     @Override
     public boolean IsCompatibleWith(Material m){
-        System.out.println("Ice.IsCompatibleWith()");
+        Logger.tabcount++;
+        Logger.logMessage("Ice.IsCompatibleWith()");
+        Logger.tabcount--;
         return false;
     }
 }

@@ -13,7 +13,9 @@ public class BaseAsteroid extends Asteroid {
 
     @Override
     public boolean AddMaterial(Material m) {
-        System.out.println("BaseAsteroid.AddMaterial()");
+        Logger.tabcount++;
+        Logger.logMessage("BaseAsteroid.AddMaterial()");
+
         ArrayList<Material> materials = new ArrayList<>();
         for (int i = 0; i < 3; ++i) {
             materials.add(new Uran());
@@ -29,9 +31,16 @@ public class BaseAsteroid extends Asteroid {
         }
         if (bill.IsNeeded(m)) {
             chest.add(m);
+            Logger.tabcount--;
             return true;
         } else {
+            Logger.tabcount--;
             return false;
         }
+    }
+
+    @Override
+    public ArrayList<Material> GetChest() {
+        return chest;
     }
 }

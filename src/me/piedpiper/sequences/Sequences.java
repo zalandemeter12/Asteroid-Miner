@@ -35,15 +35,21 @@ public class Sequences {
     
 
     public void AddMaterial() {
+        Logger.tabcount = -1;
+        
         OrbitingObject asteroid = orbitingObjects1.get(0);
         asteroid.AddMaterial(new Uran());
     }
 
     public void AddNeighbours() {
+        Logger.tabcount = -1;
+
         asteroidField.Step();
     }
 
     public void AddWorkerToTeleportGate() {
+        Logger.tabcount = -1;
+
         TeleportGate teleportGate1=new TeleportGate(new Point2D(1,1), ellipses.get(0));
         TeleportGate teleportGate2=new TeleportGate(new Point2D(2,1), ellipses.get(1));
         teleportGate1.SetGatePair(teleportGate2);
@@ -53,6 +59,8 @@ public class Sequences {
     }
 
     public void AsteroidReceivesMaterial() {
+        Logger.tabcount = -1;
+
         Settler s=settlers.get(0);
         Ice m=new Ice();
         s.GetBackpack().add(m);
@@ -64,12 +72,17 @@ public class Sequences {
     }
 
     public void AsteroidFieldSteps() {
+        Logger.tabcount = -1;
+
         asteroidField.Step();
     }
     
     public void BaseAsteroidRecievesMaterial() {
+        Logger.tabcount = -1;
+
         Settler s=settlers.get(0);
         Ice m=new Ice();
+        base.GetChest().add(new Iron());
         s.GetBackpack().add(m);
         s.SetLocation(base);
 
@@ -78,36 +91,50 @@ public class Sequences {
     }
 
     public void DrillHole() {
+        Logger.tabcount = -1;
+
         Worker w = settlers.get(0);
         w.DrillHole();
     }
     
     public void IceBlowUp() {
+        Logger.tabcount = -1;
+
         /// ez az aszteroida tartalmaz jeget
         orbitingObjects1.get(2).GetMaterial().BlowUp((Asteroid) orbitingObjects1.get(2));
     }
 
     public void MineAsteroid() {
+        Logger.tabcount = -1;
+
         Settler s = game.GetField().GetSettlers().get(0);
         s.Mine();
     }
 
     public void RadioactiveMaterialExplodes() {
+        Logger.tabcount = -1;
+        
         orbitingObjects1.get(0).SetMaterial(new Uran());
         orbitingObjects1.get(0).GetMaterial().BlowUp((Asteroid)orbitingObjects1.get(0));
     }
     
     public void RobotDies() {
+        Logger.tabcount = -1;
+
         Robot r = game.GetField().GetRobots().get(0);
         r.Die();
     }
 
     public void RobotExplodes() {
+        Logger.tabcount = -1;
+
         Robot r = game.GetField().GetRobots().get(0);
         r.Explode();
     }
 
     public void SettlerBuildsRobot() {
+        Logger.tabcount = -1;
+
         settlers.get(0).GetBackpack().clear();
         settlers.get(0).GetBackpack().add(new Coal());
         settlers.get(0).GetBackpack().add(new Iron());
@@ -116,6 +143,8 @@ public class Sequences {
     }
     
     public void SettlerCraftsGate() {
+        Logger.tabcount = -1;
+
         settlers.get(0).GetBackpack().clear();
         settlers.get(0).GetBackpack().add(new Iron());
         settlers.get(0).GetBackpack().add(new Iron());
@@ -125,16 +154,22 @@ public class Sequences {
     }
 
     public void SettlerExplodes() {
+        Logger.tabcount = -1;
+
         Settler s = game.GetField().GetSettlers().get(0);
         s.Explode();
     }
 
     public void SettlerMines() {
+        Logger.tabcount = -1;
+
         Settler s = game.GetField().GetSettlers().get(0);
         s.Mine();
     }
 
     public void SettlerPlacesGate(){
+        Logger.tabcount = -1;
+
         Settler s = settlers.get(0);
         TeleportGate t1 = new TeleportGate(null, null);
         TeleportGate t2 = new TeleportGate(null, null);
@@ -146,11 +181,15 @@ public class Sequences {
     }
 
     public void SettlerDies() {
+        Logger.tabcount = -1;
+
         Settler s = game.GetField().GetSettlers().get(0);
         s.Die();
     }
 
     public void SolarStormSteps() {
+        Logger.tabcount = -1;
+
         SolarStorm ss = new SolarStorm(sun, 35, 2);
         ss.Step();
         ss.Step();
@@ -158,10 +197,14 @@ public class Sequences {
     }
 
     public void SunSteps() {
+        Logger.tabcount = -1;
+
         sun.Step();
     }
 
     public void WorkerMoves() {
+        Logger.tabcount = -1;
+
         orbitingObjects1.get(0).AddNeighbor(orbitingObjects1.get(1));
         Settler settler = new Settler(orbitingObjects1.get(0),asteroidField);
         settler.MoveTo(orbitingObjects1.get(1));

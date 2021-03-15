@@ -25,6 +25,8 @@ public class Sun implements ISteppable {
         } else {
             roundsWithoutSS++;
         }
+        for (SolarStorm s : solarStorms) 
+            s.Step();
         System.out.println("Sun.Step()");
     }
 

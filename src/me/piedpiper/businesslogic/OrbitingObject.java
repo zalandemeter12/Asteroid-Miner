@@ -90,4 +90,8 @@ public abstract class OrbitingObject {
     public Ellipse2D GetEllipse() {
         return ellipse;
     }
+
+    public ArrayList<Material> GetChest() {
+        return null;
+    }
 }

@@ -6,18 +6,26 @@ public class BillOfMaterials {
     private final ArrayList<Material> bill;
 
     public BillOfMaterials(ArrayList<Material> bill){
+        Logger.tabcount++;
+        Logger.logMessage("BillOfMaterials.Ctor()");
+
         this.bill = bill;
-        System.out.println("BillOfMaterials.Ctor()");
+
+        Logger.tabcount--;
     }
 
     public boolean IsNeeded(Material m){
+        Logger.tabcount++;
+        Logger.logMessage("BillOfMaterials.IsNeeded()");
+        
         for (Material k: bill) {
             if (k.IsCompatibleWith(m)) {
                 bill.remove(k);
+                Logger.tabcount--;
                 return true;
             }
         }
-        System.out.println("BillOfMaterials.IsNeeded()");
+        Logger.tabcount--;
         return false;
     }
 

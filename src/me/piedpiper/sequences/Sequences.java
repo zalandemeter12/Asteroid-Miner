@@ -62,7 +62,7 @@ public class Sequences {
             else{
                 Logger.logOnConsole = false;
                 TeleportGate t1 = new TeleportGate(new Point2D(0.0,0.0), ellipses.get(0));
-                TeleportGate t2 = new TeleportGate(new Point2D(0.0,0.0), ellipses.get(0));
+                TeleportGate t2 = new TeleportGate(null, ellipses.get(0));
                 t1.SetGatePair(t2);
                 Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
                 orbitingObjects1.get(0).AddNeighbor(t1);
@@ -180,7 +180,7 @@ public class Sequences {
             Init();
         }
         else
-            System.out.println("Invalind scenario number");
+            System.out.println("Invalid scenario number");
     }
 
     public void SettlerCraftsGate() {   
@@ -210,7 +210,7 @@ public class Sequences {
             Init();
         }
         else
-            System.out.println("Invalind scenario number");
+            System.out.println("Invalid scenario number");
 
     }
 
@@ -229,7 +229,7 @@ public class Sequences {
             Init();    
         }
         else
-            System.out.println("Invalind scenario number");
+            System.out.println("Invalid scenario number");
         
     }
 
@@ -258,17 +258,28 @@ public class Sequences {
             Init();
         }
         else
-            System.out.println("Invalind scenario number");
+            System.out.println("Invalid scenario number");
     }
 
 	public void SkipSettler() {
 		Logger.tabcount = -1;
-        Logger.logOnConsole = false;
-        Asteroid n = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 0, new Iron());
-		Settler settler = new Settler(n, asteroidField);
-        Logger.logOnConsole = true;
-		settler.SkipAction();
-	    Init();    
+
+        System.out.println("Select Use case: ");
+        System.out.println("1: Settler skips");
+        selectedScenario = scanner.nextInt();
+        if(selectedScenario == 1) {
+            Logger.logOnConsole = false;
+            Asteroid n = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 0, new Iron());
+            Settler settler = new Settler(n, asteroidField);
+            Logger.logOnConsole = true;
+            settler.SkipAction();
+            Init(); 
+        }
+        else
+            System.out.println("Invalid scenario number");
+
+         
+          
     }
 
     public void SettlerMinesAsteroid() {
@@ -303,7 +314,7 @@ public class Sequences {
                 settler.Mine();
             break;
             default:
-                System.out.println("Invalind scenario number");
+                System.out.println("Invalid scenario number");
           }
           Init();
     }
@@ -338,7 +349,7 @@ public class Sequences {
 			Init();
         }
         else
-            System.out.println("Invalind scenario number");
+            System.out.println("Invalid scenario number");
     }
     
     interface MoveAction {

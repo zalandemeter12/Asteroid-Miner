@@ -31,7 +31,7 @@ public class Settler extends Worker {
         Logger.tabcount--;
     }
 
-    public void  PlaceMaterial(Material m){
+    public void PlaceMaterial(Material m){
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".PlaceMaterial()");
         
         location.AddMaterial(m);
@@ -39,7 +39,7 @@ public class Settler extends Worker {
         Logger.tabcount--;
     }
 
-    public void  PlaceGate(){
+    public void PlaceGate(){
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".PlaceGate()");
         
         if (gateInventory.size() > 0) {

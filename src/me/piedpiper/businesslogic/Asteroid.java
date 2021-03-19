@@ -12,7 +12,7 @@ public class Asteroid extends OrbitingObject {
         this.thickness = thickness;
         this.closeToSun = false;
         this.material = material;
-        
+
         Logger.tabcount--;
     }
 

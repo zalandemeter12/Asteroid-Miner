@@ -9,8 +9,7 @@ public class Ice extends Material {
 
     @Override
     public boolean IsCompatibleWith(Material m){
-        Logger.tabcount++;
-        Logger.logMessage("Ice.IsCompatibleWith()");
+        Logger.logMessage("Ice#" + Integer.toHexString(this.hashCode()) + ".IsCompatibleWith()");
         Logger.tabcount--;
         return false;
     }

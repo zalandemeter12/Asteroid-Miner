@@ -25,7 +25,6 @@ public class Settler extends Worker {
     }
 
     public void  PlaceMaterial(Material m){
-        Logger.tabcount++;
         Logger.logMessage("Settler.PlaceMaterial()");
         
         location.AddMaterial(m);

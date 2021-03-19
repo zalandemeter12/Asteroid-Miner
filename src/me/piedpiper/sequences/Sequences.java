@@ -36,7 +36,7 @@ public class Sequences {
 
     public void AddMaterial() {
         Logger.tabcount = -1;
-        
+
         OrbitingObject asteroid = orbitingObjects1.get(0);
         asteroid.AddMaterial(new Uran());
     }

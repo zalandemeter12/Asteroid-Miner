@@ -6,7 +6,6 @@ public class BillOfMaterials {
     private final ArrayList<Material> bill;
 
     public BillOfMaterials(ArrayList<Material> bill){
-        Logger.tabcount++;
         Logger.logMessage("BillOfMaterials.Ctor()");
 
         this.bill = bill;
@@ -15,7 +14,6 @@ public class BillOfMaterials {
     }
 
     public boolean IsNeeded(Material m){
-        Logger.tabcount++;
         Logger.logMessage("BillOfMaterials.IsNeeded()");
         
         for (Material k: bill) {

@@ -13,7 +13,6 @@ public class BaseAsteroid extends Asteroid {
 
     @Override
     public boolean AddMaterial(Material m) {
-        Logger.tabcount++;
         Logger.logMessage("BaseAsteroid.AddMaterial()");
 
         ArrayList<Material> materials = new ArrayList<>();

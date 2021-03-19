@@ -7,6 +7,8 @@ public class Game {
     private final BaseAsteroid base;
 
     public Game(int settlerCount) {
+        Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+        
         Sun sun = new Sun(new Point2D(0.0,0.0),null);
         
         ArrayList<OrbitingObject> objects1 = new ArrayList<>();
@@ -42,34 +44,43 @@ public class Game {
             settlers.add(new Settler(base,field));
         }
         sun.SetField(this.field);
-        System.out.println("Game.Ctor()");
+        
+        Logger.tabcount--;
     }
 
     public void StartGame(){
-        System.out.println("Game.StartGame()");
+        Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".StartGame()");
+        Logger.tabcount--;
     }
 
     public void GameLoop(){
-        System.out.println("Game.StartGame()");
+        Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".GameLoop()");
+        Logger.tabcount--;
     }
 
     public void NextRound(){
-        System.out.println("Game.NextRound()");
+        Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".NextRound()");
+        Logger.tabcount--;
     }
 
     public void EndGame(){
-        System.out.println("Game.EndGame()");
-    }
-
-    public static void main(String[] args){
-        System.out.println("Waaanyád");
+        Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".EndGame()");
+        Logger.tabcount--;
     }
 
     public BaseAsteroid GetBase() {
+        Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".GetBase()");
+        Logger.tabcount--;
         return base;
     }
 
     public AsteroidField GetField(){
+        Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".GetField()");
+        Logger.tabcount--;
         return field;
+    }
+
+    public static void main(String[] args){
+
     }
 }

@@ -5,23 +5,35 @@ public class TeleportGate extends OrbitingObject {
 
     public TeleportGate(Point2D position, Ellipse2D ellipse) {
         super(position, ellipse);
-        System.out.println("TeleportGate.Ctor()");
+        Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+        Logger.tabcount--;
     }
 
     @Override
     public void AddWorker(Worker w) {
-        System.out.println("TeleportGate.AddWorker()");
+        Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".AddWorker()");
+       
         if(gatePair.GetPosition() != null) {
             w.SetLocation(gatePair);
             gatePair.GetWorkers().add(w);
         }
+        
+        Logger.tabcount--;
     }
 
     public void SetGatePair(TeleportGate tg){
-        gatePair = tg;
+        Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".SetGatePair()");
+        
+        this.gatePair = tg;
+        
+        Logger.tabcount--;
     }
 
     public void SetEllipse(Ellipse2D e) {
-        ellipse = e;
+        Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".SetEllipse()");
+        
+        this.ellipse = e;
+        
+        Logger.tabcount--;
     }
 }

@@ -10,22 +10,29 @@ public class Settler extends Worker {
 
     public Settler(OrbitingObject location, AsteroidField field){
         super(location);
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+        
+
         this.field = field;
         this.canStep = false;
         this.backpack = new ArrayList<>();
         this.gateInventory = new ArrayList<>();
-        System.out.println("Settler.Ctor()");
+
+        Logger.tabcount--;
     }
 
     public void Mine() { 
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Mine()");
+        
         if (location.GetThickness() == 0 && backpack.size() < 10) {
             backpack.add(location.RemoveMaterial());
         }
-        System.out.println("Settler.Mine()");
+
+        Logger.tabcount--;
     }
 
     public void  PlaceMaterial(Material m){
-        Logger.logMessage("Settler.PlaceMaterial()");
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".PlaceMaterial()");
         
         location.AddMaterial(m);
 
@@ -33,14 +40,19 @@ public class Settler extends Worker {
     }
 
     public void  PlaceGate(){
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".PlaceGate()");
+        
         if (gateInventory.size() > 0) {
             gateInventory.get(0).SetPosition(location.GetPosition());
             gateInventory.get(0).SetEllipse(location.GetEllipse());
         }
-        System.out.println("Settler.PlaceGate()");
+        
+        Logger.tabcount--;
     }
 
-    public void  CraftGate(){
+    public void CraftGate(){
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".CraftGate()");
+        
         if (gateInventory.size() == 0) {
             ArrayList<Material> materials = new ArrayList<>();
             materials.add(new Iron());
@@ -66,10 +78,13 @@ public class Settler extends Worker {
                 gateInventory.add(t2);
             }
         }
-        System.out.println("Settler.CraftGate()");
+        
+        Logger.tabcount--;
     }
 
     public void  BuildRobot(){
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".BuildRobot()");
+        
         ArrayList<Material> materials = new ArrayList<>();
         materials.add(new Coal());
         materials.add(new Iron());
@@ -87,37 +102,57 @@ public class Settler extends Worker {
             Robot r = new Robot(location, field);
             field.AddRobot(r);
         }
-        System.out.println("Settler.BuildRobot()");
+        
+        Logger.tabcount--;
     }
 
     @Override
     public void Explode(){
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Explode()");
+        
         Die();
-        System.out.println("Settler.Explode()");
+        
+        Logger.tabcount--;
     }
 
     public void SkipAction(){
-        System.out.println("Settler.SkipAction()");
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".SkipAction()");
+        Logger.tabcount--;
     }
 
     @Override
     public void Die(){
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Die()");
+        
         location.RemoveWorker(this);
         field.RemoveSettler(this);
-        System.out.println("Settler.Die()");
+        
+        Logger.tabcount--;
     }
 
     public ArrayList<Material> GetBackpack(){
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".GetBackpack()");
+        Logger.tabcount--;
         return backpack;
     }
 
     public void AddMaterialToBackpack (Material m) {
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".AddMaterialToBackpack()");
+        
         if (backpack.size() < 10) {
             backpack.add(m);
         }
+        
+        Logger.tabcount--;
     }
 
     public ArrayList<TeleportGate> GetGateInventory() {
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".GetGateInventory()");
+        Logger.tabcount--;
         return gateInventory;
+    }
+
+    public void AddGate(TeleportGate g){ //for test cases
+        gateInventory.add(g);
     }
 }

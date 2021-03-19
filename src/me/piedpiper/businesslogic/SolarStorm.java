@@ -9,14 +9,19 @@ public class SolarStorm implements ISteppable{
     private int warnTimer;
 
     public SolarStorm(Sun sun, double angle, int warnTimer) {
+        Logger.logMessage("SolarStorm#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+        
         this.sun = sun;
         this.angle = angle;
         this.warnTimer = warnTimer;
-        System.out.println("SolarStorm.Constructor()");
+
+        Logger.tabcount--;
     }
 
     @Override
     public void Step() {
+        Logger.logMessage("SolarStorm#" + Integer.toHexString(this.hashCode()) + ".Step()");
+        
         if (warnTimer>0) {
             warnTimer--;
         } else {
@@ -29,6 +34,7 @@ public class SolarStorm implements ISteppable{
             }
             sun.GetSolarStorms().remove(this);
         }
-        System.out.println("SolarStorm.Step()");
+        
+        Logger.tabcount--;
     }
 }

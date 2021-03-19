@@ -11,21 +11,22 @@ public class AsteroidField implements ISteppable {
 
 
     public AsteroidField(Sun sun, Game game, ArrayList<Ellipse2D> ellipses, ArrayList<Settler> settlers){
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+        
         this.sun = sun;
         this.game = game;
         this.ellipses = ellipses;
         this.robots = new ArrayList<>();
         this.settlers = settlers;
-        System.out.println("AsteroidField.Ctor()");
+
+        Logger.tabcount--;
     }
 
     public void Step() {
-
-        System.out.println("AsteroidField.Step()");
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".Step()");
+        
         sun.Step();
-        ArrayList<OrbitingObject> orbitingObjects = new ArrayList<OrbitingObject>();
-        
-        
+        ArrayList<OrbitingObject> orbitingObjects = new ArrayList<OrbitingObject>();    
 
         for(Ellipse2D e: ellipses) {
             e.MoveOrbits();
@@ -48,42 +49,63 @@ public class AsteroidField implements ISteppable {
             r.Step();
         }
 
+        Logger.tabcount--;
     }
 
     public void AddRobot(Robot r) {
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".AddRobot()");
+        
         robots.add(r);
-        System.out.println("AsteroidField.AddRobot()");
+        
+        Logger.tabcount--;
     }
 
     public void RemoveRobot(Robot r) {
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".RemoveRobot()");
+       
         robots.remove(r);
-        System.out.println("AsteroidField.RemoveRobot()");
+        
+        Logger.tabcount--;
     }
 
     public void AddSettler(Settler s) {
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".AddSettler()");
+        
         settlers.add(s);
-        System.out.println("AsteroidField.AddSettler()");
+        
+        Logger.tabcount--;
     }
 
     public void RemoveSettler(Settler s) {
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".RemoveSettler()");
+        
         settlers.remove(s);
         if(settlers.isEmpty()) game.EndGame();
-        System.out.println("AsteroidField.RemoveSettler()");
+        
+        Logger.tabcount--;
     }
 
     public ArrayList<Ellipse2D> GetEllipses(){
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetEllipses()");
+        Logger.tabcount--;
         return ellipses;
     }
 
     public Sun GetSun(){
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetSun()");
+        Logger.tabcount--;
         return sun;
     }
 
     public ArrayList<Robot> GetRobots(){
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetRobots()");
+        Logger.tabcount--;
         return robots;
     }
 
     public ArrayList<Settler> GetSettlers(){
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetSettlers()");
+        Logger.tabcount--;
         return settlers;
     }
 }

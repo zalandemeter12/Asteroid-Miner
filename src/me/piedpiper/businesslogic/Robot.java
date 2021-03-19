@@ -8,17 +8,25 @@ public class Robot extends Worker implements ISteppable{
 
     public Robot(OrbitingObject location, AsteroidField field){
         super(location);
+        Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
         this.field = field;
-        System.out.println("Robot.Ctor()");
+
+        Logger.tabcount--;
     }
 
     @Override
     public void Die(){
-        System.out.println("Robot.Die()");
+        Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Die()");
+        
         field.RemoveRobot(this);
+        
+        Logger.tabcount--;
     }
     @Override
     public void Explode(){
+        Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Explode()");
+        
         ArrayList<OrbitingObject> neighbours = location.GetNeighbors();
         if (neighbours.size() > 0) {
             Random rand = new Random();
@@ -26,10 +34,14 @@ public class Robot extends Worker implements ISteppable{
             MoveTo(neighbours.get(idx));
         }
         System.out.println("Robot.Explode()");
+        
+        Logger.tabcount--;
     }
 
     @Override
     public void Step(){
+        Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Step()");
+        
         if (location.GetThickness() > 0) {
             location.DrilledOn();
         } else if (location.GetNeighbors().size() > 0) {
@@ -38,6 +50,7 @@ public class Robot extends Worker implements ISteppable{
             MoveTo(location.GetNeighbors().get(idx));
             location.GetWorkers().remove(this);
         }
-        System.out.println("Robot.Explode()");
+        
+        Logger.tabcount--;
     }
 }

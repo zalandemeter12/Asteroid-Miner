@@ -16,8 +16,15 @@ public class Sequences {
     private ArrayList<Settler> settlers;
     private ArrayList<Robot> robots;
     private BaseAsteroid base;
+    private Scanner scanner;
+    private int selectedScenario;
 
     public Sequences() {
+       Init();
+    }
+
+    public void Init(){
+        Logger.logOnConsole = false;
         this.game = new Game(2);
         this.base = game.GetBase();
         this.asteroidField = game.GetField();
@@ -28,239 +35,341 @@ public class Sequences {
         this.orbitingObjects1 = ellipses.get(0).GetObjects();
         this.orbitingObjects2 = ellipses.get(1).GetObjects();
         this.orbitingObjects3 = ellipses.get(2).GetObjects();
+        this.scanner = new Scanner(System.in);
  
         this.robots.add(new Robot(this.base, this.asteroidField));
         this.robots.add(new Robot(this.base, this.asteroidField));
+        Logger.logOnConsole = true;
     }
     
-
-    public void AddMaterial() {
+    public void SettlerMovesToTeleportGate() {
         Logger.tabcount = -1;
-
-        OrbitingObject asteroid = orbitingObjects1.get(0);
-        asteroid.AddMaterial(new Uran());
+        System.out.println("Select Use case: ");
+        System.out.println("1: The gate's pair is active");
+        System.out.println("2: The gate's pair is inactive");
+        selectedScenario = scanner.nextInt();
+        if(selectedScenario > 0 && selectedScenario < 3) {
+            if(selectedScenario == 1){
+                Logger.logOnConsole = false;
+                TeleportGate t1 = new TeleportGate(new Point2D(0.0,0.0), ellipses.get(0));
+                TeleportGate t2 = new TeleportGate(new Point2D(0.0,0.0), ellipses.get(0));
+                t1.SetGatePair(t2);
+                Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+                orbitingObjects1.get(0).AddNeighbor(t1);
+                Logger.logOnConsole = true;
+                settler.MoveTo(t1);   
+            }
+            else{
+                Logger.logOnConsole = false;
+                TeleportGate t1 = new TeleportGate(new Point2D(0.0,0.0), ellipses.get(0));
+                TeleportGate t2 = new TeleportGate(new Point2D(0.0,0.0), ellipses.get(0));
+                t1.SetGatePair(t2);
+                Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+                orbitingObjects1.get(0).AddNeighbor(t1);
+                Logger.logOnConsole = true;
+                settler.MoveTo(t1);   
+            }
+            Init();
+        }
+        else
+            System.out.println("Invalid scenario number");
     }
 
-    public void AddNeighbours() {
+    public void SettlerPlacesMaterialOnAsteroid() {
         Logger.tabcount = -1;
+        System.out.println("Select Use case: ");
+        System.out.println("1: Asteroid doesn't have any layers of rock left and the asteroid is hollow.");
+        System.out.println("2: Asteroid doesn't have any layers of rock left and the asteroid is not hollow.");
+        System.out.println("3: Asteroid has at least 1 layer of rock.");
+        selectedScenario = scanner.nextInt();
+        if(selectedScenario > 0 && selectedScenario < 4) {
+            if(selectedScenario == 1){
+                Logger.logOnConsole = false;
+                Asteroid location = new Asteroid(new Point2D(0.0, 0.0),ellipses.get(0),0,null);
+                Settler s = new Settler(location, asteroidField);
+                Logger.logOnConsole = true;
+                s.PlaceMaterial(new Uran());
+            }
+            else if(selectedScenario == 2){
+                Logger.logOnConsole = false;
+                Asteroid location = new Asteroid(new Point2D(0.0, 0.0),ellipses.get(0),0,new Uran());
+                Settler s = new Settler(location, asteroidField);
+                Logger.logOnConsole = true;
+                s.PlaceMaterial(new Uran());
+            }
+            else{
+                Logger.logOnConsole = false;
+                Asteroid location = new Asteroid(new Point2D(0.0, 0.0),ellipses.get(0),2,null);
+                Settler s = new Settler(location, asteroidField);
+                Logger.logOnConsole = true;
+                s.PlaceMaterial(new Uran());
+            }
+            Init();
+        }
+        else
+            System.out.println("Invalid scenario number");
 
-        asteroidField.Step();
     }
 
-    public void AddWorkerToTeleportGate() {
+    public void SettlerPlacesMaterialOnBaseAsteroid() {
         Logger.tabcount = -1;
+        System.out.println("Select Use case: ");
+        System.out.println("1: Baseasteroid has enough space for the material.");
+        System.out.println("2: Baseasteroid doesn't have enough space for the material.");
+        System.out.println("3: If the baseasteroid has 3 unit of every material, the settlers win the game.");
+        selectedScenario = scanner.nextInt();
+        if(selectedScenario > 0 && selectedScenario < 4) {
+            if(selectedScenario == 1){
+                Logger.logOnConsole = false;
+                Settler s = new Settler(base, asteroidField);
+                Logger.logOnConsole = true;
+                s.PlaceMaterial(new Uran());
+            }
+            else if(selectedScenario == 2){
+                Logger.logOnConsole = false;
+                Settler s = new Settler(base, asteroidField);
+                base.AddMaterial(new Uran());
+                base.AddMaterial(new Uran());
+                Logger.logOnConsole = true;
+                s.PlaceMaterial(new Uran());
+            }
+            else{
+                Logger.logOnConsole = false;
+                Settler s = new Settler(base, asteroidField);
+                for (int i = 0; i < 3; ++i) {
+                    base.AddMaterial(new Coal());
+                    base.AddMaterial(new Ice());
+                    base.AddMaterial(new Iron());
+                }
+                Logger.logOnConsole = true;
+                s.PlaceMaterial(new Uran());
+            }
+            Init();
+        }
+        else
+            System.out.println("Invalid scenario number");
 
-        TeleportGate teleportGate1=new TeleportGate(new Point2D(1,1), ellipses.get(0));
-        TeleportGate teleportGate2=new TeleportGate(new Point2D(2,1), ellipses.get(1));
-        teleportGate1.SetGatePair(teleportGate2);
-
-        //sequence start
-        teleportGate1.AddWorker(settlers.get(0));
-    }
-
-    public void AsteroidReceivesMaterial() {
-        Logger.tabcount = -1;
-
-        Settler s=settlers.get(0);
-        Ice m=new Ice();
-        s.GetBackpack().add(m);
-        Asteroid a= new Asteroid(new Point2D(1,1), ellipses.get(0), 0, null);
-        s.SetLocation(a);
-
-        //sequence start
-        s.PlaceMaterial(m);
-    }
-
-    public void AsteroidFieldSteps() {
-        Logger.tabcount = -1;
-
-        asteroidField.Step();
-    }
-    
-    public void BaseAsteroidRecievesMaterial() {
-        Logger.tabcount = -1;
-
-        Settler s=settlers.get(0);
-        Ice m=new Ice();
-        base.GetChest().add(new Iron());
-        s.GetBackpack().add(m);
-        s.SetLocation(base);
-
-        //sequence start
-        s.PlaceMaterial(m);
-    }
-
-    public void DrillHole() {
-        Logger.tabcount = -1;
-
-        Worker w = settlers.get(0);
-        w.DrillHole();
-    }
-    
-    public void IceBlowUp() {
-        Logger.tabcount = -1;
-
-        /// ez az aszteroida tartalmaz jeget
-        orbitingObjects1.get(2).GetMaterial().BlowUp((Asteroid) orbitingObjects1.get(2));
-    }
-
-    public void MineAsteroid() {
-        Logger.tabcount = -1;
-
-        Settler s = game.GetField().GetSettlers().get(0);
-        s.Mine();
-    }
-
-    public void RadioactiveMaterialExplodes() {
-        Logger.tabcount = -1;
-        
-        orbitingObjects1.get(0).SetMaterial(new Uran());
-        orbitingObjects1.get(0).GetMaterial().BlowUp((Asteroid)orbitingObjects1.get(0));
-    }
-    
-    public void RobotDies() {
-        Logger.tabcount = -1;
-
-        Robot r = game.GetField().GetRobots().get(0);
-        r.Die();
-    }
-
-    public void RobotExplodes() {
-        Logger.tabcount = -1;
-
-        Robot r = game.GetField().GetRobots().get(0);
-        r.Explode();
     }
 
     public void SettlerBuildsRobot() {
         Logger.tabcount = -1;
+        System.out.println("Select Use case: ");
+        System.out.println("1: Settler has all the required material to build a robot.");
+        System.out.println("2: Settler doesn't have all the required material to build a robot.");
+        selectedScenario = scanner.nextInt();
+        if(selectedScenario > 0 && selectedScenario < 3) {
+            if(selectedScenario == 1){
+                Logger.logOnConsole = false;
+                Asteroid n = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 3, null);
+                Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+				settler.AddMaterialToBackpack(new Uran());
+				settler.AddMaterialToBackpack(new Iron());
+                settler.AddMaterialToBackpack(new Coal());
+                Logger.logOnConsole = true;
+                settler.BuildRobot();
+            }
+            else{
+                Logger.logOnConsole = false;
+                Asteroid n = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 3, null);
+				Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+                settler.AddMaterialToBackpack(new Iron());
+                settler.AddMaterialToBackpack(new Coal());
+                Logger.logOnConsole = true;
+                settler.BuildRobot();
+            }
+            Init();
+        }
+        else
+            System.out.println("Invalind scenario number");
+    }
 
-        settlers.get(0).GetBackpack().clear();
-        settlers.get(0).GetBackpack().add(new Coal());
-        settlers.get(0).GetBackpack().add(new Iron());
-        settlers.get(0).GetBackpack().add(new Uran());
-        settlers.get(0).BuildRobot();
+    public void SettlerCraftsGate() {   
+        System.out.println("Select Use case: ");
+        System.out.println("1: Settler has all the required material to build a teleport gate pair.");
+        System.out.println("2: Settler doesn't have all the required material to teleport gate pair.");
+        selectedScenario = scanner.nextInt();
+        if(selectedScenario > 0 && selectedScenario < 3) {
+            if(selectedScenario == 1){
+                Logger.logOnConsole = false;
+                Asteroid n = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 3, null);
+                Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+				settler.AddMaterialToBackpack(new Uran());
+				settler.AddMaterialToBackpack(new Iron());
+                settler.AddMaterialToBackpack(new Iron());
+                settler.AddMaterialToBackpack(new Ice());
+                Logger.logOnConsole = true;
+                settler.CraftGate();
+            }
+            else{
+                Logger.logOnConsole = false;
+                Asteroid n = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 3, null);
+                Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+                Logger.logOnConsole = true;
+                settler.CraftGate();
+            }
+            Init();
+        }
+        else
+            System.out.println("Invalind scenario number");
+
+    }
+
+    public void SettlerPlacesGate() {
+        Logger.tabcount = -1;
+        System.out.println("Select Use case: ");
+        System.out.println("1: Settler places gate");
+        selectedScenario = scanner.nextInt();
+        if(selectedScenario == 1){
+            Logger.logOnConsole = false;
+            TeleportGate t1 = new TeleportGate(null, null);
+            Settler s = new Settler(orbitingObjects1.get(0), asteroidField);
+            s.AddGate(t1);
+            Logger.logOnConsole = true;
+            s.PlaceGate();
+            Init();    
+        }
+        else
+            System.out.println("Invalind scenario number");
+        
+    }
+
+    public void SettlerMovesToAsteroid() {
+        Logger.tabcount = -1;
+        System.out.println("Select Use case: ");
+        System.out.println("1: Settler tries to move to a neighbour asteroid");
+        System.out.println("2: Settler tries to move to an asteroid that is not a neighbour");
+        selectedScenario = scanner.nextInt();
+        if(selectedScenario > 0 && selectedScenario < 3) {
+            if(selectedScenario == 1){
+                Logger.logOnConsole = false;
+                Asteroid n = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 3, null);
+                Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+                orbitingObjects1.get(0).AddNeighbor(n);
+                Logger.logOnConsole = true;
+                settler.MoveTo(n);
+            }
+            else{
+                Logger.logOnConsole = false;
+                Asteroid n = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 3, null);
+                Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+                Logger.logOnConsole = true;
+                settler.MoveTo(n);
+            }
+            Init();
+        }
+        else
+            System.out.println("Invalind scenario number");
+    }
+
+	public void SkipSettler() {
+		Logger.tabcount = -1;
+        Logger.logOnConsole = false;
+        Asteroid n = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 0, new Iron());
+		Settler settler = new Settler(n, asteroidField);
+        Logger.logOnConsole = true;
+		settler.SkipAction();
+	    Init();    
+    }
+
+    public void SettlerMinesAsteroid() {
+        Logger.tabcount = -1;
+        System.out.println("Select Use case: ");
+        System.out.println("1: Rock layer thickness is 0 and there is material inside");
+        System.out.println("2: Rock layer thickness is 0, but there is no material inside");
+        System.out.println("3: Rock layer thickness is not 0, therefore settler cannot mine");
+        selectedScenario = scanner.nextInt();
+        Asteroid n;
+        Settler settler;
+        switch(selectedScenario) {
+            case 1:
+                Logger.logOnConsole = false;
+                n =  new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 0, new Iron());
+                settler = new Settler(n, asteroidField);
+                Logger.logOnConsole = true;
+                settler.Mine();
+              break;
+            case 2:
+                Logger.logOnConsole = false;
+                n = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 0, null);
+                settler = new Settler(n, asteroidField);
+                Logger.logOnConsole = true;
+                settler.Mine();
+              break;
+            case 3:
+                Logger.logOnConsole = false;
+                n = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 3, new Iron());
+                settler = new Settler(n, asteroidField);
+                Logger.logOnConsole = true;
+                settler.Mine();
+            break;
+            default:
+                System.out.println("Invalind scenario number");
+          }
+          Init();
+    }
+
+    public void SettlerDrillsAsteroid() {
+        Logger.tabcount = -1;
+        System.out.println("Select Use case: ");
+        System.out.println("1: Asteroid has at least 1 layer of rock.");
+        System.out.println("2: Asteroid doesn't have any layers of rock left.");
+        System.out.println("3: If the settler drills the last layer of rock, the asteroid's core is radioactive and the asteroid is near the Sun, than the settler dies.");
+        selectedScenario = scanner.nextInt();
+        if(selectedScenario > 0 && selectedScenario < 4) {
+            Logger.logOnConsole = false;
+			if (selectedScenario == 1) {
+                Asteroid a = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 2, null);
+				Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+				Logger.logOnConsole = true;
+                settler.DrillHole();
+            } else if(selectedScenario==2){
+                Asteroid a = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 0, null);
+				Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+                Logger.logOnConsole = true;
+                settler.DrillHole();
+			} else {
+			    Asteroid a = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 1, null);
+				Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+				a.setCloseToSun(true);
+                Logger.logOnConsole = true;
+                settler.DrillHole();
+            
+            }
+			Init();
+        }
+        else
+            System.out.println("Invalind scenario number");
     }
     
-    public void SettlerCraftsGate() {
-        Logger.tabcount = -1;
-
-        settlers.get(0).GetBackpack().clear();
-        settlers.get(0).GetBackpack().add(new Iron());
-        settlers.get(0).GetBackpack().add(new Iron());
-        settlers.get(0).GetBackpack().add(new Ice());
-        settlers.get(0).GetBackpack().add(new Uran());
-        settlers.get(0).CraftGate();
-    }
-
-    public void SettlerExplodes() {
-        Logger.tabcount = -1;
-
-        Settler s = game.GetField().GetSettlers().get(0);
-        s.Explode();
-    }
-
-    public void SettlerMines() {
-        Logger.tabcount = -1;
-
-        Settler s = game.GetField().GetSettlers().get(0);
-        s.Mine();
-    }
-
-    public void SettlerPlacesGate(){
-        Logger.tabcount = -1;
-
-        Settler s = settlers.get(0);
-        TeleportGate t1 = new TeleportGate(null, null);
-        TeleportGate t2 = new TeleportGate(null, null);
-        t1.SetGatePair(t2);
-        t2.SetGatePair(t1);
-        s.GetGateInventory().add(t1);
-        s.GetGateInventory().add(t2);
-        s.PlaceGate();
-    }
-
-    public void SettlerDies() {
-        Logger.tabcount = -1;
-
-        Settler s = game.GetField().GetSettlers().get(0);
-        s.Die();
-    }
-
-    public void SolarStormSteps() {
-        Logger.tabcount = -1;
-
-        SolarStorm ss = new SolarStorm(sun, 35, 2);
-        ss.Step();
-        ss.Step();
-        ss.Step();
-    }
-
-    public void SunSteps() {
-        Logger.tabcount = -1;
-
-        sun.Step();
-    }
-
-    public void WorkerMoves() {
-        Logger.tabcount = -1;
-
-        orbitingObjects1.get(0).AddNeighbor(orbitingObjects1.get(1));
-        Settler settler = new Settler(orbitingObjects1.get(0),asteroidField);
-        settler.MoveTo(orbitingObjects1.get(1));
-    }
-
     interface MoveAction {
         void move();
     }
 
     private MoveAction[] moveActions = new MoveAction[] {
-        new MoveAction() { public void move() { AddMaterial();; } },
-        new MoveAction() { public void move() { AddNeighbours(); } },
-        new MoveAction() { public void move() { AddWorkerToTeleportGate(); } },
-        new MoveAction() { public void move() { AsteroidReceivesMaterial(); } },
-        new MoveAction() { public void move() { AsteroidFieldSteps(); } },
-        new MoveAction() { public void move() { BaseAsteroidRecievesMaterial(); } },
-        new MoveAction() { public void move() { DrillHole(); } },
-        new MoveAction() { public void move() { IceBlowUp(); } },
-        new MoveAction() { public void move() { MineAsteroid(); } },
-        new MoveAction() { public void move() { RadioactiveMaterialExplodes(); } },
-        new MoveAction() { public void move() { RobotDies(); } },
-        new MoveAction() { public void move() { RobotExplodes(); } },
+        new MoveAction() { public void move() { SettlerMovesToTeleportGate(); } },
+        new MoveAction() { public void move() { SettlerPlacesMaterialOnAsteroid(); } },
+        new MoveAction() { public void move() { SettlerPlacesMaterialOnBaseAsteroid(); } },
         new MoveAction() { public void move() { SettlerBuildsRobot(); } },
         new MoveAction() { public void move() { SettlerCraftsGate(); } },
-        new MoveAction() { public void move() { SettlerExplodes(); } },
-        new MoveAction() { public void move() { SettlerMines(); } },
         new MoveAction() { public void move() { SettlerPlacesGate(); } },
-        new MoveAction() { public void move() { SettlerDies(); } },
-        new MoveAction() { public void move() { SolarStormSteps(); } },
-        new MoveAction() { public void move() { SunSteps(); } },
-        new MoveAction() { public void move() { WorkerMoves(); } },
+        new MoveAction() { public void move() { SettlerMovesToAsteroid(); } },
+        new MoveAction() { public void move() { SkipSettler(); } },
+        new MoveAction() { public void move() { SettlerMinesAsteroid(); } },
+        new MoveAction() { public void move() { SettlerDrillsAsteroid(); } },
     };
 
     static private void printMenuItems() {
         System.out.println("0: Exit");
-        System.out.println("1: Add Material");
-        System.out.println("2: AddNeighbours");
-        System.out.println("3: AddWorkerToTeleportGate");
-        System.out.println("4: AsteroidRecievesMaterial");
-        System.out.println("5: AsteroidFieldSteps");
-        System.out.println("6: BaseAsteroidRecievesMaterial");
-        System.out.println("7: DrillHole");
-        System.out.println("8: IceBlowUp");
-        System.out.println("9: MineAsteroid");
-        System.out.println("10: RadioactiveMaterialExplodes");
-        System.out.println("11: RobotDies");
-        System.out.println("12: RobotExplodes");
-        System.out.println("13: SettlerBuildsRobot");
-        System.out.println("14: SettlerCraftsGate");
-        System.out.println("15: SettlerExplodes");
-        System.out.println("16: SettlerMines");
-        System.out.println("17: SettlerPlacesGate");
-        System.out.println("18: SettlerDies");
-        System.out.println("19: SolarStormSteps");
-        System.out.println("20: SunSteps");
-        System.out.println("21: WorkerMoves");
+        System.out.println("1: Settler moves to teleport gate");
+        System.out.println("2: Settler places material on asteroid");
+        System.out.println("3: Settler places material on base asteroid");
+        System.out.println("4: Settler builds robot");
+        System.out.println("5: Settler crafts gate");
+        System.out.println("6: Settler places gate");
+        System.out.println("7: Settler moves to asteroid");
+        System.out.println("8: Skip settler");
+        System.out.println("9: Settler mines asteroid");
+        System.out.println("10: Settler drills asteroid");
     }
 
     public static void main(String[] args) {

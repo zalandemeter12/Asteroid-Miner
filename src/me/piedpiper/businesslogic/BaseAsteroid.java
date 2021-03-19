@@ -7,13 +7,16 @@ public class BaseAsteroid extends Asteroid {
 
     public BaseAsteroid(Point2D position, Ellipse2D ellipse, int thickness, Material material) {
         super(position, ellipse, thickness, material);
-        System.out.println("BaseAsteroid.Ctor()");
+        Logger.logMessage("BaseAsteroid#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
         chest=new ArrayList<>();
+
+        Logger.tabcount--;
     }
 
     @Override
     public boolean AddMaterial(Material m) {
-        Logger.logMessage("BaseAsteroid.AddMaterial()");
+        Logger.logMessage("BaseAsteroid#" + Integer.toHexString(this.hashCode()) + ".AddMaterial()");
 
         ArrayList<Material> materials = new ArrayList<>();
         for (int i = 0; i < 3; ++i) {
@@ -30,6 +33,7 @@ public class BaseAsteroid extends Asteroid {
         }
         if (bill.IsNeeded(m)) {
             chest.add(m);
+
             Logger.tabcount--;
             return true;
         } else {
@@ -40,6 +44,9 @@ public class BaseAsteroid extends Asteroid {
 
     @Override
     public ArrayList<Material> GetChest() {
+        Logger.logMessage("BaseAsteroid#" + Integer.toHexString(this.hashCode()) + ".GetChest()");
+        Logger.tabcount--;
         return chest;
     }
+
 }

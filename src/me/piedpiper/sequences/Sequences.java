@@ -146,8 +146,11 @@ public class Sequences {
                     base.AddMaterial(new Ice());
                     base.AddMaterial(new Iron());
                 }
+                base.AddMaterial(new Uran());
+                base.AddMaterial(new Uran());
+                Uran a = new Uran();
                 Logger.logOnConsole = true;
-                s.PlaceMaterial(new Uran());
+                s.PlaceMaterial(a);
             }
             Init();
         }

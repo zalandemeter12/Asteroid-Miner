@@ -36,7 +36,7 @@ public class Game {
             objects3.add(new Asteroid(new Point2D(1,1),ellipses.get(2),5, new Uran()));
         }
 
-        this.base = new BaseAsteroid(new Point2D(5,5), ellipses.get(1), 3, null);
+        this.base = new BaseAsteroid(new Point2D(5,5), ellipses.get(1), 3, null,this);
 
         ArrayList<Settler> settlers = new ArrayList<>();
         this.field = new AsteroidField(sun, this, ellipses, settlers);

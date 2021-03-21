@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 public class BaseAsteroid extends Asteroid {
     private ArrayList<Material> chest;
+    private Game game;
 
-    public BaseAsteroid(Point2D position, Ellipse2D ellipse, int thickness, Material material) {
+    public BaseAsteroid(Point2D position, Ellipse2D ellipse, int thickness, Material material, Game game) {
         super(position, ellipse, thickness, material);
         Logger.logMessage("BaseAsteroid#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
         chest=new ArrayList<>();
+        this.game = game;
 
         Logger.tabcount--;
     }
@@ -27,12 +29,13 @@ public class BaseAsteroid extends Asteroid {
         }
         BillOfMaterials bill = new BillOfMaterials(materials);
         for (int i = 0; i < chest.size(); ++i) {
-            if (bill.IsNeeded(chest.get(i))) {
-                //chest.remove();
-            }
+            bill.IsNeeded(chest.get(i));
         }
         if (bill.IsNeeded(m)) {
             chest.add(m);
+            if(bill.GetBill().size() == 0)
+                game.EndGame();
+
 
             Logger.tabcount--;
             return true;
@@ -48,5 +51,7 @@ public class BaseAsteroid extends Asteroid {
         Logger.tabcount--;
         return chest;
     }
+
+
 
 }

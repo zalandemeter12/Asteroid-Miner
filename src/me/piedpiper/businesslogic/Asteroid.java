@@ -1,12 +1,16 @@
 package me.piedpiper.businesslogic;
 
-
-
+//Az aszteroidát valósítja meg, tárolja a sziklarétegei számát,
+//a tartalmazott nyersanyagát és hogy közel van-e a nap
 public class Asteroid extends OrbitingObject {
+    //Sziklarétegek száma
     private int thickness;
+    //Közel van-e a nap
     private boolean closeToSun;
+    //A tartalmazott
     private Material material;
 
+    //Kostruktor
     public Asteroid(Point2D position, Ellipse2D ellipse, int thickness, Material material) {
         super(position, ellipse);
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
@@ -18,6 +22,7 @@ public class Asteroid extends OrbitingObject {
         Logger.tabcount--;
     }
 
+    //Aszeroida megfúrása, csökkenti a sziklarétegek számát
     @Override
     public void DrilledOn() {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".DrilledOn()");
@@ -30,10 +35,10 @@ public class Asteroid extends OrbitingObject {
         Logger.tabcount--;
     }
 
+    //Az aszteroid megfúrása, visszatér a tartalmazott nyersanyagggal
     @Override
     public Material RemoveMaterial() {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".RemoveMaterial()");
-        
 
         Material tmp = this.material;
         this.material = null;
@@ -42,6 +47,7 @@ public class Asteroid extends OrbitingObject {
         return tmp;
     }
 
+    //Megpróbál lehelyezni egy nyersanyagot
     @Override
     public boolean AddMaterial(Material m) {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".AddMaterial()");
@@ -58,19 +64,21 @@ public class Asteroid extends OrbitingObject {
         }
     }
 
+    //Az aszteroida felrobban
     @Override
     public void Explode() {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".Explode()");
         Logger.tabcount--;
     }
-
+    //Vastagság getter
     @Override
     public int GetThickness() {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".GetThickness()");
         Logger.tabcount--;
         return this.thickness;
     }
-    
+
+    //nyersanyag setter
     @Override
     public void SetMaterial(Material m) {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".SetMaterial()");
@@ -78,6 +86,7 @@ public class Asteroid extends OrbitingObject {
         material = m;
     }
 
+    //nyersanyag getter
     @Override
     public Material GetMaterial() {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".GetMaterial()");
@@ -85,12 +94,13 @@ public class Asteroid extends OrbitingObject {
         return material;
     }
 
+    //Megállapítja, hogy közel van-e a nap
     public boolean IsCloseToSun(){
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".IsCloseToSun()");
         Logger.tabcount--;
         return closeToSun;
     }
-
+    // nagy közelség setter
 	public void setCloseToSun(boolean c) {
 		closeToSun = c;
     }

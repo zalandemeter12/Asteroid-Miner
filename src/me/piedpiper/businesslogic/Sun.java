@@ -4,11 +4,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Sun implements ISteppable {
+
+    // Nap pozicioja a koordinatarendszerben
     private final Point2D position;
+
+    // Az aktiv napviharok listaja
     private ArrayList<SolarStorm> solarStorms;
+
+    // Megadja, hogy hany kor telt el a legutobbi napkiotores ota
     private int roundsWithoutSS;
+
+    // Referencia az aszteroidamezore
     private AsteroidField field;
 
+    // Komnstruktor
     public Sun(Point2D position, AsteroidField field) {
         Logger.logMessage("Sun#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
@@ -20,6 +29,7 @@ public class Sun implements ISteppable {
         Logger.tabcount--;
     }
 
+    // Leptetest megvalosito fuggveny
     @Override
     public void Step() {
         Logger.logMessage("Sun#" + Integer.toHexString(this.hashCode()) + ".Step()");
@@ -36,18 +46,21 @@ public class Sun implements ISteppable {
         Logger.tabcount--;
     }
 
+    // Visszater az aktiv napviharokkal
     public ArrayList<SolarStorm> GetSolarStorms() {
         Logger.logMessage("Sun#" + Integer.toHexString(this.hashCode()) + ".GetSolarStorms()");
         Logger.tabcount--;
         return solarStorms;
     }
 
+    // Visszater az aszteroidamezo referenciajaval
     public AsteroidField GetField() {
         Logger.logMessage("Sun#" + Integer.toHexString(this.hashCode()) + ".GetField()");
         Logger.tabcount--;
         return field;
     }
 
+    // Beallitja az aszteroidamezo referenciajat
     public void SetField(AsteroidField field) {
         Logger.logMessage("Sun#" + Integer.toHexString(this.hashCode()) + ".SetField()");
         

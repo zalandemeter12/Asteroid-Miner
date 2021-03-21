@@ -44,9 +44,10 @@ public class Sequences {
     
     public void SettlerMovesToTeleportGate() {
         Logger.tabcount = -1;
-        System.out.println("Select Use case: ");
+        System.out.println("Scenarios of settler moves to teleport gate:\n");
         System.out.println("1: The gate's pair is active");
         System.out.println("2: The gate's pair is inactive");
+        System.out.println("\nSelect scenario: ");
         selectedScenario = scanner.nextInt();
         if(selectedScenario > 0 && selectedScenario < 3) {
             if(selectedScenario == 1){
@@ -77,10 +78,11 @@ public class Sequences {
 
     public void SettlerPlacesMaterialOnAsteroid() {
         Logger.tabcount = -1;
-        System.out.println("Select Use case: ");
+        System.out.println("Scenarios of settler places material on asteroid:\n");
         System.out.println("1: Asteroid doesn't have any layers of rock left and the asteroid is hollow.");
         System.out.println("2: Asteroid doesn't have any layers of rock left and the asteroid is not hollow.");
         System.out.println("3: Asteroid has at least 1 layer of rock.");
+        System.out.println("\nSelect scenario: ");
         selectedScenario = scanner.nextInt();
         if(selectedScenario > 0 && selectedScenario < 4) {
             if(selectedScenario == 1){
@@ -113,10 +115,11 @@ public class Sequences {
 
     public void SettlerPlacesMaterialOnBaseAsteroid() {
         Logger.tabcount = -1;
-        System.out.println("Select Use case: ");
+        System.out.println("Scenarios of settler places material on base asteroid:\n");
         System.out.println("1: Baseasteroid has enough space for the material.");
         System.out.println("2: Baseasteroid doesn't have enough space for the material.");
         System.out.println("3: If the baseasteroid has 3 unit of every material, the settlers win the game.");
+        System.out.println("\nSelect scenario: ");
         selectedScenario = scanner.nextInt();
         if(selectedScenario > 0 && selectedScenario < 4) {
             if(selectedScenario == 1){
@@ -153,9 +156,10 @@ public class Sequences {
 
     public void SettlerBuildsRobot() {
         Logger.tabcount = -1;
-        System.out.println("Select Use case: ");
+        System.out.println("Scenarios of settler builds robot:\n");
         System.out.println("1: Settler has all the required material to build a robot.");
         System.out.println("2: Settler doesn't have all the required material to build a robot.");
+        System.out.println("\nSelect scenario: ");
         selectedScenario = scanner.nextInt();
         if(selectedScenario > 0 && selectedScenario < 3) {
             if(selectedScenario == 1){
@@ -183,10 +187,11 @@ public class Sequences {
             System.out.println("Invalind scenario number");
     }
 
-    public void SettlerCraftsGate() {   
-        System.out.println("Select Use case: ");
+    public void SettlerCraftsGate() {
+        System.out.println("Scenarios of settler crafts gate:\n");
         System.out.println("1: Settler has all the required material to build a teleport gate pair.");
         System.out.println("2: Settler doesn't have all the required material to teleport gate pair.");
+        System.out.println("\nSelect scenario: ");
         selectedScenario = scanner.nextInt();
         if(selectedScenario > 0 && selectedScenario < 3) {
             if(selectedScenario == 1){
@@ -216,8 +221,9 @@ public class Sequences {
 
     public void SettlerPlacesGate() {
         Logger.tabcount = -1;
-        System.out.println("Select Use case: ");
+        System.out.println("Scenarios of settler places gate:\n");
         System.out.println("1: Settler places gate");
+        System.out.println("\nSelect scenario: ");
         selectedScenario = scanner.nextInt();
         if(selectedScenario == 1){
             Logger.logOnConsole = false;
@@ -235,9 +241,10 @@ public class Sequences {
 
     public void SettlerMovesToAsteroid() {
         Logger.tabcount = -1;
-        System.out.println("Select Use case: ");
+        System.out.println("Scenarios of settler moves to asteroid:\n");
         System.out.println("1: Settler tries to move to a neighbour asteroid");
         System.out.println("2: Settler tries to move to an asteroid that is not a neighbour");
+        System.out.println("\nSelect scenario: ");
         selectedScenario = scanner.nextInt();
         if(selectedScenario > 0 && selectedScenario < 3) {
             if(selectedScenario == 1){
@@ -263,20 +270,29 @@ public class Sequences {
 
 	public void SkipSettler() {
 		Logger.tabcount = -1;
-        Logger.logOnConsole = false;
-        Asteroid n = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 0, new Iron());
-		Settler settler = new Settler(n, asteroidField);
-        Logger.logOnConsole = true;
-		settler.SkipAction();
-	    Init();    
+        System.out.println("Scenarios of player skips settler:\n");
+        System.out.println("1:Player skips settler");
+        System.out.println("\nSelect scenario: ");
+        selectedScenario = scanner.nextInt();
+        if(selectedScenario == 1) {
+            Logger.logOnConsole = false;
+            Asteroid n = new Asteroid(new Point2D(0.0, 0.0), ellipses.get(0), 0, new Iron());
+            Settler settler = new Settler(n, asteroidField);
+            Logger.logOnConsole = true;
+            settler.SkipAction();
+            Init();
+        }
+        else
+            System.out.println("Invalind scenario number");
     }
 
     public void SettlerMinesAsteroid() {
         Logger.tabcount = -1;
-        System.out.println("Select Use case: ");
+        System.out.println("Scenarios of settler mines asteroid:\n");
         System.out.println("1: Rock layer thickness is 0 and there is material inside");
         System.out.println("2: Rock layer thickness is 0, but there is no material inside");
         System.out.println("3: Rock layer thickness is not 0, therefore settler cannot mine");
+        System.out.println("\nSelect scenario: ");
         selectedScenario = scanner.nextInt();
         Asteroid n;
         Settler settler;
@@ -310,10 +326,11 @@ public class Sequences {
 
     public void SettlerDrillsAsteroid() {
         Logger.tabcount = -1;
-        System.out.println("Select Use case: ");
+        System.out.println("Scenarios of settler drills asteroid:\n");
         System.out.println("1: Asteroid has at least 1 layer of rock.");
         System.out.println("2: Asteroid doesn't have any layers of rock left.");
         System.out.println("3: If the settler drills the last layer of rock, the asteroid's core is radioactive and the asteroid is near the Sun, than the settler dies.");
+        System.out.println("\nSelect scenario: ");
         selectedScenario = scanner.nextInt();
         if(selectedScenario > 0 && selectedScenario < 4) {
             Logger.logOnConsole = false;
@@ -359,6 +376,7 @@ public class Sequences {
     };
 
     static private void printMenuItems() {
+        System.out.println("Use cases:\n");
         System.out.println("0: Exit");
         System.out.println("1: Settler moves to teleport gate");
         System.out.println("2: Settler places material on asteroid");

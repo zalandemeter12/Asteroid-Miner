@@ -34,20 +34,27 @@ public class Settler extends Worker {
     public void PlaceMaterial(Material m){
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".PlaceMaterial()");
         
-        location.AddMaterial(m);
+        if(location.AddMaterial(m)){
+            backpack.remove(m);
+        }
 
         Logger.tabcount--;
     }
 
     public void PlaceGate(){
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".PlaceGate()");
-        
+        Logger.logGetter=true;
+        Logger.logSetter=true;
         if (gateInventory.size() > 0) {
-            gateInventory.get(0).SetPosition(location.GetPosition());
+            Ellipse2D e=location.GetEllipse();
+            gateInventory.get(0).SetPosition(e.GateLocation(location.GetPosition()));
             gateInventory.get(0).SetEllipse(location.GetEllipse());
+
         }
         
         Logger.tabcount--;
+        Logger.logGetter=false;
+        Logger.logSetter=false;
     }
 
     public void CraftGate(){

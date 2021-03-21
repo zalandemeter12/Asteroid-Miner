@@ -16,7 +16,7 @@ public class AsteroidField implements ISteppable {
     //Az aszteroida mezon levo telepesek listaja
     private ArrayList<Settler> settlers;
 
-    //Az osztaly konstruktora
+    //Konstruktor
     public AsteroidField(Sun sun, Game game, ArrayList<Ellipse2D> ellipses, ArrayList<Settler> settlers){
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 

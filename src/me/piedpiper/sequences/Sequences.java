@@ -58,7 +58,9 @@ public class Sequences {
                 Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
                 orbitingObjects1.get(0).AddNeighbor(t1);
                 Logger.logOnConsole = true;
+                Logger.logGetter = true;
                 settler.MoveTo(t1);   
+                Logger.logGetter = false;
             }
             else{
                 Logger.logOnConsole = false;
@@ -144,8 +146,11 @@ public class Sequences {
                     base.AddMaterial(new Ice());
                     base.AddMaterial(new Iron());
                 }
+                base.AddMaterial(new Uran());
+                base.AddMaterial(new Uran());
+                Uran a = new Uran();
                 Logger.logOnConsole = true;
-                s.PlaceMaterial(new Uran());
+                s.PlaceMaterial(a);
             }
             Init();
         }
@@ -230,13 +235,19 @@ public class Sequences {
             TeleportGate t1 = new TeleportGate(null, null);
             Settler s = new Settler(orbitingObjects1.get(0), asteroidField);
             s.AddGate(t1);
+            Logger.logGetter=true;
+            Logger.logSetter=true;
             Logger.logOnConsole = true;
             s.PlaceGate();
+            Logger.logGetter=false;
+            Logger.logSetter=false;
+            Logger.logOnConsole = false;
             Init();    
         }
         else
             System.out.println("Invalind scenario number");
-        
+        Settler s = game.GetField().GetSettlers().get(0);
+
     }
 
     public void SettlerMovesToAsteroid() {
@@ -344,9 +355,10 @@ public class Sequences {
 				Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
                 Logger.logOnConsole = true;
                 settler.DrillHole();
-			} else {
-			    Asteroid a = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 1, null);
+			} else if(selectedScenario==3) {
+			    Asteroid a = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 1, new Uran());
 				Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+                settler.SetLocation(a);
 				a.setCloseToSun(true);
                 Logger.logOnConsole = true;
                 settler.DrillHole();

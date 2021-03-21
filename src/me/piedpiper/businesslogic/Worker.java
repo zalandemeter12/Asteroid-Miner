@@ -13,13 +13,13 @@ public abstract class Worker { //A munkást reprezentáló absztrakt osztály a 
         Logger.tabcount--;
     }
 
-    public void MoveTo(OrbitingObject o){ //Áthelyezi a Workert a paraméterban átvett OrbitingObjectre
+    public void MoveTo(OrbitingObject o){
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".MoveTo()");
         
         ArrayList<OrbitingObject> neighbors = location.GetNeighbors();  //Az OrbitingObjectek, amikre a Worker tud mozogni.
         if (neighbors.contains(o)) {    //Ha a paraméterként átvett OrbitingObject benne van a neighbours listában.
             location.RemoveWorker(this); //Az aktuális OrbitingObjectről eltávolítja a Workert.
-            o.AddWorker(this); //Áthelyezi a cél OrbitingObjectre.
+            o.AddWorker(this);
             location=o; //Megváltoztatja a locationt az új helyzetére.
         }
         

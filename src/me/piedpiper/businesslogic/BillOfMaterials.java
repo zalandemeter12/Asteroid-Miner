@@ -3,12 +3,14 @@ package me.piedpiper.businesslogic;
 import java.util.ArrayList;
 
 public class BillOfMaterials {
-    private final ArrayList<Material> bill;
+    private  ArrayList<Material> bill;
+    private  ArrayList<Material> cache;
 
     public BillOfMaterials(ArrayList<Material> bill){
         Logger.logMessage("BillOfMaterials#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
         this.bill = bill;
+        this.cache = (ArrayList<Material>)bill.clone();
 
         Logger.tabcount--;
     }
@@ -33,5 +35,8 @@ public class BillOfMaterials {
         Logger.logMessage("BillOfMaterials#" + Integer.toHexString(this.hashCode()) + ".GetBill()");
         Logger.tabcount--;
         return bill;
-    } 
+    }
+
+
+
 }

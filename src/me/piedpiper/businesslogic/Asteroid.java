@@ -18,6 +18,7 @@ public class Asteroid extends OrbitingObject {
         Logger.tabcount--;
     }
 
+
     @Override
     public void DrilledOn() {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".DrilledOn()");

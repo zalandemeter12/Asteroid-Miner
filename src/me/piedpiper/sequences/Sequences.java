@@ -241,7 +241,8 @@ public class Sequences {
         }
         else
             System.out.println("Invalind scenario number");
-        
+        Settler s = game.GetField().GetSettlers().get(0);
+
     }
 
     public void SettlerMovesToAsteroid() {

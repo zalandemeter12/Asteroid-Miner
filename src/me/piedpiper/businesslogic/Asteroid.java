@@ -46,7 +46,7 @@ public class Asteroid extends OrbitingObject {
     public boolean AddMaterial(Material m) {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".AddMaterial()");
         
-        if (material == null) {
+        if (material == null && thickness==0) {
             this.material = m;
             
             Logger.tabcount--;

@@ -67,16 +67,21 @@ public class Settler extends Worker {
             materials.add(new Ice());
             materials.add(new Uran());
             BillOfMaterials bill = new BillOfMaterials(materials);
-            for (Material m: backpack) {
-                bill.IsNeeded(m);
-            }
+            int[] indices = new int[4];
+            int idx = 0;
+            for (int i = 0; i < backpack.size(); ++i)
+                if (bill.IsNeeded(backpack.get(i)))
+                    indices[idx++] = i;
+                    
             if (bill.GetBill().size() == 0) {
-                bill = new BillOfMaterials(materials);
-                for (Material m: backpack) {
-                    if (bill.IsNeeded(m))
-                        backpack.remove(m);
-                }
-                
+                Material tmp0 = backpack.get(indices[0]);
+                Material tmp1 = backpack.get(indices[1]);
+                Material tmp2 = backpack.get(indices[2]);
+                Material tmp3 = backpack.get(indices[3]);
+                backpack.remove(tmp0);
+                backpack.remove(tmp1);
+                backpack.remove(tmp2);
+                backpack.remove(tmp3);
                 TeleportGate t1 = new TeleportGate(null, null);
                 TeleportGate t2 = new TeleportGate(null, null);
                 t1.SetGatePair(t2);
@@ -97,15 +102,19 @@ public class Settler extends Worker {
         materials.add(new Iron());
         materials.add(new Uran());
         BillOfMaterials bill = new BillOfMaterials(materials);
-        for (Material m: backpack) {
-            bill.IsNeeded(m);
-        }
+        int[] indices = new int[3];
+        int idx = 0;
+        for (int i = 0; i < backpack.size(); ++i)
+            if (bill.IsNeeded(backpack.get(i)))
+                indices[idx++] = i;
+
         if (bill.GetBill().size() == 0) {
-            bill = new BillOfMaterials(materials);
-            for (Material m: backpack) {
-                if (bill.IsNeeded(m))
-                    backpack.remove(m);
-            }
+            Material tmp0 = backpack.get(indices[0]);
+            Material tmp1 = backpack.get(indices[1]);
+            Material tmp2 = backpack.get(indices[2]);
+            backpack.remove(tmp0);
+            backpack.remove(tmp1);
+            backpack.remove(tmp2);
             Robot r = new Robot(location, field);
             field.AddRobot(r);
         }

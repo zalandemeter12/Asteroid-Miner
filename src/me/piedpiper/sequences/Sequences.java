@@ -235,8 +235,13 @@ public class Sequences {
             TeleportGate t1 = new TeleportGate(null, null);
             Settler s = new Settler(orbitingObjects1.get(0), asteroidField);
             s.AddGate(t1);
+            Logger.logGetter=true;
+            Logger.logSetter=true;
             Logger.logOnConsole = true;
             s.PlaceGate();
+            Logger.logGetter=false;
+            Logger.logSetter=false;
+            Logger.logOnConsole = false;
             Init();    
         }
         else

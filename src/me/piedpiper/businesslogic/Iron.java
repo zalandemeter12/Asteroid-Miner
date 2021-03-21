@@ -1,7 +1,8 @@
 package me.piedpiper.businesslogic;
 
 public class Iron extends Material {
-    //Az osztaly konstruktora
+
+    // Konstruktor
     public Iron(){
         Logger.logMessage("Iron#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
         Logger.tabcount--;

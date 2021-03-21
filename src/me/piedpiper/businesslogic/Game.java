@@ -2,10 +2,14 @@ package me.piedpiper.businesslogic;
 
 import java.util.ArrayList;
 
+//A játékok összefogó objektum, tertalmazza és létrehozza a fő objektumokat
 public class Game {
+    //Az aszteroida mmező, ami az aszteroidákat tartalmazza
     private final AsteroidField field;
+    //A bázis aszteroidát külön ismeri
     private final BaseAsteroid base;
 
+    //Konstruktor
     public Game(int settlerCount) {
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
         
@@ -48,38 +52,44 @@ public class Game {
         Logger.tabcount--;
     }
 
+    //Elintdítja a játékot
     public void StartGame(){
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".StartGame()");
         Logger.tabcount--;
     }
-
+    //Kezeli a játék köreit
     public void GameLoop(){
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".GameLoop()");
         Logger.tabcount--;
     }
 
+    //Új kör indítását végzi el
     public void NextRound(){
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".NextRound()");
         Logger.tabcount--;
     }
 
+    //Játék befejezése
     public void EndGame(){
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".EndGame()");
         Logger.tabcount--;
     }
 
+    //Bázis getter
     public BaseAsteroid GetBase() {
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".GetBase()");
         Logger.tabcount--;
         return base;
     }
 
+    //Aszteroida mező getter
     public AsteroidField GetField(){
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".GetField()");
         Logger.tabcount--;
         return field;
     }
 
+    //Belépési pont
     public static void main(String[] args){
 
     }

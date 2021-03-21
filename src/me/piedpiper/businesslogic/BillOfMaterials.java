@@ -37,6 +37,8 @@ public class BillOfMaterials {
         return bill;
     }
 
-
+    public void Init(){
+        bill = (ArrayList<Material>)cache.clone();
+    }
 
 }

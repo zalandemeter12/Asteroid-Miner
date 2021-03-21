@@ -14,6 +14,7 @@ public class TeleportGate extends OrbitingObject {
         Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".AddWorker()");
        
         if(gatePair.GetPosition() != null) {
+            workers.remove(w);
             w.SetLocation(gatePair);
             gatePair.GetWorkers().add(w);
         }

@@ -1,5 +1,7 @@
 package me.piedpiper.businesslogic;
 
+import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
+
 public class Asteroid extends OrbitingObject {
     private int thickness;
     private boolean closeToSun;
@@ -19,12 +21,10 @@ public class Asteroid extends OrbitingObject {
     @Override
     public void DrilledOn() {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".DrilledOn()");
-       
-
-        if (thickness == 0 && closeToSun) {
+        
+        thickness--;
+        if (thickness == 0 && closeToSun && material != null) {
             material.BlowUp(this);
-        } else {
-            thickness--;
         }
         
         Logger.tabcount--;

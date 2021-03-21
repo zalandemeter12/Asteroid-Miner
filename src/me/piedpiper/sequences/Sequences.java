@@ -58,7 +58,9 @@ public class Sequences {
                 Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
                 orbitingObjects1.get(0).AddNeighbor(t1);
                 Logger.logOnConsole = true;
+                Logger.logGetter = true;
                 settler.MoveTo(t1);   
+                Logger.logGetter = false;
             }
             else{
                 Logger.logOnConsole = false;
@@ -344,9 +346,10 @@ public class Sequences {
 				Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
                 Logger.logOnConsole = true;
                 settler.DrillHole();
-			} else {
-			    Asteroid a = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 1, null);
+			} else if(selectedScenario==3) {
+			    Asteroid a = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 1, new Uran());
 				Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
+                settler.SetLocation(a);
 				a.setCloseToSun(true);
                 Logger.logOnConsole = true;
                 settler.DrillHole();

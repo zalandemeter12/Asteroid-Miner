@@ -2,10 +2,10 @@ package me.piedpiper.businesslogic;
 
 import java.util.ArrayList;
 
-public abstract class Worker {
-    protected OrbitingObject location;
+public abstract class Worker { //A munkást reprezentáló absztrakt osztály a játékban, leszármazik belőle a Settler és a Robot osztályok
+    protected OrbitingObject location; //Az asztroida/teleport kapu, amin a Worker van
 
-    public Worker(OrbitingObject location) {
+    public Worker(OrbitingObject location) {    //Worker konstruktora, beállítja a location-t
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
         
         this.location = location;
@@ -16,19 +16,19 @@ public abstract class Worker {
     public void MoveTo(OrbitingObject o){
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".MoveTo()");
         
-        ArrayList<OrbitingObject> neighbors = location.GetNeighbors();
-        if (neighbors.contains(o)) {
-            location.RemoveWorker(this);
+        ArrayList<OrbitingObject> neighbors = location.GetNeighbors();  //Az OrbitingObjectek, amikre a Worker tud mozogni.
+        if (neighbors.contains(o)) {    //Ha a paraméterként átvett OrbitingObject benne van a neighbours listában.
+            location.RemoveWorker(this); //Az aktuális OrbitingObjectről eltávolítja a Workert.
             o.AddWorker(this);
-            location=o;
+            location=o; //Megváltoztatja a locationt az új helyzetére.
         }
         
         Logger.tabcount--;
     }
 
-    public abstract void Die();
+    public abstract void Die(); //A Worker meghal, megszűnik.
 
-    public void DrillHole(){
+    public void DrillHole(){ //Lejjebb fúr egy réteget az OrbitingObject kérgén, ha lehetséges.
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".DrillHole()");
         
         location.DrilledOn();
@@ -36,9 +36,9 @@ public abstract class Worker {
         Logger.tabcount--;
     }
     
-    public abstract void Explode();
+    public abstract void Explode(); //A Worker felrobban, radioaktív anyagok hatására fordulhat elő.
 
-    public void SetLocation(OrbitingObject l){
+    public void SetLocation(OrbitingObject l){ //A paraméterként átvett OrbitingObjectre állítja a Worker location-ét.
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".SetLocation()");
         
         this.location=l;
@@ -46,7 +46,7 @@ public abstract class Worker {
         Logger.tabcount--;
     }
 
-    public OrbitingObject GetLocation(){
+    public OrbitingObject GetLocation(){ //Visszatér a location értékével.
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".GetLocation()");
         Logger.tabcount--;
         return location;

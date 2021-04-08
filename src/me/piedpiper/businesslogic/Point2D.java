@@ -25,7 +25,7 @@ public class Point2D {
         return y;
     }
 
-    public void SetX(int x){ 
+    public void SetX(double x){ 
         Logger.logMessage("Point2D#" + Integer.toHexString(this.hashCode()) + ".SetX()");
         
         this.x = x;
@@ -33,7 +33,7 @@ public class Point2D {
         Logger.tabcount--;
     }
 
-    public void SetY(int y){ 
+    public void SetY(double y){ 
         Logger.logMessage("Point2D#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
         
         this.y = y;
@@ -46,6 +46,4 @@ public class Point2D {
         Logger.tabcount--;
         return Math.sqrt((x-p.GetX())*(x-p.GetX())+(y-p.GetY())*(y-p.GetY()));
     }
-
-
 }

@@ -1,5 +1,6 @@
 package me.piedpiper.businesslogic;
 
+import com.sun.java.util.jar.pack.PackerImpl;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -58,7 +59,80 @@ public class Game {
         Logger.tabcount--;
     }
 
+    public Game() {
+        Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
+        Sun sun = new Sun(new Point2D(0.0,0.0),null);
+
+        ArrayList<OrbitingObject> objects1 = new ArrayList<>();
+        ArrayList<OrbitingObject> objects2 = new ArrayList<>();
+        ArrayList<OrbitingObject> objects3 = new ArrayList<>();
+        ArrayList<Ellipse2D> ellipses = new ArrayList<>();
+        ellipses.add(new Ellipse2D(new Point2D(10,10), new Point2D(20,20), 5, 3, objects1));
+        ellipses.add(new Ellipse2D(new Point2D(15,15), new Point2D(25,25), 10, 3, objects2));
+        ellipses.add(new Ellipse2D(new Point2D(20,20), new Point2D(30,30), 15, 3, objects3));
+
+        ArrayList<Settler> settlers = new ArrayList<>();
+        this.field = new AsteroidField(sun, this, ellipses, settlers);
+        sun.SetField(this.field);
+
+        Logger.tabcount--;
+    }
+
+    public void testInit(){
+        Asteroid a1=new Asteroid(new Point2D(1,4), field.GetEllipses().get(0),5, new Iron(),1);
+        Asteroid a2=new Asteroid(new Point2D(4,4), field.GetEllipses().get(0),0, null,2);
+        Asteroid a3=new Asteroid(new Point2D(-1,-6), field.GetEllipses().get(0),4, new Ice(),3);
+        Asteroid a4=new Asteroid(new Point2D(10,5), field.GetEllipses().get(1),7, new Coal(),4);
+        Asteroid a5=new Asteroid(new Point2D(3,7), field.GetEllipses().get(1),2, new Uran(),5);
+        Asteroid a6=new Asteroid(new Point2D(9,-9), field.GetEllipses().get(2),0, null,6);
+        a2.GetNeighbors().add(a1);
+        a1.GetNeighbors().add(a2);
+        a1.GetNeighbors().add(a3);
+        a3.GetNeighbors().add(a1);
+        a3.GetNeighbors().add(a4);
+        a4.GetNeighbors().add(a3);
+        a1.GetNeighbors().add(a5);
+        a5.GetNeighbors().add(a1);
+
+        TeleportGate tg1=new TeleportGate(new Point2D(3,3), field.GetEllipses().get(0), 1);
+        TeleportGate tg2=new TeleportGate(new Point2D(5,2), field.GetEllipses().get(2), 2);
+        tg1.SetGatePair(tg2);
+        tg2.SetGatePair(tg1);
+        tg1.GetNeighbors().add(a5);
+        a5.GetNeighbors().add(tg1);
+        TeleportGate tg3=new TeleportGate(new Point2D(6,6), field.GetEllipses().get(2), 3);
+        TeleportGate tg4=new TeleportGate(null, null, 4);
+        tg4.SetGatePair(tg3);
+        tg3.SetGatePair(tg4);
+
+
+        field.GetEllipses().get(0).GetObjects().add(a1);
+        field.GetEllipses().get(0).GetObjects().add(a2);
+        field.GetEllipses().get(0).GetObjects().add(a3);
+        field.GetEllipses().get(1).GetObjects().add(a4);
+        field.GetEllipses().get(1).GetObjects().add(a5);
+        field.GetEllipses().get(2).GetObjects().add(a6);
+        field.GetEllipses().get(0).GetObjects().add(tg1);
+        field.GetEllipses().get(2).GetObjects().add(tg2);
+        field.GetEllipses().get(2).GetObjects().add(tg3);
+
+        Settler s1=new Settler(a1, field,1);
+        s1.GetBackpack().add(new Iron());
+        Settler s2=new Settler(a3, field, 2);
+        s2.AddGate(tg4);
+
+        Robot r1=new Robot(a4, field,1);
+        Ufo u1= new Ufo(a5, field,1);
+        field.GetEllipses().get(0).GetObjects().add(new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0, null,this));
+
+        activeSettlerId = field.GetSettlers().get(0).getId();
+
+    }
+
+    public void SetBase(Point2D position, Ellipse2D ellipse, int thickness){
+        base = new BaseAsteroid(position,ellipse,thickness,null,this);
+    }
 
     //Elintdítja a játékot
     public void StartGame(){

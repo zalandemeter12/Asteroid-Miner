@@ -13,6 +13,8 @@ public abstract class OrbitingObject {
     //Lista az objektumon levo munkasokrol(telepesek es robotok)
     protected ArrayList<Worker> workers;
 
+    protected int id;
+
     //Konstruktor
     public OrbitingObject(Point2D position, Ellipse2D ellipse){
         Logger.logMessage("OrbitingObject#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
@@ -155,4 +157,10 @@ public abstract class OrbitingObject {
         Logger.tabcount--;
         return null;
     }
+
+    public void UnderSolarStorm(){}
+
+    public void Moves(Point2D p){}
+
+    public abstract String GetName();
 }

@@ -18,7 +18,7 @@ public class ConsoleGame {
     public void init(){}
 
     public boolean addasteroid(int ellipsenum, int thickness, String material,boolean closetosun){
-        ellipses.get(ellipsenum).GetObjects().add(new Asteroid(new Point2D(0,0),))
+        //ellipses.get(ellipsenum).GetObjects().add(new Asteroid(new Point2D(0,0),))
 
         return true;
     }

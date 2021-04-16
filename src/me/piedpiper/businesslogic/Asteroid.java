@@ -22,6 +22,18 @@ public class Asteroid extends OrbitingObject {
         Logger.tabcount--;
     }
 
+    public Asteroid(Point2D position, Ellipse2D ellipse, int thickness, Material material, int i) {
+        super(position, ellipse);
+        Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.thickness = thickness;
+        this.closeToSun = false;
+        this.material = material;
+        id=i;
+
+        Logger.tabcount--;
+    }
+
     //Aszeroida megfúrása, csökkenti a sziklarétegek számát
     @Override
     public void DrilledOn() {
@@ -106,5 +118,9 @@ public class Asteroid extends OrbitingObject {
     // nagy közelség setter
 	public void setCloseToSun(boolean c) {
 		closeToSun = c;
+    }
+
+    public String GetName(){
+        return "Asteroid" + id;
     }
 }

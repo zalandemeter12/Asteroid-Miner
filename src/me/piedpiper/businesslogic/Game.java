@@ -106,6 +106,11 @@ public class Game {
         tg4.SetGatePair(tg3);
         tg3.SetGatePair(tg4);
 
+        Robot r1=new Robot(a4, field,1);
+        Ufo u1= new Ufo(a5, field,1);
+        a4.setCloseToSun(true);
+        a4.AddWorker(r1);
+        a5.AddWorker(u1);
 
         field.GetEllipses().get(0).GetObjects().add(a1);
         field.GetEllipses().get(0).GetObjects().add(a2);
@@ -122,8 +127,8 @@ public class Game {
         Settler s2=new Settler(a3, field, 2);
         s2.AddGate(tg4);
 
-        Robot r1=new Robot(a4, field,1);
-        Ufo u1= new Ufo(a5, field,1);
+
+
         base=new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0, null,this);
         field.GetEllipses().get(0).GetObjects().add(base);
         field.GetSettlers().add(s1);

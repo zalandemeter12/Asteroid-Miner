@@ -1,5 +1,6 @@
 package me.piedpiper.businesslogic;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class Game {
         for (int i = 0; i < settlerCount; ++i) {
             settlers.add(new Settler(base,field,i));
         }
+        activeSettlerId = settlers.get(0).getId();
         sun.SetField(this.field);
         
         Logger.tabcount--;
@@ -94,16 +96,53 @@ public class Game {
     }
 
     public void WriteJson(){
-        String jsonString = new JSONObject()
-                .put("JSON1", "Hello World!")
+       JSONObject jsonObject = new JSONObject();
+       jsonObject.put("ActiveSettler", "Settler" + activeSettlerId);
+
+       // innentol a keringo objektumok felepitese
+       JSONObject orbitingObjectsJson = new JSONObject();
+
+       // bazis aszteroida
+       JSONObject baseAsteroidJson = new JSONObject();
+       OrbitingObject baseAsteroid = (OrbitingObject)base;
+       baseAsteroidJson.put("xCoordinate", baseAsteroid.GetPosition().GetX());
+       baseAsteroidJson.put("yCoordinate", baseAsteroid.GetPosition().GetY());
+       baseAsteroidJson.put("thickness", baseAsteroid.GetThickness());
+       
+       // chest tartalma
+        JSONArray chestJson = new JSONArray();
+        ArrayList<String> chestItemNames = new ArrayList<String>();
+        base.AddMaterial(new Ice());
+        base.AddMaterial(new Ice());
+        base.AddMaterial(new Ice());
+        for (Material material : base.GetChest())
+        {
+
+            chestItemNames.add("Ice3");
+        }
+        chestJson.putAll(chestItemNames);
+       baseAsteroidJson.put("chest", chestJson);
+       baseAsteroidJson.put("neighbours", baseAsteroid.GetPosition().GetY());
+
+
+       orbitingObjectsJson.put("BaseAsteroid", baseAsteroidJson);
+
+       jsonObject.put("OrbitingObjects", orbitingObjectsJson);
+
+       System.out.println(jsonObject.toString(4));
+    /*'
+                .put("ActiveSettler", "Hello World!")
                 .put("JSON2", "Hello my World!")
-                .put("JSON3", new JSONObject().put("key1", "value1"))
-                .toString();
+                .put("JSON3", new JSONObject().put("key1", "value1")
+
+     */
 
     }
 
     //Belépési pont
     public static void main(String[] args){
+        Game game = new Game(5);
+        game.WriteJson();
 
     }
 }

@@ -126,7 +126,7 @@ public class Game {
         Ufo u1= new Ufo(a5, field,1);
         field.GetEllipses().get(0).GetObjects().add(new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0, null,this));
 
-        activeSettlerId = field.GetSettlers().get(0).getId();
+
 
     }
 
@@ -336,9 +336,6 @@ public class Game {
         }
 
         // lista a robotokrol
-
-       // field.GetEllipses().get(0).GetObjects().get(0).AddWorker(new Settler(  field.GetEllipses().get(0).GetObjects().get(0), field, 0));
-        //field.GetEllipses().get(0).GetObjects().get(0).AddWorker(new Settler(  field.GetEllipses().get(0).GetObjects().get(0), field, 1));
         JSONArray robotListJson = new JSONArray();
 
         for (Ellipse2D ellipse : field.GetEllipses()) {
@@ -358,6 +355,45 @@ public class Game {
 
         jsonObject.put("Robots:", robotListJson);
 
+        // lista az ufokrol
+        JSONArray ufoListJson = new JSONArray();
+
+        for (Ellipse2D ellipse : field.GetEllipses()) {
+            for (OrbitingObject orbitingObject : ellipse.GetObjects()) {
+                for (Worker worker : orbitingObject.GetWorkers()) {
+                    if (worker.getClass() == Ufo.class) {
+                        JSONObject ufoJson = new JSONObject();
+                        ufoJson.put("location", worker.location.GetName());
+
+                        JSONObject ufoJsonWrapper = new JSONObject();
+                        ufoJsonWrapper.put(worker.GetName(), ufoJson);
+                        robotListJson.put(ufoJsonWrapper);
+                    }
+                }
+            }
+        }
+
+        jsonObject.put("Ufos:", ufoListJson);
+
+        // lista a solarStromokrol
+        JSONArray solarStormListJson = new JSONArray();
+
+
+
+        for (SolarStorm solarStorm : field.GetSun().GetSolarStorms()) {
+            JSONObject solarStormJson = new JSONObject();
+            //solarStormJson.put("angle", solarStorm.GetAngle());
+
+            JSONObject solarStormJsonWrapper = new JSONObject();
+            solarStormJsonWrapper.put(solarStorm.GetName(), solarStormJson);
+            solarStormListJson.put(solarStormJsonWrapper);
+        }
+
+
+        jsonObject.put("Solarstorms:", solarStormListJson);
+
+
+
 
 
 
@@ -374,6 +410,7 @@ public class Game {
     //Belépési pont
     public static void main(String[] args){
         Game game = new Game(5);
+
         game.WriteJson();
 
     }

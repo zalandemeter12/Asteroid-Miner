@@ -44,6 +44,7 @@ public class SolarStorm implements ISteppable{
         } else {
             for (Ellipse2D e : sun.GetField().GetEllipses()) {
                 for (OrbitingObject o : e.GetObjects()) {
+                    o.UnderSolarStorm();
                     for (Worker w : o.GetExposedWorkers()) {
                         w.Die();
                     }

@@ -57,8 +57,7 @@ public class ConsoleGame {
 
         //game.SetBase(new Point2D(0,0),ellipses.get(1),5);
         base = game.GetBase();
-        game.GetBase().setCloseToSun(cts);
-
+        base.setCloseToSun(cts);
         return true;
     }
 
@@ -79,22 +78,74 @@ public class ConsoleGame {
     }
 
     public boolean addworker(String location, String type){
+        OrbitingObject workerlocation=null;
+        for(int i = 0;i<3;i++){
+            for(int j = 0;j<ellipses.get(i).GetObjects().size();j++){
+                if(ellipses.get(i).GetObjects().get(j).GetName()==location){workerlocation = ellipses.get(i).GetObjects().get(j);}
+            }
+        }
+        if(workerlocation==null){return false;}
+        if(type=="s"){
+            asteroidField.AddSettler(new Settler(workerlocation,asteroidField,asteroidField.GetSettlers().size()+1));
+        }
+        else if(type=="r"){
+            asteroidField.AddSteppable(new Robot(workerlocation,asteroidField));
+        }
+        else if(type=="u"){
+            asteroidField.AddSteppable(new Ufo(workerlocation,asteroidField));
+        }
+        else {return false;}
         return true;
     }
 
     public boolean addmaterialtobackpack(String settler, String material){
+        Material material1 = null;
+        if(material=="coal") {material1 = new Coal();}
+        else if(material=="uran") {material1 = new Uran();}
+        else if(material=="iron") {material1 = new Iron();}
+        else if(material=="ice") {material1 = new Ice();}
+        else {return false;}
+        boolean found = false;
+        for(Settler s : asteroidField.GetSettlers()) {
+            if (s.GetName() == settler) {
+                s.AddMaterialToBackpack(material1);
+                found = true;
+            }
+        }
+        if(!found) return false;
         return true;
     }
 
     public boolean addsolarstorm(int angle,int warntimer,String target){
+
         return true;
     }
 
     public boolean setneighbours(String object1,String object2){
-        return true;
+        for(int i = 0;i<3;i++){
+            for(OrbitingObject o1 : ellipses.get(i).GetObjects())
+                if(o1.GetName() == object1){
+                    for(int j = 0;j<3;j++){
+                        for(OrbitingObject o2 : ellipses.get(i).GetObjects())
+                            if(o2.GetName() == object2){
+                                o1.AddNeighbor(o2);
+                                o2.AddNeighbor(o1);
+                                return true;
+                            }
+                    }
+                }
+        }
+        return false;
     }
 
     public boolean setclosetosun(String isclose,String object){
+        if(isclose != "true" && isclose != "false"){return false;}
+        for(int i = 0;i<3;i++){
+            for(OrbitingObject o : ellipses.get(i).GetObjects())
+                if(o.GetName() == object){
+                    (Asteroid)
+                }
+        }
         return true;
     }
 
@@ -103,7 +154,12 @@ public class ConsoleGame {
     }
 
     public boolean skip(String settler){
-        return true;
+        for(Settler s : asteroidField.GetSettlers())
+            if(s.GetName() == settler){
+                s.SkipAction();
+                return true;
+            }
+        return false;
     }
 
     public boolean move(String worker, String location){

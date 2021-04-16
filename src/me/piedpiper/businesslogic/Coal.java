@@ -8,6 +8,12 @@ public class Coal extends Material {
         Logger.tabcount--;
     }
 
+    public Coal(int i) {
+        Logger.logMessage("Coal#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+        Logger.tabcount--;
+        id=i;
+    }
+
     // Polimorf viselkedes megvalositasa
     // megmondja, hogy a kapott anyag is szen-e
     @Override
@@ -16,5 +22,9 @@ public class Coal extends Material {
         Logger.tabcount--;
         if (m instanceof Coal) return true;
         else return false;
+    }
+
+    public String GetName(){
+        return "Coal" + id;
     }
 }

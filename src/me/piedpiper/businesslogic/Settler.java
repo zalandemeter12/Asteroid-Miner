@@ -46,7 +46,11 @@ public class Settler extends Worker {
         
         //Csak akkor, ha át van fúrva a kéreg és van hely a táskájában
         if (location.GetThickness() == 0 && backpack.size() < 10) {
-            backpack.add(location.RemoveMaterial());
+            Material mined=location.RemoveMaterial();
+            if(mined!=null) {
+                backpack.add(mined);
+                canStep=false;
+            }
         }
 
         Logger.tabcount--;
@@ -59,6 +63,7 @@ public class Settler extends Worker {
         //Csak akkor teszi meg, ha az aszteroida amin van el tudja azt fogadni
         if(backpack.contains(m) && location.AddMaterial(m)){
             backpack.remove(m);
+            canStep=false;
         }
 
         Logger.tabcount--;
@@ -74,6 +79,7 @@ public class Settler extends Worker {
             gateInventory.get(0).SetPosition(e.GateLocation(location.GetPosition()));
             gateInventory.get(0).SetEllipse(location.GetEllipse()); 
             gateInventory.remove(0);
+            canStep=false;
         }
         
         Logger.tabcount--;
@@ -115,6 +121,7 @@ public class Settler extends Worker {
                 t2.SetGatePair(t1);
                 gateInventory.add(t1);
                 gateInventory.add(t2);
+                canStep=false;
             }
         }
         
@@ -148,6 +155,7 @@ public class Settler extends Worker {
             backpack.remove(tmp2);
             Robot r = new Robot(location, field);
             field.AddSteppable(r);
+            canStep=false;
         }
         
         Logger.tabcount--;

@@ -3,16 +3,22 @@ package me.piedpiper.businesslogic;
 import java.util.ArrayList;
 
 public class AsteroidField implements ISteppable {
+
+    //Az osztaly attributumai
+    //Az aszteroida mezon levo nap
     private Sun sun;
+    //A jatek amiben az aszteroidamezo letre lett hozva
     private Game game;
+    //Az aszteroida mezon levo ellipszisek listaja, amiken az objektumok keringenek
     private ArrayList<Ellipse2D> ellipses;
     private ArrayList<ISteppable> steppable;
     private ArrayList<Settler> settlers;
 
-
+    //Konstruktor
     public AsteroidField(Sun sun, Game game, ArrayList<Ellipse2D> ellipses, ArrayList<Settler> settlers){
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
-        
+
+        //Az attributumok beallitasa a parametereknek megfeleloen
         this.sun = sun;
         this.game = game;
         this.ellipses = ellipses;
@@ -22,17 +28,21 @@ public class AsteroidField implements ISteppable {
         Logger.tabcount--;
     }
 
+    //Az ISteppable interface Step fuggvenyenek megvalositasa, ez a fuggveny felelos az objektumok keringteteseert, es ebben hivodnak meg a tovabbi step fuggvenyek
     public void Step() {
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".Step()");
-        
+
+        //Nap step fuggvenyenek meghivasa
         sun.Step();
         ArrayList<OrbitingObject> orbitingObjects = new ArrayList<OrbitingObject>();    
 
+        //Ellipszisen keringo objektumok uj poziciojanak beallitasa
         for(Ellipse2D e: ellipses) {
             e.MoveOrbits();
             orbitingObjects.addAll(e.GetObjects());
         }
 
+        //Szomszedok beallitasa
         for(int i = 0; i < orbitingObjects.size(); i++){
             for(int j = 0; j < orbitingObjects.size(); j++){
                 if(i != j){
@@ -68,6 +78,7 @@ public class AsteroidField implements ISteppable {
         Logger.tabcount--;
     }
 
+    //Telepes hozzaadasa az aszteroida mezoben levo telepesek listajahoz
     public void AddSettler(Settler s) {
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".AddSettler()");
         
@@ -76,6 +87,7 @@ public class AsteroidField implements ISteppable {
         Logger.tabcount--;
     }
 
+    //Telepes eltavolitasa a telepeseket tartalmazo listabol
     public void RemoveSettler(Settler s) {
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".RemoveSettler()");
         
@@ -85,12 +97,14 @@ public class AsteroidField implements ISteppable {
         Logger.tabcount--;
     }
 
+    //A fuggveny vissza adja az aszteroida mezoben levo ellipsziseknek a listajat
     public ArrayList<Ellipse2D> GetEllipses(){
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetEllipses()");
         Logger.tabcount--;
         return ellipses;
     }
 
+    //A fuggveny visszaadja az aszteroida mezoben levo Nap objektumot
     public Sun GetSun(){
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetSun()");
         Logger.tabcount--;
@@ -103,6 +117,7 @@ public class AsteroidField implements ISteppable {
         return steppable;
     }
 
+    //Fuggveny, amely visszaadja az aszteroida mezoben levo telepeseket, a settlers listat
     public ArrayList<Settler> GetSettlers(){
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetSettlers()");
         Logger.tabcount--;

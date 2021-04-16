@@ -68,6 +68,8 @@ public class Asteroid extends OrbitingObject {
     @Override
     public void Explode() {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".Explode()");
+        if(material != null)
+            material.BlowUp(this);
         Logger.tabcount--;
     }
     //Vastagság getter

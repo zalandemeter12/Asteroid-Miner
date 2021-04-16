@@ -42,7 +42,7 @@ public class Settler extends Worker {
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".PlaceMaterial()");
         
         //Csak akkor teszi meg, ha az aszteroida amin van el tudja azt fogadni
-        if(location.AddMaterial(m)){
+        if(backpack.contains(m) && location.AddMaterial(m)){
             backpack.remove(m);
         }
 
@@ -57,7 +57,8 @@ public class Settler extends Worker {
         if (gateInventory.size() > 0) {
             Ellipse2D e=location.GetEllipse();
             gateInventory.get(0).SetPosition(e.GateLocation(location.GetPosition()));
-            gateInventory.get(0).SetEllipse(location.GetEllipse());
+            gateInventory.get(0).SetEllipse(location.GetEllipse()); 
+            gateInventory.remove(0);
         }
         
         Logger.tabcount--;
@@ -68,7 +69,7 @@ public class Settler extends Worker {
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".CraftGate()");
         
         //Csak akkor, ha van hely ahova elrakja a kapukat
-        if (gateInventory.size() == 0) {
+        if (gateInventory.size() < 2) {
             //Egy nyersanyag receptet létrehoz, hogy ellenőrizze meg van-e minden anyag nála
             ArrayList<Material> materials = new ArrayList<>();
             materials.add(new Iron());
@@ -150,6 +151,9 @@ public class Settler extends Worker {
     //A telepes kihagyja a lépést az adott körben
     public void SkipAction(){
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".SkipAction()");
+        
+        this.canStep = false;
+        
         Logger.tabcount--;
     }
 
@@ -172,7 +176,7 @@ public class Settler extends Worker {
     }
 
     //Hozzáad egy nyersanyagot a telepes táskájához
-    public void AddMaterialToBackpack (Material m) {
+    public void AddMaterialToBackpack(Material m) {
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".AddMaterialToBackpack()");
         
         //Csak akkor, ha van benne hely

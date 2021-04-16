@@ -139,11 +139,14 @@ public class ConsoleGame {
     }
 
     public boolean setclosetosun(String isclose,String object){
-        if(isclose != "true" && isclose != "false"){return false;}
+        boolean cts;
+        if(isclose == "true") {  cts = true;}
+        else if(isclose == "false") {cts = false;}
+        else {return false;}
         for(int i = 0;i<3;i++){
             for(OrbitingObject o : ellipses.get(i).GetObjects())
                 if(o.GetName() == object){
-                    (Asteroid)
+                    o.SetCloseToSun(cts);
                 }
         }
         return true;
@@ -163,6 +166,23 @@ public class ConsoleGame {
     }
 
     public boolean move(String worker, String location){
+        for(int i = 0;i<3;i++){
+            for(OrbitingObject o : ellipses.get(i).GetObjects())
+                if(o.GetName() == location){
+                    for(Settler s : asteroidField.GetSettlers()) {
+                        if (s.GetName() == worker) {
+                            s.MoveTo(o);
+                            return true;
+                        }
+                    }
+                    for(ISteppable st : asteroidField.GetSteppable()) {
+                        if (st. == worker) {
+                            s.MoveTo(o);
+                            return true;
+                        }
+                    }
+                }
+        }
         return true;
     }
 

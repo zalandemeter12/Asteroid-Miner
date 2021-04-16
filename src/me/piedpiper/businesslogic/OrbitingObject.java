@@ -158,6 +158,8 @@ public abstract class OrbitingObject {
         return null;
     }
 
+    public void SetCloseToSun(boolean c){ }
+
     public void UnderSolarStorm(){}
 
     public void Moves(Point2D p){}

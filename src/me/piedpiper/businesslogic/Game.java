@@ -59,25 +59,7 @@ public class Game {
         Logger.tabcount--;
     }
 
-    public Game() {
-        Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
-        Sun sun = new Sun(new Point2D(0.0,0.0),null);
-
-        ArrayList<OrbitingObject> objects1 = new ArrayList<>();
-        ArrayList<OrbitingObject> objects2 = new ArrayList<>();
-        ArrayList<OrbitingObject> objects3 = new ArrayList<>();
-        ArrayList<Ellipse2D> ellipses = new ArrayList<>();
-        ellipses.add(new Ellipse2D(new Point2D(10,10), new Point2D(20,20), 5, 3, objects1));
-        ellipses.add(new Ellipse2D(new Point2D(15,15), new Point2D(25,25), 10, 3, objects2));
-        ellipses.add(new Ellipse2D(new Point2D(20,20), new Point2D(30,30), 15, 3, objects3));
-
-        ArrayList<Settler> settlers = new ArrayList<>();
-        this.field = new AsteroidField(sun, this, ellipses, settlers);
-        sun.SetField(this.field);
-
-        Logger.tabcount--;
-    }
 
     public void testInit(){
         Asteroid a1=new Asteroid(new Point2D(1,4), field.GetEllipses().get(0),5, new Iron(),1);

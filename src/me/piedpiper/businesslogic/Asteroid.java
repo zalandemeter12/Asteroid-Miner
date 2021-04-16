@@ -116,7 +116,8 @@ public class Asteroid extends OrbitingObject {
         return closeToSun;
     }
     // nagy közelség setter
-	public void setCloseToSun(boolean c) {
+    @Override
+	public void SetCloseToSun(boolean c) {
 		closeToSun = c;
     }
 

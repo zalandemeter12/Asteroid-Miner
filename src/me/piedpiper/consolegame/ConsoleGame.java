@@ -4,38 +4,51 @@ import me.piedpiper.businesslogic.*;
 
 import java.util.Scanner;
 
+import java.util.ArrayList;
+
 public class ConsoleGame {
     Scanner scanner = new Scanner(System.in);
 
-    public boolean addasteroid(int ellipsenum, int thickness, Material material,boolean closetosun){
+    private BaseAsteroid base;
+    private Game game;
+    private AsteroidField asteroidField;
+    private Sun sun;
+    private ArrayList<Ellipse2D> ellipses;
+
+    public void init(){}
+
+    public boolean addasteroid(int ellipsenum, int thickness, String material,boolean closetosun){
+        ellipses.get(ellipsenum).GetObjects().add(new Asteroid(new Point2D(0,0),))
+
         return true;
     }
 
     public boolean addbaseasteroid(boolean closetosun,int ironnum,int icenum,int urannum,int coalnum){
+        base = new BaseAsteroid(new Point2D(0,0), ellipses.get(1),5,null,game );
         return true;
     }
 
-    public boolean addteleportgate(Settler settler){
+    public boolean addteleportgate(String settler){
         return true;
     }
 
-    public boolean addworker(OrbitingObject location, char type){
+    public boolean addworker(String location, String type){
         return true;
     }
 
-    public boolean addmaterialtobackpack(Settler settler, Material material){
+    public boolean addmaterialtobackpack(String settler, String material){
         return true;
     }
 
-    public boolean addsolarstorm(int angle,int warntimer,OrbitingObject target){
+    public boolean addsolarstorm(int angle,int warntimer,String target){
         return true;
     }
 
-    public boolean setneighbours(OrbitingObject object1,OrbitingObject object2){
+    public boolean setneighbours(String object1,String object2){
         return true;
     }
 
-    public boolean setclosetosun(boolean isclose,OrbitingObject object){
+    public boolean setclosetosun(boolean isclose,String object){
         return true;
     }
 
@@ -43,35 +56,35 @@ public class ConsoleGame {
         return true;
     }
 
-    public boolean skip(Settler settler){
+    public boolean skip(String settler){
         return true;
     }
 
-    public boolean move(Worker worker, OrbitingObject location){
+    public boolean move(String worker, String location){
         return true;
     }
 
-    public boolean drill(Worker worker){
+    public boolean drill(String worker){
         return true;
     }
 
-    public boolean mine(Worker worker){
+    public boolean mine(String worker){
         return true;
     }
 
-    public boolean craftgate(Settler settler){
+    public boolean craftgate(String settler){
         return true;
     }
 
-    public boolean buildrobot(Settler settler){
+    public boolean buildrobot(String settler){
         return true;
     }
 
-    public boolean placematerial(Settler setller, Asteroid asteroid, Material material){
+    public boolean placematerial(String setller, String asteroid, String material){
         return true;
     }
 
-    public boolean placegate(Settler settler){
+    public boolean placegate(String settler){
         return true;
     }
 

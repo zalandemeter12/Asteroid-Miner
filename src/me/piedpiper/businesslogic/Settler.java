@@ -12,6 +12,9 @@ public class Settler extends Worker {
     //A telepes teleport kapu tárolója
     private ArrayList<TeleportGate> gateInventory;
 
+    private int id;
+
+
     //A telepes konstruktora
     public Settler(OrbitingObject location, AsteroidField field){
         super(location);
@@ -22,6 +25,18 @@ public class Settler extends Worker {
         this.backpack = new ArrayList<>();
         this.gateInventory = new ArrayList<>();
 
+        Logger.tabcount--;
+    }
+
+    public Settler(OrbitingObject location, AsteroidField field, int id){
+        super(location);
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.field = field;
+        this.canStep = false;
+        this.backpack = new ArrayList<>();
+        this.gateInventory = new ArrayList<>();
+        this.id = id;
         Logger.tabcount--;
     }
 
@@ -197,5 +212,9 @@ public class Settler extends Worker {
     //Hozzáad egy teleport kaput a telepes tárolójához, csak a tesztekhez használatos
     public void AddGate(TeleportGate g){
         gateInventory.add(g);
+    }
+
+    public int getId(){
+        return this.id;
     }
 }

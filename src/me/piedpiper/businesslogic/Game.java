@@ -9,6 +9,8 @@ public class Game {
     //A bázis aszteroidát külön ismeri
     private final BaseAsteroid base;
 
+    private int activeSettlerId;
+
     //Konstruktor
     public Game(int settlerCount) {
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
@@ -45,7 +47,7 @@ public class Game {
         ArrayList<Settler> settlers = new ArrayList<>();
         this.field = new AsteroidField(sun, this, ellipses, settlers);
         for (int i = 0; i < settlerCount; ++i) {
-            settlers.add(new Settler(base,field));
+            settlers.add(new Settler(base,field,i));
         }
         sun.SetField(this.field);
         
@@ -88,6 +90,15 @@ public class Game {
         Logger.tabcount--;
         return field;
     }
+
+    /*public void WriteJson(){
+        String jsonString = new JSONObject()
+                .put("JSON1", "Hello World!")
+                .put("JSON2", "Hello my World!")
+                .put("JSON3", new JSONObject().put("key1", "value1"))
+                .toString();
+
+    }*/
 
     //Belépési pont
     public static void main(String[] args){

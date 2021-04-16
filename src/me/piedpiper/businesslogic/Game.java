@@ -197,10 +197,6 @@ public class Game {
         JSONArray chestJson = new JSONArray();
         ArrayList<String> chestItemNames = new ArrayList<String>();
 
-        /*base.AddMaterial(new Ice(0));
-        base.AddMaterial(new Uran(1));
-        base.AddMaterial(new Iron(2));
-        */
 
         for (Material material : base.GetChest())
         {
@@ -214,9 +210,6 @@ public class Game {
         JSONArray baseNeighboursJson = new JSONArray();
         ArrayList<String> baseNeighboursNames = new ArrayList<String>();
 
-        /*base.AddNeighbor(field.GetEllipses().get(0).GetObjects().get(0));
-        base.AddNeighbor(field.GetEllipses().get(0).GetObjects().get(1));
-         */
 
         for (OrbitingObject neighbour : base.GetNeighbors())
         {
@@ -230,8 +223,6 @@ public class Game {
         // lista az aszteroidakrol
         JSONArray asteroidListJson = new JSONArray();
 
-
-        //field.GetEllipses().get(0).GetObjects().get(0).AddNeighbor(field.GetEllipses().get(0).GetObjects().get(1));
         for (Ellipse2D ellipse : field.GetEllipses()) {
             for (OrbitingObject orbitingObject : ellipse.GetObjects()) {
                 if (orbitingObject.getClass() == Asteroid.class){
@@ -345,8 +336,6 @@ public class Game {
 
         // lista a robotokrol
 
-       // field.GetEllipses().get(0).GetObjects().get(0).AddWorker(new Settler(  field.GetEllipses().get(0).GetObjects().get(0), field, 0));
-        //field.GetEllipses().get(0).GetObjects().get(0).AddWorker(new Settler(  field.GetEllipses().get(0).GetObjects().get(0), field, 1));
         JSONArray robotListJson = new JSONArray();
 
         for (Ellipse2D ellipse : field.GetEllipses()) {
@@ -378,7 +367,7 @@ public class Game {
 
                         JSONObject ufoJsonWrapper = new JSONObject();
                         ufoJsonWrapper.put(worker.GetName(), ufoJson);
-                        robotListJson.put(ufoJsonWrapper);
+                        ufoListJson.put(ufoJsonWrapper);
                     }
                 }
             }
@@ -405,12 +394,6 @@ public class Game {
 
 
         System.out.println(jsonObject.toString(4));
-        /*'
-            .put("ActiveSettler", "Hello World!")
-            .put("JSON2", "Hello my World!")
-            .put("JSON3", new JSONObject().put("key1", "value1")
-
-        */
 
     }
 

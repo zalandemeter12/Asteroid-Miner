@@ -6,7 +6,7 @@ public class AsteroidField implements ISteppable {
     private Sun sun;
     private Game game;
     private ArrayList<Ellipse2D> ellipses;
-    private ArrayList<Robot> robots;
+    private ArrayList<ISteppable> steppable;
     private ArrayList<Settler> settlers;
 
 
@@ -16,7 +16,7 @@ public class AsteroidField implements ISteppable {
         this.sun = sun;
         this.game = game;
         this.ellipses = ellipses;
-        this.robots = new ArrayList<>();
+        this.steppable = new ArrayList<>();
         this.settlers = settlers;
 
         Logger.tabcount--;
@@ -45,25 +45,25 @@ public class AsteroidField implements ISteppable {
             }
         }
 
-        for (Robot r : robots) {
-            r.Step();
+        for (ISteppable s : steppable) {
+            s.Step();
         }
 
         Logger.tabcount--;
     }
 
-    public void AddRobot(Robot r) {
-        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".AddRobot()");
+    public void AddSteppable(ISteppable s) {
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".AddSteppable()");
         
-        robots.add(r);
+        steppable.add(s);
         
         Logger.tabcount--;
     }
 
-    public void RemoveRobot(Robot r) {
-        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".RemoveRobot()");
+    public void RemoveSteppable(ISteppable s) {
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".RemoveSteppable()");
        
-        robots.remove(r);
+        steppable.remove(s);
         
         Logger.tabcount--;
     }
@@ -97,10 +97,10 @@ public class AsteroidField implements ISteppable {
         return sun;
     }
 
-    public ArrayList<Robot> GetRobots(){
-        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetRobots()");
+    public ArrayList<ISteppable> GetSteppable(){
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetSteppable()");
         Logger.tabcount--;
-        return robots;
+        return steppable;
     }
 
     public ArrayList<Settler> GetSettlers(){

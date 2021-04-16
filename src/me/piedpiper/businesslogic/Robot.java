@@ -22,7 +22,7 @@ public class Robot extends Worker implements ISteppable{
     public void Die(){
         Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Die()");
         
-        field.RemoveRobot(this);
+        field.RemoveSteppable(this);
         
         Logger.tabcount--;
     }

@@ -131,7 +131,7 @@ public class Settler extends Worker {
             backpack.remove(tmp1);
             backpack.remove(tmp2);
             Robot r = new Robot(location, field);
-            field.AddRobot(r);
+            field.AddSteppable(r);
         }
         
         Logger.tabcount--;

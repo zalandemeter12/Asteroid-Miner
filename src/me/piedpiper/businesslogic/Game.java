@@ -88,6 +88,11 @@ public class Game {
         tg4.SetGatePair(tg3);
         tg3.SetGatePair(tg4);
 
+        Robot r1=new Robot(a4, field,1);
+        Ufo u1= new Ufo(a5, field,1);
+        a4.setCloseToSun(true);
+        a4.AddWorker(r1);
+        a5.AddWorker(u1);
 
         field.GetEllipses().get(0).GetObjects().add(a1);
         field.GetEllipses().get(0).GetObjects().add(a2);
@@ -104,8 +109,8 @@ public class Game {
         Settler s2=new Settler(a3, field, 2);
         s2.AddGate(tg4);
 
-        Robot r1=new Robot(a4, field,1);
-        Ufo u1= new Ufo(a5, field,1);
+
+
         base=new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0, null,this);
         field.GetEllipses().get(0).GetObjects().add(base);
         field.GetSettlers().add(s1);
@@ -174,10 +179,6 @@ public class Game {
         JSONArray chestJson = new JSONArray();
         ArrayList<String> chestItemNames = new ArrayList<String>();
 
-        /*base.AddMaterial(new Ice(0));
-        base.AddMaterial(new Uran(1));
-        base.AddMaterial(new Iron(2));
-        */
 
         for (Material material : base.GetChest())
         {
@@ -191,9 +192,6 @@ public class Game {
         JSONArray baseNeighboursJson = new JSONArray();
         ArrayList<String> baseNeighboursNames = new ArrayList<String>();
 
-        /*base.AddNeighbor(field.GetEllipses().get(0).GetObjects().get(0));
-        base.AddNeighbor(field.GetEllipses().get(0).GetObjects().get(1));
-         */
 
         for (OrbitingObject neighbour : base.GetNeighbors())
         {
@@ -207,8 +205,6 @@ public class Game {
         // lista az aszteroidakrol
         JSONArray asteroidListJson = new JSONArray();
 
-
-        //field.GetEllipses().get(0).GetObjects().get(0).AddNeighbor(field.GetEllipses().get(0).GetObjects().get(1));
         for (Ellipse2D ellipse : field.GetEllipses()) {
             for (OrbitingObject orbitingObject : ellipse.GetObjects()) {
                 if (orbitingObject.getClass() == Asteroid.class){
@@ -322,8 +318,6 @@ public class Game {
 
         // lista a robotokrol
 
-       // field.GetEllipses().get(0).GetObjects().get(0).AddWorker(new Settler(  field.GetEllipses().get(0).GetObjects().get(0), field, 0));
-        //field.GetEllipses().get(0).GetObjects().get(0).AddWorker(new Settler(  field.GetEllipses().get(0).GetObjects().get(0), field, 1));
         JSONArray robotListJson = new JSONArray();
 
         for (Ellipse2D ellipse : field.GetEllipses()) {
@@ -341,24 +335,54 @@ public class Game {
             }
         }
 
-        jsonObject.put("Robots:", robotListJson);
+        jsonObject.put("Robots", robotListJson);
+
+        // lista az ufokrol
+        JSONArray ufoListJson = new JSONArray();
+
+        for (Ellipse2D ellipse : field.GetEllipses()) {
+            for (OrbitingObject orbitingObject : ellipse.GetObjects()) {
+                for (Worker worker : orbitingObject.GetWorkers()) {
+                    if (worker.getClass() == Ufo.class) {
+                        JSONObject ufoJson = new JSONObject();
+                        ufoJson.put("location: ", worker.location.GetName());
+
+                        JSONObject ufoJsonWrapper = new JSONObject();
+                        ufoJsonWrapper.put(worker.GetName(), ufoJson);
+                        ufoListJson.put(ufoJsonWrapper);
+                    }
+                }
+            }
+        }
+
+        jsonObject.put("Ufos", ufoListJson);
+
+        // lista a solarStromokrol
+        JSONArray solarStormListJson = new JSONArray();
 
 
+
+        for (SolarStorm solarStorm : field.GetSun().GetSolarStorms()) {
+            JSONObject solarStormJson = new JSONObject();
+            solarStormJson.put("angle", solarStorm.GetAngle());
+            solarStormJson.put("warnTimer", solarStorm.GetWarnTimer());
+
+            JSONObject solarStormJsonWrapper = new JSONObject();
+            solarStormJsonWrapper.put(solarStorm.GetName(), solarStormJson);
+            solarStormListJson.put(solarStormJsonWrapper);
+        }
+
+        jsonObject.put("Solarstorms", solarStormListJson);
 
 
         System.out.println(jsonObject.toString(4));
-        /*'
-            .put("ActiveSettler", "Hello World!")
-            .put("JSON2", "Hello my World!")
-            .put("JSON3", new JSONObject().put("key1", "value1")
-
-        */
 
     }
 
     //Belépési pont
     public static void main(String[] args){
-        Game game = new Game(5);
+        Game game = new Game();
+        game.testInit();
         game.WriteJson();
 
     }

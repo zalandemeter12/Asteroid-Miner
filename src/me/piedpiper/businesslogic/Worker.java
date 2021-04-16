@@ -2,7 +2,7 @@ package me.piedpiper.businesslogic;
 
 import java.util.ArrayList;
 
-public abstract class Worker { //A munkást reprezentáló absztrakt osztály a játékban, leszármazik belőle a Settler és a Robot osztályok
+public abstract class Worker { //A munkást reprezentáló absztrakt osztály a játékban, leszarmazik belőle a Settler és a Robot osztályok
     protected OrbitingObject location; //Az asztroida/teleport kapu, amin a Worker van
 
     public Worker(OrbitingObject location) {    //Worker konstruktora, beállítja a location-t
@@ -13,13 +13,13 @@ public abstract class Worker { //A munkást reprezentáló absztrakt osztály a 
         Logger.tabcount--;
     }
 
-    public void MoveTo(OrbitingObject o){
+    public void MoveTo(OrbitingObject o){ //Áthelyezi a Workert a paraméterban átvett OrbitingObjectre
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".MoveTo()");
         
         ArrayList<OrbitingObject> neighbors = location.GetNeighbors();  //Az OrbitingObjectek, amikre a Worker tud mozogni.
         if (neighbors.contains(o)) {    //Ha a paraméterként átvett OrbitingObject benne van a neighbours listában.
             location.RemoveWorker(this); //Az aktuális OrbitingObjectről eltávolítja a Workert.
-            o.AddWorker(this);
+            o.AddWorker(this); //Áthelyezi a cél OrbitingObjectre.
             location=o; //Megváltoztatja a locationt az új helyzetére.
         }
         

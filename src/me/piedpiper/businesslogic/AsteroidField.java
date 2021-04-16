@@ -11,9 +11,7 @@ public class AsteroidField implements ISteppable {
     private Game game;
     //Az aszteroida mezon levo ellipszisek listaja, amiken az objektumok keringenek
     private ArrayList<Ellipse2D> ellipses;
-    //Az aszteroida mezon levo robotok listaja
-    private ArrayList<Robot> robots;
-    //Az aszteroida mezon levo telepesek listaja
+    private ArrayList<ISteppable> steppable;
     private ArrayList<Settler> settlers;
 
     //Konstruktor
@@ -24,7 +22,7 @@ public class AsteroidField implements ISteppable {
         this.sun = sun;
         this.game = game;
         this.ellipses = ellipses;
-        this.robots = new ArrayList<>();
+        this.steppable = new ArrayList<>();
         this.settlers = settlers;
 
         Logger.tabcount--;
@@ -57,28 +55,25 @@ public class AsteroidField implements ISteppable {
             }
         }
 
-        //Robotok leptetese
-        for (Robot r : robots) {
-            r.Step();
+        for (ISteppable s : steppable) {
+            s.Step();
         }
 
         Logger.tabcount--;
     }
 
-    //Robot hozzaadasa az aszteroida mezoben levo robotok listajahoz
-    public void AddRobot(Robot r) {
-        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".AddRobot()");
+    public void AddSteppable(ISteppable s) {
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".AddSteppable()");
         
-        robots.add(r);
+        steppable.add(s);
         
         Logger.tabcount--;
     }
 
-    //Robot eltavolitasa a robotokat tartalmazo listabol
-    public void RemoveRobot(Robot r) {
-        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".RemoveRobot()");
+    public void RemoveSteppable(ISteppable s) {
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".RemoveSteppable()");
        
-        robots.remove(r);
+        steppable.remove(s);
         
         Logger.tabcount--;
     }
@@ -116,11 +111,10 @@ public class AsteroidField implements ISteppable {
         return sun;
     }
 
-    //A fuggveny visszaadja az aszteroida mezoben levo robotoknak a listajat
-    public ArrayList<Robot> GetRobots(){
-        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetRobots()");
+    public ArrayList<ISteppable> GetSteppable(){
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetSteppable()");
         Logger.tabcount--;
-        return robots;
+        return steppable;
     }
 
     //Fuggveny, amely visszaadja az aszteroida mezoben levo telepeseket, a settlers listat

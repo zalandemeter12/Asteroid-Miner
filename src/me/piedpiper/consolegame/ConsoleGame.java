@@ -2,8 +2,10 @@ package me.piedpiper.consolegame;
 
 import me.piedpiper.businesslogic.*;
 
-public class ConsoleGame {
+import java.util.Scanner;
 
+public class ConsoleGame {
+    Scanner scanner = new Scanner(System.in);
 
     public boolean addasteroid(int ellipsenum, int thickness, Material material,boolean closetosun){
         return true;
@@ -74,6 +76,57 @@ public class ConsoleGame {
     }
 
     private void commandInterpreter(){
+        String[] command = scanner.nextLine().split(" ");
+        switch (command[0]){
+            case "addasteroid":
+                if(command.length > 5)
+                    System.out.println("Too many arguments");
+                else if(command.length < 5)
+                    System.out.println("Missing argument");
+                else{
+                    try{
+
+                    }
+                    catch (Exception e){
+                        System.out.println("Invalid argument");
+                    }
+                }
+
+                break;
+            case "addbaseasteroid":
+                break;
+            case "addteleportgate":
+                break;
+            case "addworker":
+                break;
+            case "addmaterialtobackpack":
+                break;
+            case "addsolarstorm":
+                break;
+            case "setneighbours":
+                break;
+            case "setclosetosun":
+                break;
+            case "setrandom":
+                break;
+            case "skip":
+                break;
+            case "move":
+                break;
+            case "drill":
+                break;
+            case "mine":
+                break;
+            case "craftgate":
+                break;
+            case "buildrobot":
+                break;
+            case "placematerial":
+                break;
+            case "placegate":
+                break;
+
+        }
 
     }
 

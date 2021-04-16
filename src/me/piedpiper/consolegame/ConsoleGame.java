@@ -17,7 +17,7 @@ public class ConsoleGame {
 
     public void init(){}
 
-    public boolean addasteroid(int ellipsenum, int thickness, String material,String closetosun){
+    /*public boolean addasteroid(int ellipsenum, int thickness, String material,String closetosun){
         if(material == "Uran"){
             Asteroid asteroid = new Asteroid(new Point2D(0,0),ellipses.get(ellipsenum),thickness,new Uran());
             asteroid.setCloseToSun(closetosun);
@@ -47,7 +47,7 @@ public class ConsoleGame {
 
 
         return true;
-    }
+    }*/
 
     public boolean addbaseasteroid(String closetosun,int ironnum,int icenum,int urannum,int coalnum){
         base = new BaseAsteroid(new Point2D(0,0), ellipses.get(1),5,null,game );

@@ -10,7 +10,7 @@ public class Game {
     //Az aszteroida mmező, ami az aszteroidákat tartalmazza
     private final AsteroidField field;
     //A bázis aszteroidát külön ismeri
-    private final BaseAsteroid base;
+    private BaseAsteroid base;
 
     private int activeSettlerId;
 
@@ -25,9 +25,9 @@ public class Game {
         ArrayList<OrbitingObject> objects2 = new ArrayList<>();
         ArrayList<OrbitingObject> objects3 = new ArrayList<>();
         ArrayList<Ellipse2D> ellipses = new ArrayList<>();
-        ellipses.add(new Ellipse2D(new Point2D(10,10), new Point2D(20,20), 5, 3, objects1));
-        ellipses.add(new Ellipse2D(new Point2D(15,15), new Point2D(25,25), 10, 3, objects2));
-        ellipses.add(new Ellipse2D(new Point2D(20,20), new Point2D(30,30), 15, 3, objects3));
+        ellipses.add(new Ellipse2D(new Point2D(10,10), new Point2D(20,20), 5, 3, objects1, 1));
+        ellipses.add(new Ellipse2D(new Point2D(15,15), new Point2D(25,25), 10, 3, objects2,2));
+        ellipses.add(new Ellipse2D(new Point2D(20,20), new Point2D(30,30), 15, 3, objects3, 3));
         for (int i = 0; i < 5; ++i) {
             objects1.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Iron()));
             objects1.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Coal()));
@@ -57,6 +57,8 @@ public class Game {
         
         Logger.tabcount--;
     }
+
+
 
     //Elintdítja a játékot
     public void StartGame(){
@@ -130,16 +132,97 @@ public class Game {
         JSONArray baseNeighboursJson = new JSONArray();
         ArrayList<String> baseNeighboursNames = new ArrayList<String>();
 
+        /*base.AddNeighbor(field.GetEllipses().get(0).GetObjects().get(0));
+        base.AddNeighbor(field.GetEllipses().get(0).GetObjects().get(1));
+         */
+
         for (OrbitingObject neighbour : base.GetNeighbors())
         {
-           // baseNeighboursNames.add(neighbour.GetName());
+            baseNeighboursNames.add(neighbour.GetName());
         }
-        chestJson.putAll(chestItemNames);
+        baseNeighboursJson.putAll(baseNeighboursNames);
         baseAsteroidJson.put("neighbours", baseNeighboursJson);
 
-
-
         orbitingObjectsJson.put("BaseAsteroid", baseAsteroidJson);
+
+        // lista az aszteroidakrol
+        JSONArray asteroidListJson = new JSONArray();
+
+
+        //field.GetEllipses().get(0).GetObjects().get(0).AddNeighbor(field.GetEllipses().get(0).GetObjects().get(1));
+        for (Ellipse2D ellipse : field.GetEllipses()) {
+            for (OrbitingObject orbitingObject : ellipse.GetObjects()) {
+                if (orbitingObject.getClass() == Asteroid.class){
+                    JSONObject asteroidJson = new JSONObject();
+                    asteroidJson.put("xCoordinate", orbitingObject.GetPosition().GetX());
+                    asteroidJson.put("yCoordinate", orbitingObject.GetPosition().GetY());
+                    asteroidJson.put("thickness", orbitingObject.GetThickness());
+                    asteroidJson.put("ellipse", ellipse.GetId());
+
+                    JSONArray neighboursJson = new JSONArray();
+                    ArrayList<String> neighboursNames = new ArrayList<String>();
+
+                    for (OrbitingObject neighbour : orbitingObject.GetNeighbors())
+                    {
+                        neighboursNames.add(neighbour.GetName());
+                    }
+                    neighboursJson.putAll(neighboursNames);
+
+                    asteroidJson.put("neighbours", neighboursJson);
+                    if(orbitingObject.GetMaterial() == null){
+                        asteroidJson.put("material", "NULL");
+                    }else {
+                        asteroidJson.put("material", orbitingObject.GetMaterial().GetName());
+                    }
+                    asteroidJson.put("closeToSun", orbitingObject.IsCloseToSun());
+
+                    JSONObject asteroidJsonWrapper = new JSONObject();
+                    asteroidJsonWrapper.put(orbitingObject.GetName(), asteroidJson);
+                    asteroidListJson.put(asteroidJsonWrapper);
+                }
+            }
+        }
+
+        orbitingObjectsJson.put("Asteroids:", asteroidListJson);
+
+        // lista a teleportkapukrol
+        JSONArray teleportGateListJson = new JSONArray();
+
+
+        //field.GetEllipses().get(0).GetObjects().get(0).AddNeighbor(field.GetEllipses().get(0).GetObjects().get(1));
+        for (Ellipse2D ellipse : field.GetEllipses()) {
+            for (OrbitingObject orbitingObject : ellipse.GetObjects()) {
+                if (orbitingObject.getClass() == TeleportGate.class){
+                    JSONObject teleportGateJson = new JSONObject();
+                    teleportGateJson.put("xCoordinate", orbitingObject.GetPosition().GetX());
+                    teleportGateJson.put("yCoordinate", orbitingObject.GetPosition().GetY());
+
+
+                    JSONArray neighboursJson = new JSONArray();
+                    ArrayList<String> neighboursNames = new ArrayList<String>();
+
+                    for (OrbitingObject neighbour : orbitingObject.GetNeighbors())
+                    {
+                        neighboursNames.add(neighbour.GetName());
+                    }
+                    neighboursJson.putAll(neighboursNames);
+
+                    teleportGateJson.put("neighbours", neighboursJson);
+
+                    teleportGateJson.put("closeToSun", orbitingObject.IsCloseToSun());
+
+                    JSONObject asteroidJsonWrapper = new JSONObject();
+                    asteroidJsonWrapper.put(orbitingObject.GetName(), teleportGateJson);
+                    asteroidListJson.put(asteroidJsonWrapper);
+                }
+            }
+        }
+
+        orbitingObjectsJson.put("Asteroids:", asteroidListJson);
+
+
+
+
         jsonObject.put("OrbitingObjects", orbitingObjectsJson);
 
         System.out.println(jsonObject.toString(4));

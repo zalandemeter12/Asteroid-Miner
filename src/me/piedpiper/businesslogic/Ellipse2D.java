@@ -16,6 +16,8 @@ public class Ellipse2D {
     // A tavolsag parameter, ami a fokuszpontokkal egyutt determinaljak az ellipszist
     private final double distance;
 
+    private int id;
+
     // Konstruktor
     public Ellipse2D(Point2D focalpoint0, Point2D focalpoint1, double distance, double velocity, ArrayList<OrbitingObject> objects) {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
@@ -28,6 +30,23 @@ public class Ellipse2D {
         this.objects = objects;
  
         Logger.tabcount--;
+    }
+    public Ellipse2D(Point2D focalpoint0, Point2D focalpoint1, double distance, double velocity, ArrayList<OrbitingObject> objects, int id) {
+        Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.objects = new ArrayList<>();
+        this.focalpoint0 = focalpoint0;
+        this.focalpoint1 = focalpoint1;
+        this.distance = distance;
+        this.velocity = velocity;
+        this.objects = objects;
+
+        this.id = id;
+
+        Logger.tabcount--;
+    }
+    public int GetId(){
+        return id;
     }
 
     // Keringo objektum eltavolitasa az ellipszisrol

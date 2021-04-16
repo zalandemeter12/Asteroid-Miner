@@ -14,7 +14,7 @@ public class Sequences {
     private ArrayList<OrbitingObject> orbitingObjects2;
     private ArrayList<OrbitingObject> orbitingObjects3;
     private ArrayList<Settler> settlers;
-    private ArrayList<Robot> robots;
+    private ArrayList<ISteppable> steppable;
     private BaseAsteroid base;
     private Scanner scanner;
     private int selectedScenario;
@@ -31,14 +31,14 @@ public class Sequences {
         this.ellipses = asteroidField.GetEllipses();
         this.sun = asteroidField.GetSun();
         this.settlers = asteroidField.GetSettlers();
-        this.robots = asteroidField.GetRobots();
+        this.steppable = asteroidField.GetSteppable();
         this.orbitingObjects1 = ellipses.get(0).GetObjects();
         this.orbitingObjects2 = ellipses.get(1).GetObjects();
         this.orbitingObjects3 = ellipses.get(2).GetObjects();
         this.scanner = new Scanner(System.in);
  
-        this.robots.add(new Robot(this.base, this.asteroidField));
-        this.robots.add(new Robot(this.base, this.asteroidField));
+        this.steppable.add(new Robot(this.base, this.asteroidField));
+        this.steppable.add(new Robot(this.base, this.asteroidField));
         Logger.logOnConsole = true;
     }
     

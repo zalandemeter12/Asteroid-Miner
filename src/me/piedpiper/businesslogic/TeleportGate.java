@@ -3,12 +3,22 @@ package me.piedpiper.businesslogic;
 public class TeleportGate extends OrbitingObject {
     //A teleport kapu párja
     private TeleportGate gatePair;
+    private boolean isMalfunctioning;
 
     //A teleport kapu konstruktora
     public TeleportGate(Point2D position, Ellipse2D ellipse) {
         super(position, ellipse);
+        isMalfunctioning=false;
         Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
         Logger.tabcount--;
+    }
+
+    public TeleportGate(Point2D position, Ellipse2D ellipse, int i) {
+        super(position, ellipse);
+        isMalfunctioning=false;
+        Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+        Logger.tabcount--;
+        id=i;
     }
 
     //Hozzáad egy dolgozót a teleport kapuhoz
@@ -42,5 +52,22 @@ public class TeleportGate extends OrbitingObject {
         this.ellipse = e;
         
         Logger.tabcount--;
+    }
+
+    @Override
+    public void UnderSolarStorm(){
+        isMalfunctioning=true;
+    }
+
+    @Override
+    public void Moves(Point2D p){
+        if(isMalfunctioning){
+            position=p;
+        }
+    }
+
+    @Override
+    public String GetName(){
+        return "TeleportGate"+id;
     }
 }

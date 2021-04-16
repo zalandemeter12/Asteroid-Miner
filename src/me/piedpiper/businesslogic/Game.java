@@ -128,6 +128,7 @@ public class Game {
         field.GetEllipses().get(0).GetObjects().add(base);
         field.GetSettlers().add(s1);
         field.GetSettlers().add(s2);
+        field.GetSun().GetSolarStorms().add(new SolarStorm(field.GetSun(), 10, 2, 1));
         activeSettlerId = field.GetSettlers().get(0).getId();
 
     }

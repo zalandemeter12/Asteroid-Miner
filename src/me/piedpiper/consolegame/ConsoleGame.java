@@ -9,48 +9,57 @@ import java.util.ArrayList;
 public class ConsoleGame {
     Scanner scanner = new Scanner(System.in);
 
-    private BaseAsteroid base;
     private Game game;
+    private BaseAsteroid base;
     private AsteroidField asteroidField;
     private Sun sun;
     private ArrayList<Ellipse2D> ellipses;
 
-    public void init(){}
+    public void init(){
+        this.game = new game();
+        this.asteroidField = game.GetField();
+        this.ellipses = asteroidField.GetEllipses();
+        this.sun = asteroidField.GetSun();
+    }
 
     public boolean addasteroid(int ellipsenum, int thickness, String material,String closetosun){
-        if(material == "Uran"){
-            Asteroid asteroid = new Asteroid(new Point2D(0,0),ellipses.get(ellipsenum),thickness,new Uran());
-            asteroid.setCloseToSun(closetosun);
-            ellipses.get(ellipsenum).GetObjects().add(asteroid);
-            return true;
+        if((closetosun != "true" && closetosun != "false") || (material != "coal" && material != "ice" && material != "iron" && material != "uran")){return false;}
+        boolean cts;
+        if(closetosun == "true") {  cts = true;}
+        else {cts = false;}
+        Material material1=null;
+        if(material == "uran"){
+            material1 = new Uran();
         }
-        else if(material == "Coal"){
-            Asteroid asteroid = new Asteroid(new Point2D(0,0),ellipses.get(ellipsenum),thickness,new Coal());
-            asteroid.setCloseToSun(closetosun);
-            ellipses.get(ellipsenum).GetObjects().add(asteroid);
-            return true;
+        else if(material == "coal"){
+            material1 = new Coal();
         }
-        else if(material == "Ice"){
-            Asteroid asteroid = new Asteroid(new Point2D(0,0),ellipses.get(ellipsenum),thickness,new Ice());
-            asteroid.setCloseToSun(closetosun);
-            ellipses.get(ellipsenum).GetObjects().add(asteroid);
-            return true;
+        else if(material == "ice"){
+            material1 = new Ice();
         }
-        else if(material == "Iron"){
-            Asteroid asteroid = new Asteroid(new Point2D(0,0),ellipses.get(ellipsenum),thickness,new Iron());
-            asteroid.setCloseToSun(closetosun);
-            ellipses.get(ellipsenum).GetObjects().add(asteroid);
-            return true;
+        else if(material == "iron"){
+            material1=new Iron();
         }
-        return false;
-
-
-
+        else if(material=="null"){
+            material1=null;
+        }
+        Asteroid asteroid = new Asteroid(new Point2D(0,0),ellipses.get(ellipsenum),thickness,material1);
+        asteroid.setCloseToSun(cts);
+        ellipses.get(ellipsenum).GetObjects().add(asteroid);
         return true;
     }
 
     public boolean addbaseasteroid(String closetosun,int ironnum,int icenum,int urannum,int coalnum){
-        base = new BaseAsteroid(new Point2D(0,0), ellipses.get(1),5,null,game );
+        if(closetosun != "true" && closetosun != "false"){return false;}
+        boolean cts;
+        if(closetosun == "true") {  cts = true;}
+        else {cts = false;}
+
+        //game.SetBase(new Point2D(0,0),ellipses.get(1),5);
+        base = game.GetBase();
+        game.GetBase().setCloseToSun(cts);
+
+
         return true;
     }
 

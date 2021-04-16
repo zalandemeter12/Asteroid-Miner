@@ -1,5 +1,7 @@
 package me.piedpiper.businesslogic;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 //A játékok összefogó objektum, tertalmazza és létrehozza a fő objektumokat
@@ -91,14 +93,14 @@ public class Game {
         return field;
     }
 
-    /*public void WriteJson(){
+    public void WriteJson(){
         String jsonString = new JSONObject()
                 .put("JSON1", "Hello World!")
                 .put("JSON2", "Hello my World!")
                 .put("JSON3", new JSONObject().put("key1", "value1"))
                 .toString();
 
-    }*/
+    }
 
     //Belépési pont
     public static void main(String[] args){

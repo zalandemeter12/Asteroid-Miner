@@ -10,6 +10,12 @@ public class Ufo extends Worker implements ISteppable{
         field=f;
     }
 
+    public Ufo(OrbitingObject location, AsteroidField f, int i) {
+        super(location);
+        field=f;
+        id=i;
+    }
+
     @Override
     public void Die() {
         location.RemoveWorker(this);
@@ -41,4 +47,9 @@ public class Ufo extends Worker implements ISteppable{
             location.RemoveMaterial();
         }
     }
+
+    public String GetName(){
+        return "Ufo"+id;
+    }
+
 }

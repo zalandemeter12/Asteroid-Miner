@@ -12,7 +12,6 @@ public class Settler extends Worker {
     //A telepes teleport kapu tárolója
     private ArrayList<TeleportGate> gateInventory;
 
-    private int id;
 
 
     //A telepes konstruktora
@@ -222,7 +221,7 @@ public class Settler extends Worker {
         gateInventory.add(g);
     }
 
-    public int getId(){
-        return this.id;
+    public String GetName(){
+        return "Settler"+id;
     }
 }

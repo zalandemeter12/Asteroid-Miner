@@ -11,7 +11,9 @@ public class AsteroidField implements ISteppable {
     private Game game;
     //Az aszteroida mezon levo ellipszisek listaja, amiken az objektumok keringenek
     private ArrayList<Ellipse2D> ellipses;
+    //A mezoben levo kontroller által iranyitott workerek(robot, ufo)
     private ArrayList<ISteppable> steppable;
+    //A mezoben levo elo telepesek
     private ArrayList<Settler> settlers;
 
     //Konstruktor

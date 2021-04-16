@@ -8,6 +8,12 @@ public class Ice extends Material {
         Logger.tabcount--;
     }
 
+    public Ice(int i){
+        Logger.logMessage("Ice#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+        Logger.tabcount--;
+        id=i;
+    }
+
     // Felrobbanast megvalosito metodus, a felrobbanto hivhatja
     @Override
     public void BlowUp(OrbitingObject o) {
@@ -26,5 +32,9 @@ public class Ice extends Material {
         Logger.tabcount--;
         if (m instanceof Ice) return true;
         else return false;
+    }
+
+    public String GetName(){
+        return "Ice" + id;
     }
 }

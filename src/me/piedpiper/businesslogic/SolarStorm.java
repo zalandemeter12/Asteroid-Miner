@@ -10,6 +10,7 @@ public class SolarStorm implements ISteppable{
     private final double angle;
     //Az emlékeztető körök száma
     private int warnTimer;
+    private int id;
 
     //A napkitörés konstruktora
     public SolarStorm(Sun sun, double angle, int warnTimer) {
@@ -19,6 +20,16 @@ public class SolarStorm implements ISteppable{
         this.angle = angle;
         this.warnTimer = warnTimer;
 
+        Logger.tabcount--;
+    }
+
+    public SolarStorm(Sun sun, double angle, int warnTimer, int i) {
+        Logger.logMessage("SolarStorm#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.sun = sun;
+        this.angle = angle;
+        this.warnTimer = warnTimer;
+        id=i;
         Logger.tabcount--;
     }
 
@@ -33,6 +44,7 @@ public class SolarStorm implements ISteppable{
         } else {
             for (Ellipse2D e : sun.GetField().GetEllipses()) {
                 for (OrbitingObject o : e.GetObjects()) {
+                    o.UnderSolarStorm();
                     for (Worker w : o.GetExposedWorkers()) {
                         w.Die();
                     }
@@ -42,5 +54,9 @@ public class SolarStorm implements ISteppable{
         }
         
         Logger.tabcount--;
+    }
+
+    public String GetName(){
+        return "SolarStorm"+id;
     }
 }

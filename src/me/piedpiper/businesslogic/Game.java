@@ -189,7 +189,6 @@ public class Game {
         JSONArray teleportGateListJson = new JSONArray();
 
 
-        //field.GetEllipses().get(0).GetObjects().get(0).AddNeighbor(field.GetEllipses().get(0).GetObjects().get(1));
         for (Ellipse2D ellipse : field.GetEllipses()) {
             for (OrbitingObject orbitingObject : ellipse.GetObjects()) {
                 if (orbitingObject.getClass() == TeleportGate.class){
@@ -211,19 +210,82 @@ public class Game {
 
                     teleportGateJson.put("closeToSun", orbitingObject.IsCloseToSun());
 
-                    JSONObject asteroidJsonWrapper = new JSONObject();
-                    asteroidJsonWrapper.put(orbitingObject.GetName(), teleportGateJson);
-                    asteroidListJson.put(asteroidJsonWrapper);
+                    JSONObject teleportGateJsonWrapper = new JSONObject();
+                    teleportGateJsonWrapper.put(orbitingObject.GetName(), teleportGateJson);
+                    teleportGateListJson.put(teleportGateJsonWrapper);
                 }
             }
         }
 
-        orbitingObjectsJson.put("Asteroids:", asteroidListJson);
-
-
-
+        orbitingObjectsJson.put("TeleportGates:", teleportGateListJson);
 
         jsonObject.put("OrbitingObjects", orbitingObjectsJson);
+
+        // lista a telepesekrol
+
+        field.GetEllipses().get(0).GetObjects().get(0).AddWorker(new Settler(  field.GetEllipses().get(0).GetObjects().get(0), field, 0));
+        field.GetEllipses().get(0).GetObjects().get(0).AddWorker(new Settler(  field.GetEllipses().get(0).GetObjects().get(0), field, 1));
+        JSONArray settlerListJson = new JSONArray();
+
+        for (Ellipse2D ellipse : field.GetEllipses()) {
+            for (OrbitingObject orbitingObject : ellipse.GetObjects()) {
+                for (Worker worker : orbitingObject.GetWorkers()) {
+                    if (worker.getClass() == Settler.class) {
+                        JSONObject settlerJson = new JSONObject();
+
+                        // material inventory
+                        JSONArray inventoryJson = new JSONArray();
+                        ArrayList<String> inventoryNames = new ArrayList<String>();
+                        for (Material material : ((Settler) worker).GetBackpack()) {
+                            inventoryNames.add(material.GetName());
+                        }
+                        inventoryJson.putAll(inventoryNames);
+                        settlerJson.put("inventory", inventoryJson);
+
+                        // teleportGate inventory
+                        JSONArray teleportGateJson = new JSONArray();
+                        ArrayList<String> teleportGateNames = new ArrayList<String>();
+                        for (TeleportGate teleportGate : ((Settler) worker).GetGateInventory()) {
+                            teleportGateNames.add(teleportGate.GetName());
+                        }
+                        teleportGateJson.putAll(teleportGateNames);
+                        settlerJson.put("teleportGateInventory", teleportGateNames);
+
+                        settlerJson.put("location", worker.location.GetName());
+
+                        JSONObject settlerJsonWrapper = new JSONObject();
+                        settlerJsonWrapper.put(worker.GetName(), settlerJson);
+                        settlerListJson.put(settlerJsonWrapper);
+                    }
+                }
+            }
+        }
+
+        // lista a robotokrol
+
+       // field.GetEllipses().get(0).GetObjects().get(0).AddWorker(new Settler(  field.GetEllipses().get(0).GetObjects().get(0), field, 0));
+        //field.GetEllipses().get(0).GetObjects().get(0).AddWorker(new Settler(  field.GetEllipses().get(0).GetObjects().get(0), field, 1));
+        JSONArray robotListJson = new JSONArray();
+
+        for (Ellipse2D ellipse : field.GetEllipses()) {
+            for (OrbitingObject orbitingObject : ellipse.GetObjects()) {
+                for (Worker worker : orbitingObject.GetWorkers()) {
+                    if (worker.getClass() == Robot.class) {
+                        JSONObject robotJson = new JSONObject();
+                        robotJson.put("location", worker.location.GetName());
+
+                        JSONObject robotJsonWrapper = new JSONObject();
+                        robotJsonWrapper.put(worker.GetName(), robotJson);
+                        robotListJson.put(robotJsonWrapper);
+                    }
+                }
+            }
+        }
+
+        jsonObject.put("Robots:", robotListJson);
+
+
+
 
         System.out.println(jsonObject.toString(4));
         /*'

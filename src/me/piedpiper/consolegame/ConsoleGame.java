@@ -17,13 +17,39 @@ public class ConsoleGame {
 
     public void init(){}
 
-    public boolean addasteroid(int ellipsenum, int thickness, String material,boolean closetosun){
-        //ellipses.get(ellipsenum).GetObjects().add(new Asteroid(new Point2D(0,0),))
+    public boolean addasteroid(int ellipsenum, int thickness, String material,String closetosun){
+        if(material == "Uran"){
+            Asteroid asteroid = new Asteroid(new Point2D(0,0),ellipses.get(ellipsenum),thickness,new Uran());
+            asteroid.setCloseToSun(closetosun);
+            ellipses.get(ellipsenum).GetObjects().add(asteroid);
+            return true;
+        }
+        else if(material == "Coal"){
+            Asteroid asteroid = new Asteroid(new Point2D(0,0),ellipses.get(ellipsenum),thickness,new Coal());
+            asteroid.setCloseToSun(closetosun);
+            ellipses.get(ellipsenum).GetObjects().add(asteroid);
+            return true;
+        }
+        else if(material == "Ice"){
+            Asteroid asteroid = new Asteroid(new Point2D(0,0),ellipses.get(ellipsenum),thickness,new Ice());
+            asteroid.setCloseToSun(closetosun);
+            ellipses.get(ellipsenum).GetObjects().add(asteroid);
+            return true;
+        }
+        else if(material == "Iron"){
+            Asteroid asteroid = new Asteroid(new Point2D(0,0),ellipses.get(ellipsenum),thickness,new Iron());
+            asteroid.setCloseToSun(closetosun);
+            ellipses.get(ellipsenum).GetObjects().add(asteroid);
+            return true;
+        }
+        return false;
+
+
 
         return true;
     }
 
-    public boolean addbaseasteroid(boolean closetosun,int ironnum,int icenum,int urannum,int coalnum){
+    public boolean addbaseasteroid(String closetosun,int ironnum,int icenum,int urannum,int coalnum){
         base = new BaseAsteroid(new Point2D(0,0), ellipses.get(1),5,null,game );
         return true;
     }
@@ -48,11 +74,11 @@ public class ConsoleGame {
         return true;
     }
 
-    public boolean setclosetosun(boolean isclose,String object){
+    public boolean setclosetosun(String isclose,String object){
         return true;
     }
 
-    public boolean setrandom(boolean trueorfalse){
+    public boolean setrandom(String trueorfalse){
         return true;
     }
 

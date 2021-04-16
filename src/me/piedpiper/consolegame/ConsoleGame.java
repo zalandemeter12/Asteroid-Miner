@@ -16,7 +16,7 @@ public class ConsoleGame {
     private ArrayList<Ellipse2D> ellipses;
 
     public void init(){
-        this.game = new game();
+        this.game = new Game();
         this.asteroidField = game.GetField();
         this.ellipses = asteroidField.GetEllipses();
         this.sun = asteroidField.GetSun();
@@ -59,11 +59,22 @@ public class ConsoleGame {
         base = game.GetBase();
         game.GetBase().setCloseToSun(cts);
 
-
         return true;
     }
 
     public boolean addteleportgate(String settler){
+        TeleportGate t1 = new TeleportGate(new Point2D(0,0), ellipses.get(0));
+        TeleportGate t2 = new TeleportGate(new Point2D(0,0), ellipses.get(0));
+        t1.SetGatePair(t2);
+        t2.SetGatePair(t1);
+        boolean found = false;
+        for(Settler s : asteroidField.GetSettlers())
+            if(s.GetName() == settler){
+                found = true;
+                s.AddGate(t1);
+                s.AddGate(t2);
+            }
+        if(!found) return false;
         return true;
     }
 

@@ -124,49 +124,195 @@ public class ConsoleGame {
                     System.out.println("Missing argument");
                 else{
                     try{
-
+                        if(!addasteroid(Integer.parseInt(command[1]), Integer.parseInt(command[2]), command[3], command[4]))
+                            System.out.println("Invalid arguments");
                     }
                     catch (Exception e){
                         System.out.println("Invalid argument");
                     }
                 }
-
                 break;
             case "addbaseasteroid":
+                if(command.length > 6)
+                    System.out.println("Too many arguments");
+                else if(command.length < 6)
+                    System.out.println("Missing argument");
+                else{
+                    try{
+                        if(!addbaseasteroid(command[1],Integer.parseInt(command[2]), Integer.parseInt(command[3]),Integer.parseInt(command[4]),Integer.parseInt(command[5])))
+                            System.out.println("Invalid arguments");
+                    }
+                    catch (Exception e){
+                        System.out.println("Invalid argument");
+                    }
+                }
                 break;
             case "addteleportgate":
+                if(command.length > 2)
+                    System.out.println("Too many arguments");
+                else if(command.length < 2)
+                    System.out.println("Missing argument");
+                else{
+                    if(!addasteroid(Integer.parseInt(command[1]), Integer.parseInt(command[2]), command[3], command[4]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
             case "addworker":
+                if(command.length > 3)
+                    System.out.println("Too many arguments");
+                else if(command.length < 3)
+                    System.out.println("Missing argument");
+                else{
+                    if(!addworker(command[1], command[2]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
             case "addmaterialtobackpack":
+                if(command.length > 3)
+                    System.out.println("Too many arguments");
+                else if(command.length < 3)
+                    System.out.println("Missing argument");
+                else{
+                    if(!addmaterialtobackpack(command[1], command[2]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
             case "addsolarstorm":
+                if(command.length > 4)
+                    System.out.println("Too many arguments");
+                else if(command.length < 4)
+                    System.out.println("Missing argument");
+                else{
+                    try{
+                        if(!addsolarstorm(Integer.parseInt(command[1]), Integer.parseInt(command[2]), command[3]))
+                            System.out.println("Invalid arguments");
+                    }
+                    catch (Exception e){
+                        System.out.println("Invalid argument");
+                    }
+                }
                 break;
             case "setneighbours":
+                if(command.length > 3)
+                    System.out.println("Too many arguments");
+                else if(command.length < 3)
+                    System.out.println("Missing argument");
+                else{
+                    if(!setneighbours(command[1], command[2]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
             case "setclosetosun":
+                if(command.length > 3)
+                    System.out.println("Too many arguments");
+                else if(command.length < 3)
+                    System.out.println("Missing argument");
+                else{
+                    if(!setclosetosun(command[1], command[2]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
             case "setrandom":
+                if(command.length > 2)
+                    System.out.println("Too many arguments");
+                else if(command.length < 2)
+                    System.out.println("Missing argument");
+                else{
+                    if(!setrandom(command[1]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
             case "skip":
+                if(command.length > 2)
+                    System.out.println("Too many arguments");
+                else if(command.length < 2)
+                    System.out.println("Missing argument");
+                else {
+                    if (!skip(command[1]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
+
             case "move":
+                if(command.length > 3)
+                    System.out.println("Too many arguments");
+                else if(command.length < 3)
+                    System.out.println("Missing argument");
+                else {
+                    if (!move(command[1], command[2]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
+
             case "drill":
+                if(command.length > 2)
+                    System.out.println("Too many arguments");
+                else if(command.length < 2)
+                    System.out.println("Missing argument");
+                else {
+                    if (!drill(command[1]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
+
             case "mine":
+                if(command.length > 2)
+                    System.out.println("Too many arguments");
+                else if(command.length < 2)
+                    System.out.println("Missing argument");
+                else {
+                    if (!mine(command[1]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
+
             case "craftgate":
+                if(command.length > 2)
+                    System.out.println("Too many arguments");
+                else if(command.length < 2)
+                    System.out.println("Missing argument");
+                else {
+                    if (!craftgate(command[1]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
+
             case "buildrobot":
+                if(command.length > 2)
+                    System.out.println("Too many arguments");
+                else if(command.length < 2)
+                    System.out.println("Missing argument");
+                else {
+                    if (!buildrobot(command[1]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
+
             case "placematerial":
+                if(command.length > 4)
+                    System.out.println("Too many arguments");
+                else if(command.length < 4)
+                    System.out.println("Missing argument");
+                else {
+                    if (!placematerial(command[1], command[2], command[3]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
+
             case "placegate":
+                if(command.length > 2)
+                    System.out.println("Too many arguments");
+                else if(command.length < 2)
+                    System.out.println("Missing argument");
+                else {
+                    if (!placegate(command[1]))
+                        System.out.println("Invalid arguments");
+                }
                 break;
-
+            default:
+                System.out.println("Command not found");
+                break;
         }
-
     }
 
     public static void main(String[] args) {

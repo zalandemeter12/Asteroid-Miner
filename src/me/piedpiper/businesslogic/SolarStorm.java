@@ -59,4 +59,12 @@ public class SolarStorm implements ISteppable{
     public String GetName(){
         return "SolarStorm"+id;
     }
+
+    public int GetWarnTimer(){
+        return warnTimer;
+    }
+
+    public double GetAngle(){
+        return angle;
+    }
 }

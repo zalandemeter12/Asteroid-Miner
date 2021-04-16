@@ -124,9 +124,12 @@ public class Game {
 
         Robot r1=new Robot(a4, field,1);
         Ufo u1= new Ufo(a5, field,1);
-        field.GetEllipses().get(0).GetObjects().add(new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0, null,this));
-
-
+        base=new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0, null,this);
+        field.GetEllipses().get(0).GetObjects().add(base);
+        field.GetSettlers().add(s1);
+        field.GetSettlers().add(s2);
+        field.GetSun().GetSolarStorms().add(new SolarStorm(field.GetSun(), 10, 2, 1));
+        activeSettlerId = field.GetSettlers().get(0).getId();
 
     }
 
@@ -336,6 +339,9 @@ public class Game {
         }
 
         // lista a robotokrol
+
+       // field.GetEllipses().get(0).GetObjects().get(0).AddWorker(new Settler(  field.GetEllipses().get(0).GetObjects().get(0), field, 0));
+        //field.GetEllipses().get(0).GetObjects().get(0).AddWorker(new Settler(  field.GetEllipses().get(0).GetObjects().get(0), field, 1));
         JSONArray robotListJson = new JSONArray();
 
         for (Ellipse2D ellipse : field.GetEllipses()) {
@@ -410,7 +416,6 @@ public class Game {
     //Belépési pont
     public static void main(String[] args){
         Game game = new Game(5);
-
         game.WriteJson();
 
     }

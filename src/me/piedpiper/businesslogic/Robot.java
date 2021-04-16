@@ -17,6 +17,15 @@ public class Robot extends Worker implements ISteppable{
         Logger.tabcount--;
     }
 
+    public Robot(OrbitingObject location, AsteroidField field, int i){
+        super(location);
+        Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.field = field;
+        id=i;
+        Logger.tabcount--;
+    }
+
     //A robot "meghal" - tönkremegy
     @Override
     public void Die(){
@@ -42,6 +51,11 @@ public class Robot extends Worker implements ISteppable{
         System.out.println("Robot.Explode()");
         
         Logger.tabcount--;
+    }
+
+    @Override
+    public String GetName() {
+        return "Robot"+id;
     }
 
     //A robotot vezérlő AI egy lépésre készteti a robotot

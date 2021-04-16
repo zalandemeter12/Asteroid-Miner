@@ -8,6 +8,12 @@ public class Iron extends Material {
         Logger.tabcount--;
     }
 
+    public Iron(int i){
+        Logger.logMessage("Iron#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+        Logger.tabcount--;
+        id=i;
+    }
+
     // Polimorf viselkedes megvalositasa
     // megmondja, hogy a kapott anyag is vas-e
     @Override
@@ -16,5 +22,9 @@ public class Iron extends Material {
         Logger.tabcount--;
         if (m instanceof Iron) return true;
         else return false;
+    }
+
+    public String GetName(){
+        return "Iron" + id;
     }
 }

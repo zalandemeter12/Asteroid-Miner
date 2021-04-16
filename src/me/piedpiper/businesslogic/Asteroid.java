@@ -26,8 +26,9 @@ public class Asteroid extends OrbitingObject {
     @Override
     public void DrilledOn() {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".DrilledOn()");
-        
-        thickness--;
+        if(thickness>0){
+            thickness--;
+        }
         if (thickness == 0 && closeToSun && material != null) {
             material.BlowUp(this);
         }

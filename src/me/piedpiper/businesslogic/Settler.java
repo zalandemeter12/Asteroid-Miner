@@ -224,4 +224,8 @@ public class Settler extends Worker {
     public String GetName(){
         return "Settler"+id;
     }
+
+    public int getId(){
+        return id;
+    }
 }

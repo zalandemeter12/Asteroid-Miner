@@ -124,8 +124,10 @@ public class Game {
 
         Robot r1=new Robot(a4, field,1);
         Ufo u1= new Ufo(a5, field,1);
-        field.GetEllipses().get(0).GetObjects().add(new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0, null,this));
-
+        base=new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0, null,this);
+        field.GetEllipses().get(0).GetObjects().add(base);
+        field.GetSettlers().add(s1);
+        field.GetSettlers().add(s2);
         activeSettlerId = field.GetSettlers().get(0).getId();
 
     }

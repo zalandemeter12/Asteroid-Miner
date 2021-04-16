@@ -96,46 +96,59 @@ public class Game {
     }
 
     public void WriteJson(){
-       JSONObject jsonObject = new JSONObject();
-       jsonObject.put("ActiveSettler", "Settler" + activeSettlerId);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("ActiveSettler", "Settler" + activeSettlerId);
 
-       // innentol a keringo objektumok felepitese
-       JSONObject orbitingObjectsJson = new JSONObject();
+        // innentol a keringo objektumok felepitese
+        JSONObject orbitingObjectsJson = new JSONObject();
 
-       // bazis aszteroida
-       JSONObject baseAsteroidJson = new JSONObject();
-       OrbitingObject baseAsteroid = (OrbitingObject)base;
-       baseAsteroidJson.put("xCoordinate", baseAsteroid.GetPosition().GetX());
-       baseAsteroidJson.put("yCoordinate", baseAsteroid.GetPosition().GetY());
-       baseAsteroidJson.put("thickness", baseAsteroid.GetThickness());
-       
-       // chest tartalma
+        // bazis aszteroida
+        JSONObject baseAsteroidJson = new JSONObject();
+        OrbitingObject baseAsteroid = (OrbitingObject)base;
+        baseAsteroidJson.put("xCoordinate", baseAsteroid.GetPosition().GetX());
+        baseAsteroidJson.put("yCoordinate", baseAsteroid.GetPosition().GetY());
+        baseAsteroidJson.put("thickness", baseAsteroid.GetThickness());
+
+        // chest tartalma
         JSONArray chestJson = new JSONArray();
         ArrayList<String> chestItemNames = new ArrayList<String>();
-        base.AddMaterial(new Ice());
-        base.AddMaterial(new Ice());
-        base.AddMaterial(new Ice());
+
+        /*base.AddMaterial(new Ice(0));
+        base.AddMaterial(new Uran(1));
+        base.AddMaterial(new Iron(2));
+        */
+
         for (Material material : base.GetChest())
         {
-
-            chestItemNames.add("Ice3");
+            chestItemNames.add(material.GetName());
         }
         chestJson.putAll(chestItemNames);
-       baseAsteroidJson.put("chest", chestJson);
-       baseAsteroidJson.put("neighbours", baseAsteroid.GetPosition().GetY());
+        baseAsteroidJson.put("chest", chestJson);
 
 
-       orbitingObjectsJson.put("BaseAsteroid", baseAsteroidJson);
+        // bazis szomszedai
+        JSONArray baseNeighboursJson = new JSONArray();
+        ArrayList<String> baseNeighboursNames = new ArrayList<String>();
 
-       jsonObject.put("OrbitingObjects", orbitingObjectsJson);
+        for (OrbitingObject neighbour : base.GetNeighbors())
+        {
+           // baseNeighboursNames.add(neighbour.GetName());
+        }
+        chestJson.putAll(chestItemNames);
+        baseAsteroidJson.put("neighbours", baseNeighboursJson);
 
-       System.out.println(jsonObject.toString(4));
-    /*'
-                .put("ActiveSettler", "Hello World!")
-                .put("JSON2", "Hello my World!")
-                .put("JSON3", new JSONObject().put("key1", "value1")
 
-     */
+
+        orbitingObjectsJson.put("BaseAsteroid", baseAsteroidJson);
+        jsonObject.put("OrbitingObjects", orbitingObjectsJson);
+
+        System.out.println(jsonObject.toString(4));
+        /*'
+            .put("ActiveSettler", "Hello World!")
+            .put("JSON2", "Hello my World!")
+            .put("JSON3", new JSONObject().put("key1", "value1")
+
+        */
 
     }
 

@@ -11,4 +11,5 @@ public abstract class Material {
 
     // Polimorf kompatibilitas ellenorzes
     public abstract boolean IsCompatibleWith(Material m);
+    public abstract String GetName();
 }

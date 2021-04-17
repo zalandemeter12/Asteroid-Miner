@@ -25,13 +25,14 @@ public class Sequences {
 
     public void Init(){
         Logger.logOnConsole = false;
-        this.game = new Game(2);
+        this.game = new Game();
+        game.testInitSequences(4);
         this.base = game.GetBase();
         this.asteroidField = game.GetField();
         this.ellipses = asteroidField.GetEllipses();
         this.sun = asteroidField.GetSun();
         this.settlers = asteroidField.GetSettlers();
-        this.steppable = asteroidField.GetSteppable();
+        this.steppable = asteroidField.GetSteppables();
         this.orbitingObjects1 = ellipses.get(0).GetObjects();
         this.orbitingObjects2 = ellipses.get(1).GetObjects();
         this.orbitingObjects3 = ellipses.get(2).GetObjects();
@@ -359,7 +360,7 @@ public class Sequences {
 			    Asteroid a = new Asteroid(new Point2D(0.0,0.0), ellipses.get(0), 1, new Uran());
 				Settler settler = new Settler(orbitingObjects1.get(0), asteroidField);
                 settler.SetLocation(a);
-				a.setCloseToSun(true);
+				a.SetCloseToSun(true);
                 Logger.logOnConsole = true;
                 settler.DrillHole();
             

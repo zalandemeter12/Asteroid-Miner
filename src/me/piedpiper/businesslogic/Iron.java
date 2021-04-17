@@ -2,17 +2,28 @@ package me.piedpiper.businesslogic;
 
 public class Iron extends Material {
 
+    private static int currentIndex = 0;
+
     // Konstruktor
     public Iron(){
         Logger.logMessage("Iron#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.id = ++currentIndex;
+
+        Logger.tabcount--;
+    }
+    public Iron(boolean temp){
+        Logger.logMessage("Iron#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        if (temp)
+            this.id=-1;
+        else
+            this.id=++currentIndex;
+
         Logger.tabcount--;
     }
 
-    public Iron(int i){
-        Logger.logMessage("Iron#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
-        Logger.tabcount--;
-        id=i;
-    }
+
 
     // Polimorf viselkedes megvalositasa
     // megmondja, hogy a kapott anyag is vas-e

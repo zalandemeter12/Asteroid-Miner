@@ -53,5 +53,10 @@ public abstract class Worker { //A munkást reprezentáló absztrakt osztály a 
         return location;
     }
 
+    public void Mine(){
+        Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".Mine()");
+        Logger.tabcount--;
+    }
+
     public abstract String GetName();
 }

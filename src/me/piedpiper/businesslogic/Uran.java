@@ -2,17 +2,27 @@ package me.piedpiper.businesslogic;
 
 public class Uran extends RadioactiveMaterial {
     private int blowUpCounter=0;
+    private static int currentIndex = 0;
 
     public Uran(){
         Logger.logMessage("Uran#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.id = ++currentIndex;
+
+        Logger.tabcount--;
+    }
+    public Uran(boolean temp){
+        Logger.logMessage("Uran#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        if (temp)
+            this.id=-1;
+        else
+            this.id=++currentIndex;
+
         Logger.tabcount--;
     }
 
-    public Uran(int i){
-        Logger.logMessage("Uran#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
-        Logger.tabcount--;
-        id=i;
-    }
+
 
     public void BlowUp(Asteroid a){
         if(blowUpCounter==3){

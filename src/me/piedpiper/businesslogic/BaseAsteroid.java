@@ -9,12 +9,13 @@ public class BaseAsteroid extends Asteroid {
     private Game game;
 
     // Konstruktor
-    public BaseAsteroid(Point2D position, Ellipse2D ellipse, int thickness, Material material, Game game) {
-        super(position, ellipse, thickness, material);
+    public BaseAsteroid(Point2D position, Ellipse2D ellipse, int thickness, Game game) {
+        super(position, ellipse, thickness, null);
         Logger.logMessage("BaseAsteroid#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
         chest=new ArrayList<>();
         this.game = game;
+        this.thickness = 0;
 
         Logger.tabcount--;
     }
@@ -26,10 +27,10 @@ public class BaseAsteroid extends Asteroid {
 
         ArrayList<Material> materials = new ArrayList<>();
         for (int i = 0; i < 3; ++i) {
-            materials.add(new Uran());
-            materials.add(new Coal());
-            materials.add(new Ice());
-            materials.add(new Iron());
+            materials.add(new Uran(true));
+            materials.add(new Coal(true));
+            materials.add(new Ice(true));
+            materials.add(new Iron(true));
         }
         BillOfMaterials bill = new BillOfMaterials(materials);
         for (int i = 0; i < chest.size(); ++i) {

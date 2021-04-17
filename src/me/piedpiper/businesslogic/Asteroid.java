@@ -4,11 +4,12 @@ package me.piedpiper.businesslogic;
 //a tartalmazott nyersanyagát és hogy közel van-e a nap
 public class Asteroid extends OrbitingObject {
     //Sziklarétegek száma
-    private int thickness;
+    protected int thickness;
     //Közel van-e a nap
     private boolean closeToSun;
     //A tartalmazott
     private Material material;
+    private static int currentIndex = 0;
 
     //Kostruktor
     public Asteroid(Point2D position, Ellipse2D ellipse, int thickness, Material material) {
@@ -18,18 +19,7 @@ public class Asteroid extends OrbitingObject {
         this.thickness = thickness;
         this.closeToSun = false;
         this.material = material;
-
-        Logger.tabcount--;
-    }
-
-    public Asteroid(Point2D position, Ellipse2D ellipse, int thickness, Material material, int i) {
-        super(position, ellipse);
-        Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
-
-        this.thickness = thickness;
-        this.closeToSun = false;
-        this.material = material;
-        id=i;
+        this.id = ++currentIndex;
 
         Logger.tabcount--;
     }
@@ -115,10 +105,16 @@ public class Asteroid extends OrbitingObject {
         Logger.tabcount--;
         return closeToSun;
     }
-    // nagy közelség setter
+    //Nap közelség setter
     @Override
 	public void SetCloseToSun(boolean c) {
 		closeToSun = c;
+    }
+
+    @Override
+    public void UnderSolarStorm() {
+        for (Worker w : GetExposedWorkers())
+            w.Die();
     }
 
     public String GetName(){

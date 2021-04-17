@@ -11,7 +11,7 @@ public class Settler extends Worker {
     private ArrayList<Material> backpack;
     //A telepes teleport kapu tárolója
     private ArrayList<TeleportGate> gateInventory;
-
+    private static int currentIndex = 0;
 
 
     //A telepes konstruktora
@@ -19,23 +19,13 @@ public class Settler extends Worker {
         super(location);
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Ctor()");  
 
+        location.AddWorker(this);
         this.field = field;
         this.canStep = false;
         this.backpack = new ArrayList<>();
         this.gateInventory = new ArrayList<>();
+        this.id = ++currentIndex;
 
-        Logger.tabcount--;
-    }
-
-    public Settler(OrbitingObject location, AsteroidField field, int id){
-        super(location);
-        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
-
-        this.field = field;
-        this.canStep = false;
-        this.backpack = new ArrayList<>();
-        this.gateInventory = new ArrayList<>();
-        this.id = id;
         Logger.tabcount--;
     }
 
@@ -92,10 +82,10 @@ public class Settler extends Worker {
         if (gateInventory.size() < 2) {
             //Egy nyersanyag receptet létrehoz, hogy ellenőrizze meg van-e minden anyag nála
             ArrayList<Material> materials = new ArrayList<>();
-            materials.add(new Iron());
-            materials.add(new Iron());
-            materials.add(new Ice());
-            materials.add(new Uran());
+            materials.add(new Iron(true));
+            materials.add(new Iron(true));
+            materials.add(new Ice(true));
+            materials.add(new Uran(true));
             BillOfMaterials bill = new BillOfMaterials(materials);
             int[] indices = new int[4];
             int idx = 0;
@@ -133,9 +123,9 @@ public class Settler extends Worker {
         
         //Létrehoz egy nyersanyag receptet
         ArrayList<Material> materials = new ArrayList<>();
-        materials.add(new Coal());
-        materials.add(new Iron());
-        materials.add(new Uran());
+        materials.add(new Coal(true));
+        materials.add(new Iron(true));
+        materials.add(new Uran(true));
         BillOfMaterials bill = new BillOfMaterials(materials);
         int[] indices = new int[3];
         int idx = 0;

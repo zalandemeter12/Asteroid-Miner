@@ -11,11 +11,8 @@ public class AsteroidField implements ISteppable {
     private Game game;
     //Az aszteroida mezon levo ellipszisek listaja, amiken az objektumok keringenek
     private ArrayList<Ellipse2D> ellipses;
-    //A mezoben levo kontroller által iranyitott workerek(robot)
-    private ArrayList<Robot> robots;
-    //A mezoben levo kontroller által iranyitott workerek(ufo)
-    private ArrayList<Ufo> ufos;
-    //A mezoben levo elo telepesek
+    //A mezoben levo kontroller által iranyitott steppablek
+    private ArrayList<ISteppable> steppables;
     private ArrayList<Settler> settlers;
 
     //Konstruktor
@@ -26,8 +23,7 @@ public class AsteroidField implements ISteppable {
         this.sun = sun;
         this.game = game;
         this.ellipses = ellipses;
-        this.robots = new ArrayList<>();
-        this.ufos = new ArrayList<>();
+        this.steppables = new ArrayList<>();
         this.settlers = settlers;
 
         Logger.tabcount--;
@@ -60,45 +56,26 @@ public class AsteroidField implements ISteppable {
             }
         }
 
-        for (Robot r : robots) {
-            r.Step();
-        }
-        for(Ufo u : ufos){
-            u.Step();
+        for (ISteppable s : steppables) {
+            s.Step();
         }
 
         Logger.tabcount--;
     }
 
-    public void AddRobot(Robot r) {
-        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".AddRobot()");
+    public void AddSteppable(ISteppable s) {
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".AddSteppable()");
         
-        robots.add(r);
+        steppables.add(s);
         
         Logger.tabcount--;
     }
 
-    public void RemoveRobot(Robot r) {
-        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".RemoveRobot()");
+    public void RemoveSteppable(ISteppable s) {
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".RemoveSteppable()");
        
-        robots.remove(r);
+        steppables.remove(s);
         
-        Logger.tabcount--;
-    }
-
-    public void AddUfo(Ufo u) {
-        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".AddUfo()");
-
-        ufos.add(u);
-
-        Logger.tabcount--;
-    }
-
-    public void RemoveUfo(Ufo u) {
-        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".RemoveUfo()");
-
-        ufos.remove(u);
-
         Logger.tabcount--;
     }
 
@@ -135,16 +112,10 @@ public class AsteroidField implements ISteppable {
         return sun;
     }
 
-    public ArrayList<Robot> GetRobots(){
-        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetRobots()");
+    public ArrayList<ISteppable> GetSteppables(){
+        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetSteppables()");
         Logger.tabcount--;
-        return robots;
-    }
-
-    public ArrayList<Ufo> GetUfos(){
-        Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetUfos()");
-        Logger.tabcount--;
-        return ufos;
+        return steppables;
     }
 
     //Fuggveny, amely visszaadja az aszteroida mezoben levo telepeseket, a settlers listat

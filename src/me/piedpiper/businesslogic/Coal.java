@@ -2,16 +2,26 @@ package me.piedpiper.businesslogic;
 
 public class Coal extends Material {
 
+    private static int currentIndex = 0;
+
     // Konstruktor
     public Coal() {
         Logger.logMessage("Coal#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.id=++currentIndex;
+
         Logger.tabcount--;
     }
 
-    public Coal(int i) {
+    public Coal(boolean temp) {
         Logger.logMessage("Coal#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        if (temp)
+            this.id=-1;
+        else
+            this.id=++currentIndex;
+
         Logger.tabcount--;
-        id=i;
     }
 
     // Polimorf viselkedes megvalositasa

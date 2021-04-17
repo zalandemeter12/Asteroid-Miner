@@ -7,22 +7,16 @@ public class Robot extends Worker implements ISteppable{
     //Az aszteroida mező amiben a robot aktuálisan van
     private final AsteroidField field;
 
+    private static int currentIndex = 0;
+
     //A robot konstruktora
     public Robot(OrbitingObject location, AsteroidField field){
         super(location);
         Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
         this.field = field;
+        this.id = ++currentIndex;
 
-        Logger.tabcount--;
-    }
-
-    public Robot(OrbitingObject location, AsteroidField field, int i){
-        super(location);
-        Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
-
-        this.field = field;
-        id=i;
         Logger.tabcount--;
     }
 
@@ -48,8 +42,7 @@ public class Robot extends Worker implements ISteppable{
             int idx = rand.nextInt(neighbours.size()-1);
             MoveTo(neighbours.get(idx));
         }
-        System.out.println("Robot.Explode()");
-        
+
         Logger.tabcount--;
     }
 
@@ -70,7 +63,6 @@ public class Robot extends Worker implements ISteppable{
             Random rand = new Random();
             int idx = rand.nextInt(location.GetNeighbors().size()-1);
             MoveTo(location.GetNeighbors().get(idx));
-            location.GetWorkers().remove(this);
         }
         
         Logger.tabcount--;

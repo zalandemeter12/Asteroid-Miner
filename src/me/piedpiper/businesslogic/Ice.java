@@ -2,17 +2,28 @@ package me.piedpiper.businesslogic;
 
 public class Ice extends Material {
 
+    private static int currentIndex = 0;
+
     // Konstruktor
     public Ice(){
         Logger.logMessage("Ice#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.id = ++currentIndex;
+
+        Logger.tabcount--;
+    }
+    public Ice(boolean temp){
+        Logger.logMessage("Ice#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        if (temp)
+            this.id=-1;
+        else
+            this.id=++currentIndex;
+
         Logger.tabcount--;
     }
 
-    public Ice(int i){
-        Logger.logMessage("Ice#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
-        Logger.tabcount--;
-        id=i;
-    }
+
 
     // Felrobbanast megvalosito metodus, a felrobbanto hivhatja
     @Override

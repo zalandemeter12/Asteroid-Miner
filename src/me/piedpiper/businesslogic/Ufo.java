@@ -3,17 +3,13 @@ package me.piedpiper.businesslogic;
 import java.util.Random;
 
 public class Ufo extends Worker implements ISteppable{
-    private AsteroidField field;
+    private final AsteroidField field;
+    private static int currentIndex = 0;
 
     public Ufo(OrbitingObject location, AsteroidField f) {
         super(location);
-        field=f;
-    }
-
-    public Ufo(OrbitingObject location, AsteroidField f, int i) {
-        super(location);
-        field=f;
-        id=i;
+        this.field=f;
+        this.id = ++currentIndex;
     }
 
     @Override
@@ -41,7 +37,7 @@ public class Ufo extends Worker implements ISteppable{
     public void DrillHole(){
     }
 
-
+    @Override
     public void Mine(){
         if(location.GetThickness()==0){
             location.RemoveMaterial();

@@ -10,7 +10,9 @@ public class SolarStorm implements ISteppable{
     private final double angle;
     //Az emlékeztető körök száma
     private int warnTimer;
-    private int id;
+    private static int currentIndex = 0;
+    private final int id;
+    private ArrayList<OrbitingObject> targets;
 
     //A napkitörés konstruktora
     public SolarStorm(Sun sun, double angle, int warnTimer) {
@@ -19,17 +21,9 @@ public class SolarStorm implements ISteppable{
         this.sun = sun;
         this.angle = angle;
         this.warnTimer = warnTimer;
+        this.targets = new ArrayList<>();
+        this.id = ++currentIndex;
 
-        Logger.tabcount--;
-    }
-
-    public SolarStorm(Sun sun, double angle, int warnTimer, int i) {
-        Logger.logMessage("SolarStorm#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
-
-        this.sun = sun;
-        this.angle = angle;
-        this.warnTimer = warnTimer;
-        id=i;
         Logger.tabcount--;
     }
 
@@ -43,13 +37,10 @@ public class SolarStorm implements ISteppable{
             warnTimer--;
         } else {
             for (Ellipse2D e : sun.GetField().GetEllipses()) {
-                for (OrbitingObject o : e.GetObjects()) {
-                    o.UnderSolarStorm();
-                    for (Worker w : o.GetExposedWorkers()) {
-                        w.Die();
-                    }
-                }
+                //TODO implementálni pos+angle alapján
             }
+            for (OrbitingObject o : targets)
+                o.UnderSolarStorm();
             sun.GetSolarStorms().remove(this);
         }
         
@@ -66,5 +57,9 @@ public class SolarStorm implements ISteppable{
 
     public double GetAngle(){
         return angle;
+    }
+
+    public void AddTarget(OrbitingObject o) {
+        targets.add(o);
     }
 }

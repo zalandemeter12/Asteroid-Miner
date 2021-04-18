@@ -42,7 +42,7 @@ public class ConsoleGame {
             case "iron":
                 material1 = new Iron();
                 break;
-            case "null":
+            case "NULL":
                 material1 = null;
                 break;
             default:

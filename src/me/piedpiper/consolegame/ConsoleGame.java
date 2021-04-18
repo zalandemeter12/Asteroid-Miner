@@ -86,7 +86,7 @@ public class ConsoleGame {
         t2.SetGatePair(t1);
         boolean found = false;
         for(Settler s : asteroidField.GetSettlers())
-            if(s.GetName().equals(settler)){
+            if(s.GetName().equals(settler) && s.GetGateInventory().size() <2){
                 found = true;
                 s.AddGate(t1);
                 s.AddGate(t2);

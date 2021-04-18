@@ -21,8 +21,8 @@ public abstract class Worker { //A munkást reprezentáló absztrakt osztály a 
         ArrayList<OrbitingObject> neighbors = location.GetNeighbors();  //Az OrbitingObjectek, amikre a Worker tud mozogni.
         if (neighbors.contains(o)) {    //Ha a paraméterként átvett OrbitingObject benne van a neighbours listában.
             location.RemoveWorker(this); //Az aktuális OrbitingObjectről eltávolítja a Workert.
-            o.AddWorker(this); //Áthelyezi a cél OrbitingObjectre.
             location=o; //Megváltoztatja a locationt az új helyzetére.
+            o.AddWorker(this); //Áthelyezi a cél OrbitingObjectre.
         }
         
         Logger.tabcount--;

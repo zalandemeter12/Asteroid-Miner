@@ -308,23 +308,6 @@ public class ConsoleGame {
     }
 
     public boolean placematerial(String setller, String asteroid, String material){
-        /*Material material1;
-        switch (material) {
-            case "coal":
-                material1 = new Coal();
-                break;
-            case "uran":
-                material1 = new Uran();
-                break;
-            case "iron":
-                material1 = new Iron();
-                break;
-            case "ice":
-                material1 = new Ice();
-                break;
-            default:
-                return false;
-        }*/
 
         for(Ellipse2D e: ellipses){
             if(asteroid.toLowerCase().equals("baseasteroid") && game.GetBase()!=null){

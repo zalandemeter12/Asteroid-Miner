@@ -29,6 +29,7 @@ public class TeleportGate extends OrbitingObject {
             workers.remove(w);
             w.SetLocation(gatePair);
             gatePair.GetWorkers().add(w);
+            w.SetLocation(gatePair);
         }
 
         

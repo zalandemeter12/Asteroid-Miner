@@ -10,6 +10,7 @@ public abstract class Worker { //A munkást reprezentáló absztrakt osztály a 
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
         
         this.location = location;
+        location.AddWorker(this);
 
         Logger.tabcount--;
     }

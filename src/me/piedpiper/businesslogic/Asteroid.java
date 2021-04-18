@@ -108,7 +108,10 @@ public class Asteroid extends OrbitingObject {
     //Nap közelség setter
     @Override
 	public void SetCloseToSun(boolean c) {
-		closeToSun = c;
+		if(c) {
+            material.BlowUp(this);
+        }
+        closeToSun = c;
     }
 
     public String GetName(){

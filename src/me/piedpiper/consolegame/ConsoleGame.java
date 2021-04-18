@@ -98,9 +98,15 @@ public class ConsoleGame {
 
     public boolean addworker(String location, String type){
         OrbitingObject workerlocation = null;
-        for(Ellipse2D e: ellipses){
-            for(OrbitingObject o: e.GetObjects()){
-                if(o.GetName().equals(location)) { workerlocation = o; }
+        if(location.equals("BaseAsteroid") && game.GetBase()!=null){
+            workerlocation = game.GetBase();
+        } else {
+            for (Ellipse2D e : ellipses) {
+                for (OrbitingObject o : e.GetObjects()) {
+                    if (o.GetName().equals(location)) {
+                        workerlocation = o;
+                    }
+                }
             }
         }
         if(workerlocation == null){ return false; }
@@ -198,9 +204,10 @@ public class ConsoleGame {
             for(OrbitingObject o : e.GetObjects())
                 if(o.GetName().equals(object)){
                     o.SetCloseToSun(cts);
+                    return true;
                 }
         }
-        return true;
+        return false;
     }
 
     public boolean setrandom(String value){
@@ -315,6 +322,14 @@ public class ConsoleGame {
                 return false;
         }
         for(Ellipse2D e: ellipses){
+            if(asteroid.equals("BaseAsteroid") && game.GetBase()!=null){
+                for(Settler s : asteroidField.GetSettlers()) {
+                    if (s.GetName().equals(setller)) {
+                        s.PlaceMaterial(material1);
+                        return true;
+                    }
+                }
+            }
             for(OrbitingObject o : e.GetObjects())
                 if(o.GetName().equals(asteroid)){
                     for(Settler s : asteroidField.GetSettlers()) {

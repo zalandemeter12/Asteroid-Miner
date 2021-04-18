@@ -38,6 +38,7 @@ public class Ellipse2D {
     // Keringo objektum eltavolitasa az ellipszisrol
     public void RemoveObject(OrbitingObject o) {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".RemoveObject()");
+        objects.remove(o);
         Logger.tabcount--;
     }
 

@@ -89,8 +89,9 @@ public abstract class OrbitingObject {
     //A fuggveny hozzaad egy objektumot az objektum szomszedjait nyilvantarto listahoz
     public void AddNeighbor(OrbitingObject o) {
         Logger.logMessage("OrbitingObject#" + Integer.toHexString(this.hashCode()) + ".AddNeighbour()");
-        
-        neighbors.add(o);
+
+        if (!neighbors.contains(o))
+            neighbors.add(o);
         
         Logger.tabcount--;
     }

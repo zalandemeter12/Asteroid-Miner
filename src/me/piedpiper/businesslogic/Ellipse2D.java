@@ -35,6 +35,8 @@ public class Ellipse2D {
         return id;
     }
 
+    public void AddObject(OrbitingObject o){ objects.add(o); }
+
     // Keringo objektum eltavolitasa az ellipszisrol
     public void RemoveObject(OrbitingObject o) {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".RemoveObject()");

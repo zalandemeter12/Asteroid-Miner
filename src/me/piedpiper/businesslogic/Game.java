@@ -405,7 +405,6 @@ public class Game {
 
         jsonObject.put("Solarstorms", solarStormListJson);
 
-
         System.out.println(jsonObject.toString(4));
 
     }

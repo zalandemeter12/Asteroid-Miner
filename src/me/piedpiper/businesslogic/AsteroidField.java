@@ -17,6 +17,7 @@ public class AsteroidField implements ISteppable {
     private boolean random = true;
     private Settler activeSettler;
 
+
     //Konstruktor
     public AsteroidField(Sun sun, Game game, ArrayList<Ellipse2D> ellipses, ArrayList<Settler> settlers){
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".Ctor()");

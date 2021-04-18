@@ -260,4 +260,8 @@ public class Settler extends Worker {
     public void SetCanStep(boolean value) {
         canStep = value;
     }
+
+    public static void ResetIndex(){
+        currentIndex=0;
+    }
 }

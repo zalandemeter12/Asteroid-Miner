@@ -114,4 +114,8 @@ public class Asteroid extends OrbitingObject {
     public String GetName(){
         return "Asteroid" + id;
     }
+
+    public static void ResetIndex(){
+        currentIndex=0;
+    }
 }

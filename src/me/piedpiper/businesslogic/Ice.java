@@ -48,4 +48,8 @@ public class Ice extends Material {
     public String GetName(){
         return "Ice" + id;
     }
+
+    public static void ResetIndex(){
+        currentIndex=0;
+    }
 }

@@ -337,6 +337,20 @@ public class ConsoleGame {
         return false;
     }
 
+    public void reset(){
+        init();
+        Asteroid.ResetIndex();
+        TeleportGate.ResetIndex();
+        Coal.ResetIndex();
+        Ice.ResetIndex();
+        Iron.ResetIndex();
+        Uran.ResetIndex();
+        Robot.ResetIndex();
+        Settler.ResetIndex();
+        Ufo.ResetIndex();
+        SolarStorm.ResetIndex();
+    }
+
     private boolean CommandInterpreter(){
         String[] command = scanner.nextLine().split(" ");
         switch (command[0]){
@@ -533,6 +547,11 @@ public class ConsoleGame {
                     if (!placegate(command[1]))
                         System.out.println("Invalid arguments");
                 }
+                break;
+            case "reset":
+                if(command.length > 1)
+                    System.out.println("Too many arguments");
+                else reset();
                 break;
             default:
                 System.out.println("Command not found");

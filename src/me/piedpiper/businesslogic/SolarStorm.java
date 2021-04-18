@@ -62,4 +62,8 @@ public class SolarStorm implements ISteppable{
     public void AddTarget(OrbitingObject o) {
         targets.add(o);
     }
+
+    public static void ResetIndex(){
+        currentIndex=0;
+    }
 }

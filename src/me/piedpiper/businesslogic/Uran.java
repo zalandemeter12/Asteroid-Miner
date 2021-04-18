@@ -43,4 +43,8 @@ public class Uran extends RadioactiveMaterial {
     public String GetName(){
         return "Uran" + id;
     }
+
+    public static void ResetIndex(){
+        currentIndex=0;
+    }
 }

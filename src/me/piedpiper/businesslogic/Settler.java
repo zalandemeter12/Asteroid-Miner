@@ -101,6 +101,10 @@ public class Settler extends Worker {
             tg.SetEllipse(location.GetEllipse());
             location.GetEllipse().AddObject(tg);
             tg.AddNeighbor(location);
+            if(tg.isActive()){
+                tg.AddNeighbor(tg.getPair());
+                tg.getPair().AddNeighbor(tg);
+            }
             location.AddNeighbor(tg);
             canStep=false;
             field.SettlerStepped();
@@ -246,7 +250,7 @@ public class Settler extends Worker {
 
     //Hozzáad egy teleport kaput a telepes tárolójához, csak a tesztekhez használatos
     public void AddGate(TeleportGate g){
-        gateInventory.add(g);
+            gateInventory.add(g);
     }
 
     public String GetName(){

@@ -23,13 +23,14 @@ public class TeleportGate extends OrbitingObject {
     @Override
     public void AddWorker(Worker w) {
         Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".AddWorker()");
-       
+        workers.add(w);
         //Amennyiben le van helyezve a párja, rögtön átdobja a másik kapuba
         if(gatePair.GetPosition() != null) {
             workers.remove(w);
             w.SetLocation(gatePair);
             gatePair.GetWorkers().add(w);
         }
+
         
         Logger.tabcount--;
     }

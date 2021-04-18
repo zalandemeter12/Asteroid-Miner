@@ -81,8 +81,8 @@ public class ConsoleGame {
     }
 
     public boolean addteleportgate(String settler){
-        TeleportGate t1 = new TeleportGate(new Point2D(0,0), ellipses.get(0));
-        TeleportGate t2 = new TeleportGate(new Point2D(0,0), ellipses.get(0));
+        TeleportGate t1 = new TeleportGate(null, ellipses.get(0));
+        TeleportGate t2 = new TeleportGate(null, ellipses.get(0));
         t1.SetGatePair(t2);
         t2.SetGatePair(t1);
         boolean found = false;

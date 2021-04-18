@@ -313,37 +313,37 @@ public class Game {
         // lista a telepesekrol
         JSONArray settlerListJson = new JSONArray();
 
+        if(base != null) {
+            for (Worker worker : base.GetWorkers()) {
+                if (worker.getClass() == Settler.class) {
+                    JSONObject settlerJson = new JSONObject();
 
-        for (Worker worker : base.GetWorkers()) {
-            if (worker.getClass() == Settler.class) {
-                JSONObject settlerJson = new JSONObject();
+                    // material inventory
+                    JSONArray inventoryJson = new JSONArray();
+                    ArrayList<String> inventoryNames = new ArrayList<String>();
+                    for (Material material : ((Settler) worker).GetBackpack()) {
+                        inventoryNames.add(material.GetName());
+                    }
+                    inventoryJson.putAll(inventoryNames);
+                    settlerJson.put("inventory", inventoryJson);
 
-                // material inventory
-                JSONArray inventoryJson = new JSONArray();
-                ArrayList<String> inventoryNames = new ArrayList<String>();
-                for (Material material : ((Settler) worker).GetBackpack()) {
-                    inventoryNames.add(material.GetName());
+                    // teleportGate inventory
+                    JSONArray teleportGateJson = new JSONArray();
+                    ArrayList<String> teleportGateNames = new ArrayList<String>();
+                    for (TeleportGate teleportGate : ((Settler) worker).GetGateInventory()) {
+                        teleportGateNames.add(teleportGate.GetName());
+                    }
+                    teleportGateJson.putAll(teleportGateNames);
+                    settlerJson.put("teleportGateInventory", teleportGateNames);
+
+                    settlerJson.put("location", worker.location.GetName());
+
+                    JSONObject settlerJsonWrapper = new JSONObject();
+                    settlerJsonWrapper.put(worker.GetName(), settlerJson);
+                    settlerListJson.put(settlerJsonWrapper);
                 }
-                inventoryJson.putAll(inventoryNames);
-                settlerJson.put("inventory", inventoryJson);
-
-                // teleportGate inventory
-                JSONArray teleportGateJson = new JSONArray();
-                ArrayList<String> teleportGateNames = new ArrayList<String>();
-                for (TeleportGate teleportGate : ((Settler) worker).GetGateInventory()) {
-                    teleportGateNames.add(teleportGate.GetName());
-                }
-                teleportGateJson.putAll(teleportGateNames);
-                settlerJson.put("teleportGateInventory", teleportGateNames);
-
-                settlerJson.put("location", worker.location.GetName());
-
-                JSONObject settlerJsonWrapper = new JSONObject();
-                settlerJsonWrapper.put(worker.GetName(), settlerJson);
-                settlerListJson.put(settlerJsonWrapper);
             }
         }
-
         for (Ellipse2D ellipse : field.GetEllipses()) {
             for (OrbitingObject orbitingObject : ellipse.GetObjects()) {
                 for (Worker worker : orbitingObject.GetWorkers()) {

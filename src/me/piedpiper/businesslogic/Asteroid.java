@@ -121,4 +121,6 @@ public class Asteroid extends OrbitingObject {
     public static void ResetIndex(){
         currentIndex=0;
     }
+
+
 }

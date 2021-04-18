@@ -19,7 +19,6 @@ public class Settler extends Worker {
         super(location);
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Ctor()");  
 
-        location.AddWorker(this);
         this.field = field;
         this.canStep = true;
         this.backpack = new ArrayList<>();

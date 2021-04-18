@@ -307,7 +307,7 @@ public class ConsoleGame {
     }
 
     public boolean placematerial(String setller, String asteroid, String material){
-        Material material1;
+        /*Material material1;
         switch (material) {
             case "coal":
                 material1 = new Coal();
@@ -323,11 +323,18 @@ public class ConsoleGame {
                 break;
             default:
                 return false;
-        }
+        }*/
+
         for(Ellipse2D e: ellipses){
             if(asteroid.toLowerCase().equals("baseasteroid") && game.GetBase()!=null){
                 for(Settler s : asteroidField.GetSettlers()) {
                     if (s.GetName().equals(setller)) {
+                        Material material1=null;
+                        for(Material m: s.GetBackpack()){
+                            if(m.GetName().toLowerCase().contains(material)){
+                                material1=m;
+                            }
+                        }
                         s.PlaceMaterial(material1);
                         return true;
                     }
@@ -337,6 +344,12 @@ public class ConsoleGame {
                 if(o.GetName().toLowerCase().equals(asteroid.toLowerCase())){
                     for(Settler s : asteroidField.GetSettlers()) {
                         if (s.GetName().equals(setller)) {
+                            Material material1=null;
+                            for(Material m: s.GetBackpack()){
+                                if(m.GetName().toLowerCase().contains(material)){
+                                    material1=m;
+                                }
+                            }
                             s.PlaceMaterial(material1);
                             return true;
                         }

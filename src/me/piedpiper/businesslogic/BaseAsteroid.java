@@ -58,6 +58,9 @@ public class BaseAsteroid extends Asteroid {
         return chest;
     }
 
+    public String GetName(){
+        return "BaseAsteroid";
+    }
 
 
 }

@@ -80,4 +80,8 @@ public class TeleportGate extends OrbitingObject {
     public String GetName(){
         return "TeleportGate"+id;
     }
+
+    public static void ResetIndex(){
+        currentIndex=0;
+    }
 }

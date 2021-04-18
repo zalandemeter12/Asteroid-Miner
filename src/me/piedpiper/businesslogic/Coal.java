@@ -37,4 +37,8 @@ public class Coal extends Material {
     public String GetName(){
         return "Coal" + id;
     }
+
+    public static void ResetIndex(){
+        currentIndex=0;
+    }
 }

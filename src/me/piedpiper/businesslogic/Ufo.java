@@ -53,4 +53,8 @@ public class Ufo extends Worker implements ISteppable{
         return "Ufo"+id;
     }
 
+    public static void ResetIndex(){
+        currentIndex=0;
+    }
+
 }

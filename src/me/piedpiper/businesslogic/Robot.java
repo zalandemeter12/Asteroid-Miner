@@ -71,4 +71,8 @@ public class Robot extends Worker implements ISteppable{
         
         Logger.tabcount--;
     }
+
+    public static void ResetIndex(){
+        currentIndex=0;
+    }
 }

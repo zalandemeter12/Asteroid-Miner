@@ -38,4 +38,8 @@ public class Iron extends Material {
     public String GetName(){
         return "Iron" + id;
     }
+
+    public static void ResetIndex(){
+        currentIndex=0;
+    }
 }

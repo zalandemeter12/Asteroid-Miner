@@ -14,6 +14,8 @@ public class AsteroidField implements ISteppable {
     //A mezoben levo kontroller által iranyitott steppablek
     private ArrayList<ISteppable> steppables;
     private ArrayList<Settler> settlers;
+    private boolean random = true;
+    private Settler activeSettler;
 
     //Konstruktor
     public AsteroidField(Sun sun, Game game, ArrayList<Ellipse2D> ellipses, ArrayList<Settler> settlers){
@@ -25,6 +27,10 @@ public class AsteroidField implements ISteppable {
         this.ellipses = ellipses;
         this.steppables = new ArrayList<>();
         this.settlers = settlers;
+        if (this.settlers.size() > 0)
+            activeSettler = this.settlers.get(0);
+        else
+            activeSettler = null;
 
         Logger.tabcount--;
     }
@@ -32,6 +38,10 @@ public class AsteroidField implements ISteppable {
     //Az ISteppable interface Step fuggvenyenek megvalositasa, ez a fuggveny felelos az objektumok keringteteseert, es ebben hivodnak meg a tovabbi step fuggvenyek
     public void Step() {
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".Step()");
+
+        for (Settler s: settlers) {
+            s.SetCanStep(true);
+        }
 
         //Nap step fuggvenyenek meghivasa
         sun.Step();
@@ -49,6 +59,7 @@ public class AsteroidField implements ISteppable {
                 if(i != j){
                     OrbitingObject o1 = orbitingObjects.get(i);
                     OrbitingObject o2 = orbitingObjects.get(j);
+                    //TODO 10 helyett valami használható range érték
                     if(o1.GetPosition().DistanceFrom(o2.GetPosition()) < 10){
                         o1.AddNeighbor(o2);
                     }
@@ -82,7 +93,9 @@ public class AsteroidField implements ISteppable {
     //Telepes hozzaadasa az aszteroida mezoben levo telepesek listajahoz
     public void AddSettler(Settler s) {
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".AddSettler()");
-        
+
+        if (activeSettler == null)
+            activeSettler = s;
         settlers.add(s);
         
         Logger.tabcount--;
@@ -93,7 +106,7 @@ public class AsteroidField implements ISteppable {
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".RemoveSettler()");
         
         settlers.remove(s);
-        if(settlers.isEmpty()) game.EndGame();
+        if(settlers.isEmpty()) game.EndGame(false);
         
         Logger.tabcount--;
     }
@@ -123,5 +136,31 @@ public class AsteroidField implements ISteppable {
         Logger.logMessage("AsteroidField#" + Integer.toHexString(this.hashCode()) + ".GetSettlers()");
         Logger.tabcount--;
         return settlers;
+    }
+
+    public boolean IsRandom() {
+        return random;
+    }
+
+    public void SetRandom(boolean random) {
+        this.random = random;
+    }
+
+    public void SettlerStepped() {
+        for (Settler s: settlers) {
+            if(s.CanStep()) {
+                activeSettler = s;
+                return;
+            }
+        }
+        game.NextRound();
+    }
+
+    public Settler GetActiveSettler() {
+        return activeSettler;
+    }
+
+    public void SetActiveSettler(Settler s) {
+        activeSettler = s;
     }
 }

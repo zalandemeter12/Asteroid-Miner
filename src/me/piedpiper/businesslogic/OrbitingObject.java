@@ -46,9 +46,10 @@ public abstract class OrbitingObject {
     }
 
     //Az objektumon valo furas eseten meghivodo fuggveny
-    public void DrilledOn() {
+    public boolean DrilledOn() {
         Logger.logMessage("OrbitingObject#" + Integer.toHexString(this.hashCode()) + ".DrilledOn()");
         Logger.tabcount--;
+        return false;
     }
 
     //Nyesranyag hozzaadasa az objektumhoz
@@ -160,9 +161,14 @@ public abstract class OrbitingObject {
 
     public void SetCloseToSun(boolean c){ }
 
-    public void UnderSolarStorm(){}
+    public void UnderSolarStorm(){
+        for (Worker w : GetExposedWorkers())
+            w.Die();
+    }
 
-    public void Moves(Point2D p){}
+    public void Moves(Point2D p){
+        this.position = p;
+    }
 
     public abstract String GetName();
 }

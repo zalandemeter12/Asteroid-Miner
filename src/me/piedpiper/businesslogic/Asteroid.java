@@ -26,16 +26,16 @@ public class Asteroid extends OrbitingObject {
 
     //Aszeroida megfúrása, csökkenti a sziklarétegek számát
     @Override
-    public void DrilledOn() {
+    public boolean DrilledOn() {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".DrilledOn()");
-        if(thickness>0){
-            thickness--;
-        }
+        if (thickness <= 0) return false;
+        thickness--;
         if (thickness == 0 && closeToSun && material != null) {
             material.BlowUp(this);
         }
         
         Logger.tabcount--;
+        return true;
     }
 
     //Az aszteroid megfúrása, visszatér a tartalmazott nyersanyagggal
@@ -109,12 +109,6 @@ public class Asteroid extends OrbitingObject {
     @Override
 	public void SetCloseToSun(boolean c) {
 		closeToSun = c;
-    }
-
-    @Override
-    public void UnderSolarStorm() {
-        for (Worker w : GetExposedWorkers())
-            w.Die();
     }
 
     public String GetName(){

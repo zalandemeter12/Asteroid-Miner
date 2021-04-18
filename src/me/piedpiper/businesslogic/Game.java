@@ -8,12 +8,10 @@ import java.util.ArrayList;
 
 //A játékok összefogó objektum, tertalmazza és létrehozza a fő objektumokat
 public class Game {
-    //Az aszteroida mmező, ami az aszteroidákat tartalmazza
+    //Az aszteroida mező, ami az aszteroidákat tartalmazza
     private AsteroidField field;
     //A bázis aszteroidát külön ismeri
     private BaseAsteroid base;
-
-    private int activeSettlerId;
 
     //Konstruktor
     public Game() {
@@ -29,6 +27,9 @@ public class Game {
         ellipses.add(new Ellipse2D(new Point2D(20,20), new Point2D(30,30), 15, 3, objects3));
         ArrayList<Settler> settlers = new ArrayList<>();
         this.field = new AsteroidField(sun, this, ellipses, settlers);
+        ellipses.get(0).SetField(this.field);
+        ellipses.get(1).SetField(this.field);
+        ellipses.get(2).SetField(this.field);
         sun.SetField(this.field);
 
         Logger.tabcount--;
@@ -68,7 +69,7 @@ public class Game {
         for (int i = 0; i < settlerCount; ++i) {
             settlers.add(new Settler(base,field));
         }
-        activeSettlerId = settlers.get(0).getId();
+
         sun.SetField(this.field);
     }
 
@@ -136,7 +137,6 @@ public class Game {
         field.GetSettlers().add(s1);
         field.GetSettlers().add(s2);
         field.GetSun().GetSolarStorms().add(new SolarStorm(field.GetSun(), 10, 2));
-        activeSettlerId = field.GetSettlers().get(0).getId();
     }
 
     public void SetBase(BaseAsteroid b){
@@ -157,11 +157,20 @@ public class Game {
     //Új kör indítását végzi el
     public void NextRound(){
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".NextRound()");
+
+        if(field.GetSettlers().size() == 0) {
+            EndGame(false);
+        } else {
+            field.SetActiveSettler(field.GetSettlers().get(0));
+        }
+
+        field.Step();
+
         Logger.tabcount--;
     }
 
     //Játék befejezése
-    public void EndGame(){
+    public void EndGame(boolean win){
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".EndGame()");
         Logger.tabcount--;
     }
@@ -182,7 +191,10 @@ public class Game {
 
     public void WriteJson(){
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("ActiveSettler", "Settler" + activeSettlerId);
+        if (field.GetActiveSettler() != null)
+            jsonObject.put("ActiveSettler", field.GetActiveSettler().GetName());
+        else
+            jsonObject.put("ActiveSettler", "NULL");
 
         // innentol a keringo objektumok felepitese
         JSONObject orbitingObjectsJson = new JSONObject();

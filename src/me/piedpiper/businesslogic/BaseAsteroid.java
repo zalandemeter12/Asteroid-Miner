@@ -39,7 +39,7 @@ public class BaseAsteroid extends Asteroid {
         if (bill.IsNeeded(m)) {
             chest.add(m);
             if(bill.GetBill().size() == 0)
-                game.EndGame();
+                game.EndGame(true);
 
 
             Logger.tabcount--;

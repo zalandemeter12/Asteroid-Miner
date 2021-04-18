@@ -202,7 +202,12 @@ public class ConsoleGame {
         return true;
     }
 
-    public boolean setrandom(String trueorfalse){
+    public boolean setrandom(String value){
+        boolean val;
+        if(value.equals("true")) {  val = true;}
+        else if(value.equals("false")) { val = false; }
+        else { return false; }
+        asteroidField.SetRandom(val);
         return true;
     }
 

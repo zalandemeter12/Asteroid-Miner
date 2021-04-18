@@ -1,5 +1,7 @@
 package me.piedpiper.businesslogic;
 
+import java.util.Random;
+
 public class TeleportGate extends OrbitingObject {
     //A teleport kapu párja
     private TeleportGate gatePair;
@@ -53,14 +55,22 @@ public class TeleportGate extends OrbitingObject {
     @Override
     public void UnderSolarStorm() {
         this.isMalfunctioning=true;
-        for (Worker w : GetExposedWorkers())
-            w.Die();
+        super.UnderSolarStorm();
     }
 
     @Override
     public void Moves(Point2D p){
         if (isMalfunctioning) {
-            //TODO random szomszédhoz megy
+            //TODO a mozgatást megcsinálni rendesen
+            if (neighbors.size() > 0) {
+                if (ellipse.GetField().IsRandom()) {
+                    Random rand = new Random();
+                    int idx = rand.nextInt(neighbors.size()-1);
+                    this.position = neighbors.get(idx).GetPosition();
+                } else {
+                    this.position = neighbors.get(0).GetPosition();
+                }
+            }
         } else {
             this.position=p;
         }

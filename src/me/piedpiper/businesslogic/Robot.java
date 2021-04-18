@@ -60,9 +60,13 @@ public class Robot extends Worker implements ISteppable{
         if (location.GetThickness() > 0) {
             location.DrilledOn();
         } else if (location.GetNeighbors().size() > 0) {
-            Random rand = new Random();
-            int idx = rand.nextInt(location.GetNeighbors().size()-1);
-            MoveTo(location.GetNeighbors().get(idx));
+            if(field.IsRandom()) {
+                Random rand = new Random();
+                int idx = rand.nextInt(location.GetNeighbors().size()-1);
+                MoveTo(location.GetNeighbors().get(idx));
+            } else {
+                MoveTo(location.GetNeighbors().get(0));
+            }
         }
         
         Logger.tabcount--;

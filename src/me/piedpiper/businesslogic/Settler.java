@@ -21,7 +21,7 @@ public class Settler extends Worker {
 
         location.AddWorker(this);
         this.field = field;
-        this.canStep = false;
+        this.canStep = true;
         this.backpack = new ArrayList<>();
         this.gateInventory = new ArrayList<>();
         this.id = ++currentIndex;
@@ -39,7 +39,36 @@ public class Settler extends Worker {
             if(mined!=null) {
                 backpack.add(mined);
                 canStep=false;
+                field.SettlerStepped();
             }
+        }
+
+        Logger.tabcount--;
+    }
+
+    @Override
+    public void MoveTo(OrbitingObject o){ //Áthelyezi a Workert a paraméterban átvett OrbitingObjectre
+        Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".MoveTo()");
+
+        ArrayList<OrbitingObject> neighbors = location.GetNeighbors();  //Az OrbitingObjectek, amikre a Worker tud mozogni.
+        if (neighbors.contains(o)) {    //Ha a paraméterként átvett OrbitingObject benne van a neighbours listában.
+            location.RemoveWorker(this); //Az aktuális OrbitingObjectről eltávolítja a Workert.
+            o.AddWorker(this); //Áthelyezi a cél OrbitingObjectre.
+            location=o; //Megváltoztatja a locationt az új helyzetére.
+            canStep=false;
+            field.SettlerStepped();
+        }
+
+        Logger.tabcount--;
+    }
+
+    @Override
+    public void DrillHole(){ //Lejjebb fúr egy réteget az OrbitingObject kérgén, ha lehetséges.
+        Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".DrillHole()");
+
+        if (location.DrilledOn()) {
+            canStep=false;
+            field.SettlerStepped();
         }
 
         Logger.tabcount--;
@@ -53,6 +82,7 @@ public class Settler extends Worker {
         if(backpack.contains(m) && location.AddMaterial(m)){
             backpack.remove(m);
             canStep=false;
+            field.SettlerStepped();
         }
 
         Logger.tabcount--;
@@ -69,6 +99,7 @@ public class Settler extends Worker {
             gateInventory.get(0).SetEllipse(location.GetEllipse()); 
             gateInventory.remove(0);
             canStep=false;
+            field.SettlerStepped();
         }
         
         Logger.tabcount--;
@@ -111,6 +142,7 @@ public class Settler extends Worker {
                 gateInventory.add(t1);
                 gateInventory.add(t2);
                 canStep=false;
+                field.SettlerStepped();
             }
         }
         
@@ -145,6 +177,7 @@ public class Settler extends Worker {
             Robot r = new Robot(location, field);
             field.AddSteppable(r);
             canStep=false;
+            field.SettlerStepped();
         }
         
         Logger.tabcount--;
@@ -163,9 +196,10 @@ public class Settler extends Worker {
     //A telepes kihagyja a lépést az adott körben
     public void SkipAction(){
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".SkipAction()");
-        
+
         this.canStep = false;
-        
+        field.SettlerStepped();
+
         Logger.tabcount--;
     }
 
@@ -217,5 +251,13 @@ public class Settler extends Worker {
 
     public int getId(){
         return id;
+    }
+
+    public boolean CanStep() {
+        return canStep;
+    }
+
+    public void SetCanStep(boolean value) {
+        canStep = value;
     }
 }

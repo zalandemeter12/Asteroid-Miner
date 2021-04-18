@@ -98,12 +98,13 @@ public class ConsoleGame {
 
     public boolean addworker(String location, String type){
         OrbitingObject workerlocation = null;
-        if(location.equals("BaseAsteroid") && game.GetBase()!=null){
+        location=location.toLowerCase();
+        if(location.equals("baseasteroid") && game.GetBase()!=null){
             workerlocation = game.GetBase();
         } else {
             for (Ellipse2D e : ellipses) {
                 for (OrbitingObject o : e.GetObjects()) {
-                    if (o.GetName().equals(location)) {
+                    if (o.GetName().toLowerCase().equals(location)) {
                         workerlocation = o;
                     }
                 }
@@ -158,9 +159,10 @@ public class ConsoleGame {
     public boolean addsolarstorm(int angle, int warntimer, String target){
         SolarStorm ss = new SolarStorm(sun,angle,warntimer);
         boolean found = false;
+
         for (Ellipse2D e: ellipses) {
             for (OrbitingObject o: e.GetObjects()) {
-                if (o.GetName().equals(target)) {
+                if (o.GetName().toLowerCase().equals(target.toLowerCase())) {
                     ss.AddTarget(o);
                     found = true;
                     break;
@@ -175,13 +177,14 @@ public class ConsoleGame {
         OrbitingObject o2 = null;
         boolean found1 = false;
         boolean found2= false;
+
         for(Ellipse2D e: ellipses){
             for(OrbitingObject o : e.GetObjects()) {
-                if(o.GetName().equals(object1)){
+                if(o.GetName().toLowerCase().equals(object1.toLowerCase())){
                     found1 = true;
                     o1 = o;
                 }
-                if(o.GetName().equals(object2)){
+                if(o.GetName().toLowerCase().equals(object2.toLowerCase())){
                     found2 = true;
                     o2 = o;
                 }
@@ -202,7 +205,7 @@ public class ConsoleGame {
 
         for(Ellipse2D e: ellipses){
             for(OrbitingObject o : e.GetObjects())
-                if(o.GetName().equals(object)){
+                if(o.GetName().toLowerCase().equals(object.toLowerCase())){
                     o.SetCloseToSun(cts);
                     return true;
                 }
@@ -231,7 +234,7 @@ public class ConsoleGame {
     public boolean move(String worker, String location){
         for(Ellipse2D e: ellipses){
             for(OrbitingObject o : e.GetObjects())
-                if(o.GetName().equals(location)){
+                if(o.GetName().toLowerCase().equals(location.toLowerCase())){
                     for(Settler s : asteroidField.GetSettlers()) {
                         if (s.GetName().equals(worker)) {
                             s.MoveTo(o);
@@ -322,7 +325,7 @@ public class ConsoleGame {
                 return false;
         }
         for(Ellipse2D e: ellipses){
-            if(asteroid.equals("BaseAsteroid") && game.GetBase()!=null){
+            if(asteroid.toLowerCase().equals("baseasteroid") && game.GetBase()!=null){
                 for(Settler s : asteroidField.GetSettlers()) {
                     if (s.GetName().equals(setller)) {
                         s.PlaceMaterial(material1);
@@ -331,7 +334,7 @@ public class ConsoleGame {
                 }
             }
             for(OrbitingObject o : e.GetObjects())
-                if(o.GetName().equals(asteroid)){
+                if(o.GetName().toLowerCase().equals(asteroid.toLowerCase())){
                     for(Settler s : asteroidField.GetSettlers()) {
                         if (s.GetName().equals(setller)) {
                             s.PlaceMaterial(material1);

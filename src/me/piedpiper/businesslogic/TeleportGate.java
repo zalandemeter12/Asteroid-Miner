@@ -34,6 +34,7 @@ public class TeleportGate extends OrbitingObject {
         Logger.tabcount--;
     }
 
+
     //Beállítja egy kapu párját
     public void SetGatePair(TeleportGate tg){
         Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".SetGatePair()");
@@ -83,5 +84,9 @@ public class TeleportGate extends OrbitingObject {
 
     public static void ResetIndex(){
         currentIndex=0;
+    }
+
+    public TeleportGate getPair(){
+        return this.gatePair;
     }
 }

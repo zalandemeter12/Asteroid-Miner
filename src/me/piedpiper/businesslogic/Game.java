@@ -277,7 +277,6 @@ public class Game {
         // lista a teleportkapukrol
         JSONArray teleportGateListJson = new JSONArray();
 
-
         for (Ellipse2D ellipse : field.GetEllipses()) {
             for (OrbitingObject orbitingObject : ellipse.GetObjects()) {
                 if (orbitingObject.getClass() == TeleportGate.class){
@@ -298,6 +297,7 @@ public class Game {
                     teleportGateJson.put("neighbours", neighboursJson);
 
                     teleportGateJson.put("closeToSun", orbitingObject.IsCloseToSun());
+                    teleportGateJson.put("pair", ((TeleportGate)orbitingObject).getPair().GetName());
 
                     JSONObject teleportGateJsonWrapper = new JSONObject();
                     teleportGateJsonWrapper.put(orbitingObject.GetName(), teleportGateJson);
@@ -312,6 +312,37 @@ public class Game {
 
         // lista a telepesekrol
         JSONArray settlerListJson = new JSONArray();
+
+
+        for (Worker worker : base.GetWorkers()) {
+            if (worker.getClass() == Settler.class) {
+                JSONObject settlerJson = new JSONObject();
+
+                // material inventory
+                JSONArray inventoryJson = new JSONArray();
+                ArrayList<String> inventoryNames = new ArrayList<String>();
+                for (Material material : ((Settler) worker).GetBackpack()) {
+                    inventoryNames.add(material.GetName());
+                }
+                inventoryJson.putAll(inventoryNames);
+                settlerJson.put("inventory", inventoryJson);
+
+                // teleportGate inventory
+                JSONArray teleportGateJson = new JSONArray();
+                ArrayList<String> teleportGateNames = new ArrayList<String>();
+                for (TeleportGate teleportGate : ((Settler) worker).GetGateInventory()) {
+                    teleportGateNames.add(teleportGate.GetName());
+                }
+                teleportGateJson.putAll(teleportGateNames);
+                settlerJson.put("teleportGateInventory", teleportGateNames);
+
+                settlerJson.put("location", worker.location.GetName());
+
+                JSONObject settlerJsonWrapper = new JSONObject();
+                settlerJsonWrapper.put(worker.GetName(), settlerJson);
+                settlerListJson.put(settlerJsonWrapper);
+            }
+        }
 
         for (Ellipse2D ellipse : field.GetEllipses()) {
             for (OrbitingObject orbitingObject : ellipse.GetObjects()) {

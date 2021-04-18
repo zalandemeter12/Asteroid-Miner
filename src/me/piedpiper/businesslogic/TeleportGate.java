@@ -15,6 +15,7 @@ public class TeleportGate extends OrbitingObject {
 
         this.isMalfunctioning=false;
         this.id = ++currentIndex;
+        this.ellipse = null;
 
         Logger.tabcount--;
     }
@@ -90,5 +91,9 @@ public class TeleportGate extends OrbitingObject {
 
     public TeleportGate getPair(){
         return this.gatePair;
+    }
+
+    public boolean isActive(){
+        return gatePair.GetEllipse() != null && this.ellipse != null;
     }
 }

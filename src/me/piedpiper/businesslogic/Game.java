@@ -295,6 +295,7 @@ public class Game {
                     neighboursJson.putAll(neighboursNames);
 
                     teleportGateJson.put("neighbours", neighboursJson);
+                    teleportGateJson.put("active", ((TeleportGate) orbitingObject).isActive());
 
                     teleportGateJson.put("closeToSun", orbitingObject.IsCloseToSun());
                     teleportGateJson.put("pair", ((TeleportGate)orbitingObject).getPair().GetName());

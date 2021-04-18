@@ -68,4 +68,8 @@ public class Sun implements ISteppable {
         
         Logger.tabcount--;
     }
+
+    public void AddSolarStorm(SolarStorm s){
+        solarStorms.add(s);
+    }
 }

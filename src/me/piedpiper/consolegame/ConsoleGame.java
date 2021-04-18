@@ -164,6 +164,7 @@ public class ConsoleGame {
             for (OrbitingObject o: e.GetObjects()) {
                 if (o.GetName().toLowerCase().equals(target.toLowerCase())) {
                     ss.AddTarget(o);
+                    sun.AddSolarStorm(ss);
                     found = true;
                     break;
                 }

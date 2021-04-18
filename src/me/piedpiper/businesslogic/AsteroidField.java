@@ -49,7 +49,8 @@ public class AsteroidField implements ISteppable {
 
         //Ellipszisen keringo objektumok uj poziciojanak beallitasa
         for(Ellipse2D e: ellipses) {
-            e.MoveOrbits();
+            // TODO objectejket rendesen mozgatni
+            // e.MoveOrbits();
             orbitingObjects.addAll(e.GetObjects());
         }
 
@@ -57,12 +58,14 @@ public class AsteroidField implements ISteppable {
         for(int i = 0; i < orbitingObjects.size(); i++){
             for(int j = 0; j < orbitingObjects.size(); j++){
                 if(i != j){
+                    /* TODO szomszédokat rendesen beállítani
                     OrbitingObject o1 = orbitingObjects.get(i);
                     OrbitingObject o2 = orbitingObjects.get(j);
                     //TODO 10 helyett valami használható range érték
                     if(o1.GetPosition().DistanceFrom(o2.GetPosition()) < 10){
                         o1.AddNeighbor(o2);
                     }
+                     */
                 }
             }
         }

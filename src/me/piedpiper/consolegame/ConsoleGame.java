@@ -1,6 +1,5 @@
 package me.piedpiper.consolegame;
 
-import com.sun.xml.internal.ws.util.StringUtils;
 import me.piedpiper.businesslogic.*;
 
 import java.util.Scanner;
@@ -11,10 +10,14 @@ public class ConsoleGame {
     Scanner scanner = new Scanner(System.in);
 
     private Game game;
-    private BaseAsteroid base;
     private AsteroidField asteroidField;
     private Sun sun;
     private ArrayList<Ellipse2D> ellipses;
+
+    public static String capitalize(String s) {
+        if (s.length() == 0) return s;
+        return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+    }
 
     public void init(){
         Logger.logOnConsole = false;
@@ -409,7 +412,7 @@ public class ConsoleGame {
                 else if(command.length < 2)
                     System.out.println("Missing argument");
                 else{
-                    if(!addteleportgate(StringUtils.capitalize(command[1])))
+                    if(!addteleportgate(capitalize(command[1])))
                         System.out.println("Invalid arguments");
                 }
                 break;
@@ -419,7 +422,7 @@ public class ConsoleGame {
                 else if(command.length < 3)
                     System.out.println("Missing argument");
                 else{
-                    if(!addworker(StringUtils.capitalize(command[1]), command[2].toLowerCase()))
+                    if(!addworker(capitalize(command[1]), command[2].toLowerCase()))
                         System.out.println("Invalid arguments");
                 }
                 break;
@@ -429,7 +432,7 @@ public class ConsoleGame {
                 else if(command.length < 3)
                     System.out.println("Missing argument");
                 else{
-                    if(!addmaterialtobackpack(StringUtils.capitalize(command[1]), command[2].toLowerCase()))
+                    if(!addmaterialtobackpack(capitalize(command[1]), command[2].toLowerCase()))
                         System.out.println("Invalid arguments");
                 }
                 break;
@@ -440,7 +443,7 @@ public class ConsoleGame {
                     System.out.println("Missing argument");
                 else{
                     try{
-                        if(!addsolarstorm(Integer.parseInt(command[1]), Integer.parseInt(command[2]), StringUtils.capitalize(command[3])))
+                        if(!addsolarstorm(Integer.parseInt(command[1]), Integer.parseInt(command[2]), capitalize(command[3])))
                             System.out.println("Invalid arguments");
                     }
                     catch (Exception e){
@@ -454,7 +457,7 @@ public class ConsoleGame {
                 else if(command.length < 3)
                     System.out.println("Missing argument");
                 else{
-                    if(!setneighbours(StringUtils.capitalize(command[1]), StringUtils.capitalize(command[2])))
+                    if(!setneighbours(capitalize(command[1]), capitalize(command[2])))
                         System.out.println("Invalid arguments");
                 }
                 break;
@@ -464,7 +467,7 @@ public class ConsoleGame {
                 else if(command.length < 3)
                     System.out.println("Missing argument");
                 else{
-                    if(!setclosetosun(command[1].toLowerCase(), StringUtils.capitalize(command[2])))
+                    if(!setclosetosun(command[1].toLowerCase(), capitalize(command[2])))
                         System.out.println("Invalid arguments");
                 }
                 break;
@@ -484,7 +487,7 @@ public class ConsoleGame {
                 else if(command.length < 2)
                     System.out.println("Missing argument");
                 else {
-                    if (!skip(StringUtils.capitalize(command[1])))
+                    if (!skip(capitalize(command[1])))
                         System.out.println("Invalid arguments");
                 }
                 break;
@@ -495,7 +498,7 @@ public class ConsoleGame {
                 else if(command.length < 3)
                     System.out.println("Missing argument");
                 else {
-                    if (!move(StringUtils.capitalize(command[1]), StringUtils.capitalize(command[2])))
+                    if (!move(capitalize(command[1]), capitalize(command[2])))
                         System.out.println("Invalid arguments");
                 }
                 break;
@@ -506,7 +509,7 @@ public class ConsoleGame {
                 else if(command.length < 2)
                     System.out.println("Missing argument");
                 else {
-                    if (!drill(StringUtils.capitalize(command[1])))
+                    if (!drill(capitalize(command[1])))
                         System.out.println("Invalid arguments");
                 }
                 break;
@@ -517,7 +520,7 @@ public class ConsoleGame {
                 else if(command.length < 2)
                     System.out.println("Missing argument");
                 else {
-                    if (!mine(StringUtils.capitalize(command[1])))
+                    if (!mine(capitalize(command[1])))
                         System.out.println("Invalid arguments");
                 }
                 break;
@@ -528,7 +531,7 @@ public class ConsoleGame {
                 else if(command.length < 2)
                     System.out.println("Missing argument");
                 else {
-                    if (!craftgate(StringUtils.capitalize(command[1])))
+                    if (!craftgate(capitalize(command[1])))
                         System.out.println("Invalid arguments");
                 }
                 break;
@@ -539,7 +542,7 @@ public class ConsoleGame {
                 else if(command.length < 2)
                     System.out.println("Missing argument");
                 else {
-                    if (!buildrobot(StringUtils.capitalize(command[1])))
+                    if (!buildrobot(capitalize(command[1])))
                         System.out.println("Invalid arguments");
                 }
                 break;
@@ -550,7 +553,7 @@ public class ConsoleGame {
                 else if(command.length < 4)
                     System.out.println("Missing argument");
                 else {
-                    if (!placematerial(StringUtils.capitalize(command[1]), StringUtils.capitalize(command[2]), command[3].toLowerCase()))
+                    if (!placematerial(capitalize(command[1]), capitalize(command[2]), command[3].toLowerCase()))
                         System.out.println("Invalid arguments");
                 }
                 break;
@@ -561,7 +564,7 @@ public class ConsoleGame {
                 else if(command.length < 2)
                     System.out.println("Missing argument");
                 else {
-                    if (!placegate(StringUtils.capitalize(command[1])))
+                    if (!placegate(capitalize(command[1])))
                         System.out.println("Invalid arguments");
                 }
                 break;

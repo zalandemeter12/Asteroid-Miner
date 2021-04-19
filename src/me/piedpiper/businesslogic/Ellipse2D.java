@@ -76,4 +76,8 @@ public class Ellipse2D {
     public void SetField(AsteroidField field) {
         this.field = field;
     }
+
+    public static void ResetIndex() {
+        currentIndex=0;
+    }
 }

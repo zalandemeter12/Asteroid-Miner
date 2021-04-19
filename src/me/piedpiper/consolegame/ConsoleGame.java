@@ -354,7 +354,6 @@ public class ConsoleGame {
     }
 
     public void reset(){
-        init();
         Asteroid.ResetIndex();
         TeleportGate.ResetIndex();
         Coal.ResetIndex();
@@ -365,6 +364,8 @@ public class ConsoleGame {
         Settler.ResetIndex();
         Ufo.ResetIndex();
         SolarStorm.ResetIndex();
+        Ellipse2D.ResetIndex();
+        init();
     }
 
     private boolean CommandInterpreter(){

@@ -1,5 +1,6 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.View;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -442,10 +443,12 @@ public class Game {
 
     //Belépési pont
     public static void main(String[] args){
-        Logger.logOnConsole = false;
+        //Logger.logOnConsole = false;
         Game game = new Game();
-        game.testInit();
-        game.WriteJson();
+        //game.testInit();
+        //game.WriteJson();
+        View view = new View();
+        view.setVisible(true);
 
     }
 }

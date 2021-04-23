@@ -13,6 +13,8 @@ public class Game {
     //A bázis aszteroidát külön ismeri
     private BaseAsteroid base;
 
+    private final static View view = new View();
+
     //Konstruktor
     public Game() {
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
@@ -447,7 +449,6 @@ public class Game {
         Game game = new Game();
         //game.testInit();
         //game.WriteJson();
-        View view = new View();
         view.setVisible(true);
 
     }

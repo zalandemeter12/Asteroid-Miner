@@ -6,8 +6,8 @@ import java.util.Random;
 public class Ellipse2D {
     private AsteroidField field;
     // A koordinatarendszerben az ellipszis poziciojat derterminalo fokuszpontok
-    private final Point2D focalpoint0;
-    private final Point2D focalpoint1;
+    private Point2D focalpoint0;
+    private Point2D focalpoint1;
     // Az ellipszisen levo objektumok keringesi sebessege
     private double velocity;
     // Az ellipszisen keringo objektumok listaja
@@ -33,6 +33,20 @@ public class Ellipse2D {
         Logger.tabcount--;
     }
 
+    public Ellipse2D(double a, double b, double distance, double velocity, ArrayList<OrbitingObject> objects) {
+        Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.objects = new ArrayList<>();
+        this.a = a;
+        this.b = b;
+        this.distance = distance;
+        this.velocity = velocity;
+        this.objects = objects;
+        this.id = ++currentIndex;
+
+        Logger.tabcount--;
+    }
+
     public int GetId(){
         return id;
     }
@@ -45,9 +59,17 @@ public class Ellipse2D {
         Random rand = new Random();
         double tr = rand.nextDouble();
         boolean notClose = false;
+        Point2D p = new Point2D(a * Math.cos(tr), b * Math.sin(tr));
         while(!notClose){
-            Point2D p = new Point2D(a * Math.cos(tr), b * Math.sin(tr));
+            tr += velocity;
+            p = new Point2D(a * Math.cos(tr), b * Math.sin(tr));
+            notClose = true;
+            for(OrbitingObject or : objects){
+                if(p.DistanceFrom(or.GetPosition()) < 10) //TODO find the real isClose value
+                    notClose = false;
+            }
         }
+        o.SetPosition(p);
     }
 
     // Keringo objektum eltavolitasa az ellipszisrol

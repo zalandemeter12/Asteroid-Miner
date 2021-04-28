@@ -11,5 +11,10 @@ public class TeleportGatePanel extends JPanel {
     @Override
     public void paintComponents(Graphics g) {
         super.paintComponents(g);
+
+        //TODO width, height kitalálni
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.setPaint(Color.red);
+        g2d.fillRect((int)teleportGate.GetPosition().GetX(), (int)teleportGate.GetPosition().GetY(), 10, 10);
     }
 }

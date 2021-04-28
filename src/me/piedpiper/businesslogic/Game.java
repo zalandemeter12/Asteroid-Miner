@@ -4,6 +4,7 @@ import me.piedpiper.gui.View;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 //A játékok összefogó objektum, tertalmazza és létrehozza a fő objektumokat
@@ -35,6 +36,7 @@ public class Game {
         sun.SetField(this.field);
 
         Logger.tabcount--;
+
     }
 
     public void testInitSequences(int settlerCount) {

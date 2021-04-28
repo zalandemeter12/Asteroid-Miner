@@ -1,4 +1,15 @@
 package me.piedpiper.gui;
 
-public class RobotPanel {
+import me.piedpiper.businesslogic.Robot;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class RobotPanel extends JPanel {
+    private Robot robot;
+
+    @Override
+    public void paintComponents(Graphics g) {
+        super.paintComponents(g);
+    }
 }

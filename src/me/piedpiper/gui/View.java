@@ -35,7 +35,9 @@ public class View extends JFrame {
 
     private static final JPanel mainPanel = new JPanel();
 
-    private static final JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    private static final JPanel infoPanel = new JPanel();
+    private static final JPanel infoPanelLeft = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    private static final JPanel infoPanelRight = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
     private static final JPanel activeSettlerInfoPanel = new JPanel();
     private static final JLabel activeSettlerLabel = new JLabel("Active Settler: Settler1");
@@ -71,6 +73,12 @@ public class View extends JFrame {
 
 
         infoPanel.setBackground(grayColor);
+        infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.LINE_AXIS));
+
+        infoPanelLeft.setBackground(grayColor);
+        infoPanelRight.setBackground(grayColor);
+        infoPanel.add(infoPanelLeft);
+        infoPanel.add(infoPanelRight);
 
         activeSettlerInfoPanel.setLayout(new BoxLayout(activeSettlerInfoPanel, BoxLayout.PAGE_AXIS));
         activeSettlerLabel.setForeground(almostWhite);
@@ -91,16 +99,16 @@ public class View extends JFrame {
         clickedObjectInfoPanel.add(clickedObjectMaterialLabel);
         clickedObjectInfoPanel.setBackground(grayColor);
 
-        infoPanel.add(activeSettlerInfoPanel);
-        infoPanel.add(clickedObjectInfoPanel);
+        infoPanelLeft.add(activeSettlerInfoPanel);
+        infoPanelLeft.add(clickedObjectInfoPanel);
 
-        drillButton.setBackground(grayColor); // sajnos ez nem lesz mukodokepes
-        infoPanel.add(drillButton);
-        infoPanel.add(mineButton);
-        infoPanel.add(moveButton);
-        infoPanel.add(placeMaterialButton);
-        infoPanel.add(placeGateButton);
-        infoPanel.add(skipButton);
+
+        infoPanelRight.add(drillButton);
+        infoPanelRight.add(mineButton);
+        infoPanelRight.add(moveButton);
+        infoPanelRight.add(placeMaterialButton);
+        infoPanelRight.add(placeGateButton);
+        infoPanelRight.add(skipButton);
 
 
 

@@ -1,6 +1,7 @@
 package me.piedpiper.businesslogic;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Ellipse2D {
     private AsteroidField field;
@@ -13,6 +14,7 @@ public class Ellipse2D {
     private ArrayList<OrbitingObject> objects;
     // A tavolsag parameter, ami a fokuszpontokkal egyutt determinaljak az ellipszist
     private final double distance;
+    private double a, b;
     private final int id;
     private static int currentIndex = 0;
 
@@ -35,7 +37,18 @@ public class Ellipse2D {
         return id;
     }
 
-    public void AddObject(OrbitingObject o){ objects.add(o); }
+    public double GetA(){return a;}
+    public double GetB(){return b;}
+
+    public void AddObject(OrbitingObject o){
+        objects.add(o);
+        Random rand = new Random();
+        double tr = rand.nextDouble();
+        boolean notClose = false;
+        while(!notClose){
+            Point2D p = new Point2D(a * Math.cos(tr), b * Math.sin(tr));
+        }
+    }
 
     // Keringo objektum eltavolitasa az ellipszisrol
     public void RemoveObject(OrbitingObject o) {
@@ -47,9 +60,10 @@ public class Ellipse2D {
     // Az keringo objektumok (aszteroidak, teleportkapuk) mozgatasa
     public void MoveOrbits() {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".MoveOrbits()");
-        
+        double t;
         for (OrbitingObject o : objects) {
-            o.SetPosition(new Point2D(12,21));
+            t = Math.acos(o.GetPosition().GetX() / a);
+            o.SetPosition(new Point2D(a * Math.cos(t + velocity), b * Math.sin(t + velocity)));
         }
 
         Logger.tabcount--;
@@ -59,7 +73,10 @@ public class Ellipse2D {
     public Point2D GateLocation(Point2D p) {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".GateLocation()");
         Logger.tabcount--;
-        return null;
+
+        double t = Math.acos(p.GetX() / a);
+        double shift = 0.1; //TODO find the real shift value
+        return new Point2D(a * Math.cos(t + shift), b * Math.sin(t + shift));
     }
 
     // visszaadja a rajta keringo objektumok listajat

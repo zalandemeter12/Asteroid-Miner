@@ -10,6 +10,8 @@ public class SunPanel extends JPanel implements IPosGettable{
 
     public SunPanel(Sun s){
         sun=s;
+        this.setSize(60, 60);
+        this.setBackground(new Color(0,0,0,0));
     }
 
     @Override
@@ -19,17 +21,17 @@ public class SunPanel extends JPanel implements IPosGettable{
         //TODO width, height kitalálni
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.orange);
-        int r=20;
-        g2d.fillOval(1000/2-r, 600/2+r, r, r);
+        int r=60;
+        g2d.fillOval(0, 0, r, r);
     }
 
     @Override
     public int GetPosX() {
-        return 0;
+        return 350;
     }
 
     @Override
     public int GetPosY() {
-        return 0;
+        return 200;
     }
 }

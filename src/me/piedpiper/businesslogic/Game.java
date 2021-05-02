@@ -451,6 +451,9 @@ public class Game {
         Game game = new Game();
         //game.testInit();
         //game.WriteJson();
+        Sun sun = new Sun(new Point2D(0,0),game.GetField(),view);
+        TeleportGate t = new TeleportGate(new Point2D(400,400),game.GetField().GetEllipses().get(0),view);
+        BaseAsteroid base = new BaseAsteroid(new Point2D(200,200),game.GetField().GetEllipses().get(0), 0, null, view);
         Asteroid a=new Asteroid(new Point2D(100, 100), game.GetField().GetEllipses().get(0), 0, null, view);
         a.AddWorker(new Robot(a, game.field, view));
 

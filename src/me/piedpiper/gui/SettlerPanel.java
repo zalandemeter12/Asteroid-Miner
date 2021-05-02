@@ -5,7 +5,7 @@ import me.piedpiper.businesslogic.Settler;
 import javax.swing.*;
 import java.awt.*;
 
-public class SettlerPanel extends JPanel {
+public class SettlerPanel extends JPanel implements IPosGettable{
     private Settler settler;
 
     public SettlerPanel(Settler s){
@@ -13,8 +13,8 @@ public class SettlerPanel extends JPanel {
     }
 
     @Override
-    public void paintComponents(Graphics g) {
-        super.paintComponents(g);
+    public void paint(Graphics g) {
+        super.paint(g);
 
         //TODO width, height kitalálni, mennyivel legyen az aszteroida felett
         Graphics2D g2d = (Graphics2D)g;
@@ -45,4 +45,13 @@ public class SettlerPanel extends JPanel {
         g2d.fillOval(x, (int)settler.GetLocation().GetPosition().GetY() + 16, width, height);
     }
 
+    @Override
+    public int GetPosX() {
+        return 0;
+    }
+
+    @Override
+    public int GetPosY() {
+        return 0;
+    }
 }

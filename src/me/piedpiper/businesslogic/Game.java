@@ -450,6 +450,9 @@ public class Game {
         Game game = new Game();
         //game.testInit();
         //game.WriteJson();
+        Asteroid a=new Asteroid(new Point2D(100, 100), game.GetField().GetEllipses().get(0), 0, null, view);
+        a.AddWorker(new Robot(a, game.field, view));
+
         view.setVisible(true);
 
     }

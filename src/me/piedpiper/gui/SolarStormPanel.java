@@ -5,7 +5,7 @@ import me.piedpiper.businesslogic.SolarStorm;
 import javax.swing.*;
 import java.awt.*;
 
-public class SolarStormPanel extends JPanel {
+public class SolarStormPanel extends JPanel implements IPosGettable{
     private SolarStorm solarStorm;
 
     public SolarStormPanel(SolarStorm s){
@@ -13,8 +13,8 @@ public class SolarStormPanel extends JPanel {
     }
 
     @Override
-    public void paintComponents(Graphics g) {
-        super.paintComponents(g);
+    public void paint(Graphics g) {
+        super.paint(g);
 
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.red);
@@ -22,4 +22,13 @@ public class SolarStormPanel extends JPanel {
         g2d.fillArc(0, 0, 1000, 600, 0, (int)solarStorm.GetAngle());
     }
 
+    @Override
+    public int GetPosX() {
+        return 0;
+    }
+
+    @Override
+    public int GetPosY() {
+        return 0;
+    }
 }

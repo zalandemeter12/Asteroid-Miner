@@ -2,6 +2,7 @@ package me.piedpiper.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class View extends JFrame {
 
@@ -59,6 +60,8 @@ public class View extends JFrame {
     private static final Color grayColor = new Color(57, 57, 57);
     private static final Color almostWhite = new Color(230, 230, 230);
     private static final Color spaceBlue = new Color(61, 45, 182);
+
+    private static ArrayList<JPanel>  graphicobjects = new ArrayList<JPanel>();
 
     public View(){
         super("Asteroid miner");
@@ -130,4 +133,8 @@ public class View extends JFrame {
     public void RemoveGraphicObject(JPanel p){
 
     }
+    public void Repaint(){
+
+    }
+
 }

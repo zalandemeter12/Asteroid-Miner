@@ -8,6 +8,10 @@ import java.awt.*;
 public class SettlerPanel extends JPanel {
     private Settler settler;
 
+    public SettlerPanel(Settler s){
+        settler=s;
+    }
+
     @Override
     public void paintComponents(Graphics g) {
         super.paintComponents(g);

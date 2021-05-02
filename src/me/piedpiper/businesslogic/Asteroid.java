@@ -37,7 +37,7 @@ public class Asteroid extends OrbitingObject {
         this.material = material;
         this.id = ++currentIndex;
         this.view = view;
-        panel = new AsteroidPanel();
+        panel = new AsteroidPanel(this);
         view.AddGraphicObject(panel);
         Logger.tabcount--;
     }

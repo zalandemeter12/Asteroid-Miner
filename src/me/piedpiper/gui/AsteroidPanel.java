@@ -9,6 +9,10 @@ import java.awt.geom.Ellipse2D;
 public class AsteroidPanel extends JPanel {
     private Asteroid asteroid;
 
+    public AsteroidPanel(Asteroid a){
+        asteroid=a;
+    }
+
     @Override
     public void paintComponents(Graphics g) {
         super.paintComponents(g);

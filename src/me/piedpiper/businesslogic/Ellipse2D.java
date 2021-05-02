@@ -49,6 +49,7 @@ public class Ellipse2D {
         this.objects = objects;
         this.id = ++currentIndex;
         this.view = view;
+        panel=new EllipsePanel(this);
         view.AddGraphicObject(panel);
         Logger.tabcount--;
     }

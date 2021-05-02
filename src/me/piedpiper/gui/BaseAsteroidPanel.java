@@ -8,6 +8,10 @@ import java.awt.*;
 public class BaseAsteroidPanel extends JPanel {
     private BaseAsteroid baseAsteroid;
 
+    public BaseAsteroidPanel(BaseAsteroid b){
+        baseAsteroid=b;
+    }
+
     @Override
     public void paintComponents(Graphics g) {
         super.paintComponents(g);

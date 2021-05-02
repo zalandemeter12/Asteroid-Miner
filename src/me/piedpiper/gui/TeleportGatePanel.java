@@ -8,6 +8,10 @@ import java.awt.*;
 public class TeleportGatePanel extends JPanel {
     private TeleportGate teleportGate;
 
+    public TeleportGatePanel(TeleportGate tp){
+        teleportGate=tp;
+    }
+
     @Override
     public void paintComponents(Graphics g) {
         super.paintComponents(g);

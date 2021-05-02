@@ -31,6 +31,7 @@ public class Robot extends Worker implements ISteppable{
         this.field = field;
         this.id = ++currentIndex;
         this.view = view;
+        panel=new RobotPanel(this);
         view.AddGraphicObject(panel);
         Logger.tabcount--;
     }

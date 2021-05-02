@@ -8,6 +8,10 @@ import java.awt.*;
 public class RobotPanel extends JPanel {
     private Robot robot;
 
+    public RobotPanel(Robot r){
+        robot=r;
+    }
+
     @Override
     public void paintComponents(Graphics g) {
         super.paintComponents(g);

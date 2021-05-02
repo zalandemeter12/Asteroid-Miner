@@ -22,6 +22,7 @@ public class Ufo extends Worker implements ISteppable{
         this.field=f;
         this.id = ++currentIndex;
         this.view = view;
+        panel=new UfoPanel(this);
         view.AddGraphicObject(panel);
     }
 

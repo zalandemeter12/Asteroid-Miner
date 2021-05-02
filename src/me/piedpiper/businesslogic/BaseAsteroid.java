@@ -34,6 +34,7 @@ public class BaseAsteroid extends Asteroid {
         this.game = game;
         this.thickness = 0;
         this.view = view;
+        panel=new BaseAsteroidPanel(this);
         view.AddGraphicObject(panel);
         Logger.tabcount--;
     }

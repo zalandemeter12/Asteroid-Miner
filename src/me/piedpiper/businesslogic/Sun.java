@@ -42,6 +42,7 @@ public class Sun implements ISteppable {
         this.field = field;
         this.solarStorms = new ArrayList<SolarStorm>();
         this.view = view;
+        panel=new SunPanel(this);
         view.AddGraphicObject(panel);
         Logger.tabcount--;
     }

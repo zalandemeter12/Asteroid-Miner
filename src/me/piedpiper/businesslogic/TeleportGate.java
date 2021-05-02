@@ -34,6 +34,7 @@ public class TeleportGate extends OrbitingObject {
         this.id = ++currentIndex;
         this.ellipse = null;
         this.view = view;
+        panel=new TeleportGatePanel(this);
         view.AddGraphicObject(panel);
         Logger.tabcount--;
     }
@@ -50,7 +51,6 @@ public class TeleportGate extends OrbitingObject {
             gatePair.GetWorkers().add(w);
         }
 
-        
         Logger.tabcount--;
     }
 

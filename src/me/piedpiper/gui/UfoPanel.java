@@ -8,6 +8,10 @@ import java.awt.*;
 public class UfoPanel extends JPanel {
     private Ufo ufo;
 
+    public UfoPanel(Ufo u){
+        ufo=u;
+    }
+
     @Override
     public void paintComponents(Graphics g) {
         super.paintComponents(g);

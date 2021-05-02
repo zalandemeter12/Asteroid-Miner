@@ -34,7 +34,7 @@ public class View extends JFrame {
 
     private static final JPanel containerPanel = new JPanel(new BorderLayout());
 
-    private static final JPanel mainPanel = new JPanel();
+    private static MainPanel mainPanel;
 
     private static final JPanel infoPanel = new JPanel();
     private static final JPanel infoPanelLeft = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -61,12 +61,12 @@ public class View extends JFrame {
     private static final Color almostWhite = new Color(230, 230, 230);
     private static final Color spaceBlue = new Color(61, 45, 182);
 
-    private static ArrayList<JPanel>  graphicObjects = new ArrayList<JPanel>();
-
     public View(){
         super("Asteroid miner");
         this.setMinimumSize(new Dimension(1000, 600));
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        mainPanel = new MainPanel();
 
         gameMenu.add(newMenuItem);
         gameMenu.add(openMenuItem);
@@ -113,12 +113,8 @@ public class View extends JFrame {
         infoPanelRight.add(placeGateButton);
         infoPanelRight.add(skipButton);
 
-
-
         mainPanel.setBackground(spaceBlue);
         menuContainer.setBackground(spaceBlue);
-
-
 
         containerPanel.add(menuContainer, BorderLayout.NORTH);
         containerPanel.add(infoPanel, BorderLayout.SOUTH);
@@ -126,12 +122,13 @@ public class View extends JFrame {
         this.add(containerPanel);
     }
 
-    public void AddGraphicObject(JPanel p){
 
+    public void AddGraphicObject(JPanel p){
+        mainPanel.AddGraphicObject(p);
     }
 
     public void RemoveGraphicObject(JPanel p){
-
+        mainPanel.RemoveGraphicObject(p);
     }
     public void Repaint(){
 

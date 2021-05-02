@@ -5,8 +5,12 @@ import javax.swing.*;
 public class Handlers {
     private View view;
 
-    public void DrillClicked(){
+    public Handlers(View view) {
+        this.view = view;
+    }
 
+    public void DrillClicked(){
+        view.GetGame().GetActiveSettler().Drill();
     }
 
     public void MineClicked(){

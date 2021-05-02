@@ -1,5 +1,9 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.AsteroidPanel;
+import me.piedpiper.gui.TeleportGatePanel;
+import me.piedpiper.gui.View;
+
 import java.util.Random;
 
 public class TeleportGate extends OrbitingObject {
@@ -7,6 +11,8 @@ public class TeleportGate extends OrbitingObject {
     private TeleportGate gatePair;
     private boolean isMalfunctioning;
     private static int currentIndex = 0;
+    private View view;
+    private TeleportGatePanel panel;
 
     //A teleport kapu konstruktora
     public TeleportGate(Point2D position, Ellipse2D ellipse) {
@@ -17,6 +23,18 @@ public class TeleportGate extends OrbitingObject {
         this.id = ++currentIndex;
         this.ellipse = null;
 
+        Logger.tabcount--;
+    }
+
+    public TeleportGate(Point2D position, Ellipse2D ellipse,View view) {
+        super(position, ellipse);
+        Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.isMalfunctioning=false;
+        this.id = ++currentIndex;
+        this.ellipse = null;
+        this.view = view;
+        view.AddGraphicObject(panel);
         Logger.tabcount--;
     }
 

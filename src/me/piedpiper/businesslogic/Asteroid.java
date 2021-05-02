@@ -1,5 +1,8 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.AsteroidPanel;
+import me.piedpiper.gui.View;
+
 //Az aszteroidát valósítja meg, tárolja a sziklarétegei számát,
 //a tartalmazott nyersanyagát és hogy közel van-e a nap
 public class Asteroid extends OrbitingObject {
@@ -10,6 +13,8 @@ public class Asteroid extends OrbitingObject {
     //A tartalmazott
     private Material material;
     private static int currentIndex = 0;
+    private View view;
+    private AsteroidPanel panel;
 
     //Kostruktor
     public Asteroid(Point2D position, Ellipse2D ellipse, int thickness, Material material) {
@@ -20,7 +25,20 @@ public class Asteroid extends OrbitingObject {
         this.closeToSun = false;
         this.material = material;
         this.id = ++currentIndex;
+        Logger.tabcount--;
+    }
 
+    public Asteroid(Point2D position, Ellipse2D ellipse, int thickness, Material material,View view) {
+        super(position, ellipse);
+        Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.thickness = thickness;
+        this.closeToSun = false;
+        this.material = material;
+        this.id = ++currentIndex;
+        this.view = view;
+        panel = new AsteroidPanel();
+        view.AddGraphicObject(panel);
         Logger.tabcount--;
     }
 
@@ -122,5 +140,5 @@ public class Asteroid extends OrbitingObject {
         currentIndex=0;
     }
 
-
+    public AsteroidPanel GetPanel(){return panel;}
 }

@@ -1,5 +1,9 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.AsteroidPanel;
+import me.piedpiper.gui.SolarStormPanel;
+import me.piedpiper.gui.View;
+
 import java.util.ArrayList;
 
 public class SolarStorm implements ISteppable{
@@ -13,6 +17,8 @@ public class SolarStorm implements ISteppable{
     private static int currentIndex = 0;
     private final int id;
     private ArrayList<OrbitingObject> targets;
+    private View view;
+    private SolarStormPanel panel;
 
     //A napkitörés konstruktora
     public SolarStorm(Sun sun, double angle, int warnTimer) {
@@ -24,6 +30,19 @@ public class SolarStorm implements ISteppable{
         this.targets = new ArrayList<>();
         this.id = ++currentIndex;
 
+        Logger.tabcount--;
+    }
+
+    public SolarStorm(Sun sun, double angle, int warnTimer,View view) {
+        Logger.logMessage("SolarStorm#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.sun = sun;
+        this.angle = angle;
+        this.warnTimer = warnTimer;
+        this.targets = new ArrayList<>();
+        this.id = ++currentIndex;
+        this.view = view;
+        view.AddGraphicObject(panel);
         Logger.tabcount--;
     }
 
@@ -42,6 +61,7 @@ public class SolarStorm implements ISteppable{
             for (OrbitingObject o : targets)
                 o.UnderSolarStorm();
             sun.GetSolarStorms().remove(this);
+            view.RemoveGraphicObject(panel);
         }
         
         Logger.tabcount--;

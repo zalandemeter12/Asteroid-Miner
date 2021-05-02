@@ -1,5 +1,8 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.RobotPanel;
+import me.piedpiper.gui.View;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,7 +11,8 @@ public class Robot extends Worker implements ISteppable{
     private final AsteroidField field;
 
     private static int currentIndex = 0;
-
+    private View view;
+    private RobotPanel panel;
     //A robot konstruktora
     public Robot(OrbitingObject location, AsteroidField field){
         super(location);
@@ -20,13 +24,24 @@ public class Robot extends Worker implements ISteppable{
         Logger.tabcount--;
     }
 
+    public Robot(OrbitingObject location, AsteroidField field,View view){
+        super(location);
+        Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.field = field;
+        this.id = ++currentIndex;
+        this.view = view;
+        view.AddGraphicObject(panel);
+        Logger.tabcount--;
+    }
+
     //A robot "meghal" - tönkremegy
     @Override
     public void Die(){
         Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Die()");
         
         field.RemoveSteppable(this);
-        
+        view.RemoveGraphicObject(panel);
         Logger.tabcount--;
     }
 

@@ -1,5 +1,8 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.SunPanel;
+import me.piedpiper.gui.View;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,6 +19,8 @@ public class Sun implements ISteppable {
 
     // Referencia az aszteroidamezore
     private AsteroidField field;
+    private View view;
+    private SunPanel panel;
 
     // Komnstruktor
     public Sun(Point2D position, AsteroidField field) {
@@ -26,6 +31,18 @@ public class Sun implements ISteppable {
         this.field = field;
         this.solarStorms = new ArrayList<SolarStorm>();
 
+        Logger.tabcount--;
+    }
+
+    public Sun(Point2D position, AsteroidField field,View view) {
+        Logger.logMessage("Sun#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.roundsWithoutSS = 0;
+        this.position = position;
+        this.field = field;
+        this.solarStorms = new ArrayList<SolarStorm>();
+        this.view = view;
+        view.AddGraphicObject(panel);
         Logger.tabcount--;
     }
 

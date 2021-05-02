@@ -1,5 +1,7 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.AsteroidPanel;
+
 import java.util.ArrayList;
 
 public abstract class OrbitingObject {

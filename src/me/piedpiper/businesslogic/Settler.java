@@ -1,5 +1,8 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.SettlerPanel;
+import me.piedpiper.gui.View;
+
 import java.util.ArrayList;
 
 public class Settler extends Worker {
@@ -12,6 +15,8 @@ public class Settler extends Worker {
     //A telepes teleport kapu tárolója
     private ArrayList<TeleportGate> gateInventory;
     private static int currentIndex = 0;
+    private View view;
+    private SettlerPanel panel;
 
 
     //A telepes konstruktora
@@ -27,6 +32,21 @@ public class Settler extends Worker {
 
         Logger.tabcount--;
     }
+
+    public Settler(OrbitingObject location, AsteroidField field,View view){
+        super(location);
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.field = field;
+        this.canStep = true;
+        this.backpack = new ArrayList<>();
+        this.gateInventory = new ArrayList<>();
+        this.id = ++currentIndex;
+        this.view = view;
+        view.AddGraphicObject(panel);
+        Logger.tabcount--;
+    }
+
 
     //A telepes bányászik az aszteroidán amin van
     public void Mine() { 
@@ -218,7 +238,7 @@ public class Settler extends Worker {
         
         location.RemoveWorker(this);
         field.RemoveSettler(this);
-        
+        view.RemoveGraphicObject(panel);
         Logger.tabcount--;
     }
 

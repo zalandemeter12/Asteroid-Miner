@@ -1,5 +1,8 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.EllipsePanel;
+import me.piedpiper.gui.View;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,6 +20,8 @@ public class Ellipse2D {
     private double a, b;
     private final int id;
     private static int currentIndex = 0;
+    private View view;
+    private EllipsePanel panel;
 
     // Konstruktor
     public Ellipse2D(Point2D focalpoint0, Point2D focalpoint1, double distance, double velocity, ArrayList<OrbitingObject> objects) {
@@ -33,6 +38,21 @@ public class Ellipse2D {
         Logger.tabcount--;
     }
 
+    public Ellipse2D(Point2D focalpoint0, Point2D focalpoint1, double distance, double velocity, ArrayList<OrbitingObject> objects,View view) {
+        Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        this.objects = new ArrayList<>();
+        this.focalpoint0 = focalpoint0;
+        this.focalpoint1 = focalpoint1;
+        this.distance = distance;
+        this.velocity = velocity;
+        this.objects = objects;
+        this.id = ++currentIndex;
+        this.view = view;
+        view.AddGraphicObject(panel);
+        Logger.tabcount--;
+    }
+
     public Ellipse2D(double a, double b, double distance, double velocity, ArrayList<OrbitingObject> objects) {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
@@ -46,6 +66,7 @@ public class Ellipse2D {
 
         Logger.tabcount--;
     }
+
 
     public int GetId(){
         return id;

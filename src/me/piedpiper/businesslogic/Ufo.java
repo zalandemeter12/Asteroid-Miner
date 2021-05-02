@@ -1,10 +1,15 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.UfoPanel;
+import me.piedpiper.gui.View;
+
 import java.util.Random;
 
 public class Ufo extends Worker implements ISteppable{
     private final AsteroidField field;
     private static int currentIndex = 0;
+    private View view;
+    private UfoPanel panel;
 
     public Ufo(OrbitingObject location, AsteroidField f) {
         super(location);
@@ -12,10 +17,19 @@ public class Ufo extends Worker implements ISteppable{
         this.id = ++currentIndex;
     }
 
+    public Ufo(OrbitingObject location, AsteroidField f,View view) {
+        super(location);
+        this.field=f;
+        this.id = ++currentIndex;
+        this.view = view;
+        view.AddGraphicObject(panel);
+    }
+
     @Override
     public void Die() {
         location.RemoveWorker(this);
         field.RemoveSteppable(this);
+        view.RemoveGraphicObject(panel);
     }
 
     @Override

@@ -1,6 +1,9 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.View;
+
 public abstract class RadioactiveMaterial extends Material {
+    private View view;
     //A radioaktív anyag felrobban
     @Override
     public void BlowUp(OrbitingObject o) {
@@ -12,7 +15,7 @@ public abstract class RadioactiveMaterial extends Material {
         }
         o.GetEllipse().RemoveObject(o);
         o.RemoveMaterial();
-        
+        view.RemoveGraphicObject(((Asteroid)o).GetPanel());
         Logger.tabcount--;
     }
 }

@@ -135,7 +135,6 @@ public class Game {
         s1.GetBackpack().add(new Iron());
         Settler s2=new Settler(a3, field);
         s2.AddGate(tg4);
-
         this.base=new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0,this);
         field.GetEllipses().get(0).GetObjects().add(base);
         field.GetSettlers().add(s1);

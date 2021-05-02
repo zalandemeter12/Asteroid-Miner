@@ -1,5 +1,9 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.AsteroidPanel;
+import me.piedpiper.gui.BaseAsteroidPanel;
+import me.piedpiper.gui.View;
+
 import java.util.ArrayList;
 
 public class BaseAsteroid extends Asteroid {
@@ -7,6 +11,8 @@ public class BaseAsteroid extends Asteroid {
     private ArrayList<Material> chest;
     // Jatekmenentet kezelo objektum referenciaja
     private Game game;
+    private View view;
+    private BaseAsteroidPanel panel;
 
     // Konstruktor
     public BaseAsteroid(Point2D position, Ellipse2D ellipse, int thickness, Game game) {
@@ -17,6 +23,18 @@ public class BaseAsteroid extends Asteroid {
         this.game = game;
         this.thickness = 0;
 
+        Logger.tabcount--;
+    }
+
+    public BaseAsteroid(Point2D position, Ellipse2D ellipse, int thickness, Game game,View view) {
+        super(position, ellipse, thickness, null);
+        Logger.logMessage("BaseAsteroid#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
+
+        chest=new ArrayList<>();
+        this.game = game;
+        this.thickness = 0;
+        this.view = view;
+        view.AddGraphicObject(panel);
         Logger.tabcount--;
     }
 

@@ -61,7 +61,7 @@ public class View extends JFrame {
     private static final Color almostWhite = new Color(230, 230, 230);
     private static final Color spaceBlue = new Color(61, 45, 182);
 
-    private static ArrayList<JPanel>  graphicobjects = new ArrayList<JPanel>();
+    private static ArrayList<JPanel>  graphicObjects = new ArrayList<JPanel>();
 
     public View(){
         super("Asteroid miner");

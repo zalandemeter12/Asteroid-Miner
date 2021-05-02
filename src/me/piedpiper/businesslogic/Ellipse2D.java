@@ -6,6 +6,9 @@ import me.piedpiper.gui.View;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+
 public class Ellipse2D {
     private AsteroidField field;
     // A koordinatarendszerben az ellipszis poziciojat derterminalo fokuszpontok
@@ -49,6 +52,9 @@ public class Ellipse2D {
         this.objects = objects;
         this.id = ++currentIndex;
         this.view = view;
+        // a/b=2
+        a=sqrt(pow(focalpoint0.GetX(), 2)/0.75);
+        b=a/2;
         panel=new EllipsePanel(this);
         view.AddGraphicObject(panel);
         Logger.tabcount--;
@@ -73,8 +79,8 @@ public class Ellipse2D {
         return id;
     }
 
-    public double GetA(){return a;}
-    public double GetB(){return b;}
+    public double GetA(){return a*2;}
+    public double GetB(){return b*2;}
 
     public void AddObject(OrbitingObject o){
         objects.add(o);

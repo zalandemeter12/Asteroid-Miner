@@ -1,6 +1,7 @@
 package me.piedpiper.gui;
 
 import me.piedpiper.businesslogic.BaseAsteroid;
+import me.piedpiper.businesslogic.OrbitingObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,5 +33,9 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
     @Override
     public int GetPosY() {
         return (int)baseAsteroid.GetPosition().GetY()-15;
+    }
+
+    public BaseAsteroid GetBaseAsteroid() {
+        return baseAsteroid;
     }
 }

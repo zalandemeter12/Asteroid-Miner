@@ -65,15 +65,19 @@ public class View extends JFrame {
 
     private Game game;
     private OrbitingObject selectedObject = null;
+    private Handlers handlers;
 
     public View(Game game){
         super("Asteroid miner");
 
+        this.handlers = new Handlers(this);
         this.game = game;
         this.setMinimumSize(new Dimension(1000, 600));
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        mainPanel = new MainPanel();
+        mainPanel = new MainPanel(this);
+
+        newMenuItem.addActionListener(e -> handlers.NewClicked());
 
         gameMenu.add(newMenuItem);
         gameMenu.add(openMenuItem);
@@ -113,6 +117,13 @@ public class View extends JFrame {
         infoPanelLeft.add(clickedObjectInfoPanel);
 
 
+        drillButton.addActionListener(e -> handlers.DrillClicked());
+        mineButton.addActionListener(e -> handlers.MineClicked());
+        moveButton.addActionListener(e -> handlers.MoveClicked());
+        placeMaterialButton.addActionListener(e -> handlers.PlaceMaterialClicked());
+        placeGateButton.addActionListener(e -> handlers.PlaceGateClicked());
+        skipButton.addActionListener(e -> handlers.SkipClicked());
+
         infoPanelRight.add(drillButton);
         infoPanelRight.add(mineButton);
         infoPanelRight.add(moveButton);
@@ -137,6 +148,7 @@ public class View extends JFrame {
     public void RemoveGraphicObject(JPanel p){
         mainPanel.RemoveGraphicObject(p);
     }
+
     public void Repaint(){
 
     }
@@ -155,5 +167,9 @@ public class View extends JFrame {
 
     public void SetSelectedObject(OrbitingObject selectedObject) {
         this.selectedObject = selectedObject;
+    }
+
+    public void ObjectClicked(OrbitingObject o){
+
     }
 }

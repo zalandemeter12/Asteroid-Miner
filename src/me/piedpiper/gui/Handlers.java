@@ -12,22 +12,25 @@ public class Handlers {
     }
 
     public void DrillClicked(){
+        if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().DrillHole();
         view.repaint();
     }
 
     public void MineClicked(){
+        if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().Mine();
         view.repaint();
     }
 
     public void MoveClicked(){
+        if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().MoveTo(view.GetSelectedObject());
         view.repaint();
     }
 
     public void PlaceMaterialClicked(){
-
+        if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         //TODO modal window a kiválasztáshoz
 
         Settler active = view.GetGame().GetField().GetActiveSettler();
@@ -38,17 +41,14 @@ public class Handlers {
     }
 
     public void PlaceGateClicked(){
+        if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().PlaceGate();
         view.repaint();
     }
 
     public void SkipClicked(){
+        if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().SkipAction();
-        view.repaint();
-    }
-
-    public void OrbitingObjectClicked(OrbitingObject o){
-        view.SetSelectedObject(o);
         view.repaint();
     }
 

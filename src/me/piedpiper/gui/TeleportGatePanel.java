@@ -1,5 +1,6 @@
 package me.piedpiper.gui;
 
+import me.piedpiper.businesslogic.OrbitingObject;
 import me.piedpiper.businesslogic.TeleportGate;
 
 import javax.swing.*;
@@ -32,5 +33,9 @@ public class TeleportGatePanel extends JPanel implements IPosGettable{
     @Override
     public int GetPosY() {
         return (int)teleportGate.GetPosition().GetY()-10;
+    }
+
+    public TeleportGate GetGate() {
+        return teleportGate;
     }
 }

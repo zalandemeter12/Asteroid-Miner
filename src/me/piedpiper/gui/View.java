@@ -1,11 +1,10 @@
 package me.piedpiper.gui;
 
-import me.piedpiper.businesslogic.AsteroidField;
 import me.piedpiper.businesslogic.Game;
+import me.piedpiper.businesslogic.OrbitingObject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class View extends JFrame {
 
@@ -64,7 +63,8 @@ public class View extends JFrame {
     private static final Color almostWhite = new Color(230, 230, 230);
     private static final Color spaceBlue = new Color(61, 45, 182);
 
-    private final Game game;
+    private Game game;
+    private OrbitingObject selectedObject = null;
 
     public View(Game game){
         super("Asteroid miner");
@@ -143,5 +143,17 @@ public class View extends JFrame {
 
     public Game GetGame() {
         return game;
+    }
+
+    public void SetGame(Game game) {
+        this.game = game;
+    }
+
+    public OrbitingObject GetSelectedObject() {
+        return selectedObject;
+    }
+
+    public void SetSelectedObject(OrbitingObject selectedObject) {
+        this.selectedObject = selectedObject;
     }
 }

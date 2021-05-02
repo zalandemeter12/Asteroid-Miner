@@ -14,12 +14,13 @@ public class Game {
     //A bázis aszteroidát külön ismeri
     private BaseAsteroid base;
 
-    private final static View view = new View();
+    private static View view;
 
     //Konstruktor
     public Game() {
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
+        view = new View(this);
         Sun sun = new Sun(new Point2D(0.0,0.0),null);
         ArrayList<OrbitingObject> objects1 = new ArrayList<>();
         ArrayList<OrbitingObject> objects2 = new ArrayList<>();

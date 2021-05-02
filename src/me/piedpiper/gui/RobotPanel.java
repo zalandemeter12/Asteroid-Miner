@@ -5,16 +5,53 @@ import me.piedpiper.businesslogic.Robot;
 import javax.swing.*;
 import java.awt.*;
 
-public class RobotPanel extends JPanel {
+public class RobotPanel extends JPanel implements IPosGettable{
     private Robot robot;
 
+    public RobotPanel(Robot r){
+        robot=r;
+        this.setSize(16, 16);
+        this.setBackground(new Color(0,0,0,0));
+    }
+
     @Override
-    public void paintComponents(Graphics g) {
-        super.paintComponents(g);
+    public void paint(Graphics g) {
+        super.paint(g);
 
         //TODO width, height kitalálni, mennyivel legyen az aszteroida felett
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.green);
+        /*int order=0;
+        int numberOfWorkers=robot.GetLocation().GetWorkers().size();
+        for(int i=0; i<numberOfWorkers; i++){
+            if(robot.GetLocation().GetWorkers().get(i).equals(robot)){
+                order=i+1;
+                break;
+            }
+        }
+        int width=16;
+        int height=16;
+        int x;
+        int gap=2;
+        if(numberOfWorkers % 2 ==0){
+            //x=(int)robot.GetLocation().GetPosition().GetX()+(numberOfWorkers/2-order-1)*(gap+width)+(gap/2+width/2);
+            x=(numberOfWorkers/2-order-1)*(gap+width)+(gap/2+width/2);
+        } else{
+            int middle=(numberOfWorkers+1)/2;
+            if(middle==order){
+                x=(int)robot.GetLocation().GetPosition().GetX();
+            }else
+                x=(int)robot.GetLocation().GetPosition().GetX()+(middle-order)*(gap+width) + width;
+            if((middle-order)<0) x-=2*width;
+        }*/
+        int width=16;
+        int height=16;
+
+        g2d.fillOval(0, 0, width, height);
+    }
+
+    @Override
+    public int GetPosX() {
         int order=0;
         int numberOfWorkers=robot.GetLocation().GetWorkers().size();
         for(int i=0; i<numberOfWorkers; i++){
@@ -23,8 +60,8 @@ public class RobotPanel extends JPanel {
                 break;
             }
         }
-        int width=5;
-        int height=5;
+        int width=16;
+        int height=16;
         int x;
         int gap=2;
         if(numberOfWorkers % 2 ==0){
@@ -37,7 +74,11 @@ public class RobotPanel extends JPanel {
                 x=(int)robot.GetLocation().GetPosition().GetX()+(middle-order)*(gap+width) + width;
             if((middle-order)<0) x-=2*width;
         }
+        return x-width;
+    }
 
-        g2d.fillOval(x, (int)robot.GetLocation().GetPosition().GetY() + 16, width, height);
+    @Override
+    public int GetPosY() {
+        return (int)robot.GetLocation().GetPosition().GetY() - 30;
     }
 }

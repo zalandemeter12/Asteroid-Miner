@@ -5,12 +5,16 @@ import me.piedpiper.businesslogic.Ufo;
 import javax.swing.*;
 import java.awt.*;
 
-public class UfoPanel extends JPanel {
+public class UfoPanel extends JPanel implements IPosGettable{
     private Ufo ufo;
 
+    public UfoPanel(Ufo u){
+        ufo=u;
+    }
+
     @Override
-    public void paintComponents(Graphics g) {
-        super.paintComponents(g);
+    public void paint(Graphics g) {
+        super.paint(g);
 
         //TODO width, height kitalálni, mennyivel legyen az aszteroida felett
         Graphics2D g2d = (Graphics2D)g;
@@ -39,5 +43,15 @@ public class UfoPanel extends JPanel {
         }
 
         g2d.fillOval(x, (int)ufo.GetLocation().GetPosition().GetY() + 16, width, height);
+    }
+
+    @Override
+    public int GetPosX() {
+        return 0;
+    }
+
+    @Override
+    public int GetPosY() {
+        return 0;
     }
 }

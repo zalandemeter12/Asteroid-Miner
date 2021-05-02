@@ -5,12 +5,16 @@ import me.piedpiper.businesslogic.BaseAsteroid;
 import javax.swing.*;
 import java.awt.*;
 
-public class BaseAsteroidPanel extends JPanel {
+public class BaseAsteroidPanel extends JPanel implements IPosGettable{
     private BaseAsteroid baseAsteroid;
 
+    public BaseAsteroidPanel(BaseAsteroid b){
+        baseAsteroid=b;
+    }
+
     @Override
-    public void paintComponents(Graphics g) {
-        super.paintComponents(g);
+    public void paint(Graphics g) {
+        super.paint(g);
 
         //TODO width, height kitalálni
         Graphics2D g2d = (Graphics2D)g;
@@ -18,4 +22,13 @@ public class BaseAsteroidPanel extends JPanel {
         g2d.fillOval((int)baseAsteroid.GetPosition().GetX(), (int)baseAsteroid.GetPosition().GetY(), 10, 10);
     }
 
+    @Override
+    public int GetPosX() {
+        return (int)baseAsteroid.GetPosition().GetX();
+    }
+
+    @Override
+    public int GetPosY() {
+        return (int)baseAsteroid.GetPosition().GetY();
+    }
 }

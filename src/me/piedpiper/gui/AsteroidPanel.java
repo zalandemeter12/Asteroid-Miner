@@ -4,19 +4,31 @@ import me.piedpiper.businesslogic.Asteroid;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 
-public class AsteroidPanel extends JPanel {
+public class AsteroidPanel extends JPanel implements IPosGettable{
     private Asteroid asteroid;
 
-    @Override
-    public void paintComponents(Graphics g) {
-        super.paintComponents(g);
+    public AsteroidPanel(Asteroid a){
+        asteroid=a;
+        this.setSize(30, 30);
+        this.setBackground(new Color(0,0,0,0));
 
-        //TODO width, height kitalálni
+    }
+
+    public void paint(Graphics g) {
+        super.paint(g);
+        //this.setLocation((int)asteroid.GetPosition().GetX()-15, (int)asteroid.GetPosition().GetY()-15);
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.gray);
-        g2d.fillOval((int)asteroid.GetPosition().GetX(), (int)asteroid.GetPosition().GetY(), 10, 10);
+        g2d.fillOval(0, 0, 30, 30);
 
+    }
+
+    public int GetPosX(){
+        return (int)asteroid.GetPosition().GetX()-15;
+    }
+
+    public int GetPosY(){
+        return (int)asteroid.GetPosition().GetY()-15;
     }
 }

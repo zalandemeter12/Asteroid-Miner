@@ -43,6 +43,7 @@ public class Settler extends Worker {
         this.gateInventory = new ArrayList<>();
         this.id = ++currentIndex;
         this.view = view;
+        panel=new SettlerPanel(this);
         view.AddGraphicObject(panel);
         Logger.tabcount--;
     }

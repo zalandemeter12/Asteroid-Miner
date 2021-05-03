@@ -465,5 +465,6 @@ public class Game {
 
         view.setVisible(true);
 
+
     }
 }

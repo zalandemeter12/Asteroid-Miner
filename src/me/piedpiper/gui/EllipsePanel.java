@@ -20,7 +20,7 @@ public class EllipsePanel extends JPanel implements IPosGettable{
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.white);
 
-        g2d.drawOval(0,0, 800, 600);
+        g2d.drawOval(50,50, 900, 400);
     }
 
     @Override

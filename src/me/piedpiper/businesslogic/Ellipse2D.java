@@ -60,9 +60,9 @@ public class Ellipse2D {
         Logger.tabcount--;
     }
 
-    public Ellipse2D(double a, double b, double distance, double velocity, ArrayList<OrbitingObject> objects) {
+    public Ellipse2D(double a, double b, double distance, double velocity, ArrayList<OrbitingObject> objects, View view) {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
-
+        this.view = view;
         this.objects = new ArrayList<>();
         this.a = a;
         this.b = b;
@@ -70,6 +70,8 @@ public class Ellipse2D {
         this.velocity = velocity;
         this.objects = objects;
         this.id = ++currentIndex;
+        panel=new EllipsePanel(this);
+        view.AddGraphicObject(panel);
 
         Logger.tabcount--;
     }

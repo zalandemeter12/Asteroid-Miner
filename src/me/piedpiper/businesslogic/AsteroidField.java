@@ -167,4 +167,8 @@ public class AsteroidField implements ISteppable {
     public void SetActiveSettler(Settler s) {
         activeSettler = s;
     }
+
+    public void SetSun(Sun s){
+        sun=s;
+    }
 }

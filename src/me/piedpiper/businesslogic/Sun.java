@@ -59,7 +59,7 @@ public class Sun implements ISteppable {
             roundsWithoutSS++;
         }
         for (SolarStorm s : solarStorms) 
-            s.Step();
+            //s.Step();
         
         Logger.tabcount--;
     }

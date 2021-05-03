@@ -131,16 +131,18 @@ public class Game {
     }
 
     public void testInitGraphic(){
-        Sun sun = new Sun(new Point2D(0.0,0.0),field, view);
+
+        ArrayList<Settler> settlers = new ArrayList<>();
+        ArrayList<Ellipse2D> ellipses = new ArrayList<>();
+        this.field = new AsteroidField(null, this, ellipses, settlers);
+        this.field.SetSun(new Sun(new Point2D(0.0,0.0),field, view));
         ArrayList<OrbitingObject> objects1 = new ArrayList<>();
         ArrayList<OrbitingObject> objects2 = new ArrayList<>();
         ArrayList<OrbitingObject> objects3 = new ArrayList<>();
-        ArrayList<Ellipse2D> ellipses = new ArrayList<>();
-        ellipses.add(new Ellipse2D(900, 400, 5, 3, objects1, view));
-        ellipses.add(new Ellipse2D(800, 300, 10, 3, objects2, view));
-        ellipses.add(new Ellipse2D(700, 200, 15, 3, objects3, view));
-        ArrayList<Settler> settlers = new ArrayList<>();
-        this.field = new AsteroidField(sun, this, ellipses, settlers);
+
+        ellipses.add(new Ellipse2D(900, 400, 5, 0.01, objects1, view));
+        ellipses.add(new Ellipse2D(800, 300, 10, -0.01, objects2, view));
+        ellipses.add(new Ellipse2D(700, 200, 15, 0.005, objects3, view));
 
         Asteroid a1=new Asteroid(new Point2D(1,4), field.GetEllipses().get(0),5, new Iron(), view);
         Asteroid a2=new Asteroid(new Point2D(4,4), field.GetEllipses().get(0),0, null, view);

@@ -21,18 +21,18 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
 
         //TODO width, height kitalálni
         Graphics2D g2d = (Graphics2D)g;
-        g2d.setPaint(Color.gray);
+        g2d.setPaint(Color.black);
         g2d.fillOval(0, 0, 30, 30);
     }
 
     @Override
     public int GetPosX() {
-        return (int)baseAsteroid.GetPosition().GetX()-15;
+        return (int)baseAsteroid.GetPosition().GetX()-15+500;
     }
 
     @Override
     public int GetPosY() {
-        return (int)baseAsteroid.GetPosition().GetY()-15;
+        return (int)baseAsteroid.GetPosition().GetY()-15+246;
     }
 
     public BaseAsteroid GetBaseAsteroid() {

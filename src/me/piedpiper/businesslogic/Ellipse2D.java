@@ -52,7 +52,6 @@ public class Ellipse2D {
         this.objects = objects;
         this.id = ++currentIndex;
         this.view = view;
-        // a/b=2
         a=sqrt(pow(focalpoint0.GetX(), 2)/0.75);
         b=a/2;
         panel=new EllipsePanel(this);
@@ -87,15 +86,15 @@ public class Ellipse2D {
     public void AddObject(OrbitingObject o){
         objects.add(o);
         Random rand = new Random();
-        double tr = rand.nextDouble()*100;
+        o.SetT(rand.nextDouble()*100);
         boolean notClose = false;
-        Point2D p = new Point2D(a/2 * Math.cos(tr), b/2 * Math.sin(tr));
+        Point2D p = new Point2D(a/2 * Math.cos(o.GetT()), b/2 * Math.sin(o.GetT()));
         while(!notClose){
-            tr += velocity;
-            p = new Point2D(a/2 * Math.cos(tr), b/2 * Math.sin(tr));
+            o.SetT(o.GetT() + velocity);
+            p = new Point2D(a/2 * Math.cos(o.GetT()), b/2 * Math.sin(o.GetT()));
             notClose = true;
             for(OrbitingObject or : objects){
-                if(p.DistanceFrom(or.GetPosition()) < 10) //TODO find the real isClose value
+                if(p.DistanceFrom(or.GetPosition()) < 20) //TODO find the real isClose value
                     notClose = false;
             }
         }
@@ -112,10 +111,9 @@ public class Ellipse2D {
     // Az keringo objektumok (aszteroidak, teleportkapuk) mozgatasa
     public void MoveOrbits() {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".MoveOrbits()");
-        double t;
         for (OrbitingObject o : objects) {
-            t = Math.acos(o.GetPosition().GetX() / (a/2));
-            o.SetPosition(new Point2D(a/2 * Math.cos(t + velocity), b/2 * Math.sin(t + velocity)));
+            o.SetT(o.GetT() + velocity);
+            o.SetPosition(new Point2D((a/2)*Math.cos(o.GetT()), (b/2) * Math.sin(o.GetT())));
         }
 
         Logger.tabcount--;
@@ -126,7 +124,7 @@ public class Ellipse2D {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".GateLocation()");
         Logger.tabcount--;
 
-        double t = Math.acos(p.GetX() / (a/2));
+        double t = Math.acos(p.GetX() / (a/2)); //TODO ez itt nem lesz jo
         double shift = 0.1; //TODO find the real shift value
         return new Point2D(a/2 * Math.cos(t + shift), b/2 * Math.sin(t + shift));
     }

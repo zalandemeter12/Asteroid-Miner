@@ -71,18 +71,19 @@ public class Game {
         ArrayList<OrbitingObject> objects2 = new ArrayList<>();
         ArrayList<OrbitingObject> objects3 = new ArrayList<>();
         ArrayList<Ellipse2D> ellipses = new ArrayList<>();
-        ellipses.add(new Ellipse2D(new Point2D(10,10), new Point2D(20,20), 5, 3, objects1));
-        ellipses.add(new Ellipse2D(new Point2D(15,15), new Point2D(25,25), 10, 3, objects2));
-        ellipses.add(new Ellipse2D(new Point2D(20,20), new Point2D(30,30), 15, 3, objects3));
+        ellipses.add(new Ellipse2D(new Point2D(10,10), new Point2D(20,20), 5, 0.4, objects1));
+        ellipses.add(new Ellipse2D(new Point2D(15,15), new Point2D(25,25), 10, -0.4, objects2));
+        ellipses.add(new Ellipse2D(new Point2D(20,20), new Point2D(30,30), 15, 0.3, objects3));
         ArrayList<Settler> settlers = new ArrayList<>();
         this.field = new AsteroidField(sun, this, ellipses, settlers);
 
-        Asteroid a1=new Asteroid(new Point2D(1,4), field.GetEllipses().get(0),5, new Iron());
-        Asteroid a2=new Asteroid(new Point2D(4,4), field.GetEllipses().get(0),0, null);
-        Asteroid a3=new Asteroid(new Point2D(-1,-6), field.GetEllipses().get(0),4, new Ice());
-        Asteroid a4=new Asteroid(new Point2D(10,5), field.GetEllipses().get(1),7, new Coal());
-        Asteroid a5=new Asteroid(new Point2D(3,7), field.GetEllipses().get(1),2, new Uran());
-        Asteroid a6=new Asteroid(new Point2D(9,-9), field.GetEllipses().get(2),0, null);
+
+        Asteroid a1 = new Asteroid(new Point2D(1,4), field.GetEllipses().get(0),5, new Iron());
+        Asteroid a2 = new Asteroid(new Point2D(4,4), field.GetEllipses().get(0),0, null);
+        Asteroid a3 = new Asteroid(new Point2D(-1,-6), field.GetEllipses().get(0),4, new Ice());
+        Asteroid a4 = new Asteroid(new Point2D(10,5), field.GetEllipses().get(1),7, new Coal());
+        Asteroid a5 = new Asteroid(new Point2D(3,7), field.GetEllipses().get(1),2, new Uran());
+        Asteroid a6 = new Asteroid(new Point2D(9,-9), field.GetEllipses().get(2),0, null);
         a2.GetNeighbors().add(a1);
         a1.GetNeighbors().add(a2);
         a1.GetNeighbors().add(a3);
@@ -109,16 +110,6 @@ public class Game {
         a4.AddWorker(r1);
         a5.AddWorker(u1);
 
-        field.GetEllipses().get(0).GetObjects().add(a1);
-        field.GetEllipses().get(0).GetObjects().add(a2);
-        field.GetEllipses().get(0).GetObjects().add(a3);
-        field.GetEllipses().get(1).GetObjects().add(a4);
-        field.GetEllipses().get(1).GetObjects().add(a5);
-        field.GetEllipses().get(2).GetObjects().add(a6);
-        field.GetEllipses().get(0).GetObjects().add(tg1);
-        field.GetEllipses().get(2).GetObjects().add(tg2);
-        field.GetEllipses().get(2).GetObjects().add(tg3);
-
         Settler s1=new Settler(a1, field);
         s1.GetBackpack().add(new Iron());
         Settler s2=new Settler(a3, field);
@@ -131,23 +122,23 @@ public class Game {
     }
 
     public void testInitGraphic(){
-
+        Sun sun = new Sun(new Point2D(0,0), null);
         ArrayList<Settler> settlers = new ArrayList<>();
         ArrayList<Ellipse2D> ellipses = new ArrayList<>();
-        this.field = new AsteroidField(null, this, ellipses, settlers);
-        this.field.SetSun(new Sun(new Point2D(0.0,0.0),field, view));
+        this.field = new AsteroidField(sun, this, ellipses, settlers);
+        sun.SetField(this.field);
         ArrayList<OrbitingObject> objects1 = new ArrayList<>();
         ArrayList<OrbitingObject> objects2 = new ArrayList<>();
         ArrayList<OrbitingObject> objects3 = new ArrayList<>();
 
-        ellipses.add(new Ellipse2D(900, 400, 5, 0.01, objects1, view));
-        ellipses.add(new Ellipse2D(800, 300, 10, -0.01, objects2, view));
-        ellipses.add(new Ellipse2D(700, 200, 15, 0.005, objects3, view));
+        ellipses.add(new Ellipse2D(900, 400, 5, 0.04, objects1, view));
+        ellipses.add(new Ellipse2D(800, 300, 10, -0.04, objects2, view));
+        ellipses.add(new Ellipse2D(700, 200, 15, 0.02, objects3, view));
 
-        Asteroid a1=new Asteroid(new Point2D(1,4), field.GetEllipses().get(0),5, new Iron(), view);
+        Asteroid a1=new Asteroid(new Point2D(1,4), field.GetEllipses().get(0),3, new Iron(), view);
         Asteroid a2=new Asteroid(new Point2D(4,4), field.GetEllipses().get(0),0, null, view);
-        Asteroid a3=new Asteroid(new Point2D(-1,-6), field.GetEllipses().get(0),4, new Ice(), view);
-        Asteroid a4=new Asteroid(new Point2D(10,5), field.GetEllipses().get(1),7, new Coal(), view);
+        Asteroid a3=new Asteroid(new Point2D(-1,-6), field.GetEllipses().get(0),3, new Ice(), view);
+        Asteroid a4=new Asteroid(new Point2D(10,5), field.GetEllipses().get(1),1, new Coal(), view);
         Asteroid a5=new Asteroid(new Point2D(3,7), field.GetEllipses().get(1),2, new Uran(), view);
         Asteroid a6=new Asteroid(new Point2D(9,-9), field.GetEllipses().get(2),0, null, view);
         a2.GetNeighbors().add(a1);
@@ -176,22 +167,11 @@ public class Game {
         a4.AddWorker(r1);
         a5.AddWorker(u1);
 
-        field.GetEllipses().get(0).GetObjects().add(a1);
-        field.GetEllipses().get(0).GetObjects().add(a2);
-        field.GetEllipses().get(0).GetObjects().add(a3);
-        field.GetEllipses().get(1).GetObjects().add(a4);
-        field.GetEllipses().get(1).GetObjects().add(a5);
-        field.GetEllipses().get(2).GetObjects().add(a6);
-        field.GetEllipses().get(0).GetObjects().add(tg1);
-        field.GetEllipses().get(2).GetObjects().add(tg2);
-        field.GetEllipses().get(2).GetObjects().add(tg3);
-
         Settler s1=new Settler(a1, field, view);
         s1.GetBackpack().add(new Iron());
         Settler s2=new Settler(a3, field, view);
         s2.AddGate(tg4);
         this.base=new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0,this, view);
-        field.GetEllipses().get(0).GetObjects().add(base);
         field.GetSettlers().add(s1);
         field.GetSettlers().add(s2);
         field.GetSun().GetSolarStorms().add(new SolarStorm(field.GetSun(), 10, 2, view));
@@ -499,13 +479,27 @@ public class Game {
 
     }
 
+
     //Belépési pont
     public static void main(String[] args){
         //Logger.logOnConsole = false;
         Game game = new Game();
-
         view.setVisible(true);
 
-
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true){
+                    try {
+                        Thread.sleep(140);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    game.GetField().Step();
+                    view.repaint();
+                }
+            }
+        });
+        t.run();
     }
 }

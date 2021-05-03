@@ -15,6 +15,8 @@ public abstract class OrbitingObject {
     //Lista az objektumon levo munkasokrol(telepesek es robotok)
     protected ArrayList<Worker> workers;
 
+    private double t;
+
     protected int id;
 
     //Konstruktor
@@ -176,4 +178,13 @@ public abstract class OrbitingObject {
     }
 
     public abstract String GetName();
+
+
+    public double GetT() {
+        return t;
+    }
+
+    public void SetT(double t) {
+        this.t = t;
+    }
 }

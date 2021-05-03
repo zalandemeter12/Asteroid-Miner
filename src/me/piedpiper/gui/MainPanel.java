@@ -15,13 +15,12 @@ public class MainPanel extends JPanel {
 
     @Override
     public void paint(Graphics g) {
+        g.clearRect(0,0,1000,492);
         super.paint(g);
         for(JPanel panel: graphicObjects){
             this.add(panel);
             panel.setLocation(((IPosGettable)panel).GetPosX(),  ((IPosGettable)panel).GetPosY());
-
         }
-
     }
 
     public void AddGraphicObject(JPanel object){

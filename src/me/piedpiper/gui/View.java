@@ -1,5 +1,6 @@
 package me.piedpiper.gui;
 
+import me.piedpiper.businesslogic.Asteroid;
 import me.piedpiper.businesslogic.Game;
 import me.piedpiper.businesslogic.OrbitingObject;
 
@@ -137,6 +138,8 @@ public class View extends JFrame {
         containerPanel.add(menuContainer, BorderLayout.NORTH);
         containerPanel.add(infoPanel, BorderLayout.SOUTH);
         containerPanel.add(mainPanel, BorderLayout.CENTER);
+
+
         this.add(containerPanel);
     }
 
@@ -170,6 +173,21 @@ public class View extends JFrame {
     }
 
     public void ObjectClicked(OrbitingObject o){
+        clickedObjectLabel.setText("Clicked object: " + o.GetName());
+        if(o.getClass() == Asteroid.class){
+            clickedObjectThicknessLabel.setText("Thickness: " +o.GetThickness());
+            if(o.GetThickness() > 0){
+                clickedObjectMaterialLabel.setText("Material: Unknown");
+            }else if(o.GetMaterial() != null){
+                clickedObjectMaterialLabel.setText("Material: " + o.GetMaterial().GetName());
+            }else{
+                clickedObjectMaterialLabel.setText("Material: -");
+            }
+        }else{
+            clickedObjectThicknessLabel.setText("Thickness: -");
+            clickedObjectMaterialLabel.setText("Material: -");
+        }
+
 
     }
 }

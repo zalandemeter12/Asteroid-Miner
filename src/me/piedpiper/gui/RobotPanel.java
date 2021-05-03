@@ -20,29 +20,6 @@ public class RobotPanel extends JPanel implements IPosGettable{
 
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.blue);
-        /*int order=0;
-        int numberOfWorkers=robot.GetLocation().GetWorkers().size();
-        for(int i=0; i<numberOfWorkers; i++){
-            if(robot.GetLocation().GetWorkers().get(i).equals(robot)){
-                order=i+1;
-                break;
-            }
-        }
-        int width=16;
-        int height=16;
-        int x;
-        int gap=2;
-        if(numberOfWorkers % 2 ==0){
-            //x=(int)robot.GetLocation().GetPosition().GetX()+(numberOfWorkers/2-order-1)*(gap+width)+(gap/2+width/2);
-            x=(numberOfWorkers/2-order-1)*(gap+width)+(gap/2+width/2);
-        } else{
-            int middle=(numberOfWorkers+1)/2;
-            if(middle==order){
-                x=(int)robot.GetLocation().GetPosition().GetX();
-            }else
-                x=(int)robot.GetLocation().GetPosition().GetX()+(middle-order)*(gap+width) + width;
-            if((middle-order)<0) x-=2*width;
-        }*/
         int width=16;
         int height=16;
 

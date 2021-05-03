@@ -10,6 +10,8 @@ public class EllipsePanel extends JPanel implements IPosGettable{
 
     public EllipsePanel(Ellipse2D e){
         ellipse=e;
+        this.setSize(1000, 500);
+        this.setBackground(new Color(0,0,0,0));
     }
 
     @Override
@@ -18,16 +20,16 @@ public class EllipsePanel extends JPanel implements IPosGettable{
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.white);
 
-        g2d.drawOval((1000-(int)ellipse.GetA())/2,(600-(int)ellipse.GetB())/2, (int)ellipse.GetA(), (int)ellipse.GetB());
+        g2d.drawOval(50,50, 900, 400);
     }
 
     @Override
     public int GetPosX() {
-        return (1000-(int)ellipse.GetA())/2;
+        return 0;
     }
 
     @Override
     public int GetPosY() {
-        return (600-(int)ellipse.GetB())/2;
+        return 0;
     }
 }

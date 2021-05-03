@@ -86,7 +86,6 @@ public class View extends JFrame {
         menuBar.add(gameMenu);
         menuContainer.add(menuBar);
 
-
         infoPanel.setBackground(grayColor);
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.LINE_AXIS));
 
@@ -103,7 +102,6 @@ public class View extends JFrame {
         activeSettlerInfoPanel.add(activeSettlerBackpackLabel);
         activeSettlerInfoPanel.add(activeSettlerGateInvLabel);
         activeSettlerInfoPanel.setBackground(grayColor);
-
 
         clickedObjectInfoPanel.setLayout(new BoxLayout(clickedObjectInfoPanel, BoxLayout.PAGE_AXIS));
         clickedObjectLabel.setForeground(almostWhite);

@@ -35,12 +35,29 @@ public class View extends JFrame {
      */
     private static final JMenuItem  saveMenuItem = new JMenuItem("Save game");
 
+    /**
+     * Elrendezest segito panel
+     */
     private static final JPanel containerPanel = new JPanel(new BorderLayout());
 
+    /**
+     * A jatekbeli vilagot megjelenito panel
+     */
     private static MainPanel mainPanel;
 
+    /**
+     * Az aktualis informaciokat szovegesen megjelenito panel
+     */
     private static final JPanel infoPanel = new JPanel();
+
+    /**
+     * Az informacios resz bal oldali resze
+     */
     private static final JPanel infoPanelLeft = new JPanel(new FlowLayout(FlowLayout.LEFT));
+
+    /**
+     * Az informacios resz jobb oldali resze
+     */
     private static final JPanel infoPanelRight = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
     private static final JPanel activeSettlerInfoPanel = new JPanel();
@@ -75,6 +92,7 @@ public class View extends JFrame {
         this.game = game;
         this.setMinimumSize(new Dimension(1000, 600));
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setResizable(false);
 
         mainPanel = new MainPanel(this);
 
@@ -150,8 +168,21 @@ public class View extends JFrame {
         mainPanel.RemoveGraphicObject(p);
     }
 
-    public void Repaint(){
-
+    public void Refresh(){
+        clickedObjectLabel.setText("Clicked object: " + selectedObject.GetName());
+        if(selectedObject.getClass() == Asteroid.class){
+            clickedObjectThicknessLabel.setText("Thickness: " +selectedObject.GetThickness());
+            if(selectedObject.GetThickness() > 0){
+                clickedObjectMaterialLabel.setText("Material: Unknown");
+            }else if(selectedObject.GetMaterial() != null){
+                clickedObjectMaterialLabel.setText("Material: " + selectedObject.GetMaterial().GetName());
+            }else{
+                clickedObjectMaterialLabel.setText("Material: -");
+            }
+        }else{
+            clickedObjectThicknessLabel.setText("Thickness: -");
+            clickedObjectMaterialLabel.setText("Material: -");
+        }
     }
 
     public Game GetGame() {
@@ -171,21 +202,7 @@ public class View extends JFrame {
     }
 
     public void ObjectClicked(OrbitingObject o){
-        clickedObjectLabel.setText("Clicked object: " + o.GetName());
-        if(o.getClass() == Asteroid.class){
-            clickedObjectThicknessLabel.setText("Thickness: " +o.GetThickness());
-            if(o.GetThickness() > 0){
-                clickedObjectMaterialLabel.setText("Material: Unknown");
-            }else if(o.GetMaterial() != null){
-                clickedObjectMaterialLabel.setText("Material: " + o.GetMaterial().GetName());
-            }else{
-                clickedObjectMaterialLabel.setText("Material: -");
-            }
-        }else{
-            clickedObjectThicknessLabel.setText("Thickness: -");
-            clickedObjectMaterialLabel.setText("Material: -");
-        }
-
-
+        selectedObject = o;
+        Refresh();
     }
 }

@@ -26,11 +26,14 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
     }
 
     public int GetPosX(){
-        return (int)asteroid.GetPosition().GetX()-15;
+        System.out.println(asteroid.GetEllipse().GetId());
+        System.out.println(asteroid.GetPosition().GetX());
+        System.out.println( asteroid.GetPosition().GetY());
+        return (int)asteroid.GetPosition().GetX()+500-15;
     }
 
     public int GetPosY(){
-        return (int)asteroid.GetPosition().GetY()-15;
+        return (int)asteroid.GetPosition().GetY()+246-15;
     }
 
     public Asteroid GetAsteroid() {

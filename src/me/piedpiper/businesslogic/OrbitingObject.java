@@ -25,6 +25,8 @@ public abstract class OrbitingObject {
         this.position = position;
         this.ellipse = ellipse;
         this.workers = new ArrayList<>();
+        if(ellipse!=null)
+            ellipse.AddObject(this);
        
         Logger.tabcount--;
     }

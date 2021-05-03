@@ -49,11 +49,11 @@ public class SettlerPanel extends JPanel implements IPosGettable{
                 x=(int)settler.GetLocation().GetPosition().GetX()+(middle-order)*(gap+width) + width;
             if((middle-order)<0) x-=2*width;
         }
-        return x;
+        return x+500;
     }
 
     @Override
     public int GetPosY() {
-        return (int)settler.GetLocation().GetPosition().GetY() - 35;
+        return (int)settler.GetLocation().GetPosition().GetY() + 246- 35;
     }
 }

@@ -49,11 +49,11 @@ public class RobotPanel extends JPanel implements IPosGettable{
                 x=(int)robot.GetLocation().GetPosition().GetX()+(middle-order)*(gap+width) + width;
             if((middle-order)<0) x-=2*width;
         }
-        return x;
+        return x+500;
     }
 
     @Override
     public int GetPosY() {
-        return (int)robot.GetLocation().GetPosition().GetY() - 35;
+        return (int)robot.GetLocation().GetPosition().GetY() + 246 - 35;
     }
 }

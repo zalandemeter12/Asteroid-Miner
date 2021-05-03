@@ -12,6 +12,8 @@ public class Handlers {
     }
 
     public void DrillClicked(){
+        view.GetGame().GetField().Step();
+        view.repaint();
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().DrillHole();
         view.repaint();

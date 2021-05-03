@@ -19,7 +19,9 @@ public class MainPanel extends JPanel {
         for(JPanel panel: graphicObjects){
             this.add(panel);
             panel.setLocation(((IPosGettable)panel).GetPosX(),  ((IPosGettable)panel).GetPosY());
+
         }
+
     }
 
     public void AddGraphicObject(JPanel object){

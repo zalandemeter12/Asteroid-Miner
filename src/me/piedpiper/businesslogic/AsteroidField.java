@@ -51,7 +51,7 @@ public class AsteroidField implements ISteppable {
         //Ellipszisen keringo objektumok uj poziciojanak beallitasa
         for(Ellipse2D e: ellipses) {
             // TODO objectejket rendesen mozgatni
-            // e.MoveOrbits();
+            e.MoveOrbits();
             orbitingObjects.addAll(e.GetObjects());
         }
 

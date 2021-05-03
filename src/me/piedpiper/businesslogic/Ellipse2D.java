@@ -81,18 +81,18 @@ public class Ellipse2D {
         return id;
     }
 
-    public double GetA(){return a*2;}
-    public double GetB(){return b*2;}
+    public double GetA(){return a;}
+    public double GetB(){return b;}
 
     public void AddObject(OrbitingObject o){
         objects.add(o);
         Random rand = new Random();
-        double tr = rand.nextDouble();
+        double tr = rand.nextDouble()*100;
         boolean notClose = false;
-        Point2D p = new Point2D(a * Math.cos(tr), b * Math.sin(tr));
+        Point2D p = new Point2D(a/2 * Math.cos(tr), b/2 * Math.sin(tr));
         while(!notClose){
             tr += velocity;
-            p = new Point2D(a * Math.cos(tr), b * Math.sin(tr));
+            p = new Point2D(a/2 * Math.cos(tr), b/2 * Math.sin(tr));
             notClose = true;
             for(OrbitingObject or : objects){
                 if(p.DistanceFrom(or.GetPosition()) < 10) //TODO find the real isClose value
@@ -114,8 +114,8 @@ public class Ellipse2D {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".MoveOrbits()");
         double t;
         for (OrbitingObject o : objects) {
-            t = Math.acos(o.GetPosition().GetX() / a);
-            o.SetPosition(new Point2D(a * Math.cos(t + velocity), b * Math.sin(t + velocity)));
+            t = Math.acos(o.GetPosition().GetX() / (a/2));
+            o.SetPosition(new Point2D(a/2 * Math.cos(t + velocity), b/2 * Math.sin(t + velocity)));
         }
 
         Logger.tabcount--;
@@ -126,9 +126,9 @@ public class Ellipse2D {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".GateLocation()");
         Logger.tabcount--;
 
-        double t = Math.acos(p.GetX() / a);
+        double t = Math.acos(p.GetX() / (a/2));
         double shift = 0.1; //TODO find the real shift value
-        return new Point2D(a * Math.cos(t + shift), b * Math.sin(t + shift));
+        return new Point2D(a/2 * Math.cos(t + shift), b/2 * Math.sin(t + shift));
     }
 
     // visszaadja a rajta keringo objektumok listajat
@@ -148,5 +148,9 @@ public class Ellipse2D {
 
     public static void ResetIndex() {
         currentIndex=0;
+    }
+
+    public void SetVelocity(double v){
+        velocity=v;
     }
 }

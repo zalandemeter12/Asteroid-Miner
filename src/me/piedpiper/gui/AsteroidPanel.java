@@ -22,13 +22,13 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.gray);
         g2d.fillOval(0, 0, 30, 30);
-
+        g2d.setPaint(Color.darkGray);
+        Font font = new Font("Arial", Font.PLAIN, 18);
+        g2d.setFont(font);
+        g2d.drawString("A", 10, 22);
     }
 
     public int GetPosX(){
-        System.out.println(asteroid.GetEllipse().GetId());
-        System.out.println(asteroid.GetPosition().GetX());
-        System.out.println( asteroid.GetPosition().GetY());
         return (int)asteroid.GetPosition().GetX()+500-15;
     }
 

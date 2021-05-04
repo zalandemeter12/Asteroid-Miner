@@ -19,10 +19,14 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
     public void paint(Graphics g) {
         super.paint(g);
 
-        //TODO width, height kitalálni
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.black);
         g2d.fillOval(0, 0, 30, 30);
+        g2d.drawString("B",0,0);
+        g2d.setPaint(Color.GRAY);
+        Font font = new Font("Arial", Font.PLAIN, 18);
+        g2d.setFont(font);
+        g2d.drawString("B", 10, 22);
     }
 
     @Override

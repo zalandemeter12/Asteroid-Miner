@@ -179,8 +179,6 @@ public class View extends JFrame {
                     clickedObjectMaterialLabel.setText("Material: -");
                 }
             } else if (selectedObject.getClass() == BaseAsteroid.class) {
-                clickedObjectThicknessLabel.setText("Thickness: 0");
-
                 ArrayList<Material> irons = new ArrayList<>();
                 for (int i = 0; i < 3; ++i) irons.add(new Iron());
                 BillOfMaterials ironBill = new BillOfMaterials(irons);
@@ -201,7 +199,9 @@ public class View extends JFrame {
                 BillOfMaterials iceBill = new BillOfMaterials(ices);
                 for(Material m: selectedObject.GetChest()) iceBill.IsNeeded(m);
 
-                clickedObjectMaterialLabel.setText("Materials: Ice: " + (3-iceBill.GetBill().size()) +", Uran: " + (3-uranBill.GetBill().size()) + ", Coal: " + (3-coalBill.GetBill().size()) + ", Iron: " + (3-ironBill.GetBill().size()));
+                clickedObjectThicknessLabel.setText("Materials: Ice: " + (3-iceBill.GetBill().size()) +", Uran: " + (3-uranBill.GetBill().size()) + ", Coal: " + (3-coalBill.GetBill().size()) + ", Iron: " + (3-ironBill.GetBill().size()));
+                clickedObjectMaterialLabel.setText(" ");
+
             } else if (selectedObject.getClass() == TeleportGate.class) {
                 if (((TeleportGate)selectedObject).GetPair().GetPosition() == null) {
                     clickedObjectThicknessLabel.setText("Pair: Not active");

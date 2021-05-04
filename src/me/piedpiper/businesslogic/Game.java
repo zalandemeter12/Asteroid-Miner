@@ -4,8 +4,8 @@ import me.piedpiper.gui.View;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.awt.*;
 import java.util.ArrayList;
+import static java.lang.StrictMath.PI;
 
 //A játékok összefogó objektum, tertalmazza és létrehozza a fő objektumokat
 public class Game {
@@ -175,7 +175,7 @@ public class Game {
         this.base=new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0,this, view);
         field.GetSettlers().add(s1);
         field.GetSettlers().add(s2);
-        field.GetSun().GetSolarStorms().add(new SolarStorm(field.GetSun(), 10, 2, view));
+        field.GetSun().GetSolarStorms().add(new SolarStorm(field.GetSun(), 0, 2, view));
 
         field.SetActiveSettler(field.GetSettlers().get(0));
     }

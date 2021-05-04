@@ -6,6 +6,9 @@ import me.piedpiper.gui.View;
 
 import java.util.ArrayList;
 
+import static java.lang.StrictMath.PI;
+import static java.lang.StrictMath.tan;
+
 public class SolarStorm implements ISteppable{
 
     //A nap, ami a napkitörést okozta
@@ -57,7 +60,15 @@ public class SolarStorm implements ISteppable{
             warnTimer--;
         } else if(warnTimer==0){
             for (Ellipse2D e : sun.GetField().GetEllipses()) {
-                //TODO implementálni pos+angle alapján
+                //TODO nem tudni, hogy mukodik-e
+                for(OrbitingObject o : e.GetObjects()){
+                    double bottomLine=tan(angle); //y=bottomline*x
+                    double topLine=tan(angle+PI/12); //y=topline*x
+                    if(bottomLine*o.GetPosition().GetX()<o.GetPosition().GetY()
+                       && topLine*o.GetPosition().GetX()>o.GetPosition().GetY()){
+                        o.UnderSolarStorm();
+                    }
+                }
             }
             for (OrbitingObject o : targets)
                 o.UnderSolarStorm();

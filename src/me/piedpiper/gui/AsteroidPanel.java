@@ -18,7 +18,6 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
 
     public void paint(Graphics g) {
         super.paint(g);
-        //this.setLocation((int)asteroid.GetPosition().GetX()-15, (int)asteroid.GetPosition().GetY()-15);
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.gray);
         g2d.fillOval(0, 0, 30, 30);

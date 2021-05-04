@@ -18,6 +18,7 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.black);
         g2d.fillOval(0, 0, 30, 30);

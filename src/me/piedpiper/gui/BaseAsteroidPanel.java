@@ -23,6 +23,10 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.black);
         g2d.fillOval(0, 0, 30, 30);
+        if(baseAsteroid.IsNeighboursGotTheActiveSettler()){
+            g2d.setPaint(Color.blue);
+            g2d.fillOval(0, 0, 20, 20);
+        }
     }
 
     @Override

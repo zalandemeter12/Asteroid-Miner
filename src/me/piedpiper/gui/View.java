@@ -1,12 +1,10 @@
 package me.piedpiper.gui;
 
-import me.piedpiper.businesslogic.Asteroid;
-import me.piedpiper.businesslogic.Game;
-import me.piedpiper.businesslogic.OrbitingObject;
-import me.piedpiper.businesslogic.Settler;
+import me.piedpiper.businesslogic.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class View extends JFrame {
 
@@ -189,7 +187,29 @@ public class View extends JFrame {
         }
         Settler activeSettler = game.GetField().GetActiveSettler();
         activeSettlerLabel.setText("Active Settler: " + activeSettler.GetName());
-        activeSettlerBackpackLabel.setText("Backpack: Ice: 0, Uran:0, Coal: 0, Iron: 0");
+
+        ArrayList<Material> irons = new ArrayList<>();
+        for (int i = 0; i < 10; ++i) irons.add(new Iron());
+        BillOfMaterials ironBill = new BillOfMaterials(irons);
+        for(Material m: activeSettler.GetBackpack()) ironBill.IsNeeded(m);
+
+
+        ArrayList<Material> urans = new ArrayList<>();
+        for (int i = 0; i < 10; ++i) urans.add(new Uran());
+        BillOfMaterials uranBill = new BillOfMaterials(urans);
+        for(Material m: activeSettler.GetBackpack()) uranBill.IsNeeded(m);
+
+        ArrayList<Material> coals = new ArrayList<>();
+        for (int i = 0; i < 10; ++i) coals.add(new Coal());
+        BillOfMaterials coalBill = new BillOfMaterials(coals);
+        for(Material m: activeSettler.GetBackpack()) coalBill.IsNeeded(m);
+
+        ArrayList<Material> ices = new ArrayList<>();
+        for (int i = 0; i < 10; ++i) ices.add(new Ice());
+        BillOfMaterials iceBill = new BillOfMaterials(ices);
+        for(Material m: activeSettler.GetBackpack()) iceBill.IsNeeded(m);
+
+        activeSettlerBackpackLabel.setText("Backpack: Ice: " + (10-iceBill.GetBill().size()) +", Uran: " + (10-uranBill.GetBill().size()) + ", Coal: " + (10-coalBill.GetBill().size()) + ", Iron: " + (10-ironBill.GetBill().size()));
         activeSettlerGateInvLabel.setText("Gate inventory: " + activeSettler.GetBackpack().size());
     }
 

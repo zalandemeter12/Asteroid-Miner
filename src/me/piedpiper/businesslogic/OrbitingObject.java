@@ -192,10 +192,12 @@ public abstract class OrbitingObject {
     }
 
     public boolean IsThereActiveSettler(){
-        for(Worker w : workers){
-            if(w == ellipse.GetField().GetActiveSettler())
+        if (ellipse == null || ellipse.GetField() == null || ellipse.GetField().GetActiveSettler() == null) return false;
+        Settler active = ellipse.GetField().GetActiveSettler();
+        if (active == null) return false;
+        for(Worker w : workers)
+            if(w == active)
                 return true;
-        }
         return false;
     }
 

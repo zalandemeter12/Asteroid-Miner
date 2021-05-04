@@ -25,6 +25,7 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
         Font font = new Font("Arial", Font.PLAIN, 18);
         g2d.setFont(font);
         g2d.drawString("A" + asteroid.GetIndex(), 5, 22);
+        asteroid.IsThereActiveSettler();
     }
 
     public int GetPosX(){

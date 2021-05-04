@@ -22,10 +22,7 @@ public class TeleportGatePanel extends JPanel implements IPosGettable{
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.red);
         g2d.fillRect(0, 0, 20, 20);
-        if(teleportGate.IsNeighboursGotTheActiveSettler()){
-            g2d.setPaint(Color.blue);
-            g2d.fillOval(0, 0, 10, 10);
-        }
+
     }
 
     @Override

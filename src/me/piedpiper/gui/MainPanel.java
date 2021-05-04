@@ -17,9 +17,16 @@ public class MainPanel extends JPanel {
     public void paint(Graphics g) {
         g.clearRect(0,0,1000,492);
         super.paint(g);
+        /*
         for(JPanel panel: graphicObjects){
             this.add(panel);
             panel.setLocation(((IPosGettable)panel).GetPosX(),  ((IPosGettable)panel).GetPosY());
+        }
+        */
+
+        for(int i = graphicObjects.size()-1; i >= 0; --i){
+            this.add(graphicObjects.get(i));
+            graphicObjects.get(i).setLocation(((IPosGettable)graphicObjects.get(i)).GetPosX(),  ((IPosGettable)graphicObjects.get(i)).GetPosY());
         }
     }
 

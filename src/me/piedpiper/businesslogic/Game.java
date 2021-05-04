@@ -141,6 +141,7 @@ public class Game {
         Asteroid a4=new Asteroid(new Point2D(10,5), field.GetEllipses().get(1),1, new Coal(), view);
         Asteroid a5=new Asteroid(new Point2D(3,7), field.GetEllipses().get(1),2, new Uran(), view);
         Asteroid a6=new Asteroid(new Point2D(9,-9), field.GetEllipses().get(2),0, null, view);
+
         a2.GetNeighbors().add(a1);
         a1.GetNeighbors().add(a2);
         a1.GetNeighbors().add(a3);
@@ -485,7 +486,7 @@ public class Game {
         //Logger.logOnConsole = false;
         Game game = new Game();
         view.setVisible(true);
-
+        /*
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -501,5 +502,6 @@ public class Game {
             }
         });
         t.run();
+         */
     }
 }

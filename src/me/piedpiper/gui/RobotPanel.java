@@ -26,6 +26,11 @@ public class RobotPanel extends JPanel implements IPosGettable{
         int height=16;
 
         g2d.fillOval(0, 0, width, height);
+
+        g2d.setPaint(Color.darkGray);
+        Font font = new Font("Arial", Font.PLAIN, 10);
+        g2d.setFont(font);
+        g2d.drawString("R", 4, 12);
     }
 
     @Override

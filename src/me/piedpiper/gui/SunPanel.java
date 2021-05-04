@@ -23,15 +23,19 @@ public class SunPanel extends JPanel implements IPosGettable{
         g2d.setPaint(Color.orange);
         int r=60;
         g2d.fillOval(0, 0, r, r);
+        g2d.setPaint(Color.darkGray);
+        Font font = new Font("Arial", Font.PLAIN, 20);
+        g2d.setFont(font);
+        g2d.drawString("S", 24, 36);
     }
 
     @Override
     public int GetPosX() {
-        return 350;
+        return 470;
     }
 
     @Override
     public int GetPosY() {
-        return 200;
+        return 492/2-30;
     }
 }

@@ -22,8 +22,6 @@ public class UfoPanel extends JPanel implements IPosGettable{
 
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.green);
-
-
         g2d.fillOval(0, 0, width, height);
 
         g2d.setPaint(Color.darkGray);

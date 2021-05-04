@@ -18,7 +18,7 @@ public class SunPanel extends JPanel implements IPosGettable{
     public void paint(Graphics g) {
         super.paint(g);
 
-        //TODO width, height kitalálni
+
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.orange);
         int r=60;

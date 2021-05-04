@@ -24,7 +24,6 @@ public class RobotPanel extends JPanel implements IPosGettable{
         g2d.setPaint(Color.blue);
         int width=16;
         int height=16;
-
         g2d.fillOval(0, 0, width, height);
 
         g2d.setPaint(Color.darkGray);

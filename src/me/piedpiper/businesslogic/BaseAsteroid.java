@@ -81,5 +81,19 @@ public class BaseAsteroid extends Asteroid {
         return "BaseAsteroid";
     }
 
+    public int GetNumberOfUrans(){
+        return 0;
+    }
+
+    public int GetNumberOfIce(){
+        return 0;
+    }
+    public int GetNumberOfCoals(){
+        return 0;
+    }
+    public int GetNumberOfIrons(){
+        return 0;
+    }
+
 
 }

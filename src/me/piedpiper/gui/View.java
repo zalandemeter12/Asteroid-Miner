@@ -3,6 +3,7 @@ package me.piedpiper.gui;
 import me.piedpiper.businesslogic.Asteroid;
 import me.piedpiper.businesslogic.Game;
 import me.piedpiper.businesslogic.OrbitingObject;
+import me.piedpiper.businesslogic.Settler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,11 +63,11 @@ public class View extends JFrame {
 
     private static final JPanel activeSettlerInfoPanel = new JPanel();
     private static final JLabel activeSettlerLabel = new JLabel("Active Settler: Settler1");
-    private static final JLabel activeSettlerBackpackLabel = new JLabel("Backpack: Ice: 1, Uran:2, Coal: 0, Iron: 0");
-    private static final JLabel activeSettlerGateInvLabel = new JLabel("Gate inventory: 2");
+    private static final JLabel activeSettlerBackpackLabel = new JLabel("Backpack: Ice: 0, Uran:0, Coal: 0, Iron: 0");
+    private static final JLabel activeSettlerGateInvLabel = new JLabel("Gate inventory: 0");
 
     private static final JPanel clickedObjectInfoPanel = new JPanel();
-    private static final JLabel clickedObjectLabel = new JLabel("Clicked object: Asteroid2");
+    private static final JLabel clickedObjectLabel = new JLabel("Clicked object: Null");
     private static final JLabel clickedObjectThicknessLabel = new JLabel("Thickness: 2");
     private static final JLabel clickedObjectMaterialLabel = new JLabel("Material: Unknown");
 
@@ -85,7 +86,7 @@ public class View extends JFrame {
     private OrbitingObject selectedObject = null;
     private Handlers handlers;
 
-    public View(Game game){
+    public View(Game game) {
         super("Asteroid miner");
 
         this.handlers = new Handlers(this);
@@ -155,7 +156,6 @@ public class View extends JFrame {
         containerPanel.add(infoPanel, BorderLayout.SOUTH);
         containerPanel.add(mainPanel, BorderLayout.CENTER);
 
-
         this.add(containerPanel);
     }
 
@@ -169,20 +169,28 @@ public class View extends JFrame {
     }
 
     public void Refresh(){
-        clickedObjectLabel.setText("Clicked object: " + selectedObject.GetName());
-        if(selectedObject.getClass() == Asteroid.class){
-            clickedObjectThicknessLabel.setText("Thickness: " +selectedObject.GetThickness());
-            if(selectedObject.GetThickness() > 0){
-                clickedObjectMaterialLabel.setText("Material: Unknown");
-            }else if(selectedObject.GetMaterial() != null){
-                clickedObjectMaterialLabel.setText("Material: " + selectedObject.GetMaterial().GetName());
+        if (selectedObject != null) {
+            clickedObjectLabel.setText("Clicked object: " + selectedObject.GetName());
+            if(selectedObject.getClass() == Asteroid.class){
+                clickedObjectThicknessLabel.setText("Thickness: " +selectedObject.GetThickness());
+                if(selectedObject.GetThickness() > 0){
+                    clickedObjectMaterialLabel.setText("Material: Unknown");
+                }else if(selectedObject.GetMaterial() != null){
+                    clickedObjectMaterialLabel.setText("Material: " + selectedObject.GetMaterial().GetName());
+                }else{
+                    clickedObjectMaterialLabel.setText("Material: -");
+                }
             }else{
+                clickedObjectThicknessLabel.setText("Thickness: -");
                 clickedObjectMaterialLabel.setText("Material: -");
             }
-        }else{
-            clickedObjectThicknessLabel.setText("Thickness: -");
-            clickedObjectMaterialLabel.setText("Material: -");
+        } else {
+            clickedObjectLabel.setText("Clicked object: Null");
         }
+        Settler activeSettler = game.GetField().GetActiveSettler();
+        activeSettlerLabel.setText("Active Settler: " + activeSettler.GetName());
+        activeSettlerBackpackLabel.setText("Backpack: Ice: 0, Uran:0, Coal: 0, Iron: 0");
+        activeSettlerGateInvLabel.setText("Gate inventory: " + activeSettler.GetBackpack().size());
     }
 
     public Game GetGame() {

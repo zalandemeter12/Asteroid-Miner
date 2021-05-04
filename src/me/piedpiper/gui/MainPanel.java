@@ -17,7 +17,6 @@ public class MainPanel extends JPanel {
     public void paint(Graphics g) {
         g.clearRect(0,0,1000,492);
         super.paint(g);
-
         /*
         for(JPanel panel: graphicObjects){
             this.add(panel);
@@ -39,5 +38,10 @@ public class MainPanel extends JPanel {
     public void RemoveGraphicObject(JPanel object){
         graphicObjects.remove(object);
         repaint();
+    }
+
+
+    public ArrayList<JPanel> GetGraphicObjects() {
+        return graphicObjects;
     }
 }

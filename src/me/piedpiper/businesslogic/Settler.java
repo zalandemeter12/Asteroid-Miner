@@ -122,9 +122,9 @@ public class Settler extends Worker {
             tg.SetEllipse(location.GetEllipse());
             location.GetEllipse().AddObject(tg);
             tg.AddNeighbor(location);
-            if(tg.isActive()){
-                tg.AddNeighbor(tg.getPair());
-                tg.getPair().AddNeighbor(tg);
+            if(tg.IsActive()){
+                tg.AddNeighbor(tg.GetPair());
+                tg.GetPair().AddNeighbor(tg);
             }
             location.AddNeighbor(tg);
             canStep=false;

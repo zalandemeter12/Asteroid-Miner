@@ -29,6 +29,7 @@ public class Handlers {
         if (view.GetGame().GetField().GetActiveSettler() == null || view.GetSelectedObject() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().MoveTo(view.GetSelectedObject());
         view.repaint();
+        view.Refresh();
     }
 
     public void PlaceMaterialClicked(){
@@ -40,12 +41,14 @@ public class Handlers {
             active.PlaceMaterial(active.GetBackpack().get(0));
         }
         view.repaint();
+        view.Refresh();
     }
 
     public void PlaceGateClicked(){
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().PlaceGate();
         view.repaint();
+        view.Refresh();
     }
 
     public void SkipClicked(){

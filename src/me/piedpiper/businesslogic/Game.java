@@ -336,10 +336,10 @@ public class Game {
                     neighboursJson.putAll(neighboursNames);
 
                     teleportGateJson.put("neighbours", neighboursJson);
-                    teleportGateJson.put("active", ((TeleportGate) orbitingObject).isActive());
+                    teleportGateJson.put("active", ((TeleportGate) orbitingObject).IsActive());
 
                     teleportGateJson.put("closeToSun", orbitingObject.IsCloseToSun());
-                    teleportGateJson.put("pair", ((TeleportGate)orbitingObject).getPair().GetName());
+                    teleportGateJson.put("pair", ((TeleportGate)orbitingObject).GetPair().GetName());
 
                     JSONObject teleportGateJsonWrapper = new JSONObject();
                     teleportGateJsonWrapper.put(orbitingObject.GetName(), teleportGateJson);
@@ -485,7 +485,7 @@ public class Game {
 
     //Belépési pont
     public static void main(String[] args){
-        //Logger.logOnConsole = false;
+        Logger.logOnConsole = false;
         Game game = new Game();
         view.setVisible(true);
         /*

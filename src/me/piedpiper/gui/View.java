@@ -61,13 +61,13 @@ public class View extends JFrame {
 
     private static final JPanel activeSettlerInfoPanel = new JPanel();
     private static final JLabel activeSettlerLabel = new JLabel("Active Settler: Settler1");
-    private static final JLabel activeSettlerBackpackLabel = new JLabel("Backpack: Ice: 0, Uran:0, Coal: 0, Iron: 0");
+    private static final JLabel activeSettlerBackpackLabel = new JLabel("Backpack: Ice: 0, Uran: 0, Coal: 0, Iron: 0");
     private static final JLabel activeSettlerGateInvLabel = new JLabel("Gate inventory: 0");
 
     private static final JPanel clickedObjectInfoPanel = new JPanel();
     private static final JLabel clickedObjectLabel = new JLabel("Clicked object: Null");
-    private static final JLabel clickedObjectThicknessLabel = new JLabel("Thickness: 2");
-    private static final JLabel clickedObjectMaterialLabel = new JLabel("Material: Unknown");
+    private static final JLabel clickedObjectThicknessLabel = new JLabel("Thickness: -");
+    private static final JLabel clickedObjectMaterialLabel = new JLabel("Materials: -");
 
     private static final JButton drillButton = new JButton("Drill");
     private static final JButton mineButton = new JButton("Mine");
@@ -178,10 +178,42 @@ public class View extends JFrame {
                 }else{
                     clickedObjectMaterialLabel.setText("Material: -");
                 }
-            }else{
+            } else if (selectedObject.getClass() == BaseAsteroid.class) {
+                clickedObjectThicknessLabel.setText("Thickness: 0");
+
+                ArrayList<Material> irons = new ArrayList<>();
+                for (int i = 0; i < 3; ++i) irons.add(new Iron());
+                BillOfMaterials ironBill = new BillOfMaterials(irons);
+                for(Material m: selectedObject.GetChest()) ironBill.IsNeeded(m);
+
+                ArrayList<Material> urans = new ArrayList<>();
+                for (int i = 0; i < 3; ++i) urans.add(new Uran());
+                BillOfMaterials uranBill = new BillOfMaterials(urans);
+                for(Material m: selectedObject.GetChest()) uranBill.IsNeeded(m);
+
+                ArrayList<Material> coals = new ArrayList<>();
+                for (int i = 0; i < 3; ++i) coals.add(new Coal());
+                BillOfMaterials coalBill = new BillOfMaterials(coals);
+                for(Material m: selectedObject.GetChest()) coalBill.IsNeeded(m);
+
+                ArrayList<Material> ices = new ArrayList<>();
+                for (int i = 0; i < 3; ++i) ices.add(new Ice());
+                BillOfMaterials iceBill = new BillOfMaterials(ices);
+                for(Material m: selectedObject.GetChest()) iceBill.IsNeeded(m);
+
+                clickedObjectMaterialLabel.setText("Materials: Ice: " + (3-iceBill.GetBill().size()) +", Uran: " + (3-uranBill.GetBill().size()) + ", Coal: " + (3-coalBill.GetBill().size()) + ", Iron: " + (3-ironBill.GetBill().size()));
+            } else if (selectedObject.getClass() == TeleportGate.class) {
+                if (((TeleportGate)selectedObject).GetPair().GetPosition() == null) {
+                    clickedObjectThicknessLabel.setText("Pair: Not active");
+                } else {
+                    clickedObjectThicknessLabel.setText("Pair: " + ((TeleportGate)selectedObject).GetPair().GetName());
+                }
+                clickedObjectMaterialLabel.setText(" ");
+            } else {
                 clickedObjectThicknessLabel.setText("Thickness: -");
                 clickedObjectMaterialLabel.setText("Material: -");
             }
+
         } else {
             clickedObjectLabel.setText("Clicked object: Null");
         }
@@ -210,7 +242,7 @@ public class View extends JFrame {
         for(Material m: activeSettler.GetBackpack()) iceBill.IsNeeded(m);
 
         activeSettlerBackpackLabel.setText("Backpack: Ice: " + (10-iceBill.GetBill().size()) +", Uran: " + (10-uranBill.GetBill().size()) + ", Coal: " + (10-coalBill.GetBill().size()) + ", Iron: " + (10-ironBill.GetBill().size()));
-        activeSettlerGateInvLabel.setText("Gate inventory: " + activeSettler.GetBackpack().size());
+        activeSettlerGateInvLabel.setText("Gate inventory: " + activeSettler.GetGateInventory().size());
     }
 
     public Game GetGame() {

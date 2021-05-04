@@ -106,11 +106,11 @@ public class TeleportGate extends OrbitingObject {
         currentIndex=0;
     }
 
-    public TeleportGate getPair(){
+    public TeleportGate GetPair(){
         return this.gatePair;
     }
 
-    public boolean isActive(){
+    public boolean IsActive(){
         return gatePair.GetEllipse() != null && this.ellipse != null;
     }
 }

@@ -60,4 +60,8 @@ public abstract class Worker { //A munkást reprezentáló absztrakt osztály a 
     }
 
     public abstract String GetName();
+
+    public int GetIndex(){
+        return id;
+    }
 }

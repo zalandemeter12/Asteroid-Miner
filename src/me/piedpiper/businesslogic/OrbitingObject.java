@@ -179,6 +179,9 @@ public abstract class OrbitingObject {
 
     public abstract String GetName();
 
+    public int GetIndex(){
+        return id;
+    }
 
     public double GetT() {
         return t;

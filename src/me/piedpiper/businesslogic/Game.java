@@ -122,7 +122,7 @@ public class Game {
     }
 
     public void testInitGraphic(){
-        Sun sun = new Sun(new Point2D(0,0), null);
+        Sun sun = new Sun(new Point2D(0,0), null, view);
         ArrayList<Settler> settlers = new ArrayList<>();
         ArrayList<Ellipse2D> ellipses = new ArrayList<>();
         this.field = new AsteroidField(sun, this, ellipses, settlers);

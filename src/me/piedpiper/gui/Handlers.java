@@ -26,7 +26,7 @@ public class Handlers {
     }
 
     public void MoveClicked(){
-        if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
+        if (view.GetGame().GetField().GetActiveSettler() == null || view.GetSelectedObject() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().MoveTo(view.GetSelectedObject());
         view.repaint();
     }

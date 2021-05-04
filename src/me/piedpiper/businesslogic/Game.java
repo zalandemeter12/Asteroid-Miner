@@ -176,6 +176,8 @@ public class Game {
         field.GetSettlers().add(s1);
         field.GetSettlers().add(s2);
         field.GetSun().GetSolarStorms().add(new SolarStorm(field.GetSun(), 10, 2, view));
+
+        field.SetActiveSettler(field.GetSettlers().get(0));
     }
 
     public void SetBase(BaseAsteroid b){

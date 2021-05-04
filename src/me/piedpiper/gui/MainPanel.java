@@ -41,4 +41,7 @@ public class MainPanel extends JPanel {
     }
 
 
+    public ArrayList<JPanel> GetGraphicObjects() {
+        return graphicObjects;
+    }
 }

@@ -7,10 +7,12 @@ import java.awt.*;
 
 public class UfoPanel extends JPanel implements IPosGettable{
     private Ufo ufo;
+    int width=16;
+    int height=16;
 
     public UfoPanel(Ufo u){
         ufo=u;
-        this.setSize(16, 16);
+        this.setSize(width, height);
         this.setBackground(new Color(0,0,0,0));
     }
 
@@ -20,8 +22,7 @@ public class UfoPanel extends JPanel implements IPosGettable{
 
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.green);
-        int width=16;
-        int height=16;
+
 
         g2d.fillOval(0, 0, width, height);
     }
@@ -36,7 +37,7 @@ public class UfoPanel extends JPanel implements IPosGettable{
                 break;
             }
         }
-        int width=16;
+
         int x;
         int gap=2;
         if(numberOfWorkers % 2 ==0){

@@ -58,8 +58,16 @@ public class Sun implements ISteppable {
         } else {
             roundsWithoutSS++;
         }
-        for (SolarStorm s : solarStorms) 
-            //s.Step();
+        ArrayList<SolarStorm> finishedStorms=new ArrayList<>();
+        for (SolarStorm s : solarStorms) {
+            if(s.GetWarnTimer()==0) {
+                finishedStorms.add(s);
+            }else s.Step();
+
+        }
+        for(SolarStorm s : finishedStorms){
+            solarStorms.remove(s);
+        }
         
         Logger.tabcount--;
     }

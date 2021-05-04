@@ -55,13 +55,12 @@ public class SolarStorm implements ISteppable{
         //Megöli a sérthető telepeseket és tönkreteszi a robotokat, ha lejárt a figyelmeztető idő
         if (warnTimer>0) {
             warnTimer--;
-        } else {
+        } else if(warnTimer==0){
             for (Ellipse2D e : sun.GetField().GetEllipses()) {
                 //TODO implementálni pos+angle alapján
             }
             for (OrbitingObject o : targets)
                 o.UnderSolarStorm();
-            sun.GetSolarStorms().remove(this);
             view.RemoveGraphicObject(panel);
         }
         

@@ -12,17 +12,17 @@ public class Handlers {
     }
 
     public void DrillClicked(){
-        view.GetGame().GetField().Step();
-        view.repaint();
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().DrillHole();
         view.repaint();
+        view.Refresh();
     }
 
     public void MineClicked(){
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().Mine();
         view.repaint();
+        view.Refresh();
     }
 
     public void MoveClicked(){
@@ -52,6 +52,7 @@ public class Handlers {
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().SkipAction();
         view.repaint();
+        view.Refresh();
     }
 
     public void NewClicked(){

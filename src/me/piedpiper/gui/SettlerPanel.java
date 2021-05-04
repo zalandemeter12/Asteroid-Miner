@@ -7,10 +7,12 @@ import java.awt.*;
 
 public class SettlerPanel extends JPanel implements IPosGettable{
     private Settler settler;
+    int width=16;
+    int height=16;
 
     public SettlerPanel(Settler s){
         settler=s;
-        this.setSize(16, 16);
+        this.setSize(width, height);
         this.setBackground(new Color(0,0,0,0));
     }
 
@@ -20,10 +22,13 @@ public class SettlerPanel extends JPanel implements IPosGettable{
 
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.orange);
-        int width=16;
-        int height=16;
-
         g2d.fillOval(0, 0, width, height);
+
+        g2d.setPaint(Color.darkGray);
+        Font font = new Font("Arial", Font.PLAIN, 10);
+        g2d.setFont(font);
+        g2d.drawString("S" + settler.GetIndex(), 2, 12);
+
     }
 
     @Override
@@ -36,7 +41,7 @@ public class SettlerPanel extends JPanel implements IPosGettable{
                 break;
             }
         }
-        int width=16;
+
         int x;
         int gap=2;
         if(numberOfWorkers % 2 ==0){

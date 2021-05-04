@@ -7,10 +7,12 @@ import java.awt.*;
 
 public class RobotPanel extends JPanel implements IPosGettable{
     private Robot robot;
+    int width=16;
+    int height=16;
 
     public RobotPanel(Robot r){
         robot=r;
-        this.setSize(16, 16);
+        this.setSize(width, height);
         this.setBackground(new Color(0,0,0,0));
     }
 
@@ -36,7 +38,7 @@ public class RobotPanel extends JPanel implements IPosGettable{
                 break;
             }
         }
-        int width=16;
+
         int x;
         int gap=2;
         if(numberOfWorkers % 2 ==0){

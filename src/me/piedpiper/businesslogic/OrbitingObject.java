@@ -179,6 +179,9 @@ public abstract class OrbitingObject {
 
     public abstract String GetName();
 
+    public int GetIndex(){
+        return id;
+    }
 
     public double GetT() {
         return t;
@@ -186,5 +189,22 @@ public abstract class OrbitingObject {
 
     public void SetT(double t) {
         this.t = t;
+    }
+
+    public boolean IsThereActiveSettler(){
+        for(Worker w : workers){
+            if(w == ellipse.GetField().GetActiveSettler())
+                return true;
+        }
+        return false;
+    }
+
+    public boolean IsNeighboursGotTheActiveSettler(){
+        if(neighbors != null){
+            for(OrbitingObject o : neighbors)
+            if(o.IsThereActiveSettler())
+                return true;
+        }
+        return false;
     }
 }

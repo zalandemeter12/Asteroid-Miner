@@ -141,4 +141,6 @@ public class Asteroid extends OrbitingObject {
     }
 
     public AsteroidPanel GetPanel(){return panel;}
+
+
 }

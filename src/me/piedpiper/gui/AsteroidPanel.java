@@ -11,7 +11,7 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
 
     public AsteroidPanel(Asteroid a){
         asteroid=a;
-        this.setSize(30, 30);
+        this.setSize(34, 34);
         this.setBackground(new Color(0,0,0,0));
 
     }
@@ -20,20 +20,20 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.gray);
-        g2d.fillOval(0, 0, 30, 30);
+        g2d.fillOval(0, 0, 34, 34);
         g2d.setPaint(Color.darkGray);
-        Font font = new Font("Arial", Font.PLAIN, 18);
+        Font font = new Font("Arial", Font.PLAIN, 16);
         g2d.setFont(font);
-        g2d.drawString("A" + asteroid.GetIndex(), 5, 22);
+        g2d.drawString("A" + asteroid.GetIndex(), 3, 24);
         asteroid.IsThereActiveSettler();
     }
 
     public int GetPosX(){
-        return (int)asteroid.GetPosition().GetX()+500-15;
+        return (int)asteroid.GetPosition().GetX()+500-17;
     }
 
     public int GetPosY(){
-        return (int)asteroid.GetPosition().GetY()+246-15;
+        return (int)asteroid.GetPosition().GetY()+246-17;
     }
 
     public Asteroid GetAsteroid() {

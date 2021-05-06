@@ -94,7 +94,7 @@ public class Ellipse2D {
             p = new Point2D(a/2 * Math.cos(o.GetT()), b/2 * Math.sin(o.GetT()));
             notClose = true;
             for(OrbitingObject or : objects){
-                if(p.DistanceFrom(or.GetPosition()) < 20) //TODO find the real isClose value
+                if(p.DistanceFrom(or.GetPosition()) < 60) //TODO find the real isClose value
                     notClose = false;
             }
         }

@@ -35,7 +35,8 @@ public class TeleportGate extends OrbitingObject {
         this.ellipse = null;
         this.view = view;
         panel=new TeleportGatePanel(this);
-        view.AddGraphicObject(panel);
+        if(position!= null && ellipse!=null)
+            view.AddGraphicObject(panel);
         Logger.tabcount--;
     }
 
@@ -113,4 +114,10 @@ public class TeleportGate extends OrbitingObject {
     public boolean IsActive(){
         return gatePair.GetEllipse() != null && this.ellipse != null;
     }
+
+    public void PlacePanel(){
+        if(panel==null){
+            panel=new TeleportGatePanel(this);
+        }
+        view.AddGraphicObject(panel);}
 }

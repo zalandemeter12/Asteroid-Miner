@@ -46,7 +46,7 @@ public class RobotPanel extends JPanel implements IPosGettable{
         int x;
         int gap=2;
         if(numberOfWorkers % 2 ==0){
-            x=(int)robot.GetLocation().GetPosition().GetX()+(numberOfWorkers/2-order-1)*(gap+width/2)+(gap/2);
+            x=(int)robot.GetLocation().GetPosition().GetX()+(numberOfWorkers/2-order-1)*(gap+width)+(gap/2+width);
         } else{
             int middle=(numberOfWorkers+1)/2;
             if(middle==order){
@@ -54,6 +54,8 @@ public class RobotPanel extends JPanel implements IPosGettable{
             }else
                 x=(int)robot.GetLocation().GetPosition().GetX()+(middle-order)*(gap+width) + width;
             if((middle-order)<0) x-=2*width;
+            else if((middle-order)>0) x-=width;
+
         }
         return x+500;
     }

@@ -4,7 +4,10 @@ import me.piedpiper.gui.View;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import java.util.ArrayList;
+import java.util.Random;
+
 import static java.lang.StrictMath.PI;
 
 //A játékok összefogó objektum, tertalmazza és létrehozza a fő objektumokat
@@ -21,9 +24,81 @@ public class Game {
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
         view = new View(this);
-        testInitGraphic();
+        Init();
 
         Logger.tabcount--;
+
+    }
+
+    public void Init(){
+        Sun sun = new Sun(new Point2D(0.0,0.0),null, view);
+
+        ArrayList<OrbitingObject> objects1 = new ArrayList<>();
+        ArrayList<OrbitingObject> objects2 = new ArrayList<>();
+        ArrayList<OrbitingObject> objects3 = new ArrayList<>();
+
+        ArrayList<Ellipse2D> ellipses = new ArrayList<>();
+        ArrayList<Settler> settlers = new ArrayList<>();
+        this.field = new AsteroidField(sun, this, ellipses, settlers);
+        sun.SetField(this.field);
+
+        ellipses.add(new Ellipse2D(900, 400, 5, 0.04, objects1, view));
+        ellipses.add(new Ellipse2D(800, 300, 10, -0.04, objects2, view));
+        ellipses.add(new Ellipse2D(700, 200, 15, 0.02, objects3, view));
+
+        this.base = new BaseAsteroid(new Point2D(1,1), ellipses.get(1), 0, this, view);
+
+        Random rand=new Random();
+        int bound=6;
+        for(int i=0; i<2; i++) {
+            objects3.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Iron(), view));
+            objects3.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Ice(), view));
+            objects3.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Coal(), view));
+            objects3.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), null, view));
+            objects3.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Iron(), view));
+            objects3.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Uran(), view));
+
+            objects2.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Iron(), view));
+            objects2.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Ice(), view));
+            objects2.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Coal(), view));
+            objects2.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Uran(), view));
+            objects2.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Uran(), view));
+            objects2.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), null, view));
+
+            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Iron(), view));
+            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), null, view));
+            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Ice(), view));
+            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Coal(), view));
+            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Uran(), view));
+            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Iron(), view));
+            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Ice(), view));
+            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Uran(), view));
+            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Uran(), view));
+            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Coal(), view));
+        }
+
+        /*TeleportGate teleportGate1= new TeleportGate(null, null, view);
+        TeleportGate teleportGate2= new TeleportGate(null, null, view);
+        teleportGate1.SetGatePair(teleportGate2);
+        teleportGate2.SetGatePair(teleportGate1);*/
+
+        for(int i=0; i<3;i++) {
+            settlers.add(new Settler(base, field, view));
+        }
+        /*settlers.get(0).AddGate(teleportGate1);
+        settlers.get(0).AddGate(teleportGate2);*/
+        field.SetActiveSettler(field.GetSettlers().get(0));
+
+        OrbitingObject randO1=objects1.get(rand.nextInt(objects1.size()));
+        OrbitingObject randO2=objects2.get(rand.nextInt(objects2.size()));
+        OrbitingObject randO3=objects3.get(rand.nextInt(objects3.size()));
+
+        new Ufo(randO1, field, view);
+        new Ufo(randO2, field, view);
+        new Ufo(randO3, field, view);
+
+
+
 
     }
 
@@ -249,7 +324,7 @@ public class Game {
 
             // chest tartalma
             JSONArray chestJson = new JSONArray();
-            ArrayList<String> chestItemNames = new ArrayList<String>();
+            ArrayList<String> chestItemNames = new ArrayList<>();
 
 
             for (Material material : base.GetChest())
@@ -262,7 +337,7 @@ public class Game {
 
             // bazis szomszedai
             JSONArray baseNeighboursJson = new JSONArray();
-            ArrayList<String> baseNeighboursNames = new ArrayList<String>();
+            ArrayList<String> baseNeighboursNames = new ArrayList<>();
 
 
             for (OrbitingObject neighbour : base.GetNeighbors())
@@ -290,7 +365,7 @@ public class Game {
                     asteroidJson.put("ellipse", ellipse.GetId());
 
                     JSONArray neighboursJson = new JSONArray();
-                    ArrayList<String> neighboursNames = new ArrayList<String>();
+                    ArrayList<String> neighboursNames = new ArrayList<>();
 
                     for (OrbitingObject neighbour : orbitingObject.GetNeighbors())
                     {
@@ -327,7 +402,7 @@ public class Game {
 
 
                     JSONArray neighboursJson = new JSONArray();
-                    ArrayList<String> neighboursNames = new ArrayList<String>();
+                    ArrayList<String> neighboursNames = new ArrayList<>();
 
                     for (OrbitingObject neighbour : orbitingObject.GetNeighbors())
                     {
@@ -362,7 +437,7 @@ public class Game {
 
                     // material inventory
                     JSONArray inventoryJson = new JSONArray();
-                    ArrayList<String> inventoryNames = new ArrayList<String>();
+                    ArrayList<String> inventoryNames = new ArrayList<>();
                     for (Material material : ((Settler) worker).GetBackpack()) {
                         inventoryNames.add(material.GetName());
                     }
@@ -371,7 +446,7 @@ public class Game {
 
                     // teleportGate inventory
                     JSONArray teleportGateJson = new JSONArray();
-                    ArrayList<String> teleportGateNames = new ArrayList<String>();
+                    ArrayList<String> teleportGateNames = new ArrayList<>();
                     for (TeleportGate teleportGate : ((Settler) worker).GetGateInventory()) {
                         teleportGateNames.add(teleportGate.GetName());
                     }
@@ -394,7 +469,7 @@ public class Game {
 
                         // material inventory
                         JSONArray inventoryJson = new JSONArray();
-                        ArrayList<String> inventoryNames = new ArrayList<String>();
+                        ArrayList<String> inventoryNames = new ArrayList<>();
                         for (Material material : ((Settler) worker).GetBackpack()) {
                             inventoryNames.add(material.GetName());
                         }
@@ -403,7 +478,7 @@ public class Game {
 
                         // teleportGate inventory
                         JSONArray teleportGateJson = new JSONArray();
-                        ArrayList<String> teleportGateNames = new ArrayList<String>();
+                        ArrayList<String> teleportGateNames = new ArrayList<>();
                         for (TeleportGate teleportGate : ((Settler) worker).GetGateInventory()) {
                             teleportGateNames.add(teleportGate.GetName());
                         }

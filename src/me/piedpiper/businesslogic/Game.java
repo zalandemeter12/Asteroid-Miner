@@ -83,12 +83,13 @@ public class Game {
         teleportGate1.SetGatePair(teleportGate2);
         teleportGate2.SetGatePair(teleportGate1);*/
 
-        for(int i=0; i<1;i++) {
+        for(int i=0; i<3;i++) {
             settlers.add(new Settler(base, field, view));
         }
         /*settlers.get(0).AddGate(teleportGate1);
         settlers.get(0).AddGate(teleportGate2);*/
         field.SetActiveSettler(field.GetSettlers().get(0));
+
 
         OrbitingObject randO1=objects1.get(rand.nextInt(objects1.size()));
         OrbitingObject randO2=objects2.get(rand.nextInt(objects2.size()));

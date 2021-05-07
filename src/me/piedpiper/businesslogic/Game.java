@@ -1,5 +1,6 @@
 package me.piedpiper.businesslogic;
 
+import me.piedpiper.gui.NeighboursPanel;
 import me.piedpiper.gui.View;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -44,6 +45,8 @@ public class Game {
         ellipses.add(new Ellipse2D(900, 400, 5, 0.04, objects1, view));
         ellipses.add(new Ellipse2D(800, 300, 10, -0.04, objects2, view));
         ellipses.add(new Ellipse2D(700, 200, 15, 0.02, objects3, view));
+        NeighboursPanel neighboursPanel = new NeighboursPanel(ellipses.get(0).GetObjects(),ellipses.get(1).GetObjects(),ellipses.get(2).GetObjects());
+        view.AddGraphicObject(neighboursPanel);
 
         this.base = new BaseAsteroid(new Point2D(1,1), ellipses.get(1), 0, this, view);
 
@@ -97,7 +100,6 @@ public class Game {
         field.AddSteppable(new Ufo(randO3, field, view));
         field.SetNeighbours();
 
-        //view.AddGraphicObject(neighboursPanel);
     }
 
     public void testInitSequences(int settlerCount) {

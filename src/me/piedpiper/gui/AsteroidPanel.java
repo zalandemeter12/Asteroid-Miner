@@ -13,7 +13,6 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
         asteroid=a;
         this.setSize(34, 34);
         this.setBackground(new Color(0,0,0,0));
-
     }
 
     public void paint(Graphics g) {
@@ -26,6 +25,11 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
         g2d.setFont(font);
         g2d.drawString("A" + asteroid.GetIndex(), 3, 24);
         asteroid.IsThereActiveSettler();
+        if(asteroid.IsNeighboursGotTheActiveSettler()){
+            System.out.println("itt");
+            g2d.setPaint(Color.red);
+            g2d.drawOval(0,0,30,30);
+        }
     }
 
     public int GetPosX(){

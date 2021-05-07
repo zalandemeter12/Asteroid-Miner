@@ -40,9 +40,10 @@ public class Ufo extends Worker implements ISteppable{
 
     @Override
     public void Step() {
-        if(location.GetThickness()==0){
+        if(location.GetThickness() == 0){
             Mine();
-        } else if(location.GetNeighbors().size()>0){
+        } else if(location.GetNeighbors().size() > 0){
+
             if (field.IsRandom()) {
                 Random rand = new Random();
                 int idx = rand.nextInt(location.GetNeighbors().size()-1);

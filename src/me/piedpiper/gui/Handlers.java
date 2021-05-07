@@ -61,7 +61,11 @@ public class Handlers {
 
     }
     public void BuildGateClicked(){
+        if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
+        view.GetGame().GetField().GetActiveSettler().CraftGate();
 
+        view.repaint();
+        view.Refresh();
     }
     public void NewClicked(){
         view.SetGame(new Game());

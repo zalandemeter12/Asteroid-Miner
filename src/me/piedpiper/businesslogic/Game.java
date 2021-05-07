@@ -29,6 +29,9 @@ public class Game {
     }
 
     public void Init(){
+        this.field = null;
+        this.base = null;
+        view.Reset();
         Sun sun = new Sun(new Point2D(0.0,0.0),null, view);
 
         ArrayList<OrbitingObject> objects1 = new ArrayList<>();

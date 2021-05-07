@@ -1,5 +1,7 @@
 package me.piedpiper.gui;
 
+import me.piedpiper.businesslogic.OrbitingObject;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ public class MainPanel extends JPanel {
     public MainPanel(View view){
         this.setLayout(null);
         this.view = view;
+
     }
 
     @Override
@@ -23,9 +26,9 @@ public class MainPanel extends JPanel {
             panel.setLocation(((IPosGettable)panel).GetPosX(),  ((IPosGettable)panel).GetPosY());
         }
         */
-
         for(int i = graphicObjects.size()-1; i >= 0; --i){
             this.add(graphicObjects.get(i));
+            this.setComponentZOrder(graphicObjects.get(i), 0);
             graphicObjects.get(i).setLocation(((IPosGettable)graphicObjects.get(i)).GetPosX(),  ((IPosGettable)graphicObjects.get(i)).GetPosY());
         }
     }
@@ -47,7 +50,13 @@ public class MainPanel extends JPanel {
         graphicObjects.remove(object);
         repaint();
     }
-
+    public void RemoveAllG(){
+        graphicObjects.clear();
+        this.removeAll();
+        this.revalidate();
+        this.repaint();
+        //repaint();
+    }
 
     public ArrayList<JPanel> GetGraphicObjects() {
         return graphicObjects;

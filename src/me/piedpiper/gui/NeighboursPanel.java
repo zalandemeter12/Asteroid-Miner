@@ -25,9 +25,10 @@ public class NeighboursPanel extends JPanel implements IPosGettable{
         super.paint(g);
         this.setBackground(new Color(0,0,0,0));
         g.setColor(Color.red);
-        ArrayList<OrbitingObject> orbitingObjects = orbitingObjects1;
+        ArrayList<OrbitingObject> orbitingObjects = new ArrayList<>();
         orbitingObjects.addAll(orbitingObjects2);
         orbitingObjects.addAll(orbitingObjects3);
+        orbitingObjects.addAll(orbitingObjects1);
         for(OrbitingObject ob : orbitingObjects){
             for(OrbitingObject ne : ob.GetNeighbors()){
                 g.drawLine((int)ob.GetPosition().GetX()+500, (int)ob.GetPosition().GetY()+246, (int)ne.GetPosition().GetX()+500, (int)ne.GetPosition().GetY()+246);

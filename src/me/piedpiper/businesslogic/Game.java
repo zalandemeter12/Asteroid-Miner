@@ -4,11 +4,9 @@ import me.piedpiper.gui.View;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static java.lang.StrictMath.PI;
 
 //A játékok összefogó objektum, tertalmazza és létrehozza a fő objektumokat
 public class Game {
@@ -93,9 +91,9 @@ public class Game {
         OrbitingObject randO2=objects2.get(rand.nextInt(objects2.size()));
         OrbitingObject randO3=objects3.get(rand.nextInt(objects3.size()));
 
-        new Ufo(randO1, field, view);
-        new Ufo(randO2, field, view);
-        new Ufo(randO3, field, view);
+        field.AddSteppable(new Ufo(randO1, field, view));
+        field.AddSteppable(new Ufo(randO2, field, view));
+        field.AddSteppable(new Ufo(randO3, field, view));
 
 
 

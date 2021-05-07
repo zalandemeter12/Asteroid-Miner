@@ -5,12 +5,19 @@ import me.piedpiper.businesslogic.OrbitingObject;
 import me.piedpiper.businesslogic.Settler;
 
 public class Handlers {
+
+    /**
+     * A view, aminek a komponenseinek az eseményihez a függvényeket hozzárendeljük
+     */
     private View view;
 
     public Handlers(View view) {
         this.view = view;
     }
 
+    /**
+     * A Drill gomb lenyomására beregisztálandó függvény
+     */
     public void DrillClicked(){
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().DrillHole();
@@ -18,13 +25,18 @@ public class Handlers {
         view.Refresh();
     }
 
+    /**
+     * A Mine gomb lenyomására beregisztálandó függvény
+     */
     public void MineClicked(){
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().Mine();
         view.repaint();
         view.Refresh();
     }
-
+    /**
+     * A Move gomb lenyomására beregisztálandó függvény
+     */
     public void MoveClicked(){
         if (view.GetGame().GetField().GetActiveSettler() == null || view.GetSelectedObject() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().MoveTo(view.GetSelectedObject());
@@ -32,6 +44,9 @@ public class Handlers {
         view.Refresh();
     }
 
+    /**
+     * A PlaceMaterial gomb lenyomására beregisztálandó függvény
+     */
     public void PlaceMaterialClicked(){
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         //TODO modal window a kiválasztáshoz
@@ -44,6 +59,9 @@ public class Handlers {
         view.Refresh();
     }
 
+    /**
+     * A PlaceGate gomb lenyomására beregisztálandó függvény
+     */
     public void PlaceGateClicked(){
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().PlaceGate();
@@ -51,12 +69,19 @@ public class Handlers {
         view.Refresh();
     }
 
+    /**
+     * A Skip gomb lenyomására beregisztálandó függvény
+     */
     public void SkipClicked(){
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().SkipAction();
         view.repaint();
         view.Refresh();
     }
+
+    /**
+     * Egy RobotPanel lenyomására beregisztálandó függvény
+     */
     public void BuildRobotClicked(){
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().BuildRobot();
@@ -64,6 +89,10 @@ public class Handlers {
         view.repaint();
         view.Refresh();
     }
+
+    /**
+     * A BuildGate gomb lenyomására beregisztálandó függvény
+     */
     public void BuildGateClicked(){
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
         view.GetGame().GetField().GetActiveSettler().CraftGate();
@@ -71,6 +100,10 @@ public class Handlers {
         view.repaint();
         view.Refresh();
     }
+
+    /**
+     * A New Game gomb lenyomására beregisztálandó függvény
+     */
     public void NewClicked(){
 
         view.GetGame().NewGame();

@@ -40,7 +40,7 @@ public class Ufo extends Worker implements ISteppable{
 
     @Override
     public void Step() {
-        if(location.GetThickness() == 0){
+        if(location.GetThickness() == 0 && location.GetMaterial() != null){
             Mine();
         } else if(location.GetNeighbors().size()>0){
             if (field.IsRandom() && location.GetNeighbors().size()>1) {

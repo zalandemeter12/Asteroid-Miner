@@ -43,4 +43,5 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
     public Asteroid GetAsteroid() {
         return asteroid;
     }
+
 }

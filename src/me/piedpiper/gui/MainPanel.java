@@ -46,7 +46,13 @@ public class MainPanel extends JPanel {
         graphicObjects.remove(object);
         repaint();
     }
-
+    public void RemoveAllG(){
+        graphicObjects = new ArrayList<>();
+        this.removeAll();
+        this.revalidate();
+        this.repaint();
+        //repaint();
+    }
 
     public ArrayList<JPanel> GetGraphicObjects() {
         return graphicObjects;

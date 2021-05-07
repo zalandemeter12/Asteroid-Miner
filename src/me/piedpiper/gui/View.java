@@ -173,6 +173,12 @@ public class View extends JFrame {
         this.add(containerPanel);
     }
 
+    public void Reset(){
+        mainPanel = new MainPanel(this);
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+
 
     public void AddGraphicObject(JPanel p){
         mainPanel.AddGraphicObject(p);

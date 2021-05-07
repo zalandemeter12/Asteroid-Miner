@@ -70,6 +70,7 @@ public class Handlers {
     public void NewClicked(){
 
         view.GetGame().Init();
-        //view.repaint();
+        view.Reset();
+        view.repaint();
     }
 }

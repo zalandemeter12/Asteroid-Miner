@@ -15,7 +15,6 @@ public class MainPanel extends JPanel {
         this.view = view;
         backGround.setSize(new Dimension(1000, 492));
         backGround.setBackground(new Color(61, 45, 182,255));
-        this.add(backGround);
 
     }
 
@@ -24,6 +23,7 @@ public class MainPanel extends JPanel {
     public void paint(Graphics g) {
         g.clearRect(0,0,1000,492);
         super.paint(g);
+
         /*
         for(JPanel panel: graphicObjects){
             this.add(panel);
@@ -33,10 +33,11 @@ public class MainPanel extends JPanel {
 
         for(int i = graphicObjects.size()-1; i >= 0; --i){
             this.add(graphicObjects.get(i));
-            this.setComponentZOrder(graphicObjects.get(i), ((IPosGettable)graphicObjects.get(i)).GetZOrder());
+            //this.setComponentZOrder(graphicObjects.get(i), ((IPosGettable)graphicObjects.get(i)).GetZOrder());
             graphicObjects.get(i).setLocation(((IPosGettable)graphicObjects.get(i)).GetPosX(),  ((IPosGettable)graphicObjects.get(i)).GetPosY());
 
         }
+        this.add(backGround);
         //this.setComponentZOrder(backGround, graphicObjects.size());
     }
 

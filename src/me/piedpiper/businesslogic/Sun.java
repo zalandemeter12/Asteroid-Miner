@@ -53,8 +53,9 @@ public class Sun implements ISteppable {
         Logger.logMessage("Sun#" + Integer.toHexString(this.hashCode()) + ".Step()");
         
         Random rand = new Random(); 
-        if (rand.nextInt(25) % 25 < roundsWithoutSS) {
+        if (rand.nextInt(25) < roundsWithoutSS) {
             solarStorms.add(new SolarStorm(this, rand.nextInt(359), rand.nextInt(5), view));
+            roundsWithoutSS=0;
         } else {
             roundsWithoutSS++;
         }

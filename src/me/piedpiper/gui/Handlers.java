@@ -57,7 +57,12 @@ public class Handlers {
         view.repaint();
         view.Refresh();
     }
+    public void BuildRobotClicked(){
 
+    }
+    public void BuildGateClicked(){
+
+    }
     public void NewClicked(){
         view.SetGame(new Game());
         view.repaint();

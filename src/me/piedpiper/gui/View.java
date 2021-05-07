@@ -75,6 +75,8 @@ public class View extends JFrame {
     private static final JButton placeMaterialButton = new JButton("Place material");
     private static final JButton placeGateButton = new JButton("Place gate");
     private static final JButton skipButton = new JButton("Skip");
+    private static final JButton buildGateButton = new JButton("Build gate");
+    private static final JButton buildRobotButton = new JButton("Build robot");
 
     private static final Color grayColor = new Color(57, 57, 57);
     private static final Color almostWhite = new Color(230, 230, 230);
@@ -139,13 +141,27 @@ public class View extends JFrame {
         placeMaterialButton.addActionListener(e -> handlers.PlaceMaterialClicked());
         placeGateButton.addActionListener(e -> handlers.PlaceGateClicked());
         skipButton.addActionListener(e -> handlers.SkipClicked());
+        buildRobotButton.addActionListener(e -> handlers.BuildRobotClicked());
+        buildGateButton.addActionListener(e -> handlers.BuildGateClicked());
 
-        infoPanelRight.add(drillButton);
-        infoPanelRight.add(mineButton);
-        infoPanelRight.add(moveButton);
-        infoPanelRight.add(placeMaterialButton);
-        infoPanelRight.add(placeGateButton);
-        infoPanelRight.add(skipButton);
+        JPanel buttonsFirstRow = new JPanel(new FlowLayout());
+        JPanel buttonsSecondRow = new JPanel(new FlowLayout());
+        buttonsFirstRow.setBackground(grayColor);
+        buttonsSecondRow.setBackground(grayColor);
+
+        infoPanelRight.setLayout(new BoxLayout(infoPanelRight, BoxLayout.PAGE_AXIS));
+        infoPanelRight.add(buttonsFirstRow);
+        infoPanelRight.add(buttonsSecondRow);
+
+
+        buttonsFirstRow.add(drillButton);
+        buttonsFirstRow.add(mineButton);
+        buttonsFirstRow.add(moveButton);
+        buttonsFirstRow.add(placeMaterialButton);
+        buttonsSecondRow.add(placeGateButton);
+        buttonsSecondRow.add(buildGateButton);
+        buttonsSecondRow.add(buildRobotButton);
+        buttonsSecondRow.add(skipButton);
 
         mainPanel.setBackground(spaceBlue);
         menuContainer.setBackground(spaceBlue);

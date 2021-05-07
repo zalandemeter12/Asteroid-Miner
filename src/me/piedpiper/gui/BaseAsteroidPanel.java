@@ -40,6 +40,10 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
         return (int)baseAsteroid.GetPosition().GetY()-15+246;
     }
 
+    public int GetZOrder(){
+        return 0;
+    }
+
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
         return baseAsteroid.GetNeighbors();

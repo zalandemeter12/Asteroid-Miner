@@ -40,6 +40,10 @@ public class TeleportGatePanel extends JPanel implements IPosGettable{
         return (int)teleportGate.GetPosition().GetY()+246-15;
     }
 
+    public int GetZOrder(){
+        return 0;
+    }
+
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
         return teleportGate.GetNeighbors();

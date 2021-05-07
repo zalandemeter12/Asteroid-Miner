@@ -38,6 +38,10 @@ public class SolarStormPanel extends JPanel implements IPosGettable{
         return 46;
     }
 
+    public int GetZOrder(){
+        return 1;
+    }
+
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
         return null;

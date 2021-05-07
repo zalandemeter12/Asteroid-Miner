@@ -1,6 +1,11 @@
 package me.piedpiper.gui;
 
+import me.piedpiper.businesslogic.OrbitingObject;
+
+import java.util.ArrayList;
+
 public interface IPosGettable {
-    public int GetPosX();
-    public int GetPosY();
+    int GetPosX();
+    int GetPosY();
+    ArrayList<OrbitingObject> GetNeighbours();
 }

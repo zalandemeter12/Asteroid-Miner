@@ -5,6 +5,7 @@ import me.piedpiper.businesslogic.OrbitingObject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class AsteroidPanel extends JPanel implements IPosGettable{
     private Asteroid asteroid;
@@ -38,6 +39,11 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
 
     public int GetPosY(){
         return (int)asteroid.GetPosition().GetY()+246-17;
+    }
+
+    @Override
+    public ArrayList<OrbitingObject> GetNeighbours() {
+        return asteroid.GetNeighbors();
     }
 
     public Asteroid GetAsteroid() {

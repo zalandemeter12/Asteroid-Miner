@@ -5,6 +5,7 @@ import me.piedpiper.businesslogic.TeleportGate;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class TeleportGatePanel extends JPanel implements IPosGettable{
     private TeleportGate teleportGate;
@@ -37,6 +38,11 @@ public class TeleportGatePanel extends JPanel implements IPosGettable{
     @Override
     public int GetPosY() {
         return (int)teleportGate.GetPosition().GetY()+246-15;
+    }
+
+    @Override
+    public ArrayList<OrbitingObject> GetNeighbours() {
+        return teleportGate.GetNeighbors();
     }
 
     public TeleportGate GetGate() {

@@ -24,11 +24,11 @@ public class Uran extends RadioactiveMaterial {
 
 
     @Override
-    public void BlowUp(OrbitingObject a){
-        blowUpCounter++;
-        if(blowUpCounter == 3){
-            super.BlowUp(a);
+    public void BlowUp(OrbitingObject a, boolean mined){
+        if(++blowUpCounter >= 3 || mined){
+            a.Explode();
         }
+
     }
 
     @Override

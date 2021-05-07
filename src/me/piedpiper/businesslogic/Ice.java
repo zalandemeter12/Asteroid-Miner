@@ -27,7 +27,7 @@ public class Ice extends Material {
 
     // Felrobbanast megvalosito metodus, a felrobbanto hivhatja
     @Override
-    public void BlowUp(OrbitingObject o) {
+    public void BlowUp(OrbitingObject o, boolean mined) {
         Logger.logMessage("Ice#" + Integer.toHexString(this.hashCode()) + ".BlowUp()");
         
         o.RemoveMaterial();

@@ -55,8 +55,10 @@ public class Settler extends Worker {
         
         //Csak akkor, ha át van fúrva a kéreg és van hely a táskájában
         if (location.GetThickness() == 0 && backpack.size() < 10) {
-            Material mined=location.RemoveMaterial();
-            if(mined!=null) {
+            Material mined = location.RemoveMaterial();
+            if(location.IsCloseToSun())
+                location.GetMaterial().BlowUp(location, true);
+            if(mined != null) {
                 backpack.add(mined);
                 canStep=false;
                 field.SettlerStepped();

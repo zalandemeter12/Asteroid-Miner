@@ -198,22 +198,4 @@ public abstract class OrbitingObject {
         this.t = t;
     }
 
-    public boolean IsThereActiveSettler(){
-        if (ellipse == null || ellipse.GetField() == null || ellipse.GetField().GetActiveSettler() == null) return false;
-        Settler active = ellipse.GetField().GetActiveSettler();
-        if (active == null) return false;
-        for(Worker w : workers)
-            if(w.equals(active))
-                return true;
-        return false;
-    }
-
-    public boolean IsNeighboursGotTheActiveSettler(){
-        if(neighbors != null){
-            for(OrbitingObject o : neighbors)
-                if(o.IsThereActiveSettler())
-                    return true;
-        }
-        return false;
-    }
 }

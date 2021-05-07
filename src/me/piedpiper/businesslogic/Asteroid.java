@@ -51,7 +51,7 @@ public class Asteroid extends OrbitingObject {
         if (thickness <= 0) return false;
         thickness--;
         if (thickness == 0 && closeToSun && material != null) {
-            material.BlowUp(this);
+            material.BlowUp(this, false);
         }
         
         Logger.tabcount--;
@@ -91,10 +91,15 @@ public class Asteroid extends OrbitingObject {
     @Override
     public void Explode() {
         Logger.logMessage("Asteroid#" + Integer.toHexString(this.hashCode()) + ".Explode()");
-        if(material != null)
-            material.BlowUp(this);
+
+        for(Worker w : workers)
+            w.Die();
+
+        ellipse.RemoveObject(this);
+        view.RemoveGraphicObject(this.panel);
         Logger.tabcount--;
     }
+
     //Vastagság getter
     @Override
     public int GetThickness() {
@@ -129,7 +134,7 @@ public class Asteroid extends OrbitingObject {
     @Override
 	public void SetCloseToSun(boolean c) {
 		if(c && material != null && thickness == 0) {
-            material.BlowUp(this);
+            material.BlowUp(this, false);
         }
         closeToSun = c;
     }
@@ -145,7 +150,7 @@ public class Asteroid extends OrbitingObject {
     public AsteroidPanel GetPanel(){return panel;}
 
     public ArrayList<Worker> GetExposedWorkers() {
-        if(thickness==0 &&material==null){
+        if(thickness==0 && material==null){
             return new ArrayList<>();
         }
         return workers;

@@ -12,17 +12,16 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
 
     public BaseAsteroidPanel(BaseAsteroid b){
         baseAsteroid=b;
-        this.setSize(30, 30);
+        this.setSize(34, 34);
         this.setBackground(new Color(0,0,0,0));
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.black);
-        g2d.fillOval(0, 0, 30, 30);
+        g2d.fillOval(0, 0, 34, 34);
         g2d.drawString("B",0,0);
         g2d.setPaint(Color.GRAY);
         Font font = new Font("Arial", Font.PLAIN, 18);
@@ -32,12 +31,12 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
 
     @Override
     public int GetPosX() {
-        return (int)baseAsteroid.GetPosition().GetX()-15+500;
+        return (int)(baseAsteroid.GetPosition().GetX())+500-17;
     }
 
     @Override
     public int GetPosY() {
-        return (int)baseAsteroid.GetPosition().GetY()-15+246;
+        return (int)(baseAsteroid.GetPosition().GetY())+246-17;
     }
 
     public int GetZOrder(){

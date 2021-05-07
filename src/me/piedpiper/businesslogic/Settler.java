@@ -114,13 +114,15 @@ public class Settler extends Worker {
         
         //Csak akkor, ha van mit lehelyezni
         if (gateInventory.size() > 0) {
-            Ellipse2D e=location.GetEllipse();
-            gateInventory.get(0).SetPosition(e.GateLocation(location.GetPosition())); //TODO rendes helyet adni neki
             TeleportGate tg = gateInventory.get(0);
-            gateInventory.remove(0);
-            tg.SetPosition(location.GetPosition());
-            tg.SetEllipse(location.GetEllipse());
+            Ellipse2D e=location.GetEllipse();
+            gateInventory.get(0).SetPosition(new Point2D(0,0));
             location.GetEllipse().AddObject(tg);
+            tg.SetT(location.GetT()+0.25);
+            gateInventory.get(0).SetPosition(e.GateLocation(location));
+            gateInventory.remove(0);
+            tg.SetEllipse(location.GetEllipse());
+
             tg.PlacePanel();
             tg.AddNeighbor(location);
             if(tg.IsActive()){

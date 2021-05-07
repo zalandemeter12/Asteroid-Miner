@@ -46,14 +46,31 @@ public class AsteroidField implements ISteppable {
 
         //Nap step fuggvenyenek meghivasa
         sun.Step();
-        SetNeighbours();
 
+        SetSunClose();
+        SetNeighbours();
 
         for (ISteppable s : steppables) {
             s.Step();
         }
 
         Logger.tabcount--;
+    }
+
+    public void SetSunClose(){
+        ArrayList<OrbitingObject> orbitingObjects = new ArrayList<>();
+
+        //Ellipszisen keringo objektumok uj poziciojanak beallitasa
+        for(Ellipse2D e: ellipses) {
+            e.MoveOrbits();
+            orbitingObjects.addAll(e.GetObjects());
+        }
+        for(OrbitingObject o : orbitingObjects){
+            if(o.GetPosition().DistanceFrom(sun.GetPosition()) < 200) //TODO rendes cucc kell
+                o.SetCloseToSun(true);
+            else
+                o.SetCloseToSun(false);
+        }
     }
 
     public void SetNeighbours(){

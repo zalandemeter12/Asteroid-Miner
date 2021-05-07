@@ -115,18 +115,14 @@ public class Ellipse2D {
             o.SetT(o.GetT() + velocity);
             o.SetPosition(new Point2D((a/2)*Math.cos(o.GetT()), (b/2) * Math.sin(o.GetT())));
         }
-
         Logger.tabcount--;
     }
 
     // Visszaad egy koordinatat, ahova lerakhatja a teleportkaput a hivo
-    public Point2D GateLocation(Point2D p) {
+    public Point2D GateLocation(OrbitingObject o) {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".GateLocation()");
         Logger.tabcount--;
-
-        double t = Math.acos(p.GetX() / (a/2)); //TODO ez itt nem lesz jo
-        double shift = 0.1; //TODO find the real shift value
-        return new Point2D(a/2 * Math.cos(t + shift), b/2 * Math.sin(t + shift));
+        return new Point2D((a/2)*Math.cos(o.GetT() + 0.25), (b/2) * Math.sin(o.GetT()+0.25));
     }
 
     // visszaadja a rajta keringo objektumok listajat

@@ -97,6 +97,10 @@ public class Sun implements ISteppable {
         Logger.tabcount--;
     }
 
+    public Point2D GetPosition(){
+        return position;
+    }
+
     public void AddSolarStorm(SolarStorm s){
         solarStorms.add(s);
     }

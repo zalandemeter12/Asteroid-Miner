@@ -33,12 +33,10 @@ public class MainPanel extends JPanel {
 
         for(int i = graphicObjects.size()-1; i >= 0; --i){
             this.add(graphicObjects.get(i));
-            //this.setComponentZOrder(graphicObjects.get(i), ((IPosGettable)graphicObjects.get(i)).GetZOrder());
             graphicObjects.get(i).setLocation(((IPosGettable)graphicObjects.get(i)).GetPosX(),  ((IPosGettable)graphicObjects.get(i)).GetPosY());
 
         }
         this.add(backGround);
-        //this.setComponentZOrder(backGround, graphicObjects.size());
     }
 
     public void AddGraphicObject(JPanel object){

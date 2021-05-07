@@ -83,7 +83,6 @@ public class TeleportGate extends OrbitingObject {
     @Override
     public void Moves(Point2D p){
         if (isMalfunctioning) {
-            //TODO a mozgatást megcsinálni rendesen
             if (neighbors.size() > 0) {
                 if (ellipse.GetField().IsRandom()) {
                     Random rand = new Random();
@@ -119,5 +118,6 @@ public class TeleportGate extends OrbitingObject {
         if(panel==null){
             panel=new TeleportGatePanel(this);
         }
-        view.AddGraphicObject(panel);}
+        view.AddGraphicObject(panel);
+    }
 }

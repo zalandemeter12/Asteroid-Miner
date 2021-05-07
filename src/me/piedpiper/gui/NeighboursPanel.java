@@ -23,7 +23,7 @@ public class NeighboursPanel extends JPanel implements IPosGettable{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        this.setBackground(new Color(0,0,0,0));
+        this.setBackground(new Color(61, 45, 182,0));
         g.setColor(Color.red);
         ArrayList<OrbitingObject> orbitingObjects = new ArrayList<>();
         orbitingObjects.addAll(orbitingObjects2);

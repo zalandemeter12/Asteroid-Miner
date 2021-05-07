@@ -80,7 +80,7 @@ public class View extends JFrame {
 
     private static final Color grayColor = new Color(57, 57, 57);
     private static final Color almostWhite = new Color(230, 230, 230);
-    private static final Color spaceBlue = new Color(61, 45, 182);
+    private static final Color spaceBlue = new Color(61, 45, 182,255);
 
     private Game game;
     private OrbitingObject selectedObject = null;

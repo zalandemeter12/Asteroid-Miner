@@ -39,7 +39,7 @@ public class SolarStormPanel extends JPanel implements IPosGettable{
     }
 
     public int GetZOrder(){
-        return 1;
+        return 20;
     }
 
     @Override

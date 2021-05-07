@@ -41,7 +41,6 @@ public class Game {
         this.field = new AsteroidField(sun, this, ellipses, settlers);
         sun.SetField(this.field);
 
-
         ellipses.add(new Ellipse2D(900, 400, 5, 0.04, objects1, view));
         ellipses.add(new Ellipse2D(800, 300, 10, -0.04, objects2, view));
         ellipses.add(new Ellipse2D(700, 200, 15, 0.02, objects3, view));

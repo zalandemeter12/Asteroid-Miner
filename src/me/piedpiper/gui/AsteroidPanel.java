@@ -42,7 +42,7 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
     }
 
     public int GetZOrder(){
-        return 0;
+        return 5;
     }
 
     @Override

@@ -25,16 +25,6 @@ public class View extends JFrame {
     private static final JMenuItem  newMenuItem = new JMenuItem("New game");
 
     /**
-     * Menupont, amivel meg lehet nyitni mentett jatekokat
-     */
-    private static final JMenuItem  openMenuItem = new JMenuItem("Open game");
-
-    /**
-     * Menupont, amivel el lehet menteni az aktualis jatekot
-     */
-    private static final JMenuItem  saveMenuItem = new JMenuItem("Save game");
-
-    /**
      * Elrendezest segito panel
      */
     private static final JPanel containerPanel = new JPanel(new BorderLayout());
@@ -100,8 +90,6 @@ public class View extends JFrame {
         newMenuItem.addActionListener(e -> handlers.NewClicked());
 
         gameMenu.add(newMenuItem);
-        gameMenu.add(openMenuItem);
-        gameMenu.add(saveMenuItem);
         menuBar.add(gameMenu);
         menuContainer.add(menuBar);
 
@@ -282,6 +270,11 @@ public class View extends JFrame {
 
     public void ObjectClicked(OrbitingObject o){
         selectedObject = o;
+        Refresh();
+    }
+
+    public void Clear(){
+        mainPanel.RemoveAllGraphicObject();
         Refresh();
     }
 }

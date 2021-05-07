@@ -57,6 +57,12 @@ public class MainPanel extends JPanel {
         repaint();
     }
 
+    public void RemoveAllGraphicObject(){
+        this.removeAll();
+        graphicObjects.clear();
+        repaint();
+    }
+
 
     public ArrayList<JPanel> GetGraphicObjects() {
         return graphicObjects;

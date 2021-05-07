@@ -1,6 +1,5 @@
 package me.piedpiper.businesslogic;
 
-import me.piedpiper.gui.AsteroidPanel;
 import me.piedpiper.gui.BaseAsteroidPanel;
 import me.piedpiper.gui.View;
 
@@ -8,9 +7,9 @@ import java.util.ArrayList;
 
 public class BaseAsteroid extends Asteroid {
     // Osszegyujtott anyagokat tartalmazo lista
-    private ArrayList<Material> chest;
+    private final ArrayList<Material> chest;
     // Jatekmenentet kezelo objektum referenciaja
-    private Game game;
+    private final Game game;
     private View view;
     private BaseAsteroidPanel panel;
 
@@ -52,8 +51,8 @@ public class BaseAsteroid extends Asteroid {
             materials.add(new Iron(true));
         }
         BillOfMaterials bill = new BillOfMaterials(materials);
-        for (int i = 0; i < chest.size(); ++i) {
-            bill.IsNeeded(chest.get(i));
+        for (Material material : chest) {
+            bill.IsNeeded(material);
         }
         if (bill.IsNeeded(m)) {
             chest.add(m);

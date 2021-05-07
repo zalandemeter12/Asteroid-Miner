@@ -73,7 +73,7 @@ public class Handlers {
     }
     public void NewClicked(){
 
-        view.GetGame().Init();
+        view.GetGame().NewGame();
         //view.repaint();
     }
 }

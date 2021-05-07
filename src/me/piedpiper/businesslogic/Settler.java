@@ -52,7 +52,7 @@ public class Settler extends Worker {
     //A telepes bányászik az aszteroidán amin van
     public void Mine() { 
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Mine()");
-        if(location.IsCloseToSun())
+        if(location.IsCloseToSun() && location.GetThickness()==0 && location.GetMaterial()!=null)
             location.GetMaterial().BlowUp(location, true);
         //Csak akkor, ha át van fúrva a kéreg és van hely a táskájában
         if (location.GetThickness() == 0 && backpack.size() < 10) {
@@ -240,9 +240,7 @@ public class Settler extends Worker {
     @Override
     public void Die(){
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Die()");
-        
-        //location.RemoveWorker(this);
-        //field.RemoveSettler(this);
+
         dead=true;
         view.RemoveGraphicObject(panel);
         Logger.tabcount--;

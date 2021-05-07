@@ -182,6 +182,9 @@ public class AsteroidField implements ISteppable {
         for(Settler s: deadSettlers){
             settlers.remove(s);
         }
+        if(settlers.size() == 0){
+            game.EndGame(false);
+        }
         game.NextRound();
     }
 

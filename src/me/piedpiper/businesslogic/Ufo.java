@@ -28,8 +28,6 @@ public class Ufo extends Worker implements ISteppable{
 
     @Override
     public void Die() {
-        //location.RemoveWorker(this);
-        //field.RemoveSteppable(this);
         dead=true;
         view.RemoveGraphicObject(panel);
     }

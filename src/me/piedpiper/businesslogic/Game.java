@@ -5,6 +5,8 @@ import me.piedpiper.gui.View;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -78,34 +80,36 @@ public class Game {
             new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Coal(), view);
         }
 
-        /*TeleportGate teleportGate1= new TeleportGate(null, null, view);
-        TeleportGate teleportGate2= new TeleportGate(null, null, view);
-        teleportGate1.SetGatePair(teleportGate2);
-        teleportGate2.SetGatePair(teleportGate1);*/
 
         for(int i=0; i<3;i++) {
             settlers.add(new Settler(base, field, view));
         }
-        /*settlers.get(0).AddGate(teleportGate1);
-        settlers.get(0).AddGate(teleportGate2);*/
+
         field.SetActiveSettler(field.GetSettlers().get(0));
 
+        /*field.GetSettlers().get(0).AddMaterialToBackpack(new Ice());
+        field.GetSettlers().get(0).AddMaterialToBackpack(new Coal());
+        field.GetSettlers().get(0).AddMaterialToBackpack(new Uran());
         field.GetSettlers().get(0).AddMaterialToBackpack(new Ice());
         field.GetSettlers().get(0).AddMaterialToBackpack(new Coal());
         field.GetSettlers().get(0).AddMaterialToBackpack(new Uran());
-        field.GetSettlers().get(0).AddMaterialToBackpack(new Iron());
-        field.GetSettlers().get(0).AddMaterialToBackpack(new Iron());
+        field.GetSettlers().get(0).AddMaterialToBackpack(new Ice());
+        field.GetSettlers().get(0).AddMaterialToBackpack(new Coal());
+        field.GetSettlers().get(0).AddMaterialToBackpack(new Uran());
+        field.GetSettlers().get(1).AddMaterialToBackpack(new Iron());
+        field.GetSettlers().get(1).AddMaterialToBackpack(new Iron());
+        field.GetSettlers().get(1).AddMaterialToBackpack(new Iron());*/
         OrbitingObject randO1=objects1.get(rand.nextInt(objects1.size()));
         OrbitingObject randO2=objects2.get(rand.nextInt(objects2.size()));
         OrbitingObject randO3=objects3.get(rand.nextInt(objects3.size()));
+        OrbitingObject randO4=objects2.get(rand.nextInt(objects3.size()));
+        OrbitingObject randO5=objects1.get(rand.nextInt(objects3.size()));
 
         field.AddSteppable(new Ufo(randO1, field, view));
         field.AddSteppable(new Ufo(randO2, field, view));
         field.AddSteppable(new Ufo(randO3, field, view));
-        field.AddSteppable(new Ufo(randO3, field, view));
-        field.AddSteppable(new Ufo(randO3, field, view));
-        field.AddSteppable(new Ufo(randO3, field, view));
-        field.AddSteppable(new Ufo(randO3, field, view));
+        field.AddSteppable(new Ufo(randO4, field, view));
+        field.AddSteppable(new Ufo(randO5, field, view));
         field.SetNeighbours();
 
     }
@@ -297,6 +301,12 @@ public class Game {
     //Játék befejezése
     public void EndGame(boolean win){
         Logger.logMessage("Game#" + Integer.toHexString(this.hashCode()) + ".EndGame()");
+        if(!win)
+            JOptionPane.showMessageDialog(null, "You lost", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(null, "You win", "Win", JOptionPane.INFORMATION_MESSAGE);
+
+        NewGame();
         Logger.tabcount--;
     }
 
@@ -566,28 +576,37 @@ public class Game {
 
     }
 
+    public void NewGame(){
+        ResetIndexes();
+        view.Clear();
+        Init();
+        /*view.setVisible(false);
+        view.setVisible(true);
+        view.skipButton.doClick();*/
+        //view.Refresh();
+
+    }
+
+    public void ResetIndexes(){
+        Asteroid.ResetIndex();
+        TeleportGate.ResetIndex();
+        Coal.ResetIndex();
+        Ice.ResetIndex();
+        Iron.ResetIndex();
+        Uran.ResetIndex();
+        Robot.ResetIndex();
+        Settler.ResetIndex();
+        Ufo.ResetIndex();
+        SolarStorm.ResetIndex();
+        Ellipse2D.ResetIndex();
+    }
 
     //Belépési pont
     public static void main(String[] args){
         Logger.logOnConsole = false;
         Game game = new Game();
         view.setVisible(true);
-        /*
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(true){
-                    try {
-                        Thread.sleep(140);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    game.GetField().Step();
-                    view.repaint();
-                }
-            }
-        });
-        t.run();
-         */
+        //view.skipButton.doClick();
+        //view.mainPanel.validate();
     }
 }

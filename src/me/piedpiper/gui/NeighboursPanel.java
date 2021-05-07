@@ -45,6 +45,10 @@ public class NeighboursPanel extends JPanel implements IPosGettable{
         return 0;
     }
 
+    public int GetZOrder(){
+        return 1;
+    }
+
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
         return new ArrayList<OrbitingObject>();

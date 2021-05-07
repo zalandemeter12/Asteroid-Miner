@@ -204,7 +204,7 @@ public class Settler extends Worker {
             backpack.remove(tmp0);
             backpack.remove(tmp1);
             backpack.remove(tmp2);
-            Robot r = new Robot(location, field);
+            Robot r = new Robot(location, field, view);
             field.AddSteppable(r);
             canStep=false;
             field.SettlerStepped();

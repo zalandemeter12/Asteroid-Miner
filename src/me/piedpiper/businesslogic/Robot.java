@@ -78,7 +78,7 @@ public class Robot extends Worker implements ISteppable{
         } else if (location.GetNeighbors().size() > 0) {
             if(field.IsRandom()) {
                 Random rand = new Random();
-                int idx = rand.nextInt(location.GetNeighbors().size()-1);
+                int idx = rand.nextInt(Math.abs(location.GetNeighbors().size()-1));
                 MoveTo(location.GetNeighbors().get(idx));
             } else {
                 MoveTo(location.GetNeighbors().get(0));

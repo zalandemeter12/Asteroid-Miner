@@ -40,6 +40,7 @@ public class Game {
         this.field = new AsteroidField(sun, this, ellipses, settlers);
         sun.SetField(this.field);
 
+
         ellipses.add(new Ellipse2D(900, 400, 5, 0.04, objects1, view));
         ellipses.add(new Ellipse2D(800, 300, 10, -0.04, objects2, view));
         ellipses.add(new Ellipse2D(700, 200, 15, 0.02, objects3, view));
@@ -95,6 +96,8 @@ public class Game {
         field.AddSteppable(new Ufo(randO2, field, view));
         field.AddSteppable(new Ufo(randO3, field, view));
         field.SetNeighbours();
+
+        //view.AddGraphicObject(neighboursPanel);
     }
 
     public void testInitSequences(int settlerCount) {
@@ -248,6 +251,7 @@ public class Game {
         field.GetSun().GetSolarStorms().add(new SolarStorm(field.GetSun(), 0, 2, view));
 
         field.SetActiveSettler(field.GetSettlers().get(0));
+
     }
 
     public void SetBase(BaseAsteroid b){

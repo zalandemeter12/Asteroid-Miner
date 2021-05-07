@@ -26,6 +26,7 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
         Font font = new Font("Arial", Font.PLAIN, 18);
         g2d.setFont(font);
         g2d.drawString("A" + asteroid.GetIndex(), 3, 24);
+
     }
 
     public int GetPosX(){
@@ -33,7 +34,7 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
     }
 
     public int GetPosY(){
-        return (int)(asteroid.GetPosition().GetY())+246-17;
+        return -1*((int)asteroid.GetPosition().GetY()+17)+246;
     }
 
     public int GetZOrder(){

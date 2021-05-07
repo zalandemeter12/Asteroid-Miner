@@ -26,6 +26,7 @@ public class SolarStormPanel extends JPanel implements IPosGettable{
         g2d.setPaint(new Color(175, 36, 36, 100));
 
         g2d.fillArc(0, 0, 900, 400, (int)solarStorm.GetAngle(), 30);
+
         g2d.setPaint(Color.black);
         Font font = new Font("Arial", Font.PLAIN, 20);
         g2d.setFont(font);

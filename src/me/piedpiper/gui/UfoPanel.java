@@ -8,16 +8,26 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class UfoPanel extends JPanel implements IPosGettable{
+    /**
+     * Referencia az aszteroidara, amit abrazol
+     */
     private Ufo ufo;
+
     int width=16;
     int height=16;
 
+    /**
+     * Konstruktor
+     */
     public UfoPanel(Ufo u){
         ufo=u;
         this.setSize(width, height);
         this.setBackground(new Color(0,0,0,0));
     }
 
+    /**
+     * Kirajolas
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -32,6 +42,9 @@ public class UfoPanel extends JPanel implements IPosGettable{
         g2d.drawString("U", 4, 12);
     }
 
+    /**
+     * Pozicio x koordinataja
+     */
     @Override
     public int GetPosX() {
         int order=0;
@@ -60,15 +73,24 @@ public class UfoPanel extends JPanel implements IPosGettable{
         return x+500;
     }
 
+    /**
+     * Pozicio y koordinataja
+     */
     @Override
     public int GetPosY() {
         return -1*((int)ufo.GetLocation().GetPosition().GetY()+ 35)+246 ;
     }
 
+    /**
+     * Megjelenites z "melysegi" koordinataja
+     */
     public int GetZOrder(){
         return 0;
     }
 
+    /**
+     * A hozza tartozo aszteroidanak a referenciajat adja vissza
+     */
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
         return null;

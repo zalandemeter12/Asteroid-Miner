@@ -8,14 +8,23 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class TeleportGatePanel extends JPanel implements IPosGettable{
+    /**
+     * Referencia az aszteroidara, amit abrazol
+     */
     private TeleportGate teleportGate;
 
+    /**
+     * Konstruktor
+     */
     public TeleportGatePanel(TeleportGate tp){
         teleportGate=tp;
         this.setSize(30, 30);
         this.setBackground(new Color(0,0,0,0));
     }
 
+    /**
+     * Kirajolas
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -30,25 +39,40 @@ public class TeleportGatePanel extends JPanel implements IPosGettable{
 
     }
 
+    /**
+     * Pozicio x koordinataja
+     */
     @Override
     public int GetPosX() {
         return (int)teleportGate.GetPosition().GetX()+500-15;
     }
 
+    /**
+     * Pozicio y koordinataja
+     */
     @Override
     public int GetPosY() {
         return (int)teleportGate.GetPosition().GetY()+246-15;
     }
 
+    /**
+     * Megjelenites z "melysegi" koordinataja
+     */
     public int GetZOrder(){
         return 0;
     }
 
+    /**
+     * Szomszedok listajaval ter vissza
+     */
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
         return teleportGate.GetNeighbors();
     }
 
+    /**
+     * A hozza tartozo aszteroidanak a referenciajat adja vissza
+     */
     public TeleportGate GetGate() {
         return teleportGate;
     }

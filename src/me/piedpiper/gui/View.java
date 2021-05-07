@@ -97,6 +97,7 @@ public class View extends JFrame {
 
         mainPanel = new MainPanel(this);
 
+
         newMenuItem.addActionListener(e -> handlers.NewClicked());
 
         gameMenu.add(newMenuItem);

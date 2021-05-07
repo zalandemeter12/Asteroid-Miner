@@ -67,6 +67,6 @@ public class SettlerPanel extends JPanel implements IPosGettable{
 
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
-        return null;
+        return new ArrayList<OrbitingObject>();
     }
 }

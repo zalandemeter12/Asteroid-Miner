@@ -43,6 +43,6 @@ public class SunPanel extends JPanel implements IPosGettable{
 
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
-        return null;
+        return new ArrayList<OrbitingObject>();
     }
 }

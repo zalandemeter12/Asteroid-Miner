@@ -37,7 +37,7 @@ public class EllipsePanel extends JPanel implements IPosGettable{
 
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
-        return null;
+        return new ArrayList<OrbitingObject>();
     }
 
 

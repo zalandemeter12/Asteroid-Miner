@@ -18,6 +18,7 @@ public class MainPanel extends JPanel {
 
     @Override
     public void paint(Graphics g) {
+
         g.clearRect(0,0,1000,492);
         super.paint(g);
         /*

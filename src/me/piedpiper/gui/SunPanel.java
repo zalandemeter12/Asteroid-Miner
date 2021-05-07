@@ -45,4 +45,7 @@ public class SunPanel extends JPanel implements IPosGettable{
     public ArrayList<OrbitingObject> GetNeighbours() {
         return new ArrayList<OrbitingObject>();
     }
+    public int GetZOrder(){
+        return 0;
+    }
 }

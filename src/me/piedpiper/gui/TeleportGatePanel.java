@@ -48,4 +48,7 @@ public class TeleportGatePanel extends JPanel implements IPosGettable{
     public TeleportGate GetGate() {
         return teleportGate;
     }
+    public int GetZOrder(){
+        return 0;
+    }
 }

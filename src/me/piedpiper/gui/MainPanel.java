@@ -26,14 +26,7 @@ public class MainPanel extends JPanel {
             panel.setLocation(((IPosGettable)panel).GetPosX(),  ((IPosGettable)panel).GetPosY());
         }
         */
-        g.setColor(Color.RED);
         for(int i = graphicObjects.size()-1; i >= 0; --i){
-
-            IPosGettable graphObj = (IPosGettable)graphicObjects.get(i);
-            for(OrbitingObject o : graphObj.GetNeighbours()){
-                g.drawLine((int)o.GetPosition().GetX()+500, (int)o.GetPosition().GetY()+246, graphObj.GetPosX()+15, graphObj.GetPosY()+15);
-                System.out.println("x: "+(int)o.GetPosition().GetY()+", y: "+ (int)o.GetPosition().GetY());
-            }
             this.add(graphicObjects.get(i));
             this.setComponentZOrder(graphicObjects.get(i), 0);
             graphicObjects.get(i).setLocation(((IPosGettable)graphicObjects.get(i)).GetPosX(),  ((IPosGettable)graphicObjects.get(i)).GetPosY());

@@ -8,14 +8,23 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class BaseAsteroidPanel extends JPanel implements IPosGettable{
+    /**
+     * Referencia az aszteroidara, amit abrazol
+     */
     private BaseAsteroid baseAsteroid;
 
+    /**
+     * Konstruktor
+     */
     public BaseAsteroidPanel(BaseAsteroid b){
         baseAsteroid=b;
         this.setSize(34, 34);
         this.setBackground(new Color(0,0,0,0));
     }
 
+    /**
+     * Kirajolas
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -30,25 +39,40 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
         g2d.drawString("B", 10, 24);
     }
 
+    /**
+     * Pozicio x koordinataja
+     */
     @Override
     public int GetPosX() {
         return (int)baseAsteroid.GetPosition().GetX()-17+500;
     }
 
+    /**
+     * Pozicio y koordinataja
+     */
     @Override
     public int GetPosY() {
         return -1*((int)baseAsteroid.GetPosition().GetY()+17)+246;
     }
 
+    /**
+     * Megjelenites z "melysegi" koordinataja
+     */
     public int GetZOrder(){
         return 0;
     }
 
+    /**
+     * Szomszedok listajaval ter vissza
+     */
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
         return baseAsteroid.GetNeighbors();
     }
 
+    /**
+     * A hozza tartozo aszteroidanak a referenciajat adja vissza
+     */
     public BaseAsteroid GetBaseAsteroid() {
         return baseAsteroid;
     }

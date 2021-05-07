@@ -62,7 +62,7 @@ public class UfoPanel extends JPanel implements IPosGettable{
 
     @Override
     public int GetPosY() {
-        return (int)ufo.GetLocation().GetPosition().GetY()+246 - 35;
+        return -1*((int)ufo.GetLocation().GetPosition().GetY()+ 35)+246 ;
     }
 
     public int GetZOrder(){

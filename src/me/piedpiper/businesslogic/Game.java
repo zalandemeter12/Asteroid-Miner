@@ -52,30 +52,30 @@ public class Game {
         Random rand=new Random();
         int bound=6;
         for(int i=0; i<2; i++) {
-            objects3.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Iron(), view));
-            objects3.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Ice(), view));
-            objects3.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Coal(), view));
-            objects3.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), null, view));
-            objects3.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Iron(), view));
-            objects3.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Uran(), view));
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Iron(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Ice(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Coal(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), null, view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Iron(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(2), rand.nextInt(bound), new Uran(), view);
 
-            objects2.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Iron(), view));
-            objects2.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Ice(), view));
-            objects2.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Coal(), view));
-            objects2.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Uran(), view));
-            objects2.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Uran(), view));
-            objects2.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), null, view));
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Iron(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Ice(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Coal(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Uran(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), new Uran(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(1), rand.nextInt(bound), null, view);
 
-            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Iron(), view));
-            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), null, view));
-            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Ice(), view));
-            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Coal(), view));
-            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Uran(), view));
-            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Iron(), view));
-            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Ice(), view));
-            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Uran(), view));
-            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Uran(), view));
-            objects1.add(new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Coal(), view));
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Iron(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), null, view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Ice(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Coal(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Uran(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Iron(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Ice(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Uran(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Uran(), view);
+            new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Coal(), view);
         }
 
         /*TeleportGate teleportGate1= new TeleportGate(null, null, view);
@@ -101,6 +101,10 @@ public class Game {
 
         field.AddSteppable(new Ufo(randO1, field, view));
         field.AddSteppable(new Ufo(randO2, field, view));
+        field.AddSteppable(new Ufo(randO3, field, view));
+        field.AddSteppable(new Ufo(randO3, field, view));
+        field.AddSteppable(new Ufo(randO3, field, view));
+        field.AddSteppable(new Ufo(randO3, field, view));
         field.AddSteppable(new Ufo(randO3, field, view));
         field.SetNeighbours();
 

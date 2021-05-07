@@ -64,7 +64,7 @@ public class RobotPanel extends JPanel implements IPosGettable{
 
     @Override
     public int GetPosY() {
-        return (int)robot.GetLocation().GetPosition().GetY() + 246 - 35;
+        return -1*((int)robot.GetLocation().GetPosition().GetY()+ 35)+246;
     }
     public int GetZOrder(){
         return 0;

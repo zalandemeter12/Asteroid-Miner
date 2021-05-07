@@ -31,7 +31,7 @@ public class NeighboursPanel extends JPanel implements IPosGettable{
         orbitingObjects.addAll(orbitingObjects1);
         for(OrbitingObject ob : orbitingObjects){
             for(OrbitingObject ne : ob.GetNeighbors()){
-                g.drawLine((int)ob.GetPosition().GetX()+500, (int)ob.GetPosition().GetY()+246, (int)ne.GetPosition().GetX()+500, (int)ne.GetPosition().GetY()+246);
+                g.drawLine((int)ob.GetPosition().GetX()+500, -(int)ob.GetPosition().GetY()+246, (int)ne.GetPosition().GetX()+500, -(int)ne.GetPosition().GetY()+246);
             }
         }
     }
@@ -52,6 +52,6 @@ public class NeighboursPanel extends JPanel implements IPosGettable{
 
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
-        return new ArrayList<OrbitingObject>();
+        return new ArrayList<>();
     }
 }

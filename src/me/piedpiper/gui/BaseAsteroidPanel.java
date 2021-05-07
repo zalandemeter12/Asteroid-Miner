@@ -19,6 +19,7 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.black);
         g2d.fillOval(0, 0, 34, 34);
@@ -26,17 +27,17 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
         g2d.setPaint(Color.GRAY);
         Font font = new Font("Arial", Font.PLAIN, 18);
         g2d.setFont(font);
-        g2d.drawString("B", 10, 22);
+        g2d.drawString("B", 10, 24);
     }
 
     @Override
     public int GetPosX() {
-        return (int)(baseAsteroid.GetPosition().GetX())+500-17;
+        return (int)baseAsteroid.GetPosition().GetX()-17+500;
     }
 
     @Override
     public int GetPosY() {
-        return (int)(baseAsteroid.GetPosition().GetY())+246-17;
+        return -1*((int)baseAsteroid.GetPosition().GetY()+17)+246;
     }
 
     public int GetZOrder(){

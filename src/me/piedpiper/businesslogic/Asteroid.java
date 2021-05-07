@@ -3,6 +3,8 @@ package me.piedpiper.businesslogic;
 import me.piedpiper.gui.AsteroidPanel;
 import me.piedpiper.gui.View;
 
+import java.util.ArrayList;
+
 //Az aszteroidát valósítja meg, tárolja a sziklarétegei számát,
 //a tartalmazott nyersanyagát és hogy közel van-e a nap
 public class Asteroid extends OrbitingObject {
@@ -141,6 +143,13 @@ public class Asteroid extends OrbitingObject {
     }
 
     public AsteroidPanel GetPanel(){return panel;}
+
+    public ArrayList<Worker> GetExposedWorkers() {
+        if(thickness==0 &&material==null){
+            return new ArrayList<>();
+        }
+        return workers;
+    }
 
 
 }

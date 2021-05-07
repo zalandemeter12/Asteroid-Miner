@@ -43,6 +43,7 @@ public class MainPanel extends JPanel {
     }
 
     public void RemoveGraphicObject(JPanel object){
+        this.remove(object);
         graphicObjects.remove(object);
         repaint();
     }

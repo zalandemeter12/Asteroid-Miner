@@ -54,7 +54,7 @@ public class Sun implements ISteppable {
         
         Random rand = new Random(); 
         if (rand.nextInt(25) % 25 < roundsWithoutSS) {
-            solarStorms.add(new SolarStorm(this, 35, rand.nextInt(5), view));
+            solarStorms.add(new SolarStorm(this, rand.nextInt(359), rand.nextInt(5), view));
         } else {
             roundsWithoutSS++;
         }
@@ -62,7 +62,8 @@ public class Sun implements ISteppable {
         for (SolarStorm s : solarStorms) {
             if(s.GetWarnTimer()==0) {
                 finishedStorms.add(s);
-            }else s.Step();
+            }
+            s.Step();
 
         }
         for(SolarStorm s : finishedStorms){

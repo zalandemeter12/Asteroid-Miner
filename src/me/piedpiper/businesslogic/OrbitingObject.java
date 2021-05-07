@@ -76,7 +76,7 @@ public abstract class OrbitingObject {
     public ArrayList<Worker> GetExposedWorkers() {
         Logger.logMessage("OrbitingObject#" + Integer.toHexString(this.hashCode()) + ".GetExposedWorkers()");
         Logger.tabcount--;
-        return new ArrayList<Worker>();
+        return workers;
     }
 
     //A objektum felrobbanasa eseten meghivodo fuggveny
@@ -169,8 +169,15 @@ public abstract class OrbitingObject {
     public void SetCloseToSun(boolean c){ }
 
     public void UnderSolarStorm(){
-        for (Worker w : GetExposedWorkers())
+        if(GetExposedWorkers().size()==0) return;
+        ArrayList<Worker> deadWorkers=new ArrayList<>();
+        for (Worker w : GetExposedWorkers()) {
             w.Die();
+            if(w.IsDead()) deadWorkers.add(w);
+        }
+
+        for (Worker w : deadWorkers)
+            workers.remove(w);
     }
 
     public void Moves(Point2D p){

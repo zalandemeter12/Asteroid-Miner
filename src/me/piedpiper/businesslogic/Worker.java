@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public abstract class Worker { //A munkást reprezentáló absztrakt osztály a játékban, leszarmazik belőle a Settler és a Robot osztályok
     protected OrbitingObject location; //Az asztroida/teleport kapu, amin a Worker van
     protected int id;
+    protected boolean dead=false;
 
     public Worker(OrbitingObject location) {    //Worker konstruktora, beállítja a location-t
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
@@ -63,5 +64,9 @@ public abstract class Worker { //A munkást reprezentáló absztrakt osztály a 
 
     public int GetIndex(){
         return id;
+    }
+
+    public boolean IsDead(){
+        return dead;
     }
 }

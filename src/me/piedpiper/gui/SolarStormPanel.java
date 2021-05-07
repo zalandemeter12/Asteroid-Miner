@@ -26,17 +26,16 @@ public class SolarStormPanel extends JPanel implements IPosGettable{
         g2d.setPaint(Color.red);
 
         g2d.fillArc(0, 0, 900, 400, (int)solarStorm.GetAngle(), 30);
-        //g2d.drawLine(500,492/2, (int)(900/2 * Math.cos(solarStorm.GetAngle()/180*PI)), (int)(400/2 * Math.sin(30/180*PI)));
     }
 
     @Override
     public int GetPosX() {
-        return 0;
+        return 50;
     }
 
     @Override
     public int GetPosY() {
-        return 0;
+        return 46;
     }
 
     @Override

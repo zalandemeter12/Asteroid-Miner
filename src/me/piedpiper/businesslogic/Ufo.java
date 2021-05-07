@@ -28,8 +28,9 @@ public class Ufo extends Worker implements ISteppable{
 
     @Override
     public void Die() {
-        location.RemoveWorker(this);
-        field.RemoveSteppable(this);
+        //location.RemoveWorker(this);
+        //field.RemoveSteppable(this);
+        dead=true;
         view.RemoveGraphicObject(panel);
     }
 
@@ -40,15 +41,17 @@ public class Ufo extends Worker implements ISteppable{
 
     @Override
     public void Step() {
-        if(location.GetThickness() == 0 && location.GetMaterial() != null){
-            Mine();
-        } else if(location.GetNeighbors().size()>0){
-            if (field.IsRandom() && location.GetNeighbors().size()>1) {
-                Random rand = new Random();
-                int idx = rand.nextInt(location.GetNeighbors().size()-1);
-                MoveTo(location.GetNeighbors().get(idx));
-            } else {
-                MoveTo(location.GetNeighbors().get(0));
+        if(!dead) {
+            if (location.GetThickness() == 0 && location.GetMaterial() != null) {
+                Mine();
+            } else if (location.GetNeighbors().size() > 0) {
+                if (field.IsRandom() && location.GetNeighbors().size() > 1) {
+                    Random rand = new Random();
+                    int idx = rand.nextInt(location.GetNeighbors().size() - 1);
+                    MoveTo(location.GetNeighbors().get(idx));
+                } else {
+                    MoveTo(location.GetNeighbors().get(0));
+                }
             }
         }
     }

@@ -238,8 +238,9 @@ public class Settler extends Worker {
     public void Die(){
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Die()");
         
-        location.RemoveWorker(this);
-        field.RemoveSettler(this);
+        //location.RemoveWorker(this);
+        //field.RemoveSettler(this);
+        dead=true;
         view.RemoveGraphicObject(panel);
         Logger.tabcount--;
     }

@@ -48,6 +48,7 @@ public class AsteroidField implements ISteppable {
         sun.Step();
         SetNeighbours();
 
+
         for (ISteppable s : steppables) {
             s.Step();
         }
@@ -56,7 +57,7 @@ public class AsteroidField implements ISteppable {
     }
 
     public void SetNeighbours(){
-        ArrayList<OrbitingObject> orbitingObjects = new ArrayList<OrbitingObject>();
+        ArrayList<OrbitingObject> orbitingObjects = new ArrayList<>();
 
         //Ellipszisen keringo objektumok uj poziciojanak beallitasa
         for(Ellipse2D e: ellipses) {
@@ -64,8 +65,7 @@ public class AsteroidField implements ISteppable {
             orbitingObjects.addAll(e.GetObjects());
         }
 
-        for(int i = 0; i < orbitingObjects.size(); i++)
-            orbitingObjects.get(i).GetNeighbors().clear();
+        for (OrbitingObject orbitingObject : orbitingObjects) orbitingObject.GetNeighbors().clear();
         //Szomszedok beallitasa
         for(int i = 0; i < orbitingObjects.size(); i++){
             for(int j = 0; j < orbitingObjects.size(); j++){
@@ -153,11 +153,17 @@ public class AsteroidField implements ISteppable {
     }
 
     public void SettlerStepped() {
+        ArrayList<Settler> deadSettlers=new ArrayList<>();
         for (Settler s: settlers) {
-            if(s.CanStep()) {
+            if(s.IsDead()){
+                deadSettlers.add(s);
+            } else if(s.CanStep()) {
                 activeSettler = s;
                 return;
             }
+        }
+        for(Settler s: deadSettlers){
+            settlers.remove(s);
         }
         game.NextRound();
     }

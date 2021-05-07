@@ -80,7 +80,7 @@ public class Game {
         teleportGate1.SetGatePair(teleportGate2);
         teleportGate2.SetGatePair(teleportGate1);*/
 
-        for(int i=0; i<3;i++) {
+        for(int i=0; i<1;i++) {
             settlers.add(new Settler(base, field, view));
         }
         /*settlers.get(0).AddGate(teleportGate1);

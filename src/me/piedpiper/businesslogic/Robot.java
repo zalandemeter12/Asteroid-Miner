@@ -41,8 +41,9 @@ public class Robot extends Worker implements ISteppable{
     public void Die(){
         Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Die()");
         
-        field.RemoveSteppable(this);
-        view.RemoveGraphicObject(panel);
+        //field.RemoveSteppable(this);
+        //view.RemoveGraphicObject(panel);
+        dead=true;
         Logger.tabcount--;
     }
 
@@ -71,17 +72,18 @@ public class Robot extends Worker implements ISteppable{
     @Override
     public void Step(){
         Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Step()");
-        
-        //Ha tud ásni ás, ha nem tud tovább megy egy szomszédos helyre
-        if (location.GetThickness() > 0) {
-            location.DrilledOn();
-        } else if (location.GetNeighbors().size() > 0) {
-            if(field.IsRandom()) {
-                Random rand = new Random();
-                int idx = rand.nextInt(location.GetNeighbors().size()-1);
-                MoveTo(location.GetNeighbors().get(idx));
-            } else {
-                MoveTo(location.GetNeighbors().get(0));
+        if(!dead) {
+            //Ha tud ásni ás, ha nem tud tovább megy egy szomszédos helyre
+            if (location.GetThickness() > 0) {
+                location.DrilledOn();
+            } else if (location.GetNeighbors().size() > 0) {
+                if (field.IsRandom()) {
+                    Random rand = new Random();
+                    int idx = rand.nextInt(location.GetNeighbors().size() - 1);
+                    MoveTo(location.GetNeighbors().get(idx));
+                } else {
+                    MoveTo(location.GetNeighbors().get(0));
+                }
             }
         }
         

@@ -74,7 +74,7 @@ public class View extends JFrame {
 
     private Game game;
     private OrbitingObject selectedObject = null;
-    private Handlers handlers;
+    private final Handlers handlers;
 
     public View(Game game) {
         super("Asteroid miner");

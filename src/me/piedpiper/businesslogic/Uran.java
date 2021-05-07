@@ -35,8 +35,7 @@ public class Uran extends RadioactiveMaterial {
     public boolean IsCompatibleWith(Material m){
         Logger.logMessage("Uran#" + Integer.toHexString(this.hashCode()) + ".IsCompatibleWith()");
         Logger.tabcount--;
-        if (m instanceof Uran) return true;
-        else return false;
+        return m instanceof Uran;
     }
 
     public String GetName(){

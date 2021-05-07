@@ -1,13 +1,11 @@
 package me.piedpiper.businesslogic;
 
-import me.piedpiper.gui.AsteroidPanel;
 import me.piedpiper.gui.SolarStormPanel;
 import me.piedpiper.gui.View;
 
 import java.util.ArrayList;
 
 import static java.lang.StrictMath.PI;
-import static java.lang.StrictMath.tan;
 
 public class SolarStorm implements ISteppable{
 

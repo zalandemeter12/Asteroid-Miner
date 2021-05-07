@@ -11,7 +11,7 @@ public class SunPanel extends JPanel implements IPosGettable{
     /**
      * Referencia az aszteroidara, amit abrazol
      */
-    private Sun sun;
+    private final Sun sun;
 
     /**
      * Konstruktor

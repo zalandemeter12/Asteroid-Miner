@@ -11,7 +11,7 @@ public class EllipsePanel extends JPanel implements IPosGettable{
     /**
      * Referencia az ellipszisre, amit abrazol
      */
-    private Ellipse2D ellipse;
+    private final Ellipse2D ellipse;
 
     /**
      * Konstruktor

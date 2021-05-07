@@ -54,9 +54,9 @@ public class Logger {
         
         //Kiírja az üzenetet a konzolra, ha engedélyezve van a logolás
         if (logOnConsole) {
-            String tmp = "";
-            for (int i = 0; i < tabcount; ++i) { tmp += "\t"; }
-            tmp += message;
+            StringBuilder tmp = new StringBuilder();
+            for (int i = 0; i < tabcount; ++i) { tmp.append("\t"); }
+            tmp.append(message);
             System.out.println(tmp);
         }
     }

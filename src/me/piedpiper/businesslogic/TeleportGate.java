@@ -1,6 +1,5 @@
 package me.piedpiper.businesslogic;
 
-import me.piedpiper.gui.AsteroidPanel;
 import me.piedpiper.gui.TeleportGatePanel;
 import me.piedpiper.gui.View;
 

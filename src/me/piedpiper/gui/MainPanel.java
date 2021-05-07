@@ -5,9 +5,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class MainPanel extends JPanel {
-    private static ArrayList<JPanel>  graphicObjects = new ArrayList<>();
-    private View view;
-    private JPanel backGround = new JPanel();
+    private final static ArrayList<JPanel>  graphicObjects = new ArrayList<>();
+    private final View view;
+    private final JPanel backGround = new JPanel();
 
 
     public MainPanel(View view){

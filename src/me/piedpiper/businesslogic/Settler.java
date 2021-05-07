@@ -11,9 +11,9 @@ public class Settler extends Worker {
     //Azt adja meg, hogy egy adott körben léphet e a telepes
     private boolean canStep;
     //A telepes nyersanyag táskája
-    private ArrayList<Material> backpack;
+    private final ArrayList<Material> backpack;
     //A telepes teleport kapu tárolója
-    private ArrayList<TeleportGate> gateInventory;
+    private final ArrayList<TeleportGate> gateInventory;
     private static int currentIndex = 0;
     private View view;
     private SettlerPanel panel;

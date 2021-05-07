@@ -1,26 +1,24 @@
 package me.piedpiper.gui;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import me.piedpiper.businesslogic.OrbitingObject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class NeighboursPanel extends JPanel implements IPosGettable{
     /**
      * Az egyik palyan keringo objektumok listaja
      */
-    private ArrayList<OrbitingObject> orbitingObjects1;
+    private final ArrayList<OrbitingObject> orbitingObjects1;
     /**
      * Az egyik palyan keringo objektumok listaja
      */
-    private ArrayList<OrbitingObject> orbitingObjects2;
+    private final ArrayList<OrbitingObject> orbitingObjects2;
     /**
      * Az egyik palyan keringo objektumok listaja
      */
-    private ArrayList<OrbitingObject> orbitingObjects3;
+    private final ArrayList<OrbitingObject> orbitingObjects3;
 
     /**
      * Konstruktor

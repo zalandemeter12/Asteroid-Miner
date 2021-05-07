@@ -11,7 +11,7 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
     /**
      * Referencia az aszteroidara, amit abrazol
      */
-    private Asteroid asteroid;
+    private final Asteroid asteroid;
 
     /**
      * Konstruktor

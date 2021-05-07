@@ -7,7 +7,7 @@ import java.util.ArrayList;
 //bizonyos nyersanyagokkal
 public class BillOfMaterials {
     //A recept nyersanyag listája
-    private  ArrayList<Material> bill;
+    private final ArrayList<Material> bill;
 
     //Konstruktor
     public BillOfMaterials(ArrayList<Material> bill){

@@ -12,7 +12,7 @@ public class Sun implements ISteppable {
     private final Point2D position;
 
     // Az aktiv napviharok listaja
-    private ArrayList<SolarStorm> solarStorms;
+    private final ArrayList<SolarStorm> solarStorms;
 
     // Megadja, hogy hany kor telt el a legutobbi napkiotores ota
     private int roundsWithoutSS;

@@ -7,7 +7,7 @@ public class OrbitingObjectMouseListener implements MouseListener {
     /**
      * Referencia a view objektumra
      */
-    private View view;
+    private final View view;
     public OrbitingObjectMouseListener(View view) {
         this.view = view;
     }

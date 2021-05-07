@@ -11,7 +11,7 @@ public class UfoPanel extends JPanel implements IPosGettable{
     /**
      * Referencia az aszteroidara, amit abrazol
      */
-    private Ufo ufo;
+    private final Ufo ufo;
 
     int width=16;
     int height=16;

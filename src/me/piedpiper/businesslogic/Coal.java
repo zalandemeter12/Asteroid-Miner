@@ -30,8 +30,7 @@ public class Coal extends Material {
     public boolean IsCompatibleWith(Material m) {
         Logger.logMessage("Coal#" + Integer.toHexString(this.hashCode()) + ".IsCompatibleWith()");
         Logger.tabcount--;
-        if (m instanceof Coal) return true;
-        else return false;
+        return m instanceof Coal;
     }
 
     public String GetName(){

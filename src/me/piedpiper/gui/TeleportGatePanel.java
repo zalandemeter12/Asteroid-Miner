@@ -11,7 +11,7 @@ public class TeleportGatePanel extends JPanel implements IPosGettable{
     /**
      * Referencia az aszteroidara, amit abrazol
      */
-    private TeleportGate teleportGate;
+    private final TeleportGate teleportGate;
 
     /**
      * Konstruktor

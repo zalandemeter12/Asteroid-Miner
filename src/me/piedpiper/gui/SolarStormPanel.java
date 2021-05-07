@@ -13,7 +13,7 @@ public class SolarStormPanel extends JPanel implements IPosGettable{
     /**
      * Referencia az aszteroidara, amit abrazol
      */
-    private SolarStorm solarStorm;
+    private final SolarStorm solarStorm;
 
     /**
      * Konstruktor

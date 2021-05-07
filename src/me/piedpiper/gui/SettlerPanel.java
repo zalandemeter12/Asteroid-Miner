@@ -11,7 +11,7 @@ public class SettlerPanel extends JPanel implements IPosGettable{
     /**
      * Referencia a telepesre, amit abrazol
      */
-    private Settler settler;
+    private final Settler settler;
 
     /**
      * Panel szelessege

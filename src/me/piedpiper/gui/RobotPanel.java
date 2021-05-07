@@ -11,7 +11,7 @@ public class RobotPanel extends JPanel implements IPosGettable{
     /**
      * Referencia a robot objektumra
      */
-    private Robot robot;
+    private final Robot robot;
 
     /**
      * Panel szelessege

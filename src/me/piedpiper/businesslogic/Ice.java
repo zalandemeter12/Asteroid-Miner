@@ -41,8 +41,7 @@ public class Ice extends Material {
     public boolean IsCompatibleWith(Material m){
         Logger.logMessage("Ice#" + Integer.toHexString(this.hashCode()) + ".IsCompatibleWith()");
         Logger.tabcount--;
-        if (m instanceof Ice) return true;
-        else return false;
+        return m instanceof Ice;
     }
 
     public String GetName(){

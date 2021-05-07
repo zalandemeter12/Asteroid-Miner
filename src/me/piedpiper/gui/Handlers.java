@@ -1,11 +1,9 @@
 package me.piedpiper.gui;
 
-import me.piedpiper.businesslogic.Game;
-import me.piedpiper.businesslogic.OrbitingObject;
 import me.piedpiper.businesslogic.Settler;
 
 public class Handlers {
-    private View view;
+    private final View view;
 
     public Handlers(View view) {
         this.view = view;

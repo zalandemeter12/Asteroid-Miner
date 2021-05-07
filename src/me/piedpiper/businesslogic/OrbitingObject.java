@@ -196,7 +196,7 @@ public abstract class OrbitingObject {
         Settler active = ellipse.GetField().GetActiveSettler();
         if (active == null) return false;
         for(Worker w : workers)
-            if(w == active)
+            if(w.equals(active))
                 return true;
         return false;
     }
@@ -204,8 +204,8 @@ public abstract class OrbitingObject {
     public boolean IsNeighboursGotTheActiveSettler(){
         if(neighbors != null){
             for(OrbitingObject o : neighbors)
-            if(o.IsThereActiveSettler())
-                return true;
+                if(o.IsThereActiveSettler())
+                    return true;
         }
         return false;
     }

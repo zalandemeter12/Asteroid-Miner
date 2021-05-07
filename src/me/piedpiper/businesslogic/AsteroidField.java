@@ -46,7 +46,17 @@ public class AsteroidField implements ISteppable {
 
         //Nap step fuggvenyenek meghivasa
         sun.Step();
-        ArrayList<OrbitingObject> orbitingObjects = new ArrayList<OrbitingObject>();    
+        SetNeighbours();
+
+        for (ISteppable s : steppables) {
+            s.Step();
+        }
+
+        Logger.tabcount--;
+    }
+
+    public void SetNeighbours(){
+        ArrayList<OrbitingObject> orbitingObjects = new ArrayList<OrbitingObject>();
 
         //Ellipszisen keringo objektumok uj poziciojanak beallitasa
         for(Ellipse2D e: ellipses) {
@@ -68,12 +78,6 @@ public class AsteroidField implements ISteppable {
                 }
             }
         }
-
-        for (ISteppable s : steppables) {
-            s.Step();
-        }
-
-        Logger.tabcount--;
     }
 
     public void AddSteppable(ISteppable s) {

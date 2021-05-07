@@ -23,9 +23,14 @@ public class SolarStormPanel extends JPanel implements IPosGettable{
         super.paint(g);
 
         Graphics2D g2d = (Graphics2D)g;
-        g2d.setPaint(Color.red);
+        g2d.setPaint(new Color(175, 36, 36, 100));
 
         g2d.fillArc(0, 0, 900, 400, (int)solarStorm.GetAngle(), 30);
+        g2d.setPaint(Color.black);
+        Font font = new Font("Arial", Font.PLAIN, 20);
+        g2d.setFont(font);
+        g2d.drawString(String.valueOf(solarStorm.GetWarnTimer()), (int)(450+100*Math.cos((solarStorm.GetAngle()+15)/180*PI)),
+                (int)(204-50*Math.sin((solarStorm.GetAngle()+15)/180*PI)));
     }
 
     @Override

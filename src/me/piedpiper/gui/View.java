@@ -91,7 +91,7 @@ public class View extends JFrame {
 
         this.handlers = new Handlers(this);
         this.game = game;
-        this.setMinimumSize(new Dimension(1000, 600));
+        this.setMinimumSize(new Dimension(1000, 650));
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setResizable(false);
 

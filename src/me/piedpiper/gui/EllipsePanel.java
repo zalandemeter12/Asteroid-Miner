@@ -8,8 +8,14 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class EllipsePanel extends JPanel implements IPosGettable{
+    /**
+     * Referencia az ellipszisre, amit abrazol
+     */
     private Ellipse2D ellipse;
 
+    /**
+     * Konstruktor
+     */
     public EllipsePanel(Ellipse2D e){
         ellipse=e;
         this.setSize(1000, 500);
@@ -26,6 +32,10 @@ public class EllipsePanel extends JPanel implements IPosGettable{
         g2d.drawOval(0,0, (int)ellipse.GetA(), (int)ellipse.GetB());
     }
 */
+
+    /**
+     * Kirajolas
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -37,22 +47,33 @@ public class EllipsePanel extends JPanel implements IPosGettable{
     }
 
 
-
+    /**
+     * Pozicio x koordinataja
+     */
     @Override
     public int GetPosX() {
         return (1000-(int)ellipse.GetA())/2;
     }
 
+    /**
+     * Pozicio y koordinataja
+     */
     @Override
     public int GetPosY() {
         return (int)((492-ellipse.GetB())*0.5);
     }
 
+    /**
+     * Szomszedok listajaval ter vissza
+     */
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
         return null;
     }
 
+    /**
+     * Megjelenites z "melysegi" koordinataja
+     */
     public int GetZOrder(){
         return 11;
     }

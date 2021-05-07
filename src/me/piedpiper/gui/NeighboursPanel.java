@@ -9,10 +9,22 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class NeighboursPanel extends JPanel implements IPosGettable{
+    /**
+     * Az egyik palyan keringo objektumok listaja
+     */
     private ArrayList<OrbitingObject> orbitingObjects1;
+    /**
+     * Az egyik palyan keringo objektumok listaja
+     */
     private ArrayList<OrbitingObject> orbitingObjects2;
+    /**
+     * Az egyik palyan keringo objektumok listaja
+     */
     private ArrayList<OrbitingObject> orbitingObjects3;
 
+    /**
+     * Konstruktor
+     */
     public NeighboursPanel(ArrayList<OrbitingObject> orbitingObjects1, ArrayList<OrbitingObject> orbitingObjects2, ArrayList<OrbitingObject> orbitingObjects3){
         setSize(new Dimension(1000, 492));
         this.orbitingObjects1 = orbitingObjects1;
@@ -20,6 +32,9 @@ public class NeighboursPanel extends JPanel implements IPosGettable{
         this.orbitingObjects3 = orbitingObjects3;
     }
 
+    /**
+     * Kirajolas
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -36,20 +51,32 @@ public class NeighboursPanel extends JPanel implements IPosGettable{
         }
     }
 
+    /**
+     * Pozicio x koordinataja
+     */
     @Override
     public int GetPosX() {
         return 0;
     }
 
+    /**
+     * Pozicio y koordinataja
+     */
     @Override
     public int GetPosY() {
         return 0;
     }
 
+    /**
+     * Megjelenites z "melysegi" koordinataja
+     */
     public int GetZOrder(){
         return 1;
     }
 
+    /**
+     * Szomszedok listajaval ter vissza
+     */
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
         return new ArrayList<>();

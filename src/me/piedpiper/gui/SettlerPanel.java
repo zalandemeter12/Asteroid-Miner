@@ -8,16 +8,33 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class SettlerPanel extends JPanel implements IPosGettable{
+    /**
+     * Referencia a telepesre, amit abrazol
+     */
     private Settler settler;
+
+    /**
+     * Panel szelessege
+     */
     int width=16;
+
+    /**
+     * Panel magassaga
+     */
     int height=16;
 
+    /**
+     * Konstruktor
+     */
     public SettlerPanel(Settler s){
         settler=s;
         this.setSize(width, height);
         this.setBackground(new Color(0,0,0,0));
     }
 
+    /**
+     * Kirajolas
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -33,6 +50,9 @@ public class SettlerPanel extends JPanel implements IPosGettable{
 
     }
 
+    /**
+     * Pozicio x koordinataja
+     */
     @Override
     public int GetPosX() {
         int order=0;
@@ -60,15 +80,24 @@ public class SettlerPanel extends JPanel implements IPosGettable{
         return x+500;
     }
 
+    /**
+     * Pozicio y koordinataja
+     */
     @Override
     public int GetPosY() {
         return -1*((int)settler.GetLocation().GetPosition().GetY()+ 35)+246;
     }
 
+    /**
+     * Megjelenites z "melysegi" koordinataja
+     */
     public int GetZOrder(){
         return 0;
     }
 
+    /**
+     * Szomszedok listajaval ter vissza
+     */
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
         return null;

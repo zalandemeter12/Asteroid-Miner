@@ -8,14 +8,23 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class SunPanel extends JPanel implements IPosGettable{
+    /**
+     * Referencia az aszteroidara, amit abrazol
+     */
     private Sun sun;
 
+    /**
+     * Konstruktor
+     */
     public SunPanel(Sun s){
         sun=s;
         this.setSize(60, 60);
         this.setBackground(new Color(0,0,0,0));
     }
 
+    /**
+     * Kirajolas
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -31,20 +40,32 @@ public class SunPanel extends JPanel implements IPosGettable{
         g2d.drawString("S", 24, 36);
     }
 
+    /**
+     * Pozicio x koordinataja
+     */
     @Override
     public int GetPosX() {
         return 470;
     }
 
+    /**
+     * Pozicio y koordinataja
+     */
     @Override
     public int GetPosY() {
         return 492/2-30;
     }
 
+    /**
+     * Megjelenites z "melysegi" koordinataja
+     */
     public int GetZOrder(){
         return 0;
     }
 
+    /**
+     * Szomszedok listajaval ter vissza
+     */
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
         return null;

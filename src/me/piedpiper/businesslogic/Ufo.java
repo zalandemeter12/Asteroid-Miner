@@ -43,7 +43,7 @@ public class Ufo extends Worker implements ISteppable{
         if(location.GetThickness()==0){
             Mine();
         } else if(location.GetNeighbors().size()>0){
-            if (field.IsRandom()) {
+            if (field.IsRandom() && location.GetNeighbors().size()>1) {
                 Random rand = new Random();
                 int idx = rand.nextInt(location.GetNeighbors().size()-1);
                 MoveTo(location.GetNeighbors().get(idx));

@@ -40,5 +40,9 @@ public class EllipsePanel extends JPanel implements IPosGettable{
         return null;
     }
 
+    public int GetZOrder(){
+        return 1;
+    }
+
 
 }

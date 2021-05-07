@@ -64,12 +64,9 @@ public class SettlerPanel extends JPanel implements IPosGettable{
     public int GetPosY() {
         return (int)settler.GetLocation().GetPosition().GetY() + 246- 35;
     }
-    public int GetZOrder(){
-        return 0;
-    }
 
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
-        return new ArrayList<OrbitingObject>();
+        return null;
     }
 }

@@ -97,7 +97,6 @@ public class View extends JFrame {
 
         mainPanel = new MainPanel(this);
 
-
         newMenuItem.addActionListener(e -> handlers.NewClicked());
 
         gameMenu.add(newMenuItem);
@@ -172,12 +171,6 @@ public class View extends JFrame {
         containerPanel.add(mainPanel, BorderLayout.CENTER);
 
         this.add(containerPanel);
-    }
-
-    public void Reset(){
-        mainPanel = new MainPanel(this);
-        mainPanel.revalidate();
-        mainPanel.repaint();
     }
 
 

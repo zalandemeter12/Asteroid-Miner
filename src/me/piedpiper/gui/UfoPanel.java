@@ -65,12 +65,8 @@ public class UfoPanel extends JPanel implements IPosGettable{
         return (int)ufo.GetLocation().GetPosition().GetY()+246 - 35;
     }
 
-    public int GetZOrder(){
-        return 0;
-    }
-
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
-        return new ArrayList<OrbitingObject>();
+        return null;
     }
 }

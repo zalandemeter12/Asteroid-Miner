@@ -8,5 +8,4 @@ public interface IPosGettable {
     int GetPosX();
     int GetPosY();
     ArrayList<OrbitingObject> GetNeighbours();
-    int GetZOrder();
 }

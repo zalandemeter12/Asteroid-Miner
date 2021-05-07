@@ -58,11 +58,7 @@ public class Handlers {
         view.Refresh();
     }
     public void BuildRobotClicked(){
-        if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
-        view.GetGame().GetField().GetActiveSettler().BuildRobot();
 
-        view.repaint();
-        view.Refresh();
     }
     public void BuildGateClicked(){
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
@@ -74,7 +70,6 @@ public class Handlers {
     public void NewClicked(){
 
         view.GetGame().Init();
-        view.Reset();
-        view.repaint();
+        //view.repaint();
     }
 }

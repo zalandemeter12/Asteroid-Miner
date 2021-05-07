@@ -165,8 +165,8 @@ public class Settler extends Worker {
                 backpack.remove(tmp1);
                 backpack.remove(tmp2);
                 backpack.remove(tmp3);
-                TeleportGate t1 = new TeleportGate(null, null, view);
-                TeleportGate t2 = new TeleportGate(null, null, view);
+                TeleportGate t1 = new TeleportGate(null, null);
+                TeleportGate t2 = new TeleportGate(null, null);
                 t1.SetGatePair(t2);
                 t2.SetGatePair(t1);
                 gateInventory.add(t1);
@@ -204,7 +204,7 @@ public class Settler extends Worker {
             backpack.remove(tmp0);
             backpack.remove(tmp1);
             backpack.remove(tmp2);
-            Robot r = new Robot(location, field, view);
+            Robot r = new Robot(location, field);
             field.AddSteppable(r);
             canStep=false;
             field.SettlerStepped();

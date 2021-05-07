@@ -23,7 +23,6 @@ public class EllipsePanel extends JPanel implements IPosGettable{
         g2d.setPaint(Color.white);
 
         g2d.drawOval(0,0, (int)ellipse.GetA(), (int)ellipse.GetB());
-        //super.paint(g);
     }
 
     @Override
@@ -38,10 +37,8 @@ public class EllipsePanel extends JPanel implements IPosGettable{
 
     @Override
     public ArrayList<OrbitingObject> GetNeighbours() {
-        return new ArrayList<OrbitingObject>();
+        return null;
     }
-    public int GetZOrder(){
-        return 1;
-    }
+
 
 }

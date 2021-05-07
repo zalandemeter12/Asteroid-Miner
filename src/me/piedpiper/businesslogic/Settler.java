@@ -52,12 +52,11 @@ public class Settler extends Worker {
     //A telepes bányászik az aszteroidán amin van
     public void Mine() { 
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Mine()");
-        
+        if(location.IsCloseToSun())
+            location.GetMaterial().BlowUp(location, true);
         //Csak akkor, ha át van fúrva a kéreg és van hely a táskájában
         if (location.GetThickness() == 0 && backpack.size() < 10) {
             Material mined = location.RemoveMaterial();
-            if(location.IsCloseToSun())
-                location.GetMaterial().BlowUp(location, true);
             if(mined != null) {
                 backpack.add(mined);
                 canStep=false;

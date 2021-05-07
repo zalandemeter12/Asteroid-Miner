@@ -47,6 +47,7 @@ public class SolarStorm implements ISteppable{
         this.view = view;
         panel=new SolarStormPanel(this);
         view.AddGraphicObject(panel);
+        System.out.println("ss");
         Logger.tabcount--;
     }
 
@@ -63,7 +64,7 @@ public class SolarStorm implements ISteppable{
                 //TODO nem tudni, hogy mukodik-e
                 for(OrbitingObject o : e.GetObjects()){
                     double bottomLine=tan(angle); //y=bottomline*x
-                    double topLine=tan(angle+PI/12); //y=topline*x
+                    double topLine=tan(angle+30); //y=topline*x
                     if(bottomLine*o.GetPosition().GetX()<o.GetPosition().GetY()
                        && topLine*o.GetPosition().GetX()>o.GetPosition().GetY()){
                         o.UnderSolarStorm();

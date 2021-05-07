@@ -29,7 +29,7 @@ public class Sun implements ISteppable {
         this.roundsWithoutSS = 0;
         this.position = position;
         this.field = field;
-        this.solarStorms = new ArrayList<SolarStorm>();
+        this.solarStorms = new ArrayList<>();
 
         Logger.tabcount--;
     }
@@ -40,7 +40,7 @@ public class Sun implements ISteppable {
         this.roundsWithoutSS = 0;
         this.position = position;
         this.field = field;
-        this.solarStorms = new ArrayList<SolarStorm>();
+        this.solarStorms = new ArrayList<>();
         this.view = view;
         panel=new SunPanel(this);
         view.AddGraphicObject(panel);
@@ -54,7 +54,7 @@ public class Sun implements ISteppable {
         
         Random rand = new Random(); 
         if (rand.nextInt(25) % 25 < roundsWithoutSS) {
-            solarStorms.add(new SolarStorm(this, 35, rand.nextInt(5)));
+            solarStorms.add(new SolarStorm(this, 35, rand.nextInt(5), view));
         } else {
             roundsWithoutSS++;
         }

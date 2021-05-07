@@ -46,7 +46,7 @@ public class SolarStorm implements ISteppable{
         this.id = ++currentIndex;
         this.view = view;
         panel=new SolarStormPanel(this);
-        view.AddGraphicObject(panel);
+        view.AddGraphicObject(panel, 4);
         System.out.println("ss");
         Logger.tabcount--;
     }

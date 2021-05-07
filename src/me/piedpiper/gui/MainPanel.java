@@ -23,9 +23,6 @@ public class MainPanel extends JPanel {
             panel.setLocation(((IPosGettable)panel).GetPosX(),  ((IPosGettable)panel).GetPosY());
         }
         */
-        g.setColor(Color.RED);
-        g.drawLine(120, 50, 360, 500);
-
 
         for(int i = graphicObjects.size()-1; i >= 0; --i){
             this.add(graphicObjects.get(i));
@@ -39,10 +36,17 @@ public class MainPanel extends JPanel {
         repaint();
     }
 
+    public void AddGraphicObject(JPanel object, int index){
+        graphicObjects.add(index, object);
+        object.addMouseListener(new OrbitingObjectMouseListener(view));
+        repaint();
+    }
+
     public void RemoveGraphicObject(JPanel object){
         graphicObjects.remove(object);
         repaint();
     }
+
 
     public ArrayList<JPanel> GetGraphicObjects() {
         return graphicObjects;

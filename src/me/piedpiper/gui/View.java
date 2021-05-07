@@ -177,6 +177,9 @@ public class View extends JFrame {
     public void AddGraphicObject(JPanel p){
         mainPanel.AddGraphicObject(p);
     }
+    public void AddGraphicObject(JPanel p, int index){
+        mainPanel.AddGraphicObject(p, index);
+    }
 
     public void RemoveGraphicObject(JPanel p){
         mainPanel.RemoveGraphicObject(p);

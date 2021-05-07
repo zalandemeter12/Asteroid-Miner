@@ -68,7 +68,8 @@ public class Handlers {
         view.Refresh();
     }
     public void NewClicked(){
-        view.SetGame(new Game());
-        view.repaint();
+
+        view.GetGame().Init();
+        //view.repaint();
     }
 }

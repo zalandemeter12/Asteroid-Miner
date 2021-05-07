@@ -35,6 +35,13 @@ public class MainPanel extends JPanel {
         object.addMouseListener(new OrbitingObjectMouseListener(view));
         repaint();
     }
+
+    public void AddGraphicObject(JPanel object, int index){
+        graphicObjects.add(index, object);
+        object.addMouseListener(new OrbitingObjectMouseListener(view));
+        repaint();
+    }
+
     public void RemoveGraphicObject(JPanel object){
         graphicObjects.remove(object);
         repaint();

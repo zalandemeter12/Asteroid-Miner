@@ -94,10 +94,7 @@ public class Game {
         field.AddSteppable(new Ufo(randO1, field, view));
         field.AddSteppable(new Ufo(randO2, field, view));
         field.AddSteppable(new Ufo(randO3, field, view));
-
-
-
-
+        field.SetNeighbours();
     }
 
     public void testInitSequences(int settlerCount) {

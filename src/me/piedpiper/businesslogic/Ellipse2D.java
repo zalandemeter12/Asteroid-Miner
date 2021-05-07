@@ -86,7 +86,7 @@ public class Ellipse2D {
     public void AddObject(OrbitingObject o){
         objects.add(o);
         Random rand = new Random();
-        o.SetT(rand.nextDouble()*100);
+        o.SetT(rand.nextDouble()*2*Math.PI);
         boolean notClose = false;
         Point2D p = new Point2D(a/2 * Math.cos(o.GetT()), b/2 * Math.sin(o.GetT()));
         while(!notClose){

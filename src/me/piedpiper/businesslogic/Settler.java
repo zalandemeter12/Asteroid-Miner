@@ -165,8 +165,8 @@ public class Settler extends Worker {
                 backpack.remove(tmp1);
                 backpack.remove(tmp2);
                 backpack.remove(tmp3);
-                TeleportGate t1 = new TeleportGate(null, null);
-                TeleportGate t2 = new TeleportGate(null, null);
+                TeleportGate t1 = new TeleportGate(null, null, view);
+                TeleportGate t2 = new TeleportGate(null, null, view);
                 t1.SetGatePair(t2);
                 t2.SetGatePair(t1);
                 gateInventory.add(t1);

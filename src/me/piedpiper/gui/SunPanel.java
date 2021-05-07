@@ -1,9 +1,11 @@
 package me.piedpiper.gui;
 
+import me.piedpiper.businesslogic.OrbitingObject;
 import me.piedpiper.businesslogic.Sun;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class SunPanel extends JPanel implements IPosGettable{
     private Sun sun;
@@ -37,5 +39,10 @@ public class SunPanel extends JPanel implements IPosGettable{
     @Override
     public int GetPosY() {
         return 492/2-30;
+    }
+
+    @Override
+    public ArrayList<OrbitingObject> GetNeighbours() {
+        return null;
     }
 }

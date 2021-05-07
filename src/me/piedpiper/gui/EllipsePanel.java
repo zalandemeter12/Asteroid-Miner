@@ -1,9 +1,11 @@
 package me.piedpiper.gui;
 
 import me.piedpiper.businesslogic.Ellipse2D;
+import me.piedpiper.businesslogic.OrbitingObject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class EllipsePanel extends JPanel implements IPosGettable{
     private Ellipse2D ellipse;
@@ -32,4 +34,11 @@ public class EllipsePanel extends JPanel implements IPosGettable{
     public int GetPosY() {
         return (int)((492-ellipse.GetB())*0.5);
     }
+
+    @Override
+    public ArrayList<OrbitingObject> GetNeighbours() {
+        return null;
+    }
+
+
 }

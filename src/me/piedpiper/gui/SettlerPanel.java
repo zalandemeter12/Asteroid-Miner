@@ -1,9 +1,11 @@
 package me.piedpiper.gui;
 
+import me.piedpiper.businesslogic.OrbitingObject;
 import me.piedpiper.businesslogic.Settler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class SettlerPanel extends JPanel implements IPosGettable{
     private Settler settler;
@@ -61,5 +63,10 @@ public class SettlerPanel extends JPanel implements IPosGettable{
     @Override
     public int GetPosY() {
         return (int)settler.GetLocation().GetPosition().GetY() + 246- 35;
+    }
+
+    @Override
+    public ArrayList<OrbitingObject> GetNeighbours() {
+        return null;
     }
 }

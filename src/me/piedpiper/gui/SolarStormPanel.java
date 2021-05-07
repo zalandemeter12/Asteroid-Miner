@@ -1,9 +1,11 @@
 package me.piedpiper.gui;
 
+import me.piedpiper.businesslogic.OrbitingObject;
 import me.piedpiper.businesslogic.SolarStorm;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 import static java.lang.StrictMath.PI;
 
@@ -35,5 +37,10 @@ public class SolarStormPanel extends JPanel implements IPosGettable{
     @Override
     public int GetPosY() {
         return 0;
+    }
+
+    @Override
+    public ArrayList<OrbitingObject> GetNeighbours() {
+        return null;
     }
 }

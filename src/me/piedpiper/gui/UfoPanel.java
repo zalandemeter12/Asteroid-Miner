@@ -1,9 +1,11 @@
 package me.piedpiper.gui;
 
+import me.piedpiper.businesslogic.OrbitingObject;
 import me.piedpiper.businesslogic.Ufo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class UfoPanel extends JPanel implements IPosGettable{
     private Ufo ufo;
@@ -61,5 +63,10 @@ public class UfoPanel extends JPanel implements IPosGettable{
     @Override
     public int GetPosY() {
         return (int)ufo.GetLocation().GetPosition().GetY()+246 - 35;
+    }
+
+    @Override
+    public ArrayList<OrbitingObject> GetNeighbours() {
+        return null;
     }
 }

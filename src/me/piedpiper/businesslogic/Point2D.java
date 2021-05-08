@@ -1,7 +1,9 @@
 package me.piedpiper.businesslogic;
 
 public class Point2D {
+    //x koordinata
     private double x;
+    //y koordinata
     private double y;
 
     //Konstruktor

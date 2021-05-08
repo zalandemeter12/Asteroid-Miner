@@ -14,16 +14,20 @@ public class Settler extends Worker {
     private ArrayList<Material> backpack;
     //A telepes teleport kapu tárolója
     private ArrayList<TeleportGate> gateInventory;
+    //index
     private static int currentIndex = 0;
+    //A kirajzolasert felelos peldany
     private View view;
+    //A kirajzolhato objektum, ami telepest rajzol ki
     private SettlerPanel panel;
 
 
     //A telepes konstruktora
     public Settler(OrbitingObject location, AsteroidField field){
         super(location);
-        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Ctor()");  
+        Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
+        //tagvaltozok beallitasa
         this.field = field;
         this.canStep = true;
         this.backpack = new ArrayList<>();
@@ -33,10 +37,13 @@ public class Settler extends Worker {
         Logger.tabcount--;
     }
 
+    //Masodik konstruktor, melyben az elozohoz kepest annzi a valtozas, hogy letrehoz egy SettlerPanel-t
+    //amit atad a view-nak
     public Settler(OrbitingObject location, AsteroidField field,View view){
         super(location);
         Logger.logMessage("Settler#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
+        //tagvaltozok beallitasa
         this.field = field;
         this.canStep = true;
         this.backpack = new ArrayList<>();
@@ -277,22 +284,27 @@ public class Settler extends Worker {
             gateInventory.add(g);
     }
 
+    //A fuggveny visszadja a settler nevet
     public String GetName(){
         return "Settler"+id;
     }
 
+    //A fuggveny visszadja a id-t
     public int getId(){
         return id;
     }
 
+    //A fuggveny visszaadja, hogy lephet e a telepes
     public boolean CanStep() {
         return canStep;
     }
 
+    //A fuggveny beallitja, hogy lephet e a telepes
     public void SetCanStep(boolean value) {
         canStep = value;
     }
 
+    //A fuggveny reseteli az indexet
     public static void ResetIndex(){
         currentIndex=0;
     }

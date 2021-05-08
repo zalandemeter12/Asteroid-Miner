@@ -166,34 +166,44 @@ public abstract class OrbitingObject {
         return null;
     }
 
+    //Setter, beallitja hogy az objektum kozel van e a naphoz
     public void SetCloseToSun(boolean c){ }
 
+    //napvihar eseten a fuggveny a rajta levo vedtelen munkasokat kezeli
     public void UnderSolarStorm(){
+        //ha nincs vedtelen munkas, akkor visszater
         if(GetExposedWorkers().size()==0) return;
         ArrayList<Worker> deadWorkers=new ArrayList<>();
+        //a vedtelen munkasoknak meghivja a Die fuggvenyet,es hozzaadja oket a halott munkasokat tartalmazo listahoz
         for (Worker w : GetExposedWorkers()) {
             w.Die();
             if(w.IsDead()) deadWorkers.add(w);
         }
 
+        //eltavolitja magarol a halott mhnkasokat
         for (Worker w : deadWorkers)
             workers.remove(w);
     }
 
+    //objektum mozgasa eseten beallitja az uj poziciojat
     public void Moves(Point2D p){
         this.position = p;
     }
 
+    //A fuggveny visszadja a OrbotingObject nevet
     public abstract String GetName();
 
+    //A fuggveny visszaadja a indexet
     public int GetIndex(){
         return id;
     }
 
+    //A fuggveny visszaadja a 't' attributumot
     public double GetT() {
         return t;
     }
 
+    //A fuggveny beallitja a 't' attributumot
     public void SetT(double t) {
         this.t = t;
     }

@@ -17,7 +17,7 @@ public class Game {
     private AsteroidField field;
     //A bázis aszteroidát külön ismeri
     private BaseAsteroid base;
-
+    //A kirajzolasert felelos peldany
     private static View view;
 
     //Konstruktor
@@ -31,26 +31,35 @@ public class Game {
 
     }
 
+    //inicializalo fuggveny
     public void Init(){
+        //nap letrehozasa
         Sun sun = new Sun(new Point2D(0.0,0.0),null, view);
 
+        //OrbitingObject listak letrehozasa
         ArrayList<OrbitingObject> objects1 = new ArrayList<>();
         ArrayList<OrbitingObject> objects2 = new ArrayList<>();
         ArrayList<OrbitingObject> objects3 = new ArrayList<>();
 
+        //ellipsziseket tartalmazo lista
         ArrayList<Ellipse2D> ellipses = new ArrayList<>();
+        //telepeseket tartalmazo lista
         ArrayList<Settler> settlers = new ArrayList<>();
+        //AsteroidField letrehozasa
         this.field = new AsteroidField(sun, this, ellipses, settlers);
         sun.SetField(this.field);
 
+        //ellipszisek hozzaadasa
         ellipses.add(new Ellipse2D(900, 400, 5, 0.04, objects1, view));
         ellipses.add(new Ellipse2D(800, 300, 10, -0.04, objects2, view));
         ellipses.add(new Ellipse2D(700, 200, 15, 0.02, objects3, view));
         NeighboursPanel neighboursPanel = new NeighboursPanel(ellipses.get(0).GetObjects(),ellipses.get(1).GetObjects(),ellipses.get(2).GetObjects());
         view.AddGraphicObject(neighboursPanel);
 
+        //bazisaszteroida letrehozasa
         this.base = new BaseAsteroid(new Point2D(1,1), ellipses.get(1), 0, this, view);
 
+        //Aszteroidak letrehozasa
         Random rand=new Random();
         int bound=6;
         for(int i=0; i<2; i++) {
@@ -80,11 +89,12 @@ public class Game {
             new Asteroid(new Point2D(1, 4), field.GetEllipses().get(0), rand.nextInt(bound), new Coal(), view);
         }
 
-
+        //Telepesek hozzaadasa
         for(int i=0; i<3;i++) {
             settlers.add(new Settler(base, field, view));
         }
 
+        //Aktiv telepes bealliatasa
         field.SetActiveSettler(field.GetSettlers().get(0));
 
         /*field.GetSettlers().get(0).AddMaterialToBackpack(new Ice());
@@ -105,25 +115,32 @@ public class Game {
         OrbitingObject randO4=objects2.get(rand.nextInt(objects3.size()));
         OrbitingObject randO5=objects1.get(rand.nextInt(objects3.size()));
 
+        //Ufok hozzaadasa
         field.AddSteppable(new Ufo(randO1, field, view));
         field.AddSteppable(new Ufo(randO2, field, view));
         field.AddSteppable(new Ufo(randO3, field, view));
         field.AddSteppable(new Ufo(randO4, field, view));
         field.AddSteppable(new Ufo(randO5, field, view));
+        //Szomszedok bealliatasa
         field.SetNeighbours();
 
     }
 
+    //inicializalo fuggveny
     public void testInitSequences(int settlerCount) {
+        //nap letrehozasa
         Sun sun = new Sun(new Point2D(0.0,0.0),null);
 
+        //OrbitingObject-eket tartalmazo listak letrehozasa
         ArrayList<OrbitingObject> objects1 = new ArrayList<>();
         ArrayList<OrbitingObject> objects2 = new ArrayList<>();
         ArrayList<OrbitingObject> objects3 = new ArrayList<>();
+        //ellipsziseket tartalmazo lista, valamint az ellipszisek hozzaadasa
         ArrayList<Ellipse2D> ellipses = new ArrayList<>();
         ellipses.add(new Ellipse2D(new Point2D(10,10), new Point2D(20,20), 5, 3, objects1));
         ellipses.add(new Ellipse2D(new Point2D(15,15), new Point2D(25,25), 10, 3, objects2));
         ellipses.add(new Ellipse2D(new Point2D(20,20), new Point2D(30,30), 15, 3, objects3));
+        //aszteroidak hozzadasa
         for (int i = 0; i < 5; ++i) {
             objects1.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Iron()));
             objects1.add(new Asteroid(new Point2D(1,1),ellipses.get(0),5, new Coal()));
@@ -141,8 +158,10 @@ public class Game {
             objects3.add(new Asteroid(new Point2D(1,1),ellipses.get(2),5, new Uran()));
         }
 
+        //bazisaszteroida letrehozasa
         this.base = new BaseAsteroid(new Point2D(5,5), ellipses.get(1), 3, this);
 
+        //AsteroidFiled letrehozasa, valamint a settlerek hozzadasa
         ArrayList<Settler> settlers = new ArrayList<>();
         this.field = new AsteroidField(sun, this, ellipses, settlers);
         for (int i = 0; i < settlerCount; ++i) {
@@ -152,11 +171,17 @@ public class Game {
         sun.SetField(this.field);
     }
 
+    //inicializalo fuggveny
     public void testInit(){
+        //nap letrehozasa
         Sun sun = new Sun(new Point2D(0.0,0.0),null);
+
+        //OrbitingObject-eket tartalmazo listak letrehozasa
         ArrayList<OrbitingObject> objects1 = new ArrayList<>();
         ArrayList<OrbitingObject> objects2 = new ArrayList<>();
         ArrayList<OrbitingObject> objects3 = new ArrayList<>();
+
+        //ellipsziseket tartalmazo lista, valamint az ellipszisek hozzaadasa
         ArrayList<Ellipse2D> ellipses = new ArrayList<>();
         ellipses.add(new Ellipse2D(new Point2D(10,10), new Point2D(20,20), 5, 0.4, objects1));
         ellipses.add(new Ellipse2D(new Point2D(15,15), new Point2D(25,25), 10, -0.4, objects2));
@@ -164,13 +189,15 @@ public class Game {
         ArrayList<Settler> settlers = new ArrayList<>();
         this.field = new AsteroidField(sun, this, ellipses, settlers);
 
-
+        //aszteroidak hozzadasa
         Asteroid a1 = new Asteroid(new Point2D(1,4), field.GetEllipses().get(0),5, new Iron());
         Asteroid a2 = new Asteroid(new Point2D(4,4), field.GetEllipses().get(0),0, null);
         Asteroid a3 = new Asteroid(new Point2D(-1,-6), field.GetEllipses().get(0),4, new Ice());
         Asteroid a4 = new Asteroid(new Point2D(10,5), field.GetEllipses().get(1),7, new Coal());
         Asteroid a5 = new Asteroid(new Point2D(3,7), field.GetEllipses().get(1),2, new Uran());
         Asteroid a6 = new Asteroid(new Point2D(9,-9), field.GetEllipses().get(2),0, null);
+
+        //szomszedok beallitasa
         a2.GetNeighbors().add(a1);
         a1.GetNeighbors().add(a2);
         a1.GetNeighbors().add(a3);
@@ -180,8 +207,11 @@ public class Game {
         a1.GetNeighbors().add(a5);
         a5.GetNeighbors().add(a1);
 
+        //teleportkapuk letrehozasa
         TeleportGate tg1=new TeleportGate(new Point2D(3,3), field.GetEllipses().get(0));
         TeleportGate tg2=new TeleportGate(new Point2D(5,2), field.GetEllipses().get(2));
+
+        //teleportkapu parok beallitasa, valamint a szomszedsagok beallitasa
         tg1.SetGatePair(tg2);
         tg2.SetGatePair(tg1);
         tg1.GetNeighbors().add(a5);
@@ -191,37 +221,49 @@ public class Game {
         tg4.SetGatePair(tg3);
         tg3.SetGatePair(tg4);
 
+        //robotok es ufok letrehozasa es mezohoz adasa
         Robot r1=new Robot(a4, field);
         Ufo u1= new Ufo(a5, field);
         a4.SetCloseToSun(true);
         a4.AddWorker(r1);
         a5.AddWorker(u1);
 
+        //telepesek letrehozasa es a mezohoz adasa
         Settler s1=new Settler(a1, field);
         s1.GetBackpack().add(new Iron());
         Settler s2=new Settler(a3, field);
         s2.AddGate(tg4);
+
+        //bazisaszteroida letrehozasa, es mezohoz adasa
         this.base=new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0,this);
         field.GetEllipses().get(0).GetObjects().add(base);
         field.GetSettlers().add(s1);
         field.GetSettlers().add(s2);
+
+        //napvihar hozzadasa
         field.GetSun().GetSolarStorms().add(new SolarStorm(field.GetSun(), 10, 2));
     }
 
+    //inicializalo fuggveny
     public void testInitGraphic(){
+        //nap letrehozasa, listak letrehozasa
         Sun sun = new Sun(new Point2D(0,0), null, view);
         ArrayList<Settler> settlers = new ArrayList<>();
         ArrayList<Ellipse2D> ellipses = new ArrayList<>();
         this.field = new AsteroidField(sun, this, ellipses, settlers);
         sun.SetField(this.field);
+
+        //OrbitingObject-eket tartalmazo listak letrehozasa
         ArrayList<OrbitingObject> objects1 = new ArrayList<>();
         ArrayList<OrbitingObject> objects2 = new ArrayList<>();
         ArrayList<OrbitingObject> objects3 = new ArrayList<>();
 
+        //ellipszisek hozzaadasa
         ellipses.add(new Ellipse2D(900, 400, 5, 0.04, objects1, view));
         ellipses.add(new Ellipse2D(800, 300, 10, -0.04, objects2, view));
         ellipses.add(new Ellipse2D(700, 200, 15, 0.02, objects3, view));
 
+        //aszteroidak hozzadasa
         Asteroid a1=new Asteroid(new Point2D(1,4), field.GetEllipses().get(0),3, new Iron(), view);
         Asteroid a2=new Asteroid(new Point2D(4,4), field.GetEllipses().get(0),0, null, view);
         Asteroid a3=new Asteroid(new Point2D(-1,-6), field.GetEllipses().get(0),3, new Ice(), view);
@@ -229,6 +271,7 @@ public class Game {
         Asteroid a5=new Asteroid(new Point2D(3,7), field.GetEllipses().get(1),2, new Uran(), view);
         Asteroid a6=new Asteroid(new Point2D(9,-9), field.GetEllipses().get(2),0, null, view);
 
+        //szomszedok beallitasa
         a2.GetNeighbors().add(a1);
         a1.GetNeighbors().add(a2);
         a1.GetNeighbors().add(a3);
@@ -238,6 +281,8 @@ public class Game {
         a1.GetNeighbors().add(a5);
         a5.GetNeighbors().add(a1);
 
+        //teleportkapuk letrehozasa
+        //teleportkapu parok beallitasa, valamint a szomszedsagok beallitasa
         TeleportGate tg1=new TeleportGate(new Point2D(3,3), field.GetEllipses().get(0), view);
         TeleportGate tg2=new TeleportGate(new Point2D(5,2), field.GetEllipses().get(2), view);
         tg1.SetGatePair(tg2);
@@ -249,25 +294,31 @@ public class Game {
         tg4.SetGatePair(tg3);
         tg3.SetGatePair(tg4);
 
+        //robotok es ufok letrehozasa es mezohoz adasa
         Robot r1=new Robot(a4, field, view);
         Ufo u1= new Ufo(a5, field, view);
         a4.SetCloseToSun(true);
         a4.AddWorker(r1);
         a5.AddWorker(u1);
 
+        //telepesek letrehozasa es a mezohoz adasa
         Settler s1=new Settler(a1, field, view);
         s1.GetBackpack().add(new Iron());
         Settler s2=new Settler(a3, field, view);
         s2.AddGate(tg4);
+
+        //bazisaszteroida letrehozasa, es mezohoz adasa
         this.base=new BaseAsteroid(new Point2D(3,3), field.GetEllipses().get(0), 0,this, view);
         field.GetSettlers().add(s1);
         field.GetSettlers().add(s2);
         field.GetSun().GetSolarStorms().add(new SolarStorm(field.GetSun(), 0, 2, view));
 
+        //aktiv telepes beallitasa
         field.SetActiveSettler(field.GetSettlers().get(0));
 
     }
 
+    //Setter, a bazisaszteroidat allitja be
     public void SetBase(BaseAsteroid b){
         this.base = b;
     }
@@ -576,6 +627,7 @@ public class Game {
 
     }
 
+    //uj jatek letrehozasa
     public void NewGame(){
         ResetIndexes();
         view.Clear();
@@ -587,6 +639,7 @@ public class Game {
 
     }
 
+    //indexek resetelese
     public void ResetIndexes(){
         Asteroid.ResetIndex();
         TeleportGate.ResetIndex();

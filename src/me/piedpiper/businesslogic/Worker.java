@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public abstract class Worker { //A munkást reprezentáló absztrakt osztály a játékban, leszarmazik belőle a Settler és a Robot osztályok
     protected OrbitingObject location; //Az asztroida/teleport kapu, amin a Worker van
+    //index
     protected int id;
+    //halott-e
     protected boolean dead=false;
 
     public Worker(OrbitingObject location) {    //Worker konstruktora, beállítja a location-t
@@ -55,17 +57,21 @@ public abstract class Worker { //A munkást reprezentáló absztrakt osztály a 
         return location;
     }
 
+    //A fuggveny banyaszas eseten hivodik meg
     public void Mine(){
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".Mine()");
         Logger.tabcount--;
     }
 
+    //A fuggveny visszaadja a munkas nevet
     public abstract String GetName();
 
+    //A fuggveny visszaadja a munkas indexet
     public int GetIndex(){
         return id;
     }
 
+    //A fuggveny visszaadja, hogy a munkas halott-e
     public boolean IsDead(){
         return dead;
     }

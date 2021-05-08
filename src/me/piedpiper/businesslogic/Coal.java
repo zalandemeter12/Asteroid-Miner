@@ -2,6 +2,7 @@ package me.piedpiper.businesslogic;
 
 public class Coal extends Material {
 
+    //index
     private static int currentIndex = 0;
 
     // Konstruktor
@@ -13,6 +14,7 @@ public class Coal extends Material {
         Logger.tabcount--;
     }
 
+    //Masodik konstruktor, indexet megfelelore allitja
     public Coal(boolean temp) {
         Logger.logMessage("Coal#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
@@ -34,10 +36,12 @@ public class Coal extends Material {
         else return false;
     }
 
+    //A fuggveny visszadja a nyersanyag nevet
     public String GetName(){
         return "Coal" + id;
     }
 
+    //A fuggveny reseteli a nyersanyag indexet
     public static void ResetIndex(){
         currentIndex=0;
     }

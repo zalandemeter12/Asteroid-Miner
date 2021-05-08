@@ -1,6 +1,7 @@
 package me.piedpiper.businesslogic;
 
 public abstract class Material {
+    //id
     protected int id;
 
     // Felrobbanaskor a robbanto hivja meg

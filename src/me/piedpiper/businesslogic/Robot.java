@@ -9,25 +9,31 @@ import java.util.Random;
 public class Robot extends Worker implements ISteppable{
     //Az aszteroida mező amiben a robot aktuálisan van
     private final AsteroidField field;
-
+    //index
     private static int currentIndex = 0;
+    //A kirajzolasert felelos peldany
     private View view;
+    //A kirajzolhato objektum, ami robotot rajzol ki
     private RobotPanel panel;
+
     //A robot konstruktora
     public Robot(OrbitingObject location, AsteroidField field){
         super(location);
         Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
-
+        //tagvaltozok beallitasa
         this.field = field;
         this.id = ++currentIndex;
 
         Logger.tabcount--;
     }
 
+    //Masodik konstruktor, melyben az elozohoz kepest annzi a valtozas, hogy letrehoz egy RobotPanel-t
+    //amit atad a view-nak
     public Robot(OrbitingObject location, AsteroidField field,View view){
         super(location);
         Logger.logMessage("Robot#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
+        //tagvaltozok beallitasa
         this.field = field;
         this.id = ++currentIndex;
         this.view = view;
@@ -63,6 +69,7 @@ public class Robot extends Worker implements ISteppable{
         Logger.tabcount--;
     }
 
+    //A fuggveny visszadja a robot nevet
     @Override
     public String GetName() {
         return "Robot"+id;
@@ -90,6 +97,7 @@ public class Robot extends Worker implements ISteppable{
         Logger.tabcount--;
     }
 
+    //A fuggveny reseteli az indexet
     public static void ResetIndex(){
         currentIndex=0;
     }

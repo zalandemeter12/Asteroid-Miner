@@ -30,6 +30,7 @@ public class NeighboursPanel extends JPanel implements IPosGettable{
         this.orbitingObjects1 = orbitingObjects1;
         this.orbitingObjects2 = orbitingObjects2;
         this.orbitingObjects3 = orbitingObjects3;
+        this.setBackground(new Color(61, 45, 182, 0));
     }
 
     /**
@@ -38,7 +39,6 @@ public class NeighboursPanel extends JPanel implements IPosGettable{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        this.setBackground(new Color(61, 45, 182, 0));
         g.setColor(Color.red);
         ArrayList<OrbitingObject> orbitingObjects = new ArrayList<>();
         orbitingObjects.addAll(orbitingObjects2);

@@ -2,10 +2,14 @@ package me.piedpiper.businesslogic;
 
 public class Iron extends Material {
 
-    //index
+    /**
+     * index
+     */
     private static int currentIndex = 0;
 
-    // Konstruktor
+    /**
+     * Konstruktor
+     */
     public Iron(){
         Logger.logMessage("Iron#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
@@ -14,7 +18,9 @@ public class Iron extends Material {
         Logger.tabcount--;
     }
 
-    //Masodik konstruktor, indexet megfelelore allitja
+    /**
+     * Masodik konstruktor, indexet megfelelore allitja
+     */
     public Iron(boolean temp){
         Logger.logMessage("Iron#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
@@ -27,9 +33,10 @@ public class Iron extends Material {
     }
 
 
-
-    // Polimorf viselkedes megvalositasa
-    // megmondja, hogy a kapott anyag is vas-e
+    /**
+     *  Polimorf viselkedes megvalositasa
+     * megmondja, hogy a kapott anyag is vas-e
+     */
     @Override
     public boolean IsCompatibleWith(Material m){
         Logger.logMessage("Iron#" + Integer.toHexString(this.hashCode()) + ".IsCompatibleWith()");
@@ -38,12 +45,16 @@ public class Iron extends Material {
         else return false;
     }
 
-    //A fuggveny visszadja a nyersanyag nevet
+    /**
+     * A fuggveny visszadja a nyersanyag nevet
+     */
     public String GetName(){
         return "Iron" + id;
     }
 
-    //A fuggveny reseteli a nyersanyag indexet
+    /**
+     * A fuggveny reseteli a nyersanyag indexet
+     */
     public static void ResetIndex(){
         currentIndex=0;
     }

@@ -7,23 +7,37 @@ import me.piedpiper.gui.View;
 import java.util.Random;
 
 public class TeleportGate extends OrbitingObject {
-    //A teleport kapu párja
+    /**
+     * A teleport kapu párja
+     */
     private TeleportGate gatePair;
-    //meghibasodast jelzo attributum
+    /**
+     * meghibasodast jelzo attributum
+     */
     private boolean isMalfunctioning;
-    //index
+    /**
+     * index
+     */
     private static int currentIndex = 0;
-    //A kirajzolasert felelos peldany
+    /**
+     * A kirajzolasert felelos peldany
+     */
     private View view;
-    //A kirajzolhato objektum, ami teleportkaput rajzol ki
+    /**
+     * A kirajzolhato objektum, ami teleportkaput rajzol ki
+     */
     private TeleportGatePanel panel;
 
-    //A teleport kapu konstruktora
+    /**
+     * A teleport kapu konstruktora
+     */
     public TeleportGate(Point2D position, Ellipse2D ellipse) {
         super(position, ellipse);
         Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
-        //tagvaltozok beallitasa
+        /**
+         * tagvaltozok beallitasa
+         */
         this.isMalfunctioning=false;
         this.id = ++currentIndex;
         this.ellipse = null;
@@ -31,13 +45,17 @@ public class TeleportGate extends OrbitingObject {
         Logger.tabcount--;
     }
 
-    //Masodik konstruktor, melyben az elozohoz kepest annzi a valtozas, hogy letrehoz egy TeleportGatePanel-t
-    //amit atad a view-nak
+    /**
+     * Masodik konstruktor, melyben az elozohoz kepest annzi a valtozas, hogy letrehoz egy TeleportGatePanel-t
+     * amit atad a view-nak
+     */
     public TeleportGate(Point2D position, Ellipse2D ellipse,View view) {
         super(position, ellipse);
         Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
-        //tagvaltozok beallitasa
+        /**
+         * tagvaltozok beallitasa
+         */
         this.isMalfunctioning=false;
         this.id = ++currentIndex;
         this.ellipse = null;
@@ -48,12 +66,16 @@ public class TeleportGate extends OrbitingObject {
         Logger.tabcount--;
     }
 
-    //Hozzáad egy dolgozót a teleport kapuhoz
+    /**
+     * Hozzáad egy dolgozót a teleport kapuhoz
+     */
     @Override
     public void AddWorker(Worker w) {
         Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".AddWorker()");
         workers.add(w);
-        //Amennyiben le van helyezve a párja, rögtön átdobja a másik kapuba
+        /**
+         * Amennyiben le van helyezve a párja, rögtön átdobja a másik kapuba
+         */
         if(gatePair.GetPosition() != null) {
             workers.remove(w);
             w.SetLocation(gatePair);
@@ -64,7 +86,9 @@ public class TeleportGate extends OrbitingObject {
     }
 
 
-    //Beállítja egy kapu párját
+    /**
+     * Beállítja egy kapu párját
+     */
     public void SetGatePair(TeleportGate tg){
         Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".SetGatePair()");
         
@@ -73,7 +97,9 @@ public class TeleportGate extends OrbitingObject {
         Logger.tabcount--;
     }
 
-    //Beállítja az ellipszist amin elhelyezkedik a teleport kapu
+    /**
+     * Beállítja az ellipszist amin elhelyezkedik a teleport kapu
+     */
     public void SetEllipse(Ellipse2D e) {
         Logger.logMessage("TeleportGate#" + Integer.toHexString(this.hashCode()) + ".SetEllipse()");
         
@@ -82,17 +108,24 @@ public class TeleportGate extends OrbitingObject {
         Logger.tabcount--;
     }
 
-    //napvihar eseten meghibasodik a teleportkapu
+    /**
+     * napvihar eseten meghibasodik a teleportkapu
+     */
     @Override
     public void UnderSolarStorm() {
         this.isMalfunctioning=true;
         super.UnderSolarStorm();
     }
 
-    //A fuggveny beallitja a kapu uj poziciojat
+
+    /**
+     * A fuggveny beallitja a kapu uj poziciojat
+     */
     @Override
     public void Moves(Point2D p){
-        //meghibasodas eseten, nem a parameterkent kapott pozicioja rakja, hanem a kapu elkezd veletlenszeruen ugralni az aszteroidamezon
+        /**
+         * meghibasodas eseten, nem a parameterkent kapott pozicioja rakja, hanem a kapu elkezd veletlenszeruen ugralni az aszteroidamezon
+         */
         if (isMalfunctioning) {
             if (neighbors.size() > 0) {
                 if (ellipse.GetField().IsRandom()) {
@@ -108,28 +141,38 @@ public class TeleportGate extends OrbitingObject {
         }
     }
 
-    //A fuggveny visszaadja a teleportkapu nevet
+    /**
+     * A fuggveny visszaadja a teleportkapu nevet
+     */
     @Override
     public String GetName(){
         return "TeleportGate"+id;
     }
 
-    //A fuggveny reseteli az indexet
+    /**
+     * A fuggveny reseteli az indexet
+     */
     public static void ResetIndex(){
         currentIndex=0;
     }
 
-    //A fuggveny visszaadja a kapu parjat
+    /**
+     * A fuggveny visszaadja a kapu parjat
+     */
     public TeleportGate GetPair(){
         return this.gatePair;
     }
 
-    //A fuggveny visszaadja, hogy aktiv e a teleportkapu
+    /**
+     * A fuggveny visszaadja, hogy aktiv e a teleportkapu
+     */
     public boolean IsActive(){
         return gatePair.GetEllipse() != null && this.ellipse != null;
     }
 
-    //elhelyezi a teleportkaput kirajzolo objektumot
+    /**
+     * elhelyezi a teleportkaput kirajzolo objektumot
+     */
     public void PlacePanel(){
         if(panel==null){
             panel=new TeleportGatePanel(this);

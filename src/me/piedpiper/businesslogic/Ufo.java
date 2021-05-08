@@ -6,28 +6,44 @@ import me.piedpiper.gui.View;
 import java.util.Random;
 
 public class Ufo extends Worker implements ISteppable{
-    //Az aszteroida mező amiben a robot aktuálisan van
+    /**
+     * Az aszteroida mező amiben a robot aktuálisan van
+     */
     private final AsteroidField field;
-    //index
+    /**
+     * index
+     */
     private static int currentIndex = 0;
-    //A kirajzolasert felelos peldany
+    /**
+     * A kirajzolasert felelos peldany
+     */
     private View view;
-    //A kirajzolhato objektum, ami ufot rajzol ki
+    /**
+     * A kirajzolhato objektum, ami ufot rajzol ki
+     */
     private UfoPanel panel;
 
-    //A ufo konstruktora
+    /**
+     * A ufo konstruktora
+     */
     public Ufo(OrbitingObject location, AsteroidField f) {
         super(location);
-        //tagvaltozok beallitasa
+        /**
+         * tagvaltozok beallitasa
+         */
         this.field=f;
         this.id = ++currentIndex;
     }
 
-    //Masodik konstruktor, melyben az elozohoz kepest annzi a valtozas, hogy letrehoz egy UfoPanel-t
-    //amit atad a view-nak
+    /**
+     * Masodik konstruktor, melyben az elozohoz kepest annzi a valtozas, hogy letrehoz egy UfoPanel-t
+     * amit atad a view-nak
+     */
     public Ufo(OrbitingObject location, AsteroidField f,View view) {
         super(location);
-        //tagvaltozok beallitasa
+        /**
+         * tagvaltozok beallitasa
+         */
         this.field=f;
         this.id = ++currentIndex;
         this.view = view;
@@ -35,29 +51,41 @@ public class Ufo extends Worker implements ISteppable{
         view.AddGraphicObject(panel);
     }
 
-    //Az ufo "meghal"
+    /**
+     * Az ufo "meghal"
+     */
     @Override
     public void Die() {
         dead=true;
         view.RemoveGraphicObject(panel);
     }
 
-    //Az ufo felrobban, meghal
+    /**
+     * Az ufo felrobban, meghal
+     */
     @Override
     public void Explode() {
         Die();
     }
 
-    //Az ufo minden korben lep egyet
+    /**
+     * Az ufo minden korben lep egyet
+     */
     @Override
     public void Step() {
-        //Ha nem halott akkor megprobal banyaszni, vagy lep egyet
+        /**
+         * Ha nem halott akkor megprobal banyaszni, vagy lep egyet
+         */
         if(!dead) {
-            //Ha tud banyaszni, akkor banyaszik
+            /**
+             * Ha tud banyaszni, akkor banyaszik
+             */
             if (location.GetThickness() == 0 && location.GetMaterial() != null) {
                 Mine();
             } else if (location.GetNeighbors().size() > 0) {
-                //h nem tud, akkor egy random szomszedos aszteroidara lep
+                /**
+                 * h nem tud, akkor egy random szomszedos aszteroidara lep
+                 */
                 if (field.IsRandom() && location.GetNeighbors().size() > 1) {
                     Random rand = new Random();
                     int idx = rand.nextInt(location.GetNeighbors().size() - 1);
@@ -69,12 +97,16 @@ public class Ufo extends Worker implements ISteppable{
         }
     }
 
-    //furas
+    /**
+     * furas
+     */
     @Override
     public void DrillHole(){
     }
 
-    //Banyaszas, a fuggveny eltavolitja a nyersanyagot az aszteroidarol, amin az ufo tartozkodik
+    /**
+     * Banyaszas, a fuggveny eltavolitja a nyersanyagot az aszteroidarol, amin az ufo tartozkodik
+     */
     @Override
     public void Mine(){
         if(location.GetThickness()==0){
@@ -82,12 +114,16 @@ public class Ufo extends Worker implements ISteppable{
         }
     }
 
-    //A fuggveny visszadja az ufo nevet
+    /**
+     * A fuggveny visszadja az ufo nevet
+     */
     public String GetName(){
         return "Ufo"+id;
     }
 
-    //A fuggveny reseteli az indexet
+    /**
+     * A fuggveny reseteli az indexet
+     */
     public static void ResetIndex(){
         currentIndex=0;
     }

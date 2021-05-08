@@ -5,23 +5,37 @@ import me.piedpiper.gui.View;
 
 import java.util.ArrayList;
 
-//Bazisaszteroidat valositja meg
+/**
+ * Bazisaszteroidat valositja meg
+ */
 public class BaseAsteroid extends Asteroid {
-    // Osszegyujtott anyagokat tartalmazo lista
+    /**
+     * Osszegyujtott anyagokat tartalmazo lista
+     */
     private final ArrayList<Material> chest;
-    // Jatekmenentet kezelo objektum referenciaja
+    /**
+     * Jatekmenentet kezelo objektum referenciaja
+     */
     private final Game game;
-    //A kirajzolasert felelos peldany
+    /**
+     * A kirajzolasert felelos peldany
+     */
     private View view;
-    //A kirajzolhato objektum, ami bazisaszteroidat rajzol ki
+    /**
+     * A kirajzolhato objektum, ami bazisaszteroidat rajzol ki
+     */
     private BaseAsteroidPanel panel;
 
-    // Konstruktor
+    /**
+     * Konstruktor
+     */
     public BaseAsteroid(Point2D position, Ellipse2D ellipse, int thickness, Game game) {
         super(position, ellipse, thickness, null);
         Logger.logMessage("BaseAsteroid#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
-        //tagvaltozok beallitasa
+        /**
+         * tagvaltozok beallitasa
+         */
         chest=new ArrayList<>();
         this.game = game;
         this.thickness = 0;
@@ -29,13 +43,17 @@ public class BaseAsteroid extends Asteroid {
         Logger.tabcount--;
     }
 
-    //Masodik konstruktor, melyben az elozohoz kepest annzi a valtozas, hogy letrehoz egy BaseAsteroidPanel-t
-    //amit atad a view-nak
+    /**
+     * Masodik konstruktor, melyben az elozohoz kepest annzi a valtozas, hogy letrehoz egy BaseAsteroidPanel-t
+     * amit atad a view-nak
+     */
     public BaseAsteroid(Point2D position, Ellipse2D ellipse, int thickness, Game game,View view) {
         super(position, ellipse, thickness, null);
         Logger.logMessage("BaseAsteroid#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
-        //tagvaltozok beallitasa
+        /**
+         * tagvaltozok beallitasa
+         */
         chest=new ArrayList<>();
         this.game = game;
         this.thickness = 0;
@@ -45,12 +63,16 @@ public class BaseAsteroid extends Asteroid {
         Logger.tabcount--;
     }
 
-    // Anyag belerakasa a chestbe
+    /**
+     *  Anyag belerakasa a chestbe
+     */
     @Override
     public boolean AddMaterial(Material m) {
         Logger.logMessage("BaseAsteroid#" + Integer.toHexString(this.hashCode()) + ".AddMaterial()");
 
-        //ellenorzi, hogy a nyersanyagbol hozza lehet-e meg adni a bazisaszteroida chestjehez
+        /**
+         * ellenorzi, hogy a nyersanyagbol hozza lehet-e meg adni a bazisaszteroida chestjehez
+         */
         ArrayList<Material> materials = new ArrayList<>();
         for (int i = 0; i < 3; ++i) {
             materials.add(new Uran(true));
@@ -62,7 +84,9 @@ public class BaseAsteroid extends Asteroid {
         for (Material material : chest) {
             bill.IsNeeded(material);
         }
-        //Ha meg elfer a ladaban, akkor hozzaadja, es megvizsgalja, hogy minden nyersanyag megvan e a jatek befejezesehez
+        /**
+         * Ha meg elfer a ladaban, akkor hozzaadja, es megvizsgalja, hogy minden nyersanyag megvan e a jatek befejezesehez
+         */
         if (bill.IsNeeded(m)) {
             chest.add(m);
             if(bill.GetBill().size() == 0)
@@ -77,7 +101,9 @@ public class BaseAsteroid extends Asteroid {
         }
     }
 
-    // A mar osszegyujtott anyagok listajaval ter vissza
+    /**
+     * A mar osszegyujtott anyagok listajaval ter vissza
+     */
     @Override
     public ArrayList<Material> GetChest() {
         Logger.logMessage("BaseAsteroid#" + Integer.toHexString(this.hashCode()) + ".GetChest()");
@@ -85,7 +111,9 @@ public class BaseAsteroid extends Asteroid {
         return chest;
     }
 
-    //A fuggveny visszater a bazisaszteroidaa nevevel
+    /**
+     * A fuggveny visszater a bazisaszteroidaa nevevel
+     */
     public String GetName(){
         return "BaseAsteroid";
     }

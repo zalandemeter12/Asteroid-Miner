@@ -2,14 +2,27 @@ package me.piedpiper.businesslogic;
 
 import java.util.ArrayList;
 
-public abstract class Worker { //A munkást reprezentáló absztrakt osztály a játékban, leszarmazik belőle a Settler és a Robot osztályok
-    protected OrbitingObject location; //Az asztroida/teleport kapu, amin a Worker van
-    //index
+/**
+ * A munkást reprezentáló absztrakt osztály a játékban, leszarmazik belőle a Settler és a Robot osztályok
+ */
+public abstract class Worker {
+    /**
+     * Az asztroida/teleport kapu, amin a Worker van
+     */
+    protected OrbitingObject location;
+    /**
+     * index
+     */
     protected int id;
-    //halott-e
+    /**
+     * halott-e
+     */
     protected boolean dead=false;
 
-    public Worker(OrbitingObject location) {    //Worker konstruktora, beállítja a location-t
+    /**
+     * Worker konstruktora, beállítja a location-t
+     */
+    public Worker(OrbitingObject location) {
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
         
         this.location = location;
@@ -18,32 +31,61 @@ public abstract class Worker { //A munkást reprezentáló absztrakt osztály a 
         Logger.tabcount--;
     }
 
-    public void MoveTo(OrbitingObject o){ //Áthelyezi a Workert a paraméterban átvett OrbitingObjectre
+    /**
+     *  a Workert a paraméterban átvett OrbitingObjectre
+     */
+    public void MoveTo(OrbitingObject o){
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".MoveTo()");
-        
-        ArrayList<OrbitingObject> neighbors = location.GetNeighbors();  //Az OrbitingObjectek, amikre a Worker tud mozogni.
-        if (neighbors.contains(o)) {    //Ha a paraméterként átvett OrbitingObject benne van a neighbours listában.
-            location.RemoveWorker(this); //Az aktuális OrbitingObjectről eltávolítja a Workert.
-            location=o; //Megváltoztatja a locationt az új helyzetére.
-            o.AddWorker(this); //Áthelyezi a cél OrbitingObjectre.
+        /**
+         * Az OrbitingObjectek, amikre a Worker tud mozogni.
+         */
+        ArrayList<OrbitingObject> neighbors = location.GetNeighbors();
+        /**
+         * Ha a paraméterként átvett OrbitingObject benne van a neighbours listában.
+         */
+        if (neighbors.contains(o)) {
+            /**
+             * Az aktuális OrbitingObjectről eltávolítja a Workert.
+             */
+            location.RemoveWorker(this);
+            /**
+             * Megváltoztatja a locationt az új helyzetére.
+             */
+            location=o;
+            /**
+             * Áthelyezi a cél OrbitingObjectre.
+             */
+            o.AddWorker(this);
         }
         
         Logger.tabcount--;
     }
 
-    public abstract void Die(); //A Worker meghal, megszűnik.
+    /**
+     * A Worker meghal, megszűnik.
+     */
+    public abstract void Die();
 
-    public void DrillHole(){ //Lejjebb fúr egy réteget az OrbitingObject kérgén, ha lehetséges.
+    /**
+     * Lejjebb fúr egy réteget az OrbitingObject kérgén, ha lehetséges.
+     */
+    public void DrillHole(){
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".DrillHole()");
         
         location.DrilledOn();
 
         Logger.tabcount--;
     }
-    
-    public abstract void Explode(); //A Worker felrobban, radioaktív anyagok hatására fordulhat elő.
 
-    public void SetLocation(OrbitingObject l){ //A paraméterként átvett OrbitingObjectre állítja a Worker location-ét.
+    /**
+     * A Worker felrobban, radioaktív anyagok hatására fordulhat elő.
+     */
+    public abstract void Explode();
+
+    /**
+     * A paraméterként átvett OrbitingObjectre állítja a Worker location-ét.
+     */
+    public void SetLocation(OrbitingObject l){
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".SetLocation()");
         
         this.location=l;
@@ -51,27 +93,39 @@ public abstract class Worker { //A munkást reprezentáló absztrakt osztály a 
         Logger.tabcount--;
     }
 
-    public OrbitingObject GetLocation(){ //Visszatér a location értékével.
+    /**
+     * Visszatér a location értékével.
+     */
+    public OrbitingObject GetLocation(){
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".GetLocation()");
         Logger.tabcount--;
         return location;
     }
 
-    //A fuggveny banyaszas eseten hivodik meg
+    /**
+     * A fuggveny banyaszas eseten hivodik meg
+     */
     public void Mine(){
         Logger.logMessage("Worker#" + Integer.toHexString(this.hashCode()) + ".Mine()");
         Logger.tabcount--;
     }
 
-    //A fuggveny visszaadja a munkas nevet
+    /**
+     * A fuggveny visszaadja a munkas nevet
+     */
     public abstract String GetName();
 
-    //A fuggveny visszaadja a munkas indexet
+
+    /**A
+     *  fuggveny visszaadja a munkas indexet
+     */
     public int GetIndex(){
         return id;
     }
 
-    //A fuggveny visszaadja, hogy a munkas halott-e
+    /**
+     * A fuggveny visszaadja, hogy a munkas halott-e
+     */
     public boolean IsDead(){
         return dead;
     }

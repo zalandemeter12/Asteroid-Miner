@@ -2,10 +2,14 @@ package me.piedpiper.businesslogic;
 
 public class Coal extends Material {
 
-    //index
+    /**
+     * index
+     */
     private static int currentIndex = 0;
 
-    // Konstruktor
+    /**
+     * Konstruktor
+     */
     public Coal() {
         Logger.logMessage("Coal#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
@@ -14,7 +18,9 @@ public class Coal extends Material {
         Logger.tabcount--;
     }
 
-    //Masodik konstruktor, indexet megfelelore allitja
+    /**
+     * Masodik konstruktor, indexet megfelelore allitja
+     */
     public Coal(boolean temp) {
         Logger.logMessage("Coal#" + Integer.toHexString(this.hashCode()) + ".Ctor()");
 
@@ -26,8 +32,10 @@ public class Coal extends Material {
         Logger.tabcount--;
     }
 
-    // Polimorf viselkedes megvalositasa
-    // megmondja, hogy a kapott anyag is szen-e
+    /**
+     * Polimorf viselkedes megvalositasa
+     * megmondja, hogy a kapott anyag is szen-e
+     */
     @Override
     public boolean IsCompatibleWith(Material m) {
         Logger.logMessage("Coal#" + Integer.toHexString(this.hashCode()) + ".IsCompatibleWith()");
@@ -36,12 +44,16 @@ public class Coal extends Material {
         else return false;
     }
 
-    //A fuggveny visszadja a nyersanyag nevet
+    /**
+     * A fuggveny visszadja a nyersanyag nevet
+     */
     public String GetName(){
         return "Coal" + id;
     }
 
-    //A fuggveny reseteli a nyersanyag indexet
+    /**
+     * A fuggveny reseteli a nyersanyag indexet
+     */
     public static void ResetIndex(){
         currentIndex=0;
     }

@@ -18,19 +18,19 @@ public class AsteroidField implements ISteppable {
     /**
      * A jatekmenetet kezelo objektum
      */
-    private Game game;
+    private final Game game;
     /**
      * Az aszteroida mezon levo ellipszisek listaja, amiken az objektumok keringenek
      */
-    private ArrayList<Ellipse2D> ellipses;
+    private final ArrayList<Ellipse2D> ellipses;
     /**
      * A mezoben levo kontroller által iranyitott steppablek
      */
-    private ArrayList<ISteppable> steppables;
+    private final ArrayList<ISteppable> steppables;
     /**
      * A mezoben levo telepesek listaja
      */
-    private ArrayList<Settler> settlers;
+    private final ArrayList<Settler> settlers;
     /**
      * Ennek a valtozonak a segitsegevel lehet a randomitast ki/be kapcsolni
      */
@@ -115,10 +115,7 @@ public class AsteroidField implements ISteppable {
          * napkozelseg beallitasa a mezon levo objektumon az uj poziciojuk kiszamolasa utan
          */
         for(OrbitingObject o : orbitingObjects){
-            if(o.GetPosition().DistanceFrom(sun.GetPosition()) < 200) //TODO rendes cucc kell
-                o.SetCloseToSun(true);
-            else
-                o.SetCloseToSun(false);
+            o.SetCloseToSun(o.GetPosition().DistanceFrom(sun.GetPosition()) < 200);
         }
     }
 
@@ -297,10 +294,4 @@ public class AsteroidField implements ISteppable {
         activeSettler = s;
     }
 
-    /**
-     * Beallitja a napot
-     */
-    public void SetSun(Sun s){
-        sun=s;
-    }
 }

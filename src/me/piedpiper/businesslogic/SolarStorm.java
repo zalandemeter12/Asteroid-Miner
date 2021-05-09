@@ -30,7 +30,7 @@ public class SolarStorm implements ISteppable{
     /**
      * celpontokat tartalmazo lista
      */
-    private ArrayList<OrbitingObject> targets;
+    private final ArrayList<OrbitingObject> targets;
     /**
      * A kirajzolasert felelos peldany
      */
@@ -97,7 +97,6 @@ public class SolarStorm implements ISteppable{
                     Point2D p = new Point2D(o.GetEllipse().GetA()/2 * Math.cos(o.GetT()), o.GetEllipse().GetB()/2 * Math.sin(o.GetT()));
                     Point2D stormStart=new Point2D(-450 * Math.cos(angle/180*PI), -200 * Math.sin(angle/180*PI));
                     Point2D stormEnd=new Point2D(-450 * Math.cos((angle+30)/180*PI), -200 * Math.sin((angle+30)/180*PI));
-                    Point2D origo=new Point2D(0,0);
 
                     Point3D normal=Point2D.Cross(stormEnd, stormStart);
                     if(Point2D.Cross(stormStart, p).dotProduct(normal) > 0 &&

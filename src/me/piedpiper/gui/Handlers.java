@@ -1,7 +1,5 @@
 package me.piedpiper.gui;
 
-import me.piedpiper.businesslogic.Game;
-import me.piedpiper.businesslogic.OrbitingObject;
 import me.piedpiper.businesslogic.Settler;
 
 public class Handlers {
@@ -9,7 +7,7 @@ public class Handlers {
     /**
      * A view, aminek a komponenseinek az eseményihez a függvényeket hozzárendeljük
      */
-    private View view;
+    private final View view;
 
     public Handlers(View view) {
         this.view = view;

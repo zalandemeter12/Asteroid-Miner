@@ -17,11 +17,11 @@ public class Settler extends Worker {
     /**
      * A telepes nyersanyag táskája
      */
-    private ArrayList<Material> backpack;
+    private final ArrayList<Material> backpack;
     /**
      * A telepes teleport kapu tárolója
      */
-    private ArrayList<TeleportGate> gateInventory;
+    private final ArrayList<TeleportGate> gateInventory;
     /**
      * index
      */

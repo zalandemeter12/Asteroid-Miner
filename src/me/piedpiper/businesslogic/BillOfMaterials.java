@@ -12,7 +12,7 @@ public class BillOfMaterials {
     /**
      * A recept nyersanyag listája
      */
-    private  ArrayList<Material> bill;
+    private final ArrayList<Material> bill;
 
     /**K
      * onstruktor

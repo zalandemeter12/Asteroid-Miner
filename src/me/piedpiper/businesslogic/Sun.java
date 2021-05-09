@@ -16,7 +16,7 @@ public class Sun implements ISteppable {
     /**
      * Az aktiv napviharok listaja
      */
-    private ArrayList<SolarStorm> solarStorms;
+    private final ArrayList<SolarStorm> solarStorms;
 
     /**
      * Megadja, hogy hany kor telt el a legutobbi napkiotores ota

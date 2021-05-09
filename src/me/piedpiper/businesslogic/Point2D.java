@@ -73,7 +73,9 @@ public class Point2D {
         return Math.sqrt((x-p.GetX())*(x-p.GetX())+(y-p.GetY())*(y-p.GetY()));
     }
 
-
+    /**
+     *  két vektor kereszt szorzata, Point3D-t ad vissza
+     */
     public static Point3D Cross(Point2D a, Point2D b){
        Point3D v1=new Point3D(a.GetX(), a.GetY(), 0);
        Point3D v2=new Point3D(b.GetX(), b.GetY(), 0);

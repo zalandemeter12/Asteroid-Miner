@@ -20,6 +20,7 @@ public class TeleportGatePanel extends JPanel implements IPosGettable{
         teleportGate=tp;
         this.setSize(30, 30);
         this.setBackground(new Color(0,0,0,0));
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     /**

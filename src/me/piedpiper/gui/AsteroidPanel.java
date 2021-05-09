@@ -32,8 +32,9 @@ public class AsteroidPanel extends JPanel implements IPosGettable{
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.gray);
         g2d.fillOval(0, 0, 34, 34);
-        g2d.setPaint(Color.darkGray);
-        Font font = new Font("Arial", Font.PLAIN, 18);
+        if(asteroid.IsCloseToSun()) g2d.setPaint(new Color(239, 158, 36));
+        else g2d.setPaint(Color.darkGray);
+        Font font = new Font("Arial", Font.PLAIN, 17);
         g2d.setFont(font);
         g2d.drawString("A" + asteroid.GetIndex(), 3, 24);
 

@@ -32,7 +32,7 @@ public class SolarStormPanel extends JPanel implements IPosGettable{
         super.paint(g);
 
         Graphics2D g2d = (Graphics2D)g;
-        g2d.setPaint(new Color(175, 36, 36, 100));
+        g2d.setPaint(new Color(255, 200, 0, 180));
 
         g2d.fillArc(0, 0, 900, 400, (int)solarStorm.GetAngle(), 30);
 

@@ -804,7 +804,5 @@ public class Game {
         Logger.logOnConsole = false;
         Game game = new Game();
         view.setVisible(true);
-        //view.skipButton.doClick();
-        //view.mainPanel.validate();
     }
 }

@@ -28,7 +28,6 @@ public class TeleportGatePanel extends JPanel implements IPosGettable{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        //TODO width, height kitalálni
         Graphics2D g2d = (Graphics2D)g;
         g2d.setPaint(Color.red);
         g2d.fillRect(0, 0, 30, 30);

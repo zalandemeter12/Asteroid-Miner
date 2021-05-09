@@ -47,7 +47,6 @@ public class Handlers {
      */
     public void PlaceMaterialClicked(){
         if (view.GetGame().GetField().GetActiveSettler() == null) { return; }
-        //TODO modal window a kiválasztáshoz
 
         Settler active = view.GetGame().GetField().GetActiveSettler();
         if (active.GetBackpack().size() != 0) {
@@ -103,8 +102,6 @@ public class Handlers {
      * A New Game gomb lenyomására beregisztálandó függvény
      */
     public void NewClicked(){
-
         view.GetGame().NewGame();
-        //view.repaint();
     }
 }

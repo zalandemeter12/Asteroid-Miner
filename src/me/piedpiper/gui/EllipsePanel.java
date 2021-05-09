@@ -28,7 +28,6 @@ public class EllipsePanel extends JPanel implements IPosGettable{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        //this.setBackground(new Color(61, 45, 182,255));
         Graphics2D g2d = (Graphics2D)g;
 
         g2d.setPaint(Color.white);

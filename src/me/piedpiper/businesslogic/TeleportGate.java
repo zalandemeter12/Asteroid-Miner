@@ -112,7 +112,7 @@ public class TeleportGate extends OrbitingObject {
      */
     @Override
     public void UnderSolarStorm() {
-        this.isMalfunctioning=true;
+        this.isMalfunctioning = true;
         super.UnderSolarStorm();
     }
 
@@ -125,18 +125,18 @@ public class TeleportGate extends OrbitingObject {
         /**
          * meghibasodas eseten, nem a parameterkent kapott pozicioja rakja, hanem a kapu elkezd veletlenszeruen ugralni az aszteroidamezon
          */
-        if (isMalfunctioning) {
+        if (isMalfunctioning && neighbors.size() > 0) {
+
             if (neighbors.size() > 0) {
-                if (ellipse.GetField().IsRandom()) {
-                    Random rand = new Random();
-                    int idx = rand.nextInt(neighbors.size()-1);
-                    this.position = neighbors.get(idx).GetPosition();
-                } else {
-                    this.position = neighbors.get(0).GetPosition();
-                }
+                Random rand = new Random();
+                int idx = rand.nextInt(neighbors.size()-1);
+                this.position = ellipse.GateLocation(neighbors.get(idx));
+                this.ellipse = neighbors.get(idx).GetEllipse();
+            } else {
+                this.position = neighbors.get(0).GetPosition();
             }
         } else {
-            this.position=p;
+            this.position = p;
         }
     }
 

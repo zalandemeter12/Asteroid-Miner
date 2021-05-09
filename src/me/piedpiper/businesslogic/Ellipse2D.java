@@ -148,7 +148,7 @@ public class Ellipse2D {
             p = new Point2D(a/2 * Math.cos(o.GetT()), b/2 * Math.sin(o.GetT()));
             notClose = true;
             for(OrbitingObject or : objects){
-                if(p.DistanceFrom(or.GetPosition()) < 60) //TODO find the real isClose value
+                if(p.DistanceFrom(or.GetPosition()) < 60)
                     notClose = false;
             }
         }
@@ -171,7 +171,7 @@ public class Ellipse2D {
         Logger.logMessage("Ellipse2D#" + Integer.toHexString(this.hashCode()) + ".MoveOrbits()");
         for (OrbitingObject o : objects) {
             o.SetT(o.GetT() + velocity);
-            o.SetPosition(new Point2D((a/2)*Math.cos(o.GetT()), (b/2) * Math.sin(o.GetT())));
+            o.Moves(new Point2D((a/2)*Math.cos(o.GetT()), (b/2) * Math.sin(o.GetT())));
         }
         Logger.tabcount--;
     }

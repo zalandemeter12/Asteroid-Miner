@@ -178,25 +178,32 @@ public class Settler extends Worker {
          * Csak akkor, ha van mit lehelyezni
          */
         if (gateInventory.size() > 0) {
+
             TeleportGate tg = gateInventory.get(0);
-            Ellipse2D e=location.GetEllipse();
-            gateInventory.get(0).SetPosition(new Point2D(0,0));
-            location.GetEllipse().AddObject(tg);
-            tg.SetT(location.GetT()+0.25);
-            gateInventory.get(0).SetPosition(e.GateLocation(location));
+
             gateInventory.remove(0);
+
+
             tg.SetEllipse(location.GetEllipse());
 
             tg.PlacePanel();
             tg.AddNeighbor(location);
+            location.AddNeighbor(tg);
             if(tg.IsActive()){
                 tg.AddNeighbor(tg.GetPair());
                 tg.GetPair().AddNeighbor(tg);
             }
-            location.AddNeighbor(tg);
+
+
             canStep=false;
             field.SettlerStepped();
+            Ellipse2D e = location.GetEllipse();
+            tg.SetPosition(new Point2D(0,0));
+            e.AddObject(tg);
+            tg.SetT(location.GetT()+0.25);
+            tg.SetPosition(e.GateLocation(location));
         }
+
         
         Logger.tabcount--;
     }

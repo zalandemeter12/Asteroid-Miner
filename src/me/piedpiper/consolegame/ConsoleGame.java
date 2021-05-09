@@ -222,7 +222,7 @@ public class ConsoleGame {
         if(value.equals("true")) {  val = true;}
         else if(value.equals("false")) { val = false; }
         else { return false; }
-        asteroidField.SetRandom(val);
+        //asteroidField.SetRandom(val);
         return true;
     }
 

@@ -52,7 +52,7 @@ public class TeleportGatePanel extends JPanel implements IPosGettable{
      */
     @Override
     public int GetPosY() {
-        return (int)teleportGate.GetPosition().GetY()+246-15;
+        return -((int)teleportGate.GetPosition().GetY()+15)+246;
     }
 
     /**

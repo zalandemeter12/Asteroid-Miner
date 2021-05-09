@@ -1,6 +1,5 @@
 package me.piedpiper.businesslogic;
 
-import javafx.geometry.Point3D;
 import me.piedpiper.gui.SolarStormPanel;
 import me.piedpiper.gui.View;
 

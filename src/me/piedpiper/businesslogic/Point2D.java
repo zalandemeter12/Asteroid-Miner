@@ -1,7 +1,5 @@
 package me.piedpiper.businesslogic;
 
-import javafx.geometry.Point3D;
-
 public class Point2D {
     /**
      * x koordinata

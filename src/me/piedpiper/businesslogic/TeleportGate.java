@@ -126,14 +126,14 @@ public class TeleportGate extends OrbitingObject {
          * meghibasodas eseten, nem a parameterkent kapott pozicioja rakja, hanem a kapu elkezd veletlenszeruen ugralni az aszteroidamezon
          */
         if (isMalfunctioning && neighbors.size() > 0) {
-
-            if (neighbors.size() > 0) {
+            if (neighbors.size() > 1) {
                 Random rand = new Random();
                 int idx = rand.nextInt(neighbors.size()-1);
                 this.position = ellipse.GateLocation(neighbors.get(idx));
                 this.ellipse = neighbors.get(idx).GetEllipse();
             } else {
                 this.position = neighbors.get(0).GetPosition();
+                this.ellipse = neighbors.get(0).GetEllipse();
             }
         } else {
             this.position = p;

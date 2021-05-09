@@ -773,11 +773,6 @@ public class Game {
         ResetIndexes();
         view.Clear();
         Init();
-        /*view.setVisible(false);
-        view.setVisible(true);
-        view.skipButton.doClick();*/
-        //view.Refresh();
-
     }
 
     /**

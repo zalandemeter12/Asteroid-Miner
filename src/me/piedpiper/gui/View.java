@@ -72,10 +72,22 @@ public class View extends JFrame {
     private static final Color almostWhite = new Color(230, 230, 230);
     private static final Color spaceBlue = new Color(61, 45, 182,255);
 
+    /**
+     * A jatek amit megjelenit
+     */
     private Game game;
+    /**
+     * Az utolso kattintott objektum
+     */
     private OrbitingObject selectedObject = null;
+    /**
+     * Az esemenyeket kezelo osztaly
+     */
     private final Handlers handlers;
 
+    /**
+     * View konstruktora, inizializalja a megjeleno elemeket
+     */
     public View(Game game) {
         super("Asteroid miner");
 
@@ -161,18 +173,29 @@ public class View extends JFrame {
         this.add(containerPanel);
     }
 
-
+    /**
+     * Hozzaad egy uj megjelenitendo elemet
+     */
     public void AddGraphicObject(JPanel p){
         mainPanel.AddGraphicObject(p);
     }
+    /**
+     * Hozzaad egy uj megjelenitendo elemet, a megadott helyre a listaban
+     */
     public void AddGraphicObject(JPanel p, int index){
         mainPanel.AddGraphicObject(p, index);
     }
 
+    /**
+     * Eltavolitja a megadott elemet megjelenitendo panelek kozul
+     */
     public void RemoveGraphicObject(JPanel p){
         mainPanel.RemoveGraphicObject(p);
     }
 
+    /**
+     * Frissiti a szukseges elemeket
+     */
     public void Refresh(){
         if (selectedObject != null) {
             clickedObjectLabel.setText("Clicked object: " + selectedObject.GetName());
@@ -252,27 +275,45 @@ public class View extends JFrame {
         activeSettlerGateInvLabel.setText("Gate inventory: " + activeSettler.GetGateInventory().size());
     }
 
+    /**
+     * Visszater a game ertekevel
+     */
     public Game GetGame() {
         return game;
     }
 
+    /**
+     * Beallitja a kapott ertekre a game-t
+     */
     public void SetGame(Game game) {
         this.game = game;
     }
 
+    /**
+     * Visszater a selectedObject ertekevel
+     */
     public OrbitingObject GetSelectedObject() {
         return selectedObject;
     }
 
+    /**
+     * Beallitja a kapott ertekre a selectedObject-et
+     */
     public void SetSelectedObject(OrbitingObject selectedObject) {
         this.selectedObject = selectedObject;
     }
 
+    /**
+     * Beallitja a kapott ertekre a selectedObject-et
+     */
     public void ObjectClicked(OrbitingObject o){
         selectedObject = o;
         Refresh();
     }
 
+    /**
+     * Leszdi a jatek paneleit a mainPanel-rol
+     */
     public void Clear(){
         mainPanel.RemoveAllGraphicObject();
         Refresh();

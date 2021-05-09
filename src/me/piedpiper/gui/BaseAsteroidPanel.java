@@ -21,7 +21,7 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
         baseAsteroid=b;
         this.setSize(34, 34);
         this.setBackground(new Color(0,0,0,0));
-
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     /**

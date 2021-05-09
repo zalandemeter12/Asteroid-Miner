@@ -30,7 +30,11 @@ public class EllipsePanel extends JPanel implements IPosGettable{
         super.paint(g);
         //this.setBackground(new Color(61, 45, 182,255));
         Graphics2D g2d = (Graphics2D)g;
+
         g2d.setPaint(Color.white);
+        Stroke dashed = new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL,
+                0, new float[]{9}, 0);
+        g2d.setStroke(dashed);
 
         g2d.drawOval(0,0, (int)ellipse.GetA(), (int)ellipse.GetB());
     }

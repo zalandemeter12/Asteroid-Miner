@@ -11,7 +11,8 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
     /**
      * Referencia az aszteroidara, amit abrazol
      */
-    private final BaseAsteroid baseAsteroid;
+    private BaseAsteroid baseAsteroid;
+    JLabel label = new JLabel("B1");
 
     /**
      * Konstruktor
@@ -20,6 +21,7 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
         baseAsteroid=b;
         this.setSize(34, 34);
         this.setBackground(new Color(0,0,0,0));
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     /**
@@ -33,6 +35,7 @@ public class BaseAsteroidPanel extends JPanel implements IPosGettable{
         g2d.setPaint(Color.black);
         g2d.fillOval(0, 0, 34, 34);
         g2d.drawString("B",0,0);
+        this.add(label);
         g2d.setPaint(Color.GRAY);
         Font font = new Font("Arial", Font.PLAIN, 18);
         g2d.setFont(font);

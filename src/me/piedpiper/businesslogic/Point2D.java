@@ -1,5 +1,7 @@
 package me.piedpiper.businesslogic;
 
+import javafx.geometry.Point3D;
+
 public class Point2D {
     /**
      * x koordinata
@@ -69,5 +71,12 @@ public class Point2D {
         Logger.logMessage("Point2D#" + Integer.toHexString(this.hashCode()) + ".DistanceFrom()");
         Logger.tabcount--;
         return Math.sqrt((x-p.GetX())*(x-p.GetX())+(y-p.GetY())*(y-p.GetY()));
+    }
+
+
+    public static Point3D Cross(Point2D a, Point2D b){
+       Point3D v1=new Point3D(a.GetX(), a.GetY(), 0);
+       Point3D v2=new Point3D(b.GetX(), b.GetY(), 0);
+       return new Point3D(v1.getY() * v2.getZ() - v1.getZ() * v2.getY(), v1.getZ() * v2.getX() - v1.getX() * v2.getZ(), v1.getX() * v2.getY() - v1.getY() * v2.getX());
     }
 }

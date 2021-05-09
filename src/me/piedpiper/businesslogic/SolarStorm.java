@@ -1,5 +1,6 @@
 package me.piedpiper.businesslogic;
 
+import javafx.geometry.Point3D;
 import me.piedpiper.gui.SolarStormPanel;
 import me.piedpiper.gui.View;
 
@@ -92,30 +93,20 @@ public class SolarStorm implements ISteppable{
         } else if (warnTimer == 0) {
             for (Ellipse2D e : sun.GetField().GetEllipses()) {
                 for (OrbitingObject o : e.GetObjects()) {
-                    double bottomLine = Math.tan((angle + 0.000001) / 180 * PI); //y=bottomline*x
-                    double topLine = Math.tan((angle + 30.000001) / 180 * PI); //y=topline*x
-                    if ((angle >= 270 || angle <= 75 )
-                            && (bottomLine * o.GetPosition().GetX()) < o.GetPosition().GetY()
-                            && (topLine * o.GetPosition().GetX()) > o.GetPosition().GetY()) {
-                        o.UnderSolarStorm();
-                    } else if ((angle > 75 && angle < 90)
-                            && (bottomLine * o.GetPosition().GetX()) < o.GetPosition().GetY()
-                            && (topLine * o.GetPosition().GetX()) < o.GetPosition().GetY()) {
-                        o.UnderSolarStorm();
-                    } else if ((angle >= 90 && angle <= 255)
-                            && (bottomLine * o.GetPosition().GetX()) > o.GetPosition().GetY()
-                            && (topLine * o.GetPosition().GetX()) < o.GetPosition().GetY()) {
-                        o.UnderSolarStorm();
-                    } else if ((angle > 255 && angle < 270)
-                            && (bottomLine * o.GetPosition().GetX()) > o.GetPosition().GetY()
-                            && (topLine * o.GetPosition().GetX()) > o.GetPosition().GetY()) {
+
+                    Point2D p = new Point2D(o.GetEllipse().GetA()/2 * Math.cos(o.GetT()), o.GetEllipse().GetB()/2 * Math.sin(o.GetT()));
+                    Point2D stormStart=new Point2D(-450 * Math.cos(angle/180*PI), -200 * Math.sin(angle/180*PI));
+                    Point2D stormEnd=new Point2D(-450 * Math.cos((angle+30)/180*PI), -200 * Math.sin((angle+30)/180*PI));
+                    Point2D origo=new Point2D(0,0);
+
+                    Point3D normal=Point2D.Cross(stormEnd, stormStart);
+                    if(Point2D.Cross(stormStart, p).dotProduct(normal) > 0 &&
+                            Point2D.Cross(new Point2D( -stormEnd.GetX(), -stormEnd.GetY()), new Point2D(p.GetX()-stormEnd.GetX(),p.GetY()-stormEnd.GetY())).dotProduct(normal) > 0
+                    ){
                         o.UnderSolarStorm();
                     }
 
-
                 }
-            /*for (OrbitingObject o : targets)
-                o.UnderSolarStorm();*/
 
             }
             /**

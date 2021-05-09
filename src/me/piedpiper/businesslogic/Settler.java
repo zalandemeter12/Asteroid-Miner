@@ -189,10 +189,7 @@ public class Settler extends Worker {
             tg.PlacePanel();
             tg.AddNeighbor(location);
             location.AddNeighbor(tg);
-            if(tg.IsActive()){
-                tg.AddNeighbor(tg.GetPair());
-                tg.GetPair().AddNeighbor(tg);
-            }
+
 
 
             canStep=false;

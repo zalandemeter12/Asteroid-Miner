@@ -1,5 +1,7 @@
 # Asteroid-Miner
 
+[A projekt dokumentációja a repository gyökerében található.](https://github.com/zalandemeter12/Asteroid-Miner/blob/main/Asteroid-Miner_Documentation.pdf "Documentation")
+
 ## Elkészített Játék
 ![Asteroid-Miner](https://i.imgur.com/cMtL58w.png)
 
